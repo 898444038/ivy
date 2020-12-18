@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ivy.admin.mapper.ivy.UserMapper">
+
+	<resultMap id="baseResultMap" type="com.ivy.admin.entity.ivy.User">
+	    <result column="id" property="id"/>
+	    <result column="username" property="username"/>
+	    <result column="password" property="password"/>
+	    <result column="email" property="email"/>
+	    <result column="is_enable" property="isEnable"/>
+	</resultMap>
+
+	<sql id="baseColumn">
+	    id,
+	    username,
+	    password,
+	    email,
+	    is_enable
+	</sql>
+
+	<sql id="baseCondition">
+		<where>
+		    <if test="id != null"> and id = #{id}</if>
+		    <if test="username != null"> and username = #{username}</if>
+		    <if test="password != null"> and password = #{password}</if>
+		    <if test="email != null"> and email = #{email}</if>
+		    <if test="isEnable != null"> and is_enable = #{isEnable}</if>
+		</where>
+	</sql>
+
+    <sql id="basePage">
+        <if test="pageStart != null and pageSize != null">
+            LIMIT #{pageStart},#{pageSize}
+        </if>
+    </sql>
+
+    <sql id="baseSort">
+        <if test="pageSort != null and pageSort != ''">
+            ORDER BY #{pageSort}
+        </if>
+    </sql>
+
+    <select id="selectCount" resultType="int" parameterType="com.ivy.admin.vo.ivy.UserVo">
+        SELECT count(1)
+        from ivy_user
+        <include refid="baseCondition"></include>
+    </select>
+
+    <select id="selectPage" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ivy.UserVo">
+        SELECT <include refid="baseColumn"></include>
+        from ivy_user
+        <include refid="baseCondition"></include>
+        <include refid="basePage"></include>
+        <include refid="baseSort"></include>
+    </select>
+
+	<select id="selectList" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ivy.UserVo">
+		SELECT <include refid="baseColumn"></include>
+		from ivy_user
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<select id="selectOne" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ivy.UserVo">
+		SELECT <include refid="baseColumn"></include>
+		from ivy_user
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<insert id="insert" parameterType="com.ivy.admin.entity.ivy.User">
+		insert into ivy_user
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="username != null">username,</if>
+			<if test="password != null">password,</if>
+			<if test="email != null">email,</if>
+			<if test="isEnable != null">is_enable,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+		    <if test="username != null">#{username},</if>
+		    <if test="password != null">#{password},</if>
+		    <if test="email != null">#{email},</if>
+		    <if test="isEnable != null">#{isEnable},</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.ivy.admin.entity.ivy.User">
+		update ivy_user
+		<set>
+			<if test="username != null">username = #{username},</if>
+			<if test="password != null">password = #{password},</if>
+			<if test="email != null">email = #{email},</if>
+			<if test="isEnable != null">is_enable = #{isEnable},</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from ivy_user
+		where id = #{id}
+	</delete>
+
+</mapper>

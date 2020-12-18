@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ivy.admin.mapper.monitor.MysqlStatusMapper">
+
+	<resultMap id="baseResultMap" type="com.ivy.admin.entity.monitor.MysqlStatus">
+	    <result column="id" property="id"/>
+	    <result column="code" property="code"/>
+	    <result column="scope" property="scope"/>
+	    <result column="explicate" property="explicate"/>
+	    <result column="create_time" property="createTime"/>
+	    <result column="enable_flag" property="enableFlag"/>
+	    <result column="del_flag" property="delFlag"/>
+	</resultMap>
+
+	<sql id="baseColumn">
+	    id,
+	    code,
+	    scope,
+	    explicate,
+	    create_time,
+	    enable_flag,
+	    del_flag
+	</sql>
+
+	<sql id="baseCondition">
+		<where>
+		    <if test="id != null"> and id = #{id}</if>
+		    <if test="code != null"> and code = #{code}</if>
+		    <if test="scope != null"> and scope = #{scope}</if>
+		    <if test="explicate != null"> and explicate = #{explicate}</if>
+		    <if test="createTime != null"> and create_time = #{createTime}</if>
+		    <if test="enableFlag != null"> and enable_flag = #{enableFlag}</if>
+		    <if test="delFlag != null"> and del_flag = #{delFlag}</if>
+		</where>
+	</sql>
+
+    <sql id="basePage">
+        <if test="pageStart != null and pageSize != null">
+            LIMIT #{pageStart},#{pageSize}
+        </if>
+    </sql>
+
+    <sql id="baseSort">
+        <if test="pageSort != null and pageSort != ''">
+            ORDER BY #{pageSort}
+        </if>
+    </sql>
+
+    <select id="selectCount" resultType="int" parameterType="com.ivy.admin.vo.monitor.MysqlStatusVo">
+        SELECT count(1)
+        from ivy_mysql_status
+        <include refid="baseCondition"></include>
+    </select>
+
+    <select id="selectPage" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.monitor.MysqlStatusVo">
+        SELECT <include refid="baseColumn"></include>
+        from ivy_mysql_status
+        <include refid="baseCondition"></include>
+        <include refid="basePage"></include>
+        <include refid="baseSort"></include>
+    </select>
+
+	<select id="selectList" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.monitor.MysqlStatusVo">
+		SELECT <include refid="baseColumn"></include>
+		from ivy_mysql_status
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<select id="selectOne" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.monitor.MysqlStatusVo">
+		SELECT <include refid="baseColumn"></include>
+		from ivy_mysql_status
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<insert id="insert" parameterType="com.ivy.admin.entity.monitor.MysqlStatus">
+		insert into ivy_mysql_status
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="code != null">code,</if>
+			<if test="scope != null">scope,</if>
+			<if test="explicate != null">explicate,</if>
+			<if test="createTime != null">create_time,</if>
+			<if test="enableFlag != null">enable_flag,</if>
+			<if test="delFlag != null">del_flag,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+		    <if test="code != null">#{code},</if>
+		    <if test="scope != null">#{scope},</if>
+		    <if test="explicate != null">#{explicate},</if>
+		    <if test="createTime != null">#{createTime},</if>
+		    <if test="enableFlag != null">#{enableFlag},</if>
+		    <if test="delFlag != null">#{delFlag},</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.ivy.admin.entity.monitor.MysqlStatus">
+		update ivy_mysql_status
+		<set>
+			<if test="code != null">code = #{code},</if>
+			<if test="scope != null">scope = #{scope},</if>
+			<if test="explicate != null">explicate = #{explicate},</if>
+			<if test="createTime != null">create_time = #{createTime},</if>
+			<if test="enableFlag != null">enable_flag = #{enableFlag},</if>
+			<if test="delFlag != null">del_flag = #{delFlag},</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from ivy_mysql_status
+		where id = #{id}
+	</delete>
+
+</mapper>

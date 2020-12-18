@@ -1,0 +1,29 @@
+${package}
+
+${import}
+import com.ivy.admin.utils.Pagination;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+${classComment}
+public interface ${serviceName} {
+
+	Pagination<${className}> selectPage(${voName} ${lowerVoName});
+
+    ${selectListComment}
+    List<${className}> selectList(${voName} ${lowerVoName});
+
+    ${selectOneComment}
+    ${className} selectOne(${voName} ${lowerVoName});
+
+    ${insertComment}
+    int insert(${className} ${lowerClassName});
+
+    ${updateComment}
+    int update(${className} ${lowerClassName});
+
+    ${deleteComment}
+    int delete(Long id);
+
+}

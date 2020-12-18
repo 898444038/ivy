@@ -1,0 +1,81 @@
+${package}
+
+${import}
+import com.ivy.admin.utils.Pagination;
+import com.ivy.admin.utils.ResultMsg;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import com.ivy.admin.aspect.log.Log;
+import java.util.List;
+
+${classComment}
+@RestController
+@RequestMapping("${requestMapping}")
+public class ${controllerName} {
+
+    @Autowired
+    private ${serviceName} ${lowerServiceName};
+
+    @Log("${logName}")
+	@GetMapping("/selectPage")
+    public ResultMsg selectPage(${voName} ${lowerVoName}){
+        Pagination<${className}> pagination = ${lowerServiceName}.selectPage(${lowerVoName});
+        return ResultMsg.success(pagination);
+    }
+
+    ${selectListComment}
+    @Log("${logName}")
+    @GetMapping("/selectList")
+    public ResultMsg selectList(${voName} ${lowerVoName}){
+        return ResultMsg.success(${lowerServiceName}.selectList(${lowerVoName}));
+    }
+
+    ${selectOneComment}
+    @Log("${logName}")
+    @GetMapping("/selectOne")
+    public ResultMsg selectOne(${voName} ${lowerVoName}){
+        return ResultMsg.success(${lowerServiceName}.selectOne(${lowerVoName}));
+    }
+
+    ${insertComment}
+    @Log("${logName}")
+    @PostMapping("/insert")
+    public ResultMsg insert(${className} ${lowerClassName}){
+        if(${lowerClassName} == null){
+            return ResultMsg.failed();
+        }
+        int i = ${lowerServiceName}.insert(${lowerClassName});
+        if(i>0){
+            return ResultMsg.success();
+        }
+        return ResultMsg.failed();
+    }
+
+    ${updateComment}
+    @Log("${logName}")
+    @PostMapping("/update")
+    public ResultMsg update(${className} ${lowerClassName}){
+        if(${lowerClassName} == null || ${lowerClassName}.getId() == null){
+            return ResultMsg.failed("ID不能为空！");
+        }
+        int i = ${lowerServiceName}.update(${lowerClassName});
+        if(i>0){
+            return ResultMsg.success();
+        }
+        return ResultMsg.failed();
+    }
+
+    ${deleteComment}
+    @Log("${logName}")
+    @PostMapping("/delete/{id}")
+    public ResultMsg delete(@PathVariable("id") Long id){
+        if(id == null){
+            return ResultMsg.failed("ID不能为空！");
+        }
+        int i = ${lowerServiceName}.delete(id);
+        if(i>0){
+            return ResultMsg.success();
+        }
+        return ResultMsg.failed();
+    }
+}

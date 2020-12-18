@@ -1,0 +1,55 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /ivy
+hikari:
+  dataSource1:
+    jdbc-url: jdbc:mysql://101.37.38.159:3306/ivy?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    username: root
+    password: 123456
+    maximum-pool-size: 10
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  dataSource2:
+    jdbc-url: jdbc:mysql://101.37.38.159:3306/ivy2?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    username: root
+    password: 123456
+    maximum-pool-size: 10
+    driver-class-name: com.mysql.cj.jdbc.Driver
+spring:
+  main:
+    allow-bean-definition-overriding: true
+#    datasource:
+#    username: root
+#    password: 123456
+#    url: jdbc:mysql://101.37.38.159:3306/ivy?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+#    driver-class-name: com.mysql.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 10
+      max-request-size: 10
+
+mybatis:
+  mapper-locations: classpath:mapping/**/*.xml
+  type-aliases-package: com.ivy.admin.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+info:
+  app:
+    name: spring-boot-actuator
+    version: 1.0.0
+    test: ivy
+
+#http://localhost:1001/monitor/actuator/archaius
+management:
+  server:
+    # 代表启用单独的url地址来监控Spring Boot应用，为了安全一般都启用独立的端口来访问后端的监控信息
+    servlet:
+      context-path: /monitor
+    port: 1001
+  # 默认Actuator只暴露了health和info端点，在SpringBoot的application.yml配置文件中加入这句话暴露所有端点
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

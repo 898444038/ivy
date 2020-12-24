@@ -38,8 +38,8 @@
         SELECT <include refid="baseColumn"></include>
         from ${tableName}
         <include refid="baseCondition"></include>
-        <include refid="basePage"></include>
         <include refid="baseSort"></include>
+        <include refid="basePage"></include>
     </select>
 
 	<select id="selectList" resultMap="baseResultMap" parameterType="${voPackage}">

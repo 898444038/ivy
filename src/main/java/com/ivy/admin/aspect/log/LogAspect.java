@@ -53,8 +53,17 @@ public class LogAspect {
             log.setLoginIp(ip);
             log.setMapping(mapping);
             log.setMethod(method.getName());
-            log.setArgs(args);
-            log.setResult(AspectUtils.getInstance().argValue(obj));
+            if(args!=null && args.length()>200){
+                log.setArgs(args.substring(0,200)+"...");
+            }else{
+                log.setArgs(args);
+            }
+            String result = AspectUtils.getInstance().argValue(obj);
+            if(result!=null && result.length()>200){
+                log.setResult(result.substring(0,200)+"...");
+            }else{
+                log.setResult(result);
+            }
             log.setType(logAnno.value());
             log.setCreateTime(new Date());
             log.setExecuteTime((endTime-startTime)+"");

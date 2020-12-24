@@ -40,7 +40,7 @@ public class ${controllerName} {
     ${insertComment}
     @Log("${logName}")
     @PostMapping("/insert")
-    public ResultMsg insert(${className} ${lowerClassName}){
+    public ResultMsg insert(@RequestBody ${className} ${lowerClassName}){
         if(${lowerClassName} == null){
             return ResultMsg.failed();
         }
@@ -54,7 +54,7 @@ public class ${controllerName} {
     ${updateComment}
     @Log("${logName}")
     @PostMapping("/update")
-    public ResultMsg update(${className} ${lowerClassName}){
+    public ResultMsg update(@RequestBody ${className} ${lowerClassName}){
         if(${lowerClassName} == null || ${lowerClassName}.getId() == null){
             return ResultMsg.failed("ID不能为空！");
         }
@@ -68,7 +68,7 @@ public class ${controllerName} {
     ${deleteComment}
     @Log("${logName}")
     @PostMapping("/delete/{id}")
-    public ResultMsg delete(@PathVariable("id") Long id){
+    public ResultMsg delete(@RequestBody @PathVariable("id") Long id){
         if(id == null){
             return ResultMsg.failed("ID不能为空！");
         }

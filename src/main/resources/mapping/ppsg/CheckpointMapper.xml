@@ -1,0 +1,2263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ivy.admin.mapper.ppsg.CheckpointMapper">
+
+	<resultMap id="baseResultMap" type="com.ivy.admin.entity.ppsg.Checkpoint">
+	    <result column="id" property="id"/>
+	    <result column="name" property="name"/>
+	    <result column="forces" property="forces"/>
+	    <result column="intellect" property="intellect"/>
+	    <result column="troops" property="troops"/>
+	    <result column="c30_1" property="c30_1"/>
+	    <result column="c30_2" property="c30_2"/>
+	    <result column="c30_3" property="c30_3"/>
+	    <result column="c30_4" property="c30_4"/>
+	    <result column="c30_5" property="c30_5"/>
+	    <result column="c30_6" property="c30_6"/>
+	    <result column="c30_7" property="c30_7"/>
+	    <result column="c30_8" property="c30_8"/>
+	    <result column="c30_9" property="c30_9"/>
+	    <result column="c30_10" property="c30_10"/>
+	    <result column="c30_11" property="c30_11"/>
+	    <result column="c30_12" property="c30_12"/>
+	    <result column="c29_1" property="c29_1"/>
+	    <result column="c29_2" property="c29_2"/>
+	    <result column="c29_3" property="c29_3"/>
+	    <result column="c29_4" property="c29_4"/>
+	    <result column="c29_5" property="c29_5"/>
+	    <result column="c29_6" property="c29_6"/>
+	    <result column="c29_7" property="c29_7"/>
+	    <result column="c29_8" property="c29_8"/>
+	    <result column="c29_9" property="c29_9"/>
+	    <result column="c29_10" property="c29_10"/>
+	    <result column="c29_11" property="c29_11"/>
+	    <result column="c29_12" property="c29_12"/>
+	    <result column="c28_1" property="c28_1"/>
+	    <result column="c28_2" property="c28_2"/>
+	    <result column="c28_3" property="c28_3"/>
+	    <result column="c28_4" property="c28_4"/>
+	    <result column="c28_5" property="c28_5"/>
+	    <result column="c28_6" property="c28_6"/>
+	    <result column="c28_7" property="c28_7"/>
+	    <result column="c28_8" property="c28_8"/>
+	    <result column="c28_9" property="c28_9"/>
+	    <result column="c28_10" property="c28_10"/>
+	    <result column="c28_11" property="c28_11"/>
+	    <result column="c28_12" property="c28_12"/>
+	    <result column="c27_1" property="c27_1"/>
+	    <result column="c27_2" property="c27_2"/>
+	    <result column="c27_3" property="c27_3"/>
+	    <result column="c27_4" property="c27_4"/>
+	    <result column="c27_5" property="c27_5"/>
+	    <result column="c27_6" property="c27_6"/>
+	    <result column="c27_7" property="c27_7"/>
+	    <result column="c27_8" property="c27_8"/>
+	    <result column="c27_9" property="c27_9"/>
+	    <result column="c27_10" property="c27_10"/>
+	    <result column="c27_11" property="c27_11"/>
+	    <result column="c27_12" property="c27_12"/>
+	    <result column="c26_1" property="c26_1"/>
+	    <result column="c26_2" property="c26_2"/>
+	    <result column="c26_3" property="c26_3"/>
+	    <result column="c26_4" property="c26_4"/>
+	    <result column="c26_5" property="c26_5"/>
+	    <result column="c26_6" property="c26_6"/>
+	    <result column="c26_7" property="c26_7"/>
+	    <result column="c26_8" property="c26_8"/>
+	    <result column="c26_9" property="c26_9"/>
+	    <result column="c26_10" property="c26_10"/>
+	    <result column="c26_11" property="c26_11"/>
+	    <result column="c26_12" property="c26_12"/>
+	    <result column="c25_1" property="c25_1"/>
+	    <result column="c25_2" property="c25_2"/>
+	    <result column="c25_3" property="c25_3"/>
+	    <result column="c25_4" property="c25_4"/>
+	    <result column="c25_5" property="c25_5"/>
+	    <result column="c25_6" property="c25_6"/>
+	    <result column="c25_7" property="c25_7"/>
+	    <result column="c25_8" property="c25_8"/>
+	    <result column="c25_9" property="c25_9"/>
+	    <result column="c25_10" property="c25_10"/>
+	    <result column="c25_11" property="c25_11"/>
+	    <result column="c25_12" property="c25_12"/>
+	    <result column="c24_1" property="c24_1"/>
+	    <result column="c24_2" property="c24_2"/>
+	    <result column="c24_3" property="c24_3"/>
+	    <result column="c24_4" property="c24_4"/>
+	    <result column="c24_5" property="c24_5"/>
+	    <result column="c24_6" property="c24_6"/>
+	    <result column="c24_7" property="c24_7"/>
+	    <result column="c24_8" property="c24_8"/>
+	    <result column="c24_9" property="c24_9"/>
+	    <result column="c24_10" property="c24_10"/>
+	    <result column="c24_11" property="c24_11"/>
+	    <result column="c24_12" property="c24_12"/>
+	    <result column="c23_1" property="c23_1"/>
+	    <result column="c23_2" property="c23_2"/>
+	    <result column="c23_3" property="c23_3"/>
+	    <result column="c23_4" property="c23_4"/>
+	    <result column="c23_5" property="c23_5"/>
+	    <result column="c23_6" property="c23_6"/>
+	    <result column="c23_7" property="c23_7"/>
+	    <result column="c23_8" property="c23_8"/>
+	    <result column="c23_9" property="c23_9"/>
+	    <result column="c23_10" property="c23_10"/>
+	    <result column="c23_11" property="c23_11"/>
+	    <result column="c23_12" property="c23_12"/>
+	    <result column="c22_1" property="c22_1"/>
+	    <result column="c22_2" property="c22_2"/>
+	    <result column="c22_3" property="c22_3"/>
+	    <result column="c22_4" property="c22_4"/>
+	    <result column="c22_5" property="c22_5"/>
+	    <result column="c22_6" property="c22_6"/>
+	    <result column="c22_7" property="c22_7"/>
+	    <result column="c22_8" property="c22_8"/>
+	    <result column="c22_9" property="c22_9"/>
+	    <result column="c22_10" property="c22_10"/>
+	    <result column="c22_11" property="c22_11"/>
+	    <result column="c22_12" property="c22_12"/>
+	    <result column="c21_1" property="c21_1"/>
+	    <result column="c21_2" property="c21_2"/>
+	    <result column="c21_3" property="c21_3"/>
+	    <result column="c21_4" property="c21_4"/>
+	    <result column="c21_5" property="c21_5"/>
+	    <result column="c21_6" property="c21_6"/>
+	    <result column="c21_7" property="c21_7"/>
+	    <result column="c21_8" property="c21_8"/>
+	    <result column="c21_9" property="c21_9"/>
+	    <result column="c21_10" property="c21_10"/>
+	    <result column="c21_11" property="c21_11"/>
+	    <result column="c21_12" property="c21_12"/>
+	    <result column="c20_1" property="c20_1"/>
+	    <result column="c20_2" property="c20_2"/>
+	    <result column="c20_3" property="c20_3"/>
+	    <result column="c20_4" property="c20_4"/>
+	    <result column="c20_5" property="c20_5"/>
+	    <result column="c20_6" property="c20_6"/>
+	    <result column="c20_7" property="c20_7"/>
+	    <result column="c20_8" property="c20_8"/>
+	    <result column="c20_9" property="c20_9"/>
+	    <result column="c20_10" property="c20_10"/>
+	    <result column="c20_11" property="c20_11"/>
+	    <result column="c20_12" property="c20_12"/>
+	    <result column="c19_1" property="c19_1"/>
+	    <result column="c19_2" property="c19_2"/>
+	    <result column="c19_3" property="c19_3"/>
+	    <result column="c19_4" property="c19_4"/>
+	    <result column="c19_5" property="c19_5"/>
+	    <result column="c19_6" property="c19_6"/>
+	    <result column="c19_7" property="c19_7"/>
+	    <result column="c19_8" property="c19_8"/>
+	    <result column="c19_9" property="c19_9"/>
+	    <result column="c19_10" property="c19_10"/>
+	    <result column="c19_11" property="c19_11"/>
+	    <result column="c19_12" property="c19_12"/>
+	    <result column="c18_1" property="c18_1"/>
+	    <result column="c18_2" property="c18_2"/>
+	    <result column="c18_3" property="c18_3"/>
+	    <result column="c18_4" property="c18_4"/>
+	    <result column="c18_5" property="c18_5"/>
+	    <result column="c18_6" property="c18_6"/>
+	    <result column="c18_7" property="c18_7"/>
+	    <result column="c18_8" property="c18_8"/>
+	    <result column="c18_9" property="c18_9"/>
+	    <result column="c18_10" property="c18_10"/>
+	    <result column="c18_11" property="c18_11"/>
+	    <result column="c18_12" property="c18_12"/>
+	    <result column="c17_1" property="c17_1"/>
+	    <result column="c17_2" property="c17_2"/>
+	    <result column="c17_3" property="c17_3"/>
+	    <result column="c17_4" property="c17_4"/>
+	    <result column="c17_5" property="c17_5"/>
+	    <result column="c17_6" property="c17_6"/>
+	    <result column="c17_7" property="c17_7"/>
+	    <result column="c17_8" property="c17_8"/>
+	    <result column="c17_9" property="c17_9"/>
+	    <result column="c17_10" property="c17_10"/>
+	    <result column="c17_11" property="c17_11"/>
+	    <result column="c17_12" property="c17_12"/>
+	    <result column="c16_1" property="c16_1"/>
+	    <result column="c16_2" property="c16_2"/>
+	    <result column="c16_3" property="c16_3"/>
+	    <result column="c16_4" property="c16_4"/>
+	    <result column="c16_5" property="c16_5"/>
+	    <result column="c16_6" property="c16_6"/>
+	    <result column="c16_7" property="c16_7"/>
+	    <result column="c16_8" property="c16_8"/>
+	    <result column="c16_9" property="c16_9"/>
+	    <result column="c16_10" property="c16_10"/>
+	    <result column="c16_11" property="c16_11"/>
+	    <result column="c16_12" property="c16_12"/>
+	    <result column="c15_1" property="c15_1"/>
+	    <result column="c15_2" property="c15_2"/>
+	    <result column="c15_3" property="c15_3"/>
+	    <result column="c15_4" property="c15_4"/>
+	    <result column="c15_5" property="c15_5"/>
+	    <result column="c15_6" property="c15_6"/>
+	    <result column="c15_7" property="c15_7"/>
+	    <result column="c15_8" property="c15_8"/>
+	    <result column="c15_9" property="c15_9"/>
+	    <result column="c15_10" property="c15_10"/>
+	    <result column="c15_11" property="c15_11"/>
+	    <result column="c15_12" property="c15_12"/>
+	    <result column="c14_1" property="c14_1"/>
+	    <result column="c14_2" property="c14_2"/>
+	    <result column="c14_3" property="c14_3"/>
+	    <result column="c14_4" property="c14_4"/>
+	    <result column="c14_5" property="c14_5"/>
+	    <result column="c14_6" property="c14_6"/>
+	    <result column="c14_7" property="c14_7"/>
+	    <result column="c14_8" property="c14_8"/>
+	    <result column="c14_9" property="c14_9"/>
+	    <result column="c14_10" property="c14_10"/>
+	    <result column="c14_11" property="c14_11"/>
+	    <result column="c14_12" property="c14_12"/>
+	    <result column="c13_1" property="c13_1"/>
+	    <result column="c13_2" property="c13_2"/>
+	    <result column="c13_3" property="c13_3"/>
+	    <result column="c13_4" property="c13_4"/>
+	    <result column="c13_5" property="c13_5"/>
+	    <result column="c13_6" property="c13_6"/>
+	    <result column="c13_7" property="c13_7"/>
+	    <result column="c13_8" property="c13_8"/>
+	    <result column="c13_9" property="c13_9"/>
+	    <result column="c13_10" property="c13_10"/>
+	    <result column="c13_11" property="c13_11"/>
+	    <result column="c13_12" property="c13_12"/>
+	    <result column="c12_1" property="c12_1"/>
+	    <result column="c12_2" property="c12_2"/>
+	    <result column="c12_3" property="c12_3"/>
+	    <result column="c12_4" property="c12_4"/>
+	    <result column="c12_5" property="c12_5"/>
+	    <result column="c12_6" property="c12_6"/>
+	    <result column="c12_7" property="c12_7"/>
+	    <result column="c12_8" property="c12_8"/>
+	    <result column="c12_9" property="c12_9"/>
+	    <result column="c12_10" property="c12_10"/>
+	    <result column="c12_11" property="c12_11"/>
+	    <result column="c12_12" property="c12_12"/>
+	    <result column="c11_1" property="c11_1"/>
+	    <result column="c11_2" property="c11_2"/>
+	    <result column="c11_3" property="c11_3"/>
+	    <result column="c11_4" property="c11_4"/>
+	    <result column="c11_5" property="c11_5"/>
+	    <result column="c11_6" property="c11_6"/>
+	    <result column="c11_7" property="c11_7"/>
+	    <result column="c11_8" property="c11_8"/>
+	    <result column="c11_9" property="c11_9"/>
+	    <result column="c11_10" property="c11_10"/>
+	    <result column="c11_11" property="c11_11"/>
+	    <result column="c11_12" property="c11_12"/>
+	    <result column="c10_1" property="c10_1"/>
+	    <result column="c10_2" property="c10_2"/>
+	    <result column="c10_3" property="c10_3"/>
+	    <result column="c10_4" property="c10_4"/>
+	    <result column="c10_5" property="c10_5"/>
+	    <result column="c10_6" property="c10_6"/>
+	    <result column="c10_7" property="c10_7"/>
+	    <result column="c10_8" property="c10_8"/>
+	    <result column="c10_9" property="c10_9"/>
+	    <result column="c10_10" property="c10_10"/>
+	    <result column="c10_11" property="c10_11"/>
+	    <result column="c10_12" property="c10_12"/>
+	    <result column="c9_1" property="c9_1"/>
+	    <result column="c9_2" property="c9_2"/>
+	    <result column="c9_3" property="c9_3"/>
+	    <result column="c9_4" property="c9_4"/>
+	    <result column="c9_5" property="c9_5"/>
+	    <result column="c9_6" property="c9_6"/>
+	    <result column="c9_7" property="c9_7"/>
+	    <result column="c9_8" property="c9_8"/>
+	    <result column="c9_9" property="c9_9"/>
+	    <result column="c9_10" property="c9_10"/>
+	    <result column="c9_11" property="c9_11"/>
+	    <result column="c9_12" property="c9_12"/>
+	    <result column="c8_1" property="c8_1"/>
+	    <result column="c8_2" property="c8_2"/>
+	    <result column="c8_3" property="c8_3"/>
+	    <result column="c8_4" property="c8_4"/>
+	    <result column="c8_5" property="c8_5"/>
+	    <result column="c8_6" property="c8_6"/>
+	    <result column="c8_7" property="c8_7"/>
+	    <result column="c8_8" property="c8_8"/>
+	    <result column="c8_9" property="c8_9"/>
+	    <result column="c8_10" property="c8_10"/>
+	    <result column="c8_11" property="c8_11"/>
+	    <result column="c8_12" property="c8_12"/>
+	    <result column="c7_1" property="c7_1"/>
+	    <result column="c7_2" property="c7_2"/>
+	    <result column="c7_3" property="c7_3"/>
+	    <result column="c7_4" property="c7_4"/>
+	    <result column="c7_5" property="c7_5"/>
+	    <result column="c7_6" property="c7_6"/>
+	    <result column="c7_7" property="c7_7"/>
+	    <result column="c7_8" property="c7_8"/>
+	    <result column="c7_9" property="c7_9"/>
+	    <result column="c7_10" property="c7_10"/>
+	    <result column="c7_11" property="c7_11"/>
+	    <result column="c7_12" property="c7_12"/>
+	    <result column="c6_1" property="c6_1"/>
+	    <result column="c6_2" property="c6_2"/>
+	    <result column="c6_3" property="c6_3"/>
+	    <result column="c6_4" property="c6_4"/>
+	    <result column="c6_5" property="c6_5"/>
+	    <result column="c6_6" property="c6_6"/>
+	    <result column="c6_7" property="c6_7"/>
+	    <result column="c6_8" property="c6_8"/>
+	    <result column="c6_9" property="c6_9"/>
+	    <result column="c6_10" property="c6_10"/>
+	    <result column="c6_11" property="c6_11"/>
+	    <result column="c6_12" property="c6_12"/>
+	    <result column="c5_1" property="c5_1"/>
+	    <result column="c5_2" property="c5_2"/>
+	    <result column="c5_3" property="c5_3"/>
+	    <result column="c5_4" property="c5_4"/>
+	    <result column="c5_5" property="c5_5"/>
+	    <result column="c5_6" property="c5_6"/>
+	    <result column="c5_7" property="c5_7"/>
+	    <result column="c5_8" property="c5_8"/>
+	    <result column="c5_9" property="c5_9"/>
+	    <result column="c5_10" property="c5_10"/>
+	    <result column="c5_11" property="c5_11"/>
+	    <result column="c5_12" property="c5_12"/>
+	    <result column="c4_1" property="c4_1"/>
+	    <result column="c4_2" property="c4_2"/>
+	    <result column="c4_3" property="c4_3"/>
+	    <result column="c4_4" property="c4_4"/>
+	    <result column="c4_5" property="c4_5"/>
+	    <result column="c4_6" property="c4_6"/>
+	    <result column="c4_7" property="c4_7"/>
+	    <result column="c4_8" property="c4_8"/>
+	    <result column="c4_9" property="c4_9"/>
+	    <result column="c4_10" property="c4_10"/>
+	    <result column="c4_11" property="c4_11"/>
+	    <result column="c4_12" property="c4_12"/>
+	    <result column="c3_1" property="c3_1"/>
+	    <result column="c3_2" property="c3_2"/>
+	    <result column="c3_3" property="c3_3"/>
+	    <result column="c3_4" property="c3_4"/>
+	    <result column="c3_5" property="c3_5"/>
+	    <result column="c3_6" property="c3_6"/>
+	    <result column="c3_7" property="c3_7"/>
+	    <result column="c3_8" property="c3_8"/>
+	    <result column="c3_9" property="c3_9"/>
+	    <result column="c3_10" property="c3_10"/>
+	    <result column="c3_11" property="c3_11"/>
+	    <result column="c3_12" property="c3_12"/>
+	    <result column="c2_1" property="c2_1"/>
+	    <result column="c2_2" property="c2_2"/>
+	    <result column="c2_3" property="c2_3"/>
+	    <result column="c2_4" property="c2_4"/>
+	    <result column="c2_5" property="c2_5"/>
+	    <result column="c2_6" property="c2_6"/>
+	    <result column="c2_7" property="c2_7"/>
+	    <result column="c2_8" property="c2_8"/>
+	    <result column="c2_9" property="c2_9"/>
+	    <result column="c2_10" property="c2_10"/>
+	    <result column="c2_11" property="c2_11"/>
+	    <result column="c2_12" property="c2_12"/>
+	    <result column="c1_1" property="c1_1"/>
+	    <result column="c1_2" property="c1_2"/>
+	    <result column="c1_3" property="c1_3"/>
+	    <result column="c1_4" property="c1_4"/>
+	    <result column="c1_5" property="c1_5"/>
+	    <result column="c1_6" property="c1_6"/>
+	    <result column="c1_7" property="c1_7"/>
+	    <result column="c1_8" property="c1_8"/>
+	    <result column="c1_9" property="c1_9"/>
+	    <result column="c1_10" property="c1_10"/>
+	    <result column="c1_11" property="c1_11"/>
+	    <result column="c1_12" property="c1_12"/>
+	</resultMap>
+
+	<sql id="baseColumn">
+	    id,
+	    name,
+	    forces,
+	    intellect,
+	    troops,
+	    c30_1,
+	    c30_2,
+	    c30_3,
+	    c30_4,
+	    c30_5,
+	    c30_6,
+	    c30_7,
+	    c30_8,
+	    c30_9,
+	    c30_10,
+	    c30_11,
+	    c30_12,
+	    c29_1,
+	    c29_2,
+	    c29_3,
+	    c29_4,
+	    c29_5,
+	    c29_6,
+	    c29_7,
+	    c29_8,
+	    c29_9,
+	    c29_10,
+	    c29_11,
+	    c29_12,
+	    c28_1,
+	    c28_2,
+	    c28_3,
+	    c28_4,
+	    c28_5,
+	    c28_6,
+	    c28_7,
+	    c28_8,
+	    c28_9,
+	    c28_10,
+	    c28_11,
+	    c28_12,
+	    c27_1,
+	    c27_2,
+	    c27_3,
+	    c27_4,
+	    c27_5,
+	    c27_6,
+	    c27_7,
+	    c27_8,
+	    c27_9,
+	    c27_10,
+	    c27_11,
+	    c27_12,
+	    c26_1,
+	    c26_2,
+	    c26_3,
+	    c26_4,
+	    c26_5,
+	    c26_6,
+	    c26_7,
+	    c26_8,
+	    c26_9,
+	    c26_10,
+	    c26_11,
+	    c26_12,
+	    c25_1,
+	    c25_2,
+	    c25_3,
+	    c25_4,
+	    c25_5,
+	    c25_6,
+	    c25_7,
+	    c25_8,
+	    c25_9,
+	    c25_10,
+	    c25_11,
+	    c25_12,
+	    c24_1,
+	    c24_2,
+	    c24_3,
+	    c24_4,
+	    c24_5,
+	    c24_6,
+	    c24_7,
+	    c24_8,
+	    c24_9,
+	    c24_10,
+	    c24_11,
+	    c24_12,
+	    c23_1,
+	    c23_2,
+	    c23_3,
+	    c23_4,
+	    c23_5,
+	    c23_6,
+	    c23_7,
+	    c23_8,
+	    c23_9,
+	    c23_10,
+	    c23_11,
+	    c23_12,
+	    c22_1,
+	    c22_2,
+	    c22_3,
+	    c22_4,
+	    c22_5,
+	    c22_6,
+	    c22_7,
+	    c22_8,
+	    c22_9,
+	    c22_10,
+	    c22_11,
+	    c22_12,
+	    c21_1,
+	    c21_2,
+	    c21_3,
+	    c21_4,
+	    c21_5,
+	    c21_6,
+	    c21_7,
+	    c21_8,
+	    c21_9,
+	    c21_10,
+	    c21_11,
+	    c21_12,
+	    c20_1,
+	    c20_2,
+	    c20_3,
+	    c20_4,
+	    c20_5,
+	    c20_6,
+	    c20_7,
+	    c20_8,
+	    c20_9,
+	    c20_10,
+	    c20_11,
+	    c20_12,
+	    c19_1,
+	    c19_2,
+	    c19_3,
+	    c19_4,
+	    c19_5,
+	    c19_6,
+	    c19_7,
+	    c19_8,
+	    c19_9,
+	    c19_10,
+	    c19_11,
+	    c19_12,
+	    c18_1,
+	    c18_2,
+	    c18_3,
+	    c18_4,
+	    c18_5,
+	    c18_6,
+	    c18_7,
+	    c18_8,
+	    c18_9,
+	    c18_10,
+	    c18_11,
+	    c18_12,
+	    c17_1,
+	    c17_2,
+	    c17_3,
+	    c17_4,
+	    c17_5,
+	    c17_6,
+	    c17_7,
+	    c17_8,
+	    c17_9,
+	    c17_10,
+	    c17_11,
+	    c17_12,
+	    c16_1,
+	    c16_2,
+	    c16_3,
+	    c16_4,
+	    c16_5,
+	    c16_6,
+	    c16_7,
+	    c16_8,
+	    c16_9,
+	    c16_10,
+	    c16_11,
+	    c16_12,
+	    c15_1,
+	    c15_2,
+	    c15_3,
+	    c15_4,
+	    c15_5,
+	    c15_6,
+	    c15_7,
+	    c15_8,
+	    c15_9,
+	    c15_10,
+	    c15_11,
+	    c15_12,
+	    c14_1,
+	    c14_2,
+	    c14_3,
+	    c14_4,
+	    c14_5,
+	    c14_6,
+	    c14_7,
+	    c14_8,
+	    c14_9,
+	    c14_10,
+	    c14_11,
+	    c14_12,
+	    c13_1,
+	    c13_2,
+	    c13_3,
+	    c13_4,
+	    c13_5,
+	    c13_6,
+	    c13_7,
+	    c13_8,
+	    c13_9,
+	    c13_10,
+	    c13_11,
+	    c13_12,
+	    c12_1,
+	    c12_2,
+	    c12_3,
+	    c12_4,
+	    c12_5,
+	    c12_6,
+	    c12_7,
+	    c12_8,
+	    c12_9,
+	    c12_10,
+	    c12_11,
+	    c12_12,
+	    c11_1,
+	    c11_2,
+	    c11_3,
+	    c11_4,
+	    c11_5,
+	    c11_6,
+	    c11_7,
+	    c11_8,
+	    c11_9,
+	    c11_10,
+	    c11_11,
+	    c11_12,
+	    c10_1,
+	    c10_2,
+	    c10_3,
+	    c10_4,
+	    c10_5,
+	    c10_6,
+	    c10_7,
+	    c10_8,
+	    c10_9,
+	    c10_10,
+	    c10_11,
+	    c10_12,
+	    c9_1,
+	    c9_2,
+	    c9_3,
+	    c9_4,
+	    c9_5,
+	    c9_6,
+	    c9_7,
+	    c9_8,
+	    c9_9,
+	    c9_10,
+	    c9_11,
+	    c9_12,
+	    c8_1,
+	    c8_2,
+	    c8_3,
+	    c8_4,
+	    c8_5,
+	    c8_6,
+	    c8_7,
+	    c8_8,
+	    c8_9,
+	    c8_10,
+	    c8_11,
+	    c8_12,
+	    c7_1,
+	    c7_2,
+	    c7_3,
+	    c7_4,
+	    c7_5,
+	    c7_6,
+	    c7_7,
+	    c7_8,
+	    c7_9,
+	    c7_10,
+	    c7_11,
+	    c7_12,
+	    c6_1,
+	    c6_2,
+	    c6_3,
+	    c6_4,
+	    c6_5,
+	    c6_6,
+	    c6_7,
+	    c6_8,
+	    c6_9,
+	    c6_10,
+	    c6_11,
+	    c6_12,
+	    c5_1,
+	    c5_2,
+	    c5_3,
+	    c5_4,
+	    c5_5,
+	    c5_6,
+	    c5_7,
+	    c5_8,
+	    c5_9,
+	    c5_10,
+	    c5_11,
+	    c5_12,
+	    c4_1,
+	    c4_2,
+	    c4_3,
+	    c4_4,
+	    c4_5,
+	    c4_6,
+	    c4_7,
+	    c4_8,
+	    c4_9,
+	    c4_10,
+	    c4_11,
+	    c4_12,
+	    c3_1,
+	    c3_2,
+	    c3_3,
+	    c3_4,
+	    c3_5,
+	    c3_6,
+	    c3_7,
+	    c3_8,
+	    c3_9,
+	    c3_10,
+	    c3_11,
+	    c3_12,
+	    c2_1,
+	    c2_2,
+	    c2_3,
+	    c2_4,
+	    c2_5,
+	    c2_6,
+	    c2_7,
+	    c2_8,
+	    c2_9,
+	    c2_10,
+	    c2_11,
+	    c2_12,
+	    c1_1,
+	    c1_2,
+	    c1_3,
+	    c1_4,
+	    c1_5,
+	    c1_6,
+	    c1_7,
+	    c1_8,
+	    c1_9,
+	    c1_10,
+	    c1_11,
+	    c1_12
+	</sql>
+
+	<sql id="baseCondition">
+		<where>
+		    <if test="id != null"> and id = #{id}</if>
+		    <if test="name != null"> and name = #{name}</if>
+		    <if test="forces != null"> and forces = #{forces}</if>
+		    <if test="intellect != null"> and intellect = #{intellect}</if>
+		    <if test="troops != null"> and troops = #{troops}</if>
+		    <if test="c30_1 != null"> and c30_1 = #{c30_1}</if>
+		    <if test="c30_2 != null"> and c30_2 = #{c30_2}</if>
+		    <if test="c30_3 != null"> and c30_3 = #{c30_3}</if>
+		    <if test="c30_4 != null"> and c30_4 = #{c30_4}</if>
+		    <if test="c30_5 != null"> and c30_5 = #{c30_5}</if>
+		    <if test="c30_6 != null"> and c30_6 = #{c30_6}</if>
+		    <if test="c30_7 != null"> and c30_7 = #{c30_7}</if>
+		    <if test="c30_8 != null"> and c30_8 = #{c30_8}</if>
+		    <if test="c30_9 != null"> and c30_9 = #{c30_9}</if>
+		    <if test="c30_10 != null"> and c30_10 = #{c30_10}</if>
+		    <if test="c30_11 != null"> and c30_11 = #{c30_11}</if>
+		    <if test="c30_12 != null"> and c30_12 = #{c30_12}</if>
+		    <if test="c29_1 != null"> and c29_1 = #{c29_1}</if>
+		    <if test="c29_2 != null"> and c29_2 = #{c29_2}</if>
+		    <if test="c29_3 != null"> and c29_3 = #{c29_3}</if>
+		    <if test="c29_4 != null"> and c29_4 = #{c29_4}</if>
+		    <if test="c29_5 != null"> and c29_5 = #{c29_5}</if>
+		    <if test="c29_6 != null"> and c29_6 = #{c29_6}</if>
+		    <if test="c29_7 != null"> and c29_7 = #{c29_7}</if>
+		    <if test="c29_8 != null"> and c29_8 = #{c29_8}</if>
+		    <if test="c29_9 != null"> and c29_9 = #{c29_9}</if>
+		    <if test="c29_10 != null"> and c29_10 = #{c29_10}</if>
+		    <if test="c29_11 != null"> and c29_11 = #{c29_11}</if>
+		    <if test="c29_12 != null"> and c29_12 = #{c29_12}</if>
+		    <if test="c28_1 != null"> and c28_1 = #{c28_1}</if>
+		    <if test="c28_2 != null"> and c28_2 = #{c28_2}</if>
+		    <if test="c28_3 != null"> and c28_3 = #{c28_3}</if>
+		    <if test="c28_4 != null"> and c28_4 = #{c28_4}</if>
+		    <if test="c28_5 != null"> and c28_5 = #{c28_5}</if>
+		    <if test="c28_6 != null"> and c28_6 = #{c28_6}</if>
+		    <if test="c28_7 != null"> and c28_7 = #{c28_7}</if>
+		    <if test="c28_8 != null"> and c28_8 = #{c28_8}</if>
+		    <if test="c28_9 != null"> and c28_9 = #{c28_9}</if>
+		    <if test="c28_10 != null"> and c28_10 = #{c28_10}</if>
+		    <if test="c28_11 != null"> and c28_11 = #{c28_11}</if>
+		    <if test="c28_12 != null"> and c28_12 = #{c28_12}</if>
+		    <if test="c27_1 != null"> and c27_1 = #{c27_1}</if>
+		    <if test="c27_2 != null"> and c27_2 = #{c27_2}</if>
+		    <if test="c27_3 != null"> and c27_3 = #{c27_3}</if>
+		    <if test="c27_4 != null"> and c27_4 = #{c27_4}</if>
+		    <if test="c27_5 != null"> and c27_5 = #{c27_5}</if>
+		    <if test="c27_6 != null"> and c27_6 = #{c27_6}</if>
+		    <if test="c27_7 != null"> and c27_7 = #{c27_7}</if>
+		    <if test="c27_8 != null"> and c27_8 = #{c27_8}</if>
+		    <if test="c27_9 != null"> and c27_9 = #{c27_9}</if>
+		    <if test="c27_10 != null"> and c27_10 = #{c27_10}</if>
+		    <if test="c27_11 != null"> and c27_11 = #{c27_11}</if>
+		    <if test="c27_12 != null"> and c27_12 = #{c27_12}</if>
+		    <if test="c26_1 != null"> and c26_1 = #{c26_1}</if>
+		    <if test="c26_2 != null"> and c26_2 = #{c26_2}</if>
+		    <if test="c26_3 != null"> and c26_3 = #{c26_3}</if>
+		    <if test="c26_4 != null"> and c26_4 = #{c26_4}</if>
+		    <if test="c26_5 != null"> and c26_5 = #{c26_5}</if>
+		    <if test="c26_6 != null"> and c26_6 = #{c26_6}</if>
+		    <if test="c26_7 != null"> and c26_7 = #{c26_7}</if>
+		    <if test="c26_8 != null"> and c26_8 = #{c26_8}</if>
+		    <if test="c26_9 != null"> and c26_9 = #{c26_9}</if>
+		    <if test="c26_10 != null"> and c26_10 = #{c26_10}</if>
+		    <if test="c26_11 != null"> and c26_11 = #{c26_11}</if>
+		    <if test="c26_12 != null"> and c26_12 = #{c26_12}</if>
+		    <if test="c25_1 != null"> and c25_1 = #{c25_1}</if>
+		    <if test="c25_2 != null"> and c25_2 = #{c25_2}</if>
+		    <if test="c25_3 != null"> and c25_3 = #{c25_3}</if>
+		    <if test="c25_4 != null"> and c25_4 = #{c25_4}</if>
+		    <if test="c25_5 != null"> and c25_5 = #{c25_5}</if>
+		    <if test="c25_6 != null"> and c25_6 = #{c25_6}</if>
+		    <if test="c25_7 != null"> and c25_7 = #{c25_7}</if>
+		    <if test="c25_8 != null"> and c25_8 = #{c25_8}</if>
+		    <if test="c25_9 != null"> and c25_9 = #{c25_9}</if>
+		    <if test="c25_10 != null"> and c25_10 = #{c25_10}</if>
+		    <if test="c25_11 != null"> and c25_11 = #{c25_11}</if>
+		    <if test="c25_12 != null"> and c25_12 = #{c25_12}</if>
+		    <if test="c24_1 != null"> and c24_1 = #{c24_1}</if>
+		    <if test="c24_2 != null"> and c24_2 = #{c24_2}</if>
+		    <if test="c24_3 != null"> and c24_3 = #{c24_3}</if>
+		    <if test="c24_4 != null"> and c24_4 = #{c24_4}</if>
+		    <if test="c24_5 != null"> and c24_5 = #{c24_5}</if>
+		    <if test="c24_6 != null"> and c24_6 = #{c24_6}</if>
+		    <if test="c24_7 != null"> and c24_7 = #{c24_7}</if>
+		    <if test="c24_8 != null"> and c24_8 = #{c24_8}</if>
+		    <if test="c24_9 != null"> and c24_9 = #{c24_9}</if>
+		    <if test="c24_10 != null"> and c24_10 = #{c24_10}</if>
+		    <if test="c24_11 != null"> and c24_11 = #{c24_11}</if>
+		    <if test="c24_12 != null"> and c24_12 = #{c24_12}</if>
+		    <if test="c23_1 != null"> and c23_1 = #{c23_1}</if>
+		    <if test="c23_2 != null"> and c23_2 = #{c23_2}</if>
+		    <if test="c23_3 != null"> and c23_3 = #{c23_3}</if>
+		    <if test="c23_4 != null"> and c23_4 = #{c23_4}</if>
+		    <if test="c23_5 != null"> and c23_5 = #{c23_5}</if>
+		    <if test="c23_6 != null"> and c23_6 = #{c23_6}</if>
+		    <if test="c23_7 != null"> and c23_7 = #{c23_7}</if>
+		    <if test="c23_8 != null"> and c23_8 = #{c23_8}</if>
+		    <if test="c23_9 != null"> and c23_9 = #{c23_9}</if>
+		    <if test="c23_10 != null"> and c23_10 = #{c23_10}</if>
+		    <if test="c23_11 != null"> and c23_11 = #{c23_11}</if>
+		    <if test="c23_12 != null"> and c23_12 = #{c23_12}</if>
+		    <if test="c22_1 != null"> and c22_1 = #{c22_1}</if>
+		    <if test="c22_2 != null"> and c22_2 = #{c22_2}</if>
+		    <if test="c22_3 != null"> and c22_3 = #{c22_3}</if>
+		    <if test="c22_4 != null"> and c22_4 = #{c22_4}</if>
+		    <if test="c22_5 != null"> and c22_5 = #{c22_5}</if>
+		    <if test="c22_6 != null"> and c22_6 = #{c22_6}</if>
+		    <if test="c22_7 != null"> and c22_7 = #{c22_7}</if>
+		    <if test="c22_8 != null"> and c22_8 = #{c22_8}</if>
+		    <if test="c22_9 != null"> and c22_9 = #{c22_9}</if>
+		    <if test="c22_10 != null"> and c22_10 = #{c22_10}</if>
+		    <if test="c22_11 != null"> and c22_11 = #{c22_11}</if>
+		    <if test="c22_12 != null"> and c22_12 = #{c22_12}</if>
+		    <if test="c21_1 != null"> and c21_1 = #{c21_1}</if>
+		    <if test="c21_2 != null"> and c21_2 = #{c21_2}</if>
+		    <if test="c21_3 != null"> and c21_3 = #{c21_3}</if>
+		    <if test="c21_4 != null"> and c21_4 = #{c21_4}</if>
+		    <if test="c21_5 != null"> and c21_5 = #{c21_5}</if>
+		    <if test="c21_6 != null"> and c21_6 = #{c21_6}</if>
+		    <if test="c21_7 != null"> and c21_7 = #{c21_7}</if>
+		    <if test="c21_8 != null"> and c21_8 = #{c21_8}</if>
+		    <if test="c21_9 != null"> and c21_9 = #{c21_9}</if>
+		    <if test="c21_10 != null"> and c21_10 = #{c21_10}</if>
+		    <if test="c21_11 != null"> and c21_11 = #{c21_11}</if>
+		    <if test="c21_12 != null"> and c21_12 = #{c21_12}</if>
+		    <if test="c20_1 != null"> and c20_1 = #{c20_1}</if>
+		    <if test="c20_2 != null"> and c20_2 = #{c20_2}</if>
+		    <if test="c20_3 != null"> and c20_3 = #{c20_3}</if>
+		    <if test="c20_4 != null"> and c20_4 = #{c20_4}</if>
+		    <if test="c20_5 != null"> and c20_5 = #{c20_5}</if>
+		    <if test="c20_6 != null"> and c20_6 = #{c20_6}</if>
+		    <if test="c20_7 != null"> and c20_7 = #{c20_7}</if>
+		    <if test="c20_8 != null"> and c20_8 = #{c20_8}</if>
+		    <if test="c20_9 != null"> and c20_9 = #{c20_9}</if>
+		    <if test="c20_10 != null"> and c20_10 = #{c20_10}</if>
+		    <if test="c20_11 != null"> and c20_11 = #{c20_11}</if>
+		    <if test="c20_12 != null"> and c20_12 = #{c20_12}</if>
+		    <if test="c19_1 != null"> and c19_1 = #{c19_1}</if>
+		    <if test="c19_2 != null"> and c19_2 = #{c19_2}</if>
+		    <if test="c19_3 != null"> and c19_3 = #{c19_3}</if>
+		    <if test="c19_4 != null"> and c19_4 = #{c19_4}</if>
+		    <if test="c19_5 != null"> and c19_5 = #{c19_5}</if>
+		    <if test="c19_6 != null"> and c19_6 = #{c19_6}</if>
+		    <if test="c19_7 != null"> and c19_7 = #{c19_7}</if>
+		    <if test="c19_8 != null"> and c19_8 = #{c19_8}</if>
+		    <if test="c19_9 != null"> and c19_9 = #{c19_9}</if>
+		    <if test="c19_10 != null"> and c19_10 = #{c19_10}</if>
+		    <if test="c19_11 != null"> and c19_11 = #{c19_11}</if>
+		    <if test="c19_12 != null"> and c19_12 = #{c19_12}</if>
+		    <if test="c18_1 != null"> and c18_1 = #{c18_1}</if>
+		    <if test="c18_2 != null"> and c18_2 = #{c18_2}</if>
+		    <if test="c18_3 != null"> and c18_3 = #{c18_3}</if>
+		    <if test="c18_4 != null"> and c18_4 = #{c18_4}</if>
+		    <if test="c18_5 != null"> and c18_5 = #{c18_5}</if>
+		    <if test="c18_6 != null"> and c18_6 = #{c18_6}</if>
+		    <if test="c18_7 != null"> and c18_7 = #{c18_7}</if>
+		    <if test="c18_8 != null"> and c18_8 = #{c18_8}</if>
+		    <if test="c18_9 != null"> and c18_9 = #{c18_9}</if>
+		    <if test="c18_10 != null"> and c18_10 = #{c18_10}</if>
+		    <if test="c18_11 != null"> and c18_11 = #{c18_11}</if>
+		    <if test="c18_12 != null"> and c18_12 = #{c18_12}</if>
+		    <if test="c17_1 != null"> and c17_1 = #{c17_1}</if>
+		    <if test="c17_2 != null"> and c17_2 = #{c17_2}</if>
+		    <if test="c17_3 != null"> and c17_3 = #{c17_3}</if>
+		    <if test="c17_4 != null"> and c17_4 = #{c17_4}</if>
+		    <if test="c17_5 != null"> and c17_5 = #{c17_5}</if>
+		    <if test="c17_6 != null"> and c17_6 = #{c17_6}</if>
+		    <if test="c17_7 != null"> and c17_7 = #{c17_7}</if>
+		    <if test="c17_8 != null"> and c17_8 = #{c17_8}</if>
+		    <if test="c17_9 != null"> and c17_9 = #{c17_9}</if>
+		    <if test="c17_10 != null"> and c17_10 = #{c17_10}</if>
+		    <if test="c17_11 != null"> and c17_11 = #{c17_11}</if>
+		    <if test="c17_12 != null"> and c17_12 = #{c17_12}</if>
+		    <if test="c16_1 != null"> and c16_1 = #{c16_1}</if>
+		    <if test="c16_2 != null"> and c16_2 = #{c16_2}</if>
+		    <if test="c16_3 != null"> and c16_3 = #{c16_3}</if>
+		    <if test="c16_4 != null"> and c16_4 = #{c16_4}</if>
+		    <if test="c16_5 != null"> and c16_5 = #{c16_5}</if>
+		    <if test="c16_6 != null"> and c16_6 = #{c16_6}</if>
+		    <if test="c16_7 != null"> and c16_7 = #{c16_7}</if>
+		    <if test="c16_8 != null"> and c16_8 = #{c16_8}</if>
+		    <if test="c16_9 != null"> and c16_9 = #{c16_9}</if>
+		    <if test="c16_10 != null"> and c16_10 = #{c16_10}</if>
+		    <if test="c16_11 != null"> and c16_11 = #{c16_11}</if>
+		    <if test="c16_12 != null"> and c16_12 = #{c16_12}</if>
+		    <if test="c15_1 != null"> and c15_1 = #{c15_1}</if>
+		    <if test="c15_2 != null"> and c15_2 = #{c15_2}</if>
+		    <if test="c15_3 != null"> and c15_3 = #{c15_3}</if>
+		    <if test="c15_4 != null"> and c15_4 = #{c15_4}</if>
+		    <if test="c15_5 != null"> and c15_5 = #{c15_5}</if>
+		    <if test="c15_6 != null"> and c15_6 = #{c15_6}</if>
+		    <if test="c15_7 != null"> and c15_7 = #{c15_7}</if>
+		    <if test="c15_8 != null"> and c15_8 = #{c15_8}</if>
+		    <if test="c15_9 != null"> and c15_9 = #{c15_9}</if>
+		    <if test="c15_10 != null"> and c15_10 = #{c15_10}</if>
+		    <if test="c15_11 != null"> and c15_11 = #{c15_11}</if>
+		    <if test="c15_12 != null"> and c15_12 = #{c15_12}</if>
+		    <if test="c14_1 != null"> and c14_1 = #{c14_1}</if>
+		    <if test="c14_2 != null"> and c14_2 = #{c14_2}</if>
+		    <if test="c14_3 != null"> and c14_3 = #{c14_3}</if>
+		    <if test="c14_4 != null"> and c14_4 = #{c14_4}</if>
+		    <if test="c14_5 != null"> and c14_5 = #{c14_5}</if>
+		    <if test="c14_6 != null"> and c14_6 = #{c14_6}</if>
+		    <if test="c14_7 != null"> and c14_7 = #{c14_7}</if>
+		    <if test="c14_8 != null"> and c14_8 = #{c14_8}</if>
+		    <if test="c14_9 != null"> and c14_9 = #{c14_9}</if>
+		    <if test="c14_10 != null"> and c14_10 = #{c14_10}</if>
+		    <if test="c14_11 != null"> and c14_11 = #{c14_11}</if>
+		    <if test="c14_12 != null"> and c14_12 = #{c14_12}</if>
+		    <if test="c13_1 != null"> and c13_1 = #{c13_1}</if>
+		    <if test="c13_2 != null"> and c13_2 = #{c13_2}</if>
+		    <if test="c13_3 != null"> and c13_3 = #{c13_3}</if>
+		    <if test="c13_4 != null"> and c13_4 = #{c13_4}</if>
+		    <if test="c13_5 != null"> and c13_5 = #{c13_5}</if>
+		    <if test="c13_6 != null"> and c13_6 = #{c13_6}</if>
+		    <if test="c13_7 != null"> and c13_7 = #{c13_7}</if>
+		    <if test="c13_8 != null"> and c13_8 = #{c13_8}</if>
+		    <if test="c13_9 != null"> and c13_9 = #{c13_9}</if>
+		    <if test="c13_10 != null"> and c13_10 = #{c13_10}</if>
+		    <if test="c13_11 != null"> and c13_11 = #{c13_11}</if>
+		    <if test="c13_12 != null"> and c13_12 = #{c13_12}</if>
+		    <if test="c12_1 != null"> and c12_1 = #{c12_1}</if>
+		    <if test="c12_2 != null"> and c12_2 = #{c12_2}</if>
+		    <if test="c12_3 != null"> and c12_3 = #{c12_3}</if>
+		    <if test="c12_4 != null"> and c12_4 = #{c12_4}</if>
+		    <if test="c12_5 != null"> and c12_5 = #{c12_5}</if>
+		    <if test="c12_6 != null"> and c12_6 = #{c12_6}</if>
+		    <if test="c12_7 != null"> and c12_7 = #{c12_7}</if>
+		    <if test="c12_8 != null"> and c12_8 = #{c12_8}</if>
+		    <if test="c12_9 != null"> and c12_9 = #{c12_9}</if>
+		    <if test="c12_10 != null"> and c12_10 = #{c12_10}</if>
+		    <if test="c12_11 != null"> and c12_11 = #{c12_11}</if>
+		    <if test="c12_12 != null"> and c12_12 = #{c12_12}</if>
+		    <if test="c11_1 != null"> and c11_1 = #{c11_1}</if>
+		    <if test="c11_2 != null"> and c11_2 = #{c11_2}</if>
+		    <if test="c11_3 != null"> and c11_3 = #{c11_3}</if>
+		    <if test="c11_4 != null"> and c11_4 = #{c11_4}</if>
+		    <if test="c11_5 != null"> and c11_5 = #{c11_5}</if>
+		    <if test="c11_6 != null"> and c11_6 = #{c11_6}</if>
+		    <if test="c11_7 != null"> and c11_7 = #{c11_7}</if>
+		    <if test="c11_8 != null"> and c11_8 = #{c11_8}</if>
+		    <if test="c11_9 != null"> and c11_9 = #{c11_9}</if>
+		    <if test="c11_10 != null"> and c11_10 = #{c11_10}</if>
+		    <if test="c11_11 != null"> and c11_11 = #{c11_11}</if>
+		    <if test="c11_12 != null"> and c11_12 = #{c11_12}</if>
+		    <if test="c10_1 != null"> and c10_1 = #{c10_1}</if>
+		    <if test="c10_2 != null"> and c10_2 = #{c10_2}</if>
+		    <if test="c10_3 != null"> and c10_3 = #{c10_3}</if>
+		    <if test="c10_4 != null"> and c10_4 = #{c10_4}</if>
+		    <if test="c10_5 != null"> and c10_5 = #{c10_5}</if>
+		    <if test="c10_6 != null"> and c10_6 = #{c10_6}</if>
+		    <if test="c10_7 != null"> and c10_7 = #{c10_7}</if>
+		    <if test="c10_8 != null"> and c10_8 = #{c10_8}</if>
+		    <if test="c10_9 != null"> and c10_9 = #{c10_9}</if>
+		    <if test="c10_10 != null"> and c10_10 = #{c10_10}</if>
+		    <if test="c10_11 != null"> and c10_11 = #{c10_11}</if>
+		    <if test="c10_12 != null"> and c10_12 = #{c10_12}</if>
+		    <if test="c9_1 != null"> and c9_1 = #{c9_1}</if>
+		    <if test="c9_2 != null"> and c9_2 = #{c9_2}</if>
+		    <if test="c9_3 != null"> and c9_3 = #{c9_3}</if>
+		    <if test="c9_4 != null"> and c9_4 = #{c9_4}</if>
+		    <if test="c9_5 != null"> and c9_5 = #{c9_5}</if>
+		    <if test="c9_6 != null"> and c9_6 = #{c9_6}</if>
+		    <if test="c9_7 != null"> and c9_7 = #{c9_7}</if>
+		    <if test="c9_8 != null"> and c9_8 = #{c9_8}</if>
+		    <if test="c9_9 != null"> and c9_9 = #{c9_9}</if>
+		    <if test="c9_10 != null"> and c9_10 = #{c9_10}</if>
+		    <if test="c9_11 != null"> and c9_11 = #{c9_11}</if>
+		    <if test="c9_12 != null"> and c9_12 = #{c9_12}</if>
+		    <if test="c8_1 != null"> and c8_1 = #{c8_1}</if>
+		    <if test="c8_2 != null"> and c8_2 = #{c8_2}</if>
+		    <if test="c8_3 != null"> and c8_3 = #{c8_3}</if>
+		    <if test="c8_4 != null"> and c8_4 = #{c8_4}</if>
+		    <if test="c8_5 != null"> and c8_5 = #{c8_5}</if>
+		    <if test="c8_6 != null"> and c8_6 = #{c8_6}</if>
+		    <if test="c8_7 != null"> and c8_7 = #{c8_7}</if>
+		    <if test="c8_8 != null"> and c8_8 = #{c8_8}</if>
+		    <if test="c8_9 != null"> and c8_9 = #{c8_9}</if>
+		    <if test="c8_10 != null"> and c8_10 = #{c8_10}</if>
+		    <if test="c8_11 != null"> and c8_11 = #{c8_11}</if>
+		    <if test="c8_12 != null"> and c8_12 = #{c8_12}</if>
+		    <if test="c7_1 != null"> and c7_1 = #{c7_1}</if>
+		    <if test="c7_2 != null"> and c7_2 = #{c7_2}</if>
+		    <if test="c7_3 != null"> and c7_3 = #{c7_3}</if>
+		    <if test="c7_4 != null"> and c7_4 = #{c7_4}</if>
+		    <if test="c7_5 != null"> and c7_5 = #{c7_5}</if>
+		    <if test="c7_6 != null"> and c7_6 = #{c7_6}</if>
+		    <if test="c7_7 != null"> and c7_7 = #{c7_7}</if>
+		    <if test="c7_8 != null"> and c7_8 = #{c7_8}</if>
+		    <if test="c7_9 != null"> and c7_9 = #{c7_9}</if>
+		    <if test="c7_10 != null"> and c7_10 = #{c7_10}</if>
+		    <if test="c7_11 != null"> and c7_11 = #{c7_11}</if>
+		    <if test="c7_12 != null"> and c7_12 = #{c7_12}</if>
+		    <if test="c6_1 != null"> and c6_1 = #{c6_1}</if>
+		    <if test="c6_2 != null"> and c6_2 = #{c6_2}</if>
+		    <if test="c6_3 != null"> and c6_3 = #{c6_3}</if>
+		    <if test="c6_4 != null"> and c6_4 = #{c6_4}</if>
+		    <if test="c6_5 != null"> and c6_5 = #{c6_5}</if>
+		    <if test="c6_6 != null"> and c6_6 = #{c6_6}</if>
+		    <if test="c6_7 != null"> and c6_7 = #{c6_7}</if>
+		    <if test="c6_8 != null"> and c6_8 = #{c6_8}</if>
+		    <if test="c6_9 != null"> and c6_9 = #{c6_9}</if>
+		    <if test="c6_10 != null"> and c6_10 = #{c6_10}</if>
+		    <if test="c6_11 != null"> and c6_11 = #{c6_11}</if>
+		    <if test="c6_12 != null"> and c6_12 = #{c6_12}</if>
+		    <if test="c5_1 != null"> and c5_1 = #{c5_1}</if>
+		    <if test="c5_2 != null"> and c5_2 = #{c5_2}</if>
+		    <if test="c5_3 != null"> and c5_3 = #{c5_3}</if>
+		    <if test="c5_4 != null"> and c5_4 = #{c5_4}</if>
+		    <if test="c5_5 != null"> and c5_5 = #{c5_5}</if>
+		    <if test="c5_6 != null"> and c5_6 = #{c5_6}</if>
+		    <if test="c5_7 != null"> and c5_7 = #{c5_7}</if>
+		    <if test="c5_8 != null"> and c5_8 = #{c5_8}</if>
+		    <if test="c5_9 != null"> and c5_9 = #{c5_9}</if>
+		    <if test="c5_10 != null"> and c5_10 = #{c5_10}</if>
+		    <if test="c5_11 != null"> and c5_11 = #{c5_11}</if>
+		    <if test="c5_12 != null"> and c5_12 = #{c5_12}</if>
+		    <if test="c4_1 != null"> and c4_1 = #{c4_1}</if>
+		    <if test="c4_2 != null"> and c4_2 = #{c4_2}</if>
+		    <if test="c4_3 != null"> and c4_3 = #{c4_3}</if>
+		    <if test="c4_4 != null"> and c4_4 = #{c4_4}</if>
+		    <if test="c4_5 != null"> and c4_5 = #{c4_5}</if>
+		    <if test="c4_6 != null"> and c4_6 = #{c4_6}</if>
+		    <if test="c4_7 != null"> and c4_7 = #{c4_7}</if>
+		    <if test="c4_8 != null"> and c4_8 = #{c4_8}</if>
+		    <if test="c4_9 != null"> and c4_9 = #{c4_9}</if>
+		    <if test="c4_10 != null"> and c4_10 = #{c4_10}</if>
+		    <if test="c4_11 != null"> and c4_11 = #{c4_11}</if>
+		    <if test="c4_12 != null"> and c4_12 = #{c4_12}</if>
+		    <if test="c3_1 != null"> and c3_1 = #{c3_1}</if>
+		    <if test="c3_2 != null"> and c3_2 = #{c3_2}</if>
+		    <if test="c3_3 != null"> and c3_3 = #{c3_3}</if>
+		    <if test="c3_4 != null"> and c3_4 = #{c3_4}</if>
+		    <if test="c3_5 != null"> and c3_5 = #{c3_5}</if>
+		    <if test="c3_6 != null"> and c3_6 = #{c3_6}</if>
+		    <if test="c3_7 != null"> and c3_7 = #{c3_7}</if>
+		    <if test="c3_8 != null"> and c3_8 = #{c3_8}</if>
+		    <if test="c3_9 != null"> and c3_9 = #{c3_9}</if>
+		    <if test="c3_10 != null"> and c3_10 = #{c3_10}</if>
+		    <if test="c3_11 != null"> and c3_11 = #{c3_11}</if>
+		    <if test="c3_12 != null"> and c3_12 = #{c3_12}</if>
+		    <if test="c2_1 != null"> and c2_1 = #{c2_1}</if>
+		    <if test="c2_2 != null"> and c2_2 = #{c2_2}</if>
+		    <if test="c2_3 != null"> and c2_3 = #{c2_3}</if>
+		    <if test="c2_4 != null"> and c2_4 = #{c2_4}</if>
+		    <if test="c2_5 != null"> and c2_5 = #{c2_5}</if>
+		    <if test="c2_6 != null"> and c2_6 = #{c2_6}</if>
+		    <if test="c2_7 != null"> and c2_7 = #{c2_7}</if>
+		    <if test="c2_8 != null"> and c2_8 = #{c2_8}</if>
+		    <if test="c2_9 != null"> and c2_9 = #{c2_9}</if>
+		    <if test="c2_10 != null"> and c2_10 = #{c2_10}</if>
+		    <if test="c2_11 != null"> and c2_11 = #{c2_11}</if>
+		    <if test="c2_12 != null"> and c2_12 = #{c2_12}</if>
+		    <if test="c1_1 != null"> and c1_1 = #{c1_1}</if>
+		    <if test="c1_2 != null"> and c1_2 = #{c1_2}</if>
+		    <if test="c1_3 != null"> and c1_3 = #{c1_3}</if>
+		    <if test="c1_4 != null"> and c1_4 = #{c1_4}</if>
+		    <if test="c1_5 != null"> and c1_5 = #{c1_5}</if>
+		    <if test="c1_6 != null"> and c1_6 = #{c1_6}</if>
+		    <if test="c1_7 != null"> and c1_7 = #{c1_7}</if>
+		    <if test="c1_8 != null"> and c1_8 = #{c1_8}</if>
+		    <if test="c1_9 != null"> and c1_9 = #{c1_9}</if>
+		    <if test="c1_10 != null"> and c1_10 = #{c1_10}</if>
+		    <if test="c1_11 != null"> and c1_11 = #{c1_11}</if>
+		    <if test="c1_12 != null"> and c1_12 = #{c1_12}</if>
+		</where>
+	</sql>
+
+    <sql id="basePage">
+        <if test="pageStart != null and pageSize != null">
+            LIMIT #{pageStart},#{pageSize}
+        </if>
+    </sql>
+
+    <sql id="baseSort">
+        <if test="pageSort != null and pageSort != ''">
+            ORDER BY #{pageSort}
+        </if>
+    </sql>
+
+    <select id="selectCount" resultType="int" parameterType="com.ivy.admin.vo.ppsg.CheckpointVo">
+        SELECT count(1)
+        from ppsg_checkpoint
+        <include refid="baseCondition"></include>
+    </select>
+
+    <select id="selectPage" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.CheckpointVo">
+        SELECT <include refid="baseColumn"></include>
+        from ppsg_checkpoint
+        <include refid="baseCondition"></include>
+        <include refid="basePage"></include>
+        <include refid="baseSort"></include>
+    </select>
+
+	<select id="selectList" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.CheckpointVo">
+		SELECT <include refid="baseColumn"></include>
+		from ppsg_checkpoint
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<select id="selectOne" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.CheckpointVo">
+		SELECT <include refid="baseColumn"></include>
+		from ppsg_checkpoint
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<insert id="insert" parameterType="com.ivy.admin.entity.ppsg.Checkpoint">
+		insert into ppsg_checkpoint
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="name != null">name,</if>
+			<if test="forces != null">forces,</if>
+			<if test="intellect != null">intellect,</if>
+			<if test="troops != null">troops,</if>
+			<if test="c30_1 != null">c30_1,</if>
+			<if test="c30_2 != null">c30_2,</if>
+			<if test="c30_3 != null">c30_3,</if>
+			<if test="c30_4 != null">c30_4,</if>
+			<if test="c30_5 != null">c30_5,</if>
+			<if test="c30_6 != null">c30_6,</if>
+			<if test="c30_7 != null">c30_7,</if>
+			<if test="c30_8 != null">c30_8,</if>
+			<if test="c30_9 != null">c30_9,</if>
+			<if test="c30_10 != null">c30_10,</if>
+			<if test="c30_11 != null">c30_11,</if>
+			<if test="c30_12 != null">c30_12,</if>
+			<if test="c29_1 != null">c29_1,</if>
+			<if test="c29_2 != null">c29_2,</if>
+			<if test="c29_3 != null">c29_3,</if>
+			<if test="c29_4 != null">c29_4,</if>
+			<if test="c29_5 != null">c29_5,</if>
+			<if test="c29_6 != null">c29_6,</if>
+			<if test="c29_7 != null">c29_7,</if>
+			<if test="c29_8 != null">c29_8,</if>
+			<if test="c29_9 != null">c29_9,</if>
+			<if test="c29_10 != null">c29_10,</if>
+			<if test="c29_11 != null">c29_11,</if>
+			<if test="c29_12 != null">c29_12,</if>
+			<if test="c28_1 != null">c28_1,</if>
+			<if test="c28_2 != null">c28_2,</if>
+			<if test="c28_3 != null">c28_3,</if>
+			<if test="c28_4 != null">c28_4,</if>
+			<if test="c28_5 != null">c28_5,</if>
+			<if test="c28_6 != null">c28_6,</if>
+			<if test="c28_7 != null">c28_7,</if>
+			<if test="c28_8 != null">c28_8,</if>
+			<if test="c28_9 != null">c28_9,</if>
+			<if test="c28_10 != null">c28_10,</if>
+			<if test="c28_11 != null">c28_11,</if>
+			<if test="c28_12 != null">c28_12,</if>
+			<if test="c27_1 != null">c27_1,</if>
+			<if test="c27_2 != null">c27_2,</if>
+			<if test="c27_3 != null">c27_3,</if>
+			<if test="c27_4 != null">c27_4,</if>
+			<if test="c27_5 != null">c27_5,</if>
+			<if test="c27_6 != null">c27_6,</if>
+			<if test="c27_7 != null">c27_7,</if>
+			<if test="c27_8 != null">c27_8,</if>
+			<if test="c27_9 != null">c27_9,</if>
+			<if test="c27_10 != null">c27_10,</if>
+			<if test="c27_11 != null">c27_11,</if>
+			<if test="c27_12 != null">c27_12,</if>
+			<if test="c26_1 != null">c26_1,</if>
+			<if test="c26_2 != null">c26_2,</if>
+			<if test="c26_3 != null">c26_3,</if>
+			<if test="c26_4 != null">c26_4,</if>
+			<if test="c26_5 != null">c26_5,</if>
+			<if test="c26_6 != null">c26_6,</if>
+			<if test="c26_7 != null">c26_7,</if>
+			<if test="c26_8 != null">c26_8,</if>
+			<if test="c26_9 != null">c26_9,</if>
+			<if test="c26_10 != null">c26_10,</if>
+			<if test="c26_11 != null">c26_11,</if>
+			<if test="c26_12 != null">c26_12,</if>
+			<if test="c25_1 != null">c25_1,</if>
+			<if test="c25_2 != null">c25_2,</if>
+			<if test="c25_3 != null">c25_3,</if>
+			<if test="c25_4 != null">c25_4,</if>
+			<if test="c25_5 != null">c25_5,</if>
+			<if test="c25_6 != null">c25_6,</if>
+			<if test="c25_7 != null">c25_7,</if>
+			<if test="c25_8 != null">c25_8,</if>
+			<if test="c25_9 != null">c25_9,</if>
+			<if test="c25_10 != null">c25_10,</if>
+			<if test="c25_11 != null">c25_11,</if>
+			<if test="c25_12 != null">c25_12,</if>
+			<if test="c24_1 != null">c24_1,</if>
+			<if test="c24_2 != null">c24_2,</if>
+			<if test="c24_3 != null">c24_3,</if>
+			<if test="c24_4 != null">c24_4,</if>
+			<if test="c24_5 != null">c24_5,</if>
+			<if test="c24_6 != null">c24_6,</if>
+			<if test="c24_7 != null">c24_7,</if>
+			<if test="c24_8 != null">c24_8,</if>
+			<if test="c24_9 != null">c24_9,</if>
+			<if test="c24_10 != null">c24_10,</if>
+			<if test="c24_11 != null">c24_11,</if>
+			<if test="c24_12 != null">c24_12,</if>
+			<if test="c23_1 != null">c23_1,</if>
+			<if test="c23_2 != null">c23_2,</if>
+			<if test="c23_3 != null">c23_3,</if>
+			<if test="c23_4 != null">c23_4,</if>
+			<if test="c23_5 != null">c23_5,</if>
+			<if test="c23_6 != null">c23_6,</if>
+			<if test="c23_7 != null">c23_7,</if>
+			<if test="c23_8 != null">c23_8,</if>
+			<if test="c23_9 != null">c23_9,</if>
+			<if test="c23_10 != null">c23_10,</if>
+			<if test="c23_11 != null">c23_11,</if>
+			<if test="c23_12 != null">c23_12,</if>
+			<if test="c22_1 != null">c22_1,</if>
+			<if test="c22_2 != null">c22_2,</if>
+			<if test="c22_3 != null">c22_3,</if>
+			<if test="c22_4 != null">c22_4,</if>
+			<if test="c22_5 != null">c22_5,</if>
+			<if test="c22_6 != null">c22_6,</if>
+			<if test="c22_7 != null">c22_7,</if>
+			<if test="c22_8 != null">c22_8,</if>
+			<if test="c22_9 != null">c22_9,</if>
+			<if test="c22_10 != null">c22_10,</if>
+			<if test="c22_11 != null">c22_11,</if>
+			<if test="c22_12 != null">c22_12,</if>
+			<if test="c21_1 != null">c21_1,</if>
+			<if test="c21_2 != null">c21_2,</if>
+			<if test="c21_3 != null">c21_3,</if>
+			<if test="c21_4 != null">c21_4,</if>
+			<if test="c21_5 != null">c21_5,</if>
+			<if test="c21_6 != null">c21_6,</if>
+			<if test="c21_7 != null">c21_7,</if>
+			<if test="c21_8 != null">c21_8,</if>
+			<if test="c21_9 != null">c21_9,</if>
+			<if test="c21_10 != null">c21_10,</if>
+			<if test="c21_11 != null">c21_11,</if>
+			<if test="c21_12 != null">c21_12,</if>
+			<if test="c20_1 != null">c20_1,</if>
+			<if test="c20_2 != null">c20_2,</if>
+			<if test="c20_3 != null">c20_3,</if>
+			<if test="c20_4 != null">c20_4,</if>
+			<if test="c20_5 != null">c20_5,</if>
+			<if test="c20_6 != null">c20_6,</if>
+			<if test="c20_7 != null">c20_7,</if>
+			<if test="c20_8 != null">c20_8,</if>
+			<if test="c20_9 != null">c20_9,</if>
+			<if test="c20_10 != null">c20_10,</if>
+			<if test="c20_11 != null">c20_11,</if>
+			<if test="c20_12 != null">c20_12,</if>
+			<if test="c19_1 != null">c19_1,</if>
+			<if test="c19_2 != null">c19_2,</if>
+			<if test="c19_3 != null">c19_3,</if>
+			<if test="c19_4 != null">c19_4,</if>
+			<if test="c19_5 != null">c19_5,</if>
+			<if test="c19_6 != null">c19_6,</if>
+			<if test="c19_7 != null">c19_7,</if>
+			<if test="c19_8 != null">c19_8,</if>
+			<if test="c19_9 != null">c19_9,</if>
+			<if test="c19_10 != null">c19_10,</if>
+			<if test="c19_11 != null">c19_11,</if>
+			<if test="c19_12 != null">c19_12,</if>
+			<if test="c18_1 != null">c18_1,</if>
+			<if test="c18_2 != null">c18_2,</if>
+			<if test="c18_3 != null">c18_3,</if>
+			<if test="c18_4 != null">c18_4,</if>
+			<if test="c18_5 != null">c18_5,</if>
+			<if test="c18_6 != null">c18_6,</if>
+			<if test="c18_7 != null">c18_7,</if>
+			<if test="c18_8 != null">c18_8,</if>
+			<if test="c18_9 != null">c18_9,</if>
+			<if test="c18_10 != null">c18_10,</if>
+			<if test="c18_11 != null">c18_11,</if>
+			<if test="c18_12 != null">c18_12,</if>
+			<if test="c17_1 != null">c17_1,</if>
+			<if test="c17_2 != null">c17_2,</if>
+			<if test="c17_3 != null">c17_3,</if>
+			<if test="c17_4 != null">c17_4,</if>
+			<if test="c17_5 != null">c17_5,</if>
+			<if test="c17_6 != null">c17_6,</if>
+			<if test="c17_7 != null">c17_7,</if>
+			<if test="c17_8 != null">c17_8,</if>
+			<if test="c17_9 != null">c17_9,</if>
+			<if test="c17_10 != null">c17_10,</if>
+			<if test="c17_11 != null">c17_11,</if>
+			<if test="c17_12 != null">c17_12,</if>
+			<if test="c16_1 != null">c16_1,</if>
+			<if test="c16_2 != null">c16_2,</if>
+			<if test="c16_3 != null">c16_3,</if>
+			<if test="c16_4 != null">c16_4,</if>
+			<if test="c16_5 != null">c16_5,</if>
+			<if test="c16_6 != null">c16_6,</if>
+			<if test="c16_7 != null">c16_7,</if>
+			<if test="c16_8 != null">c16_8,</if>
+			<if test="c16_9 != null">c16_9,</if>
+			<if test="c16_10 != null">c16_10,</if>
+			<if test="c16_11 != null">c16_11,</if>
+			<if test="c16_12 != null">c16_12,</if>
+			<if test="c15_1 != null">c15_1,</if>
+			<if test="c15_2 != null">c15_2,</if>
+			<if test="c15_3 != null">c15_3,</if>
+			<if test="c15_4 != null">c15_4,</if>
+			<if test="c15_5 != null">c15_5,</if>
+			<if test="c15_6 != null">c15_6,</if>
+			<if test="c15_7 != null">c15_7,</if>
+			<if test="c15_8 != null">c15_8,</if>
+			<if test="c15_9 != null">c15_9,</if>
+			<if test="c15_10 != null">c15_10,</if>
+			<if test="c15_11 != null">c15_11,</if>
+			<if test="c15_12 != null">c15_12,</if>
+			<if test="c14_1 != null">c14_1,</if>
+			<if test="c14_2 != null">c14_2,</if>
+			<if test="c14_3 != null">c14_3,</if>
+			<if test="c14_4 != null">c14_4,</if>
+			<if test="c14_5 != null">c14_5,</if>
+			<if test="c14_6 != null">c14_6,</if>
+			<if test="c14_7 != null">c14_7,</if>
+			<if test="c14_8 != null">c14_8,</if>
+			<if test="c14_9 != null">c14_9,</if>
+			<if test="c14_10 != null">c14_10,</if>
+			<if test="c14_11 != null">c14_11,</if>
+			<if test="c14_12 != null">c14_12,</if>
+			<if test="c13_1 != null">c13_1,</if>
+			<if test="c13_2 != null">c13_2,</if>
+			<if test="c13_3 != null">c13_3,</if>
+			<if test="c13_4 != null">c13_4,</if>
+			<if test="c13_5 != null">c13_5,</if>
+			<if test="c13_6 != null">c13_6,</if>
+			<if test="c13_7 != null">c13_7,</if>
+			<if test="c13_8 != null">c13_8,</if>
+			<if test="c13_9 != null">c13_9,</if>
+			<if test="c13_10 != null">c13_10,</if>
+			<if test="c13_11 != null">c13_11,</if>
+			<if test="c13_12 != null">c13_12,</if>
+			<if test="c12_1 != null">c12_1,</if>
+			<if test="c12_2 != null">c12_2,</if>
+			<if test="c12_3 != null">c12_3,</if>
+			<if test="c12_4 != null">c12_4,</if>
+			<if test="c12_5 != null">c12_5,</if>
+			<if test="c12_6 != null">c12_6,</if>
+			<if test="c12_7 != null">c12_7,</if>
+			<if test="c12_8 != null">c12_8,</if>
+			<if test="c12_9 != null">c12_9,</if>
+			<if test="c12_10 != null">c12_10,</if>
+			<if test="c12_11 != null">c12_11,</if>
+			<if test="c12_12 != null">c12_12,</if>
+			<if test="c11_1 != null">c11_1,</if>
+			<if test="c11_2 != null">c11_2,</if>
+			<if test="c11_3 != null">c11_3,</if>
+			<if test="c11_4 != null">c11_4,</if>
+			<if test="c11_5 != null">c11_5,</if>
+			<if test="c11_6 != null">c11_6,</if>
+			<if test="c11_7 != null">c11_7,</if>
+			<if test="c11_8 != null">c11_8,</if>
+			<if test="c11_9 != null">c11_9,</if>
+			<if test="c11_10 != null">c11_10,</if>
+			<if test="c11_11 != null">c11_11,</if>
+			<if test="c11_12 != null">c11_12,</if>
+			<if test="c10_1 != null">c10_1,</if>
+			<if test="c10_2 != null">c10_2,</if>
+			<if test="c10_3 != null">c10_3,</if>
+			<if test="c10_4 != null">c10_4,</if>
+			<if test="c10_5 != null">c10_5,</if>
+			<if test="c10_6 != null">c10_6,</if>
+			<if test="c10_7 != null">c10_7,</if>
+			<if test="c10_8 != null">c10_8,</if>
+			<if test="c10_9 != null">c10_9,</if>
+			<if test="c10_10 != null">c10_10,</if>
+			<if test="c10_11 != null">c10_11,</if>
+			<if test="c10_12 != null">c10_12,</if>
+			<if test="c9_1 != null">c9_1,</if>
+			<if test="c9_2 != null">c9_2,</if>
+			<if test="c9_3 != null">c9_3,</if>
+			<if test="c9_4 != null">c9_4,</if>
+			<if test="c9_5 != null">c9_5,</if>
+			<if test="c9_6 != null">c9_6,</if>
+			<if test="c9_7 != null">c9_7,</if>
+			<if test="c9_8 != null">c9_8,</if>
+			<if test="c9_9 != null">c9_9,</if>
+			<if test="c9_10 != null">c9_10,</if>
+			<if test="c9_11 != null">c9_11,</if>
+			<if test="c9_12 != null">c9_12,</if>
+			<if test="c8_1 != null">c8_1,</if>
+			<if test="c8_2 != null">c8_2,</if>
+			<if test="c8_3 != null">c8_3,</if>
+			<if test="c8_4 != null">c8_4,</if>
+			<if test="c8_5 != null">c8_5,</if>
+			<if test="c8_6 != null">c8_6,</if>
+			<if test="c8_7 != null">c8_7,</if>
+			<if test="c8_8 != null">c8_8,</if>
+			<if test="c8_9 != null">c8_9,</if>
+			<if test="c8_10 != null">c8_10,</if>
+			<if test="c8_11 != null">c8_11,</if>
+			<if test="c8_12 != null">c8_12,</if>
+			<if test="c7_1 != null">c7_1,</if>
+			<if test="c7_2 != null">c7_2,</if>
+			<if test="c7_3 != null">c7_3,</if>
+			<if test="c7_4 != null">c7_4,</if>
+			<if test="c7_5 != null">c7_5,</if>
+			<if test="c7_6 != null">c7_6,</if>
+			<if test="c7_7 != null">c7_7,</if>
+			<if test="c7_8 != null">c7_8,</if>
+			<if test="c7_9 != null">c7_9,</if>
+			<if test="c7_10 != null">c7_10,</if>
+			<if test="c7_11 != null">c7_11,</if>
+			<if test="c7_12 != null">c7_12,</if>
+			<if test="c6_1 != null">c6_1,</if>
+			<if test="c6_2 != null">c6_2,</if>
+			<if test="c6_3 != null">c6_3,</if>
+			<if test="c6_4 != null">c6_4,</if>
+			<if test="c6_5 != null">c6_5,</if>
+			<if test="c6_6 != null">c6_6,</if>
+			<if test="c6_7 != null">c6_7,</if>
+			<if test="c6_8 != null">c6_8,</if>
+			<if test="c6_9 != null">c6_9,</if>
+			<if test="c6_10 != null">c6_10,</if>
+			<if test="c6_11 != null">c6_11,</if>
+			<if test="c6_12 != null">c6_12,</if>
+			<if test="c5_1 != null">c5_1,</if>
+			<if test="c5_2 != null">c5_2,</if>
+			<if test="c5_3 != null">c5_3,</if>
+			<if test="c5_4 != null">c5_4,</if>
+			<if test="c5_5 != null">c5_5,</if>
+			<if test="c5_6 != null">c5_6,</if>
+			<if test="c5_7 != null">c5_7,</if>
+			<if test="c5_8 != null">c5_8,</if>
+			<if test="c5_9 != null">c5_9,</if>
+			<if test="c5_10 != null">c5_10,</if>
+			<if test="c5_11 != null">c5_11,</if>
+			<if test="c5_12 != null">c5_12,</if>
+			<if test="c4_1 != null">c4_1,</if>
+			<if test="c4_2 != null">c4_2,</if>
+			<if test="c4_3 != null">c4_3,</if>
+			<if test="c4_4 != null">c4_4,</if>
+			<if test="c4_5 != null">c4_5,</if>
+			<if test="c4_6 != null">c4_6,</if>
+			<if test="c4_7 != null">c4_7,</if>
+			<if test="c4_8 != null">c4_8,</if>
+			<if test="c4_9 != null">c4_9,</if>
+			<if test="c4_10 != null">c4_10,</if>
+			<if test="c4_11 != null">c4_11,</if>
+			<if test="c4_12 != null">c4_12,</if>
+			<if test="c3_1 != null">c3_1,</if>
+			<if test="c3_2 != null">c3_2,</if>
+			<if test="c3_3 != null">c3_3,</if>
+			<if test="c3_4 != null">c3_4,</if>
+			<if test="c3_5 != null">c3_5,</if>
+			<if test="c3_6 != null">c3_6,</if>
+			<if test="c3_7 != null">c3_7,</if>
+			<if test="c3_8 != null">c3_8,</if>
+			<if test="c3_9 != null">c3_9,</if>
+			<if test="c3_10 != null">c3_10,</if>
+			<if test="c3_11 != null">c3_11,</if>
+			<if test="c3_12 != null">c3_12,</if>
+			<if test="c2_1 != null">c2_1,</if>
+			<if test="c2_2 != null">c2_2,</if>
+			<if test="c2_3 != null">c2_3,</if>
+			<if test="c2_4 != null">c2_4,</if>
+			<if test="c2_5 != null">c2_5,</if>
+			<if test="c2_6 != null">c2_6,</if>
+			<if test="c2_7 != null">c2_7,</if>
+			<if test="c2_8 != null">c2_8,</if>
+			<if test="c2_9 != null">c2_9,</if>
+			<if test="c2_10 != null">c2_10,</if>
+			<if test="c2_11 != null">c2_11,</if>
+			<if test="c2_12 != null">c2_12,</if>
+			<if test="c1_1 != null">c1_1,</if>
+			<if test="c1_2 != null">c1_2,</if>
+			<if test="c1_3 != null">c1_3,</if>
+			<if test="c1_4 != null">c1_4,</if>
+			<if test="c1_5 != null">c1_5,</if>
+			<if test="c1_6 != null">c1_6,</if>
+			<if test="c1_7 != null">c1_7,</if>
+			<if test="c1_8 != null">c1_8,</if>
+			<if test="c1_9 != null">c1_9,</if>
+			<if test="c1_10 != null">c1_10,</if>
+			<if test="c1_11 != null">c1_11,</if>
+			<if test="c1_12 != null">c1_12,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+		    <if test="name != null">#{name},</if>
+		    <if test="forces != null">#{forces},</if>
+		    <if test="intellect != null">#{intellect},</if>
+		    <if test="troops != null">#{troops},</if>
+		    <if test="c30_1 != null">#{c30_1},</if>
+		    <if test="c30_2 != null">#{c30_2},</if>
+		    <if test="c30_3 != null">#{c30_3},</if>
+		    <if test="c30_4 != null">#{c30_4},</if>
+		    <if test="c30_5 != null">#{c30_5},</if>
+		    <if test="c30_6 != null">#{c30_6},</if>
+		    <if test="c30_7 != null">#{c30_7},</if>
+		    <if test="c30_8 != null">#{c30_8},</if>
+		    <if test="c30_9 != null">#{c30_9},</if>
+		    <if test="c30_10 != null">#{c30_10},</if>
+		    <if test="c30_11 != null">#{c30_11},</if>
+		    <if test="c30_12 != null">#{c30_12},</if>
+		    <if test="c29_1 != null">#{c29_1},</if>
+		    <if test="c29_2 != null">#{c29_2},</if>
+		    <if test="c29_3 != null">#{c29_3},</if>
+		    <if test="c29_4 != null">#{c29_4},</if>
+		    <if test="c29_5 != null">#{c29_5},</if>
+		    <if test="c29_6 != null">#{c29_6},</if>
+		    <if test="c29_7 != null">#{c29_7},</if>
+		    <if test="c29_8 != null">#{c29_8},</if>
+		    <if test="c29_9 != null">#{c29_9},</if>
+		    <if test="c29_10 != null">#{c29_10},</if>
+		    <if test="c29_11 != null">#{c29_11},</if>
+		    <if test="c29_12 != null">#{c29_12},</if>
+		    <if test="c28_1 != null">#{c28_1},</if>
+		    <if test="c28_2 != null">#{c28_2},</if>
+		    <if test="c28_3 != null">#{c28_3},</if>
+		    <if test="c28_4 != null">#{c28_4},</if>
+		    <if test="c28_5 != null">#{c28_5},</if>
+		    <if test="c28_6 != null">#{c28_6},</if>
+		    <if test="c28_7 != null">#{c28_7},</if>
+		    <if test="c28_8 != null">#{c28_8},</if>
+		    <if test="c28_9 != null">#{c28_9},</if>
+		    <if test="c28_10 != null">#{c28_10},</if>
+		    <if test="c28_11 != null">#{c28_11},</if>
+		    <if test="c28_12 != null">#{c28_12},</if>
+		    <if test="c27_1 != null">#{c27_1},</if>
+		    <if test="c27_2 != null">#{c27_2},</if>
+		    <if test="c27_3 != null">#{c27_3},</if>
+		    <if test="c27_4 != null">#{c27_4},</if>
+		    <if test="c27_5 != null">#{c27_5},</if>
+		    <if test="c27_6 != null">#{c27_6},</if>
+		    <if test="c27_7 != null">#{c27_7},</if>
+		    <if test="c27_8 != null">#{c27_8},</if>
+		    <if test="c27_9 != null">#{c27_9},</if>
+		    <if test="c27_10 != null">#{c27_10},</if>
+		    <if test="c27_11 != null">#{c27_11},</if>
+		    <if test="c27_12 != null">#{c27_12},</if>
+		    <if test="c26_1 != null">#{c26_1},</if>
+		    <if test="c26_2 != null">#{c26_2},</if>
+		    <if test="c26_3 != null">#{c26_3},</if>
+		    <if test="c26_4 != null">#{c26_4},</if>
+		    <if test="c26_5 != null">#{c26_5},</if>
+		    <if test="c26_6 != null">#{c26_6},</if>
+		    <if test="c26_7 != null">#{c26_7},</if>
+		    <if test="c26_8 != null">#{c26_8},</if>
+		    <if test="c26_9 != null">#{c26_9},</if>
+		    <if test="c26_10 != null">#{c26_10},</if>
+		    <if test="c26_11 != null">#{c26_11},</if>
+		    <if test="c26_12 != null">#{c26_12},</if>
+		    <if test="c25_1 != null">#{c25_1},</if>
+		    <if test="c25_2 != null">#{c25_2},</if>
+		    <if test="c25_3 != null">#{c25_3},</if>
+		    <if test="c25_4 != null">#{c25_4},</if>
+		    <if test="c25_5 != null">#{c25_5},</if>
+		    <if test="c25_6 != null">#{c25_6},</if>
+		    <if test="c25_7 != null">#{c25_7},</if>
+		    <if test="c25_8 != null">#{c25_8},</if>
+		    <if test="c25_9 != null">#{c25_9},</if>
+		    <if test="c25_10 != null">#{c25_10},</if>
+		    <if test="c25_11 != null">#{c25_11},</if>
+		    <if test="c25_12 != null">#{c25_12},</if>
+		    <if test="c24_1 != null">#{c24_1},</if>
+		    <if test="c24_2 != null">#{c24_2},</if>
+		    <if test="c24_3 != null">#{c24_3},</if>
+		    <if test="c24_4 != null">#{c24_4},</if>
+		    <if test="c24_5 != null">#{c24_5},</if>
+		    <if test="c24_6 != null">#{c24_6},</if>
+		    <if test="c24_7 != null">#{c24_7},</if>
+		    <if test="c24_8 != null">#{c24_8},</if>
+		    <if test="c24_9 != null">#{c24_9},</if>
+		    <if test="c24_10 != null">#{c24_10},</if>
+		    <if test="c24_11 != null">#{c24_11},</if>
+		    <if test="c24_12 != null">#{c24_12},</if>
+		    <if test="c23_1 != null">#{c23_1},</if>
+		    <if test="c23_2 != null">#{c23_2},</if>
+		    <if test="c23_3 != null">#{c23_3},</if>
+		    <if test="c23_4 != null">#{c23_4},</if>
+		    <if test="c23_5 != null">#{c23_5},</if>
+		    <if test="c23_6 != null">#{c23_6},</if>
+		    <if test="c23_7 != null">#{c23_7},</if>
+		    <if test="c23_8 != null">#{c23_8},</if>
+		    <if test="c23_9 != null">#{c23_9},</if>
+		    <if test="c23_10 != null">#{c23_10},</if>
+		    <if test="c23_11 != null">#{c23_11},</if>
+		    <if test="c23_12 != null">#{c23_12},</if>
+		    <if test="c22_1 != null">#{c22_1},</if>
+		    <if test="c22_2 != null">#{c22_2},</if>
+		    <if test="c22_3 != null">#{c22_3},</if>
+		    <if test="c22_4 != null">#{c22_4},</if>
+		    <if test="c22_5 != null">#{c22_5},</if>
+		    <if test="c22_6 != null">#{c22_6},</if>
+		    <if test="c22_7 != null">#{c22_7},</if>
+		    <if test="c22_8 != null">#{c22_8},</if>
+		    <if test="c22_9 != null">#{c22_9},</if>
+		    <if test="c22_10 != null">#{c22_10},</if>
+		    <if test="c22_11 != null">#{c22_11},</if>
+		    <if test="c22_12 != null">#{c22_12},</if>
+		    <if test="c21_1 != null">#{c21_1},</if>
+		    <if test="c21_2 != null">#{c21_2},</if>
+		    <if test="c21_3 != null">#{c21_3},</if>
+		    <if test="c21_4 != null">#{c21_4},</if>
+		    <if test="c21_5 != null">#{c21_5},</if>
+		    <if test="c21_6 != null">#{c21_6},</if>
+		    <if test="c21_7 != null">#{c21_7},</if>
+		    <if test="c21_8 != null">#{c21_8},</if>
+		    <if test="c21_9 != null">#{c21_9},</if>
+		    <if test="c21_10 != null">#{c21_10},</if>
+		    <if test="c21_11 != null">#{c21_11},</if>
+		    <if test="c21_12 != null">#{c21_12},</if>
+		    <if test="c20_1 != null">#{c20_1},</if>
+		    <if test="c20_2 != null">#{c20_2},</if>
+		    <if test="c20_3 != null">#{c20_3},</if>
+		    <if test="c20_4 != null">#{c20_4},</if>
+		    <if test="c20_5 != null">#{c20_5},</if>
+		    <if test="c20_6 != null">#{c20_6},</if>
+		    <if test="c20_7 != null">#{c20_7},</if>
+		    <if test="c20_8 != null">#{c20_8},</if>
+		    <if test="c20_9 != null">#{c20_9},</if>
+		    <if test="c20_10 != null">#{c20_10},</if>
+		    <if test="c20_11 != null">#{c20_11},</if>
+		    <if test="c20_12 != null">#{c20_12},</if>
+		    <if test="c19_1 != null">#{c19_1},</if>
+		    <if test="c19_2 != null">#{c19_2},</if>
+		    <if test="c19_3 != null">#{c19_3},</if>
+		    <if test="c19_4 != null">#{c19_4},</if>
+		    <if test="c19_5 != null">#{c19_5},</if>
+		    <if test="c19_6 != null">#{c19_6},</if>
+		    <if test="c19_7 != null">#{c19_7},</if>
+		    <if test="c19_8 != null">#{c19_8},</if>
+		    <if test="c19_9 != null">#{c19_9},</if>
+		    <if test="c19_10 != null">#{c19_10},</if>
+		    <if test="c19_11 != null">#{c19_11},</if>
+		    <if test="c19_12 != null">#{c19_12},</if>
+		    <if test="c18_1 != null">#{c18_1},</if>
+		    <if test="c18_2 != null">#{c18_2},</if>
+		    <if test="c18_3 != null">#{c18_3},</if>
+		    <if test="c18_4 != null">#{c18_4},</if>
+		    <if test="c18_5 != null">#{c18_5},</if>
+		    <if test="c18_6 != null">#{c18_6},</if>
+		    <if test="c18_7 != null">#{c18_7},</if>
+		    <if test="c18_8 != null">#{c18_8},</if>
+		    <if test="c18_9 != null">#{c18_9},</if>
+		    <if test="c18_10 != null">#{c18_10},</if>
+		    <if test="c18_11 != null">#{c18_11},</if>
+		    <if test="c18_12 != null">#{c18_12},</if>
+		    <if test="c17_1 != null">#{c17_1},</if>
+		    <if test="c17_2 != null">#{c17_2},</if>
+		    <if test="c17_3 != null">#{c17_3},</if>
+		    <if test="c17_4 != null">#{c17_4},</if>
+		    <if test="c17_5 != null">#{c17_5},</if>
+		    <if test="c17_6 != null">#{c17_6},</if>
+		    <if test="c17_7 != null">#{c17_7},</if>
+		    <if test="c17_8 != null">#{c17_8},</if>
+		    <if test="c17_9 != null">#{c17_9},</if>
+		    <if test="c17_10 != null">#{c17_10},</if>
+		    <if test="c17_11 != null">#{c17_11},</if>
+		    <if test="c17_12 != null">#{c17_12},</if>
+		    <if test="c16_1 != null">#{c16_1},</if>
+		    <if test="c16_2 != null">#{c16_2},</if>
+		    <if test="c16_3 != null">#{c16_3},</if>
+		    <if test="c16_4 != null">#{c16_4},</if>
+		    <if test="c16_5 != null">#{c16_5},</if>
+		    <if test="c16_6 != null">#{c16_6},</if>
+		    <if test="c16_7 != null">#{c16_7},</if>
+		    <if test="c16_8 != null">#{c16_8},</if>
+		    <if test="c16_9 != null">#{c16_9},</if>
+		    <if test="c16_10 != null">#{c16_10},</if>
+		    <if test="c16_11 != null">#{c16_11},</if>
+		    <if test="c16_12 != null">#{c16_12},</if>
+		    <if test="c15_1 != null">#{c15_1},</if>
+		    <if test="c15_2 != null">#{c15_2},</if>
+		    <if test="c15_3 != null">#{c15_3},</if>
+		    <if test="c15_4 != null">#{c15_4},</if>
+		    <if test="c15_5 != null">#{c15_5},</if>
+		    <if test="c15_6 != null">#{c15_6},</if>
+		    <if test="c15_7 != null">#{c15_7},</if>
+		    <if test="c15_8 != null">#{c15_8},</if>
+		    <if test="c15_9 != null">#{c15_9},</if>
+		    <if test="c15_10 != null">#{c15_10},</if>
+		    <if test="c15_11 != null">#{c15_11},</if>
+		    <if test="c15_12 != null">#{c15_12},</if>
+		    <if test="c14_1 != null">#{c14_1},</if>
+		    <if test="c14_2 != null">#{c14_2},</if>
+		    <if test="c14_3 != null">#{c14_3},</if>
+		    <if test="c14_4 != null">#{c14_4},</if>
+		    <if test="c14_5 != null">#{c14_5},</if>
+		    <if test="c14_6 != null">#{c14_6},</if>
+		    <if test="c14_7 != null">#{c14_7},</if>
+		    <if test="c14_8 != null">#{c14_8},</if>
+		    <if test="c14_9 != null">#{c14_9},</if>
+		    <if test="c14_10 != null">#{c14_10},</if>
+		    <if test="c14_11 != null">#{c14_11},</if>
+		    <if test="c14_12 != null">#{c14_12},</if>
+		    <if test="c13_1 != null">#{c13_1},</if>
+		    <if test="c13_2 != null">#{c13_2},</if>
+		    <if test="c13_3 != null">#{c13_3},</if>
+		    <if test="c13_4 != null">#{c13_4},</if>
+		    <if test="c13_5 != null">#{c13_5},</if>
+		    <if test="c13_6 != null">#{c13_6},</if>
+		    <if test="c13_7 != null">#{c13_7},</if>
+		    <if test="c13_8 != null">#{c13_8},</if>
+		    <if test="c13_9 != null">#{c13_9},</if>
+		    <if test="c13_10 != null">#{c13_10},</if>
+		    <if test="c13_11 != null">#{c13_11},</if>
+		    <if test="c13_12 != null">#{c13_12},</if>
+		    <if test="c12_1 != null">#{c12_1},</if>
+		    <if test="c12_2 != null">#{c12_2},</if>
+		    <if test="c12_3 != null">#{c12_3},</if>
+		    <if test="c12_4 != null">#{c12_4},</if>
+		    <if test="c12_5 != null">#{c12_5},</if>
+		    <if test="c12_6 != null">#{c12_6},</if>
+		    <if test="c12_7 != null">#{c12_7},</if>
+		    <if test="c12_8 != null">#{c12_8},</if>
+		    <if test="c12_9 != null">#{c12_9},</if>
+		    <if test="c12_10 != null">#{c12_10},</if>
+		    <if test="c12_11 != null">#{c12_11},</if>
+		    <if test="c12_12 != null">#{c12_12},</if>
+		    <if test="c11_1 != null">#{c11_1},</if>
+		    <if test="c11_2 != null">#{c11_2},</if>
+		    <if test="c11_3 != null">#{c11_3},</if>
+		    <if test="c11_4 != null">#{c11_4},</if>
+		    <if test="c11_5 != null">#{c11_5},</if>
+		    <if test="c11_6 != null">#{c11_6},</if>
+		    <if test="c11_7 != null">#{c11_7},</if>
+		    <if test="c11_8 != null">#{c11_8},</if>
+		    <if test="c11_9 != null">#{c11_9},</if>
+		    <if test="c11_10 != null">#{c11_10},</if>
+		    <if test="c11_11 != null">#{c11_11},</if>
+		    <if test="c11_12 != null">#{c11_12},</if>
+		    <if test="c10_1 != null">#{c10_1},</if>
+		    <if test="c10_2 != null">#{c10_2},</if>
+		    <if test="c10_3 != null">#{c10_3},</if>
+		    <if test="c10_4 != null">#{c10_4},</if>
+		    <if test="c10_5 != null">#{c10_5},</if>
+		    <if test="c10_6 != null">#{c10_6},</if>
+		    <if test="c10_7 != null">#{c10_7},</if>
+		    <if test="c10_8 != null">#{c10_8},</if>
+		    <if test="c10_9 != null">#{c10_9},</if>
+		    <if test="c10_10 != null">#{c10_10},</if>
+		    <if test="c10_11 != null">#{c10_11},</if>
+		    <if test="c10_12 != null">#{c10_12},</if>
+		    <if test="c9_1 != null">#{c9_1},</if>
+		    <if test="c9_2 != null">#{c9_2},</if>
+		    <if test="c9_3 != null">#{c9_3},</if>
+		    <if test="c9_4 != null">#{c9_4},</if>
+		    <if test="c9_5 != null">#{c9_5},</if>
+		    <if test="c9_6 != null">#{c9_6},</if>
+		    <if test="c9_7 != null">#{c9_7},</if>
+		    <if test="c9_8 != null">#{c9_8},</if>
+		    <if test="c9_9 != null">#{c9_9},</if>
+		    <if test="c9_10 != null">#{c9_10},</if>
+		    <if test="c9_11 != null">#{c9_11},</if>
+		    <if test="c9_12 != null">#{c9_12},</if>
+		    <if test="c8_1 != null">#{c8_1},</if>
+		    <if test="c8_2 != null">#{c8_2},</if>
+		    <if test="c8_3 != null">#{c8_3},</if>
+		    <if test="c8_4 != null">#{c8_4},</if>
+		    <if test="c8_5 != null">#{c8_5},</if>
+		    <if test="c8_6 != null">#{c8_6},</if>
+		    <if test="c8_7 != null">#{c8_7},</if>
+		    <if test="c8_8 != null">#{c8_8},</if>
+		    <if test="c8_9 != null">#{c8_9},</if>
+		    <if test="c8_10 != null">#{c8_10},</if>
+		    <if test="c8_11 != null">#{c8_11},</if>
+		    <if test="c8_12 != null">#{c8_12},</if>
+		    <if test="c7_1 != null">#{c7_1},</if>
+		    <if test="c7_2 != null">#{c7_2},</if>
+		    <if test="c7_3 != null">#{c7_3},</if>
+		    <if test="c7_4 != null">#{c7_4},</if>
+		    <if test="c7_5 != null">#{c7_5},</if>
+		    <if test="c7_6 != null">#{c7_6},</if>
+		    <if test="c7_7 != null">#{c7_7},</if>
+		    <if test="c7_8 != null">#{c7_8},</if>
+		    <if test="c7_9 != null">#{c7_9},</if>
+		    <if test="c7_10 != null">#{c7_10},</if>
+		    <if test="c7_11 != null">#{c7_11},</if>
+		    <if test="c7_12 != null">#{c7_12},</if>
+		    <if test="c6_1 != null">#{c6_1},</if>
+		    <if test="c6_2 != null">#{c6_2},</if>
+		    <if test="c6_3 != null">#{c6_3},</if>
+		    <if test="c6_4 != null">#{c6_4},</if>
+		    <if test="c6_5 != null">#{c6_5},</if>
+		    <if test="c6_6 != null">#{c6_6},</if>
+		    <if test="c6_7 != null">#{c6_7},</if>
+		    <if test="c6_8 != null">#{c6_8},</if>
+		    <if test="c6_9 != null">#{c6_9},</if>
+		    <if test="c6_10 != null">#{c6_10},</if>
+		    <if test="c6_11 != null">#{c6_11},</if>
+		    <if test="c6_12 != null">#{c6_12},</if>
+		    <if test="c5_1 != null">#{c5_1},</if>
+		    <if test="c5_2 != null">#{c5_2},</if>
+		    <if test="c5_3 != null">#{c5_3},</if>
+		    <if test="c5_4 != null">#{c5_4},</if>
+		    <if test="c5_5 != null">#{c5_5},</if>
+		    <if test="c5_6 != null">#{c5_6},</if>
+		    <if test="c5_7 != null">#{c5_7},</if>
+		    <if test="c5_8 != null">#{c5_8},</if>
+		    <if test="c5_9 != null">#{c5_9},</if>
+		    <if test="c5_10 != null">#{c5_10},</if>
+		    <if test="c5_11 != null">#{c5_11},</if>
+		    <if test="c5_12 != null">#{c5_12},</if>
+		    <if test="c4_1 != null">#{c4_1},</if>
+		    <if test="c4_2 != null">#{c4_2},</if>
+		    <if test="c4_3 != null">#{c4_3},</if>
+		    <if test="c4_4 != null">#{c4_4},</if>
+		    <if test="c4_5 != null">#{c4_5},</if>
+		    <if test="c4_6 != null">#{c4_6},</if>
+		    <if test="c4_7 != null">#{c4_7},</if>
+		    <if test="c4_8 != null">#{c4_8},</if>
+		    <if test="c4_9 != null">#{c4_9},</if>
+		    <if test="c4_10 != null">#{c4_10},</if>
+		    <if test="c4_11 != null">#{c4_11},</if>
+		    <if test="c4_12 != null">#{c4_12},</if>
+		    <if test="c3_1 != null">#{c3_1},</if>
+		    <if test="c3_2 != null">#{c3_2},</if>
+		    <if test="c3_3 != null">#{c3_3},</if>
+		    <if test="c3_4 != null">#{c3_4},</if>
+		    <if test="c3_5 != null">#{c3_5},</if>
+		    <if test="c3_6 != null">#{c3_6},</if>
+		    <if test="c3_7 != null">#{c3_7},</if>
+		    <if test="c3_8 != null">#{c3_8},</if>
+		    <if test="c3_9 != null">#{c3_9},</if>
+		    <if test="c3_10 != null">#{c3_10},</if>
+		    <if test="c3_11 != null">#{c3_11},</if>
+		    <if test="c3_12 != null">#{c3_12},</if>
+		    <if test="c2_1 != null">#{c2_1},</if>
+		    <if test="c2_2 != null">#{c2_2},</if>
+		    <if test="c2_3 != null">#{c2_3},</if>
+		    <if test="c2_4 != null">#{c2_4},</if>
+		    <if test="c2_5 != null">#{c2_5},</if>
+		    <if test="c2_6 != null">#{c2_6},</if>
+		    <if test="c2_7 != null">#{c2_7},</if>
+		    <if test="c2_8 != null">#{c2_8},</if>
+		    <if test="c2_9 != null">#{c2_9},</if>
+		    <if test="c2_10 != null">#{c2_10},</if>
+		    <if test="c2_11 != null">#{c2_11},</if>
+		    <if test="c2_12 != null">#{c2_12},</if>
+		    <if test="c1_1 != null">#{c1_1},</if>
+		    <if test="c1_2 != null">#{c1_2},</if>
+		    <if test="c1_3 != null">#{c1_3},</if>
+		    <if test="c1_4 != null">#{c1_4},</if>
+		    <if test="c1_5 != null">#{c1_5},</if>
+		    <if test="c1_6 != null">#{c1_6},</if>
+		    <if test="c1_7 != null">#{c1_7},</if>
+		    <if test="c1_8 != null">#{c1_8},</if>
+		    <if test="c1_9 != null">#{c1_9},</if>
+		    <if test="c1_10 != null">#{c1_10},</if>
+		    <if test="c1_11 != null">#{c1_11},</if>
+		    <if test="c1_12 != null">#{c1_12},</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.ivy.admin.entity.ppsg.Checkpoint">
+		update ppsg_checkpoint
+		<set>
+			<if test="name != null">name = #{name},</if>
+			<if test="forces != null">forces = #{forces},</if>
+			<if test="intellect != null">intellect = #{intellect},</if>
+			<if test="troops != null">troops = #{troops},</if>
+			<if test="c30_1 != null">c30_1 = #{c30_1},</if>
+			<if test="c30_2 != null">c30_2 = #{c30_2},</if>
+			<if test="c30_3 != null">c30_3 = #{c30_3},</if>
+			<if test="c30_4 != null">c30_4 = #{c30_4},</if>
+			<if test="c30_5 != null">c30_5 = #{c30_5},</if>
+			<if test="c30_6 != null">c30_6 = #{c30_6},</if>
+			<if test="c30_7 != null">c30_7 = #{c30_7},</if>
+			<if test="c30_8 != null">c30_8 = #{c30_8},</if>
+			<if test="c30_9 != null">c30_9 = #{c30_9},</if>
+			<if test="c30_10 != null">c30_10 = #{c30_10},</if>
+			<if test="c30_11 != null">c30_11 = #{c30_11},</if>
+			<if test="c30_12 != null">c30_12 = #{c30_12},</if>
+			<if test="c29_1 != null">c29_1 = #{c29_1},</if>
+			<if test="c29_2 != null">c29_2 = #{c29_2},</if>
+			<if test="c29_3 != null">c29_3 = #{c29_3},</if>
+			<if test="c29_4 != null">c29_4 = #{c29_4},</if>
+			<if test="c29_5 != null">c29_5 = #{c29_5},</if>
+			<if test="c29_6 != null">c29_6 = #{c29_6},</if>
+			<if test="c29_7 != null">c29_7 = #{c29_7},</if>
+			<if test="c29_8 != null">c29_8 = #{c29_8},</if>
+			<if test="c29_9 != null">c29_9 = #{c29_9},</if>
+			<if test="c29_10 != null">c29_10 = #{c29_10},</if>
+			<if test="c29_11 != null">c29_11 = #{c29_11},</if>
+			<if test="c29_12 != null">c29_12 = #{c29_12},</if>
+			<if test="c28_1 != null">c28_1 = #{c28_1},</if>
+			<if test="c28_2 != null">c28_2 = #{c28_2},</if>
+			<if test="c28_3 != null">c28_3 = #{c28_3},</if>
+			<if test="c28_4 != null">c28_4 = #{c28_4},</if>
+			<if test="c28_5 != null">c28_5 = #{c28_5},</if>
+			<if test="c28_6 != null">c28_6 = #{c28_6},</if>
+			<if test="c28_7 != null">c28_7 = #{c28_7},</if>
+			<if test="c28_8 != null">c28_8 = #{c28_8},</if>
+			<if test="c28_9 != null">c28_9 = #{c28_9},</if>
+			<if test="c28_10 != null">c28_10 = #{c28_10},</if>
+			<if test="c28_11 != null">c28_11 = #{c28_11},</if>
+			<if test="c28_12 != null">c28_12 = #{c28_12},</if>
+			<if test="c27_1 != null">c27_1 = #{c27_1},</if>
+			<if test="c27_2 != null">c27_2 = #{c27_2},</if>
+			<if test="c27_3 != null">c27_3 = #{c27_3},</if>
+			<if test="c27_4 != null">c27_4 = #{c27_4},</if>
+			<if test="c27_5 != null">c27_5 = #{c27_5},</if>
+			<if test="c27_6 != null">c27_6 = #{c27_6},</if>
+			<if test="c27_7 != null">c27_7 = #{c27_7},</if>
+			<if test="c27_8 != null">c27_8 = #{c27_8},</if>
+			<if test="c27_9 != null">c27_9 = #{c27_9},</if>
+			<if test="c27_10 != null">c27_10 = #{c27_10},</if>
+			<if test="c27_11 != null">c27_11 = #{c27_11},</if>
+			<if test="c27_12 != null">c27_12 = #{c27_12},</if>
+			<if test="c26_1 != null">c26_1 = #{c26_1},</if>
+			<if test="c26_2 != null">c26_2 = #{c26_2},</if>
+			<if test="c26_3 != null">c26_3 = #{c26_3},</if>
+			<if test="c26_4 != null">c26_4 = #{c26_4},</if>
+			<if test="c26_5 != null">c26_5 = #{c26_5},</if>
+			<if test="c26_6 != null">c26_6 = #{c26_6},</if>
+			<if test="c26_7 != null">c26_7 = #{c26_7},</if>
+			<if test="c26_8 != null">c26_8 = #{c26_8},</if>
+			<if test="c26_9 != null">c26_9 = #{c26_9},</if>
+			<if test="c26_10 != null">c26_10 = #{c26_10},</if>
+			<if test="c26_11 != null">c26_11 = #{c26_11},</if>
+			<if test="c26_12 != null">c26_12 = #{c26_12},</if>
+			<if test="c25_1 != null">c25_1 = #{c25_1},</if>
+			<if test="c25_2 != null">c25_2 = #{c25_2},</if>
+			<if test="c25_3 != null">c25_3 = #{c25_3},</if>
+			<if test="c25_4 != null">c25_4 = #{c25_4},</if>
+			<if test="c25_5 != null">c25_5 = #{c25_5},</if>
+			<if test="c25_6 != null">c25_6 = #{c25_6},</if>
+			<if test="c25_7 != null">c25_7 = #{c25_7},</if>
+			<if test="c25_8 != null">c25_8 = #{c25_8},</if>
+			<if test="c25_9 != null">c25_9 = #{c25_9},</if>
+			<if test="c25_10 != null">c25_10 = #{c25_10},</if>
+			<if test="c25_11 != null">c25_11 = #{c25_11},</if>
+			<if test="c25_12 != null">c25_12 = #{c25_12},</if>
+			<if test="c24_1 != null">c24_1 = #{c24_1},</if>
+			<if test="c24_2 != null">c24_2 = #{c24_2},</if>
+			<if test="c24_3 != null">c24_3 = #{c24_3},</if>
+			<if test="c24_4 != null">c24_4 = #{c24_4},</if>
+			<if test="c24_5 != null">c24_5 = #{c24_5},</if>
+			<if test="c24_6 != null">c24_6 = #{c24_6},</if>
+			<if test="c24_7 != null">c24_7 = #{c24_7},</if>
+			<if test="c24_8 != null">c24_8 = #{c24_8},</if>
+			<if test="c24_9 != null">c24_9 = #{c24_9},</if>
+			<if test="c24_10 != null">c24_10 = #{c24_10},</if>
+			<if test="c24_11 != null">c24_11 = #{c24_11},</if>
+			<if test="c24_12 != null">c24_12 = #{c24_12},</if>
+			<if test="c23_1 != null">c23_1 = #{c23_1},</if>
+			<if test="c23_2 != null">c23_2 = #{c23_2},</if>
+			<if test="c23_3 != null">c23_3 = #{c23_3},</if>
+			<if test="c23_4 != null">c23_4 = #{c23_4},</if>
+			<if test="c23_5 != null">c23_5 = #{c23_5},</if>
+			<if test="c23_6 != null">c23_6 = #{c23_6},</if>
+			<if test="c23_7 != null">c23_7 = #{c23_7},</if>
+			<if test="c23_8 != null">c23_8 = #{c23_8},</if>
+			<if test="c23_9 != null">c23_9 = #{c23_9},</if>
+			<if test="c23_10 != null">c23_10 = #{c23_10},</if>
+			<if test="c23_11 != null">c23_11 = #{c23_11},</if>
+			<if test="c23_12 != null">c23_12 = #{c23_12},</if>
+			<if test="c22_1 != null">c22_1 = #{c22_1},</if>
+			<if test="c22_2 != null">c22_2 = #{c22_2},</if>
+			<if test="c22_3 != null">c22_3 = #{c22_3},</if>
+			<if test="c22_4 != null">c22_4 = #{c22_4},</if>
+			<if test="c22_5 != null">c22_5 = #{c22_5},</if>
+			<if test="c22_6 != null">c22_6 = #{c22_6},</if>
+			<if test="c22_7 != null">c22_7 = #{c22_7},</if>
+			<if test="c22_8 != null">c22_8 = #{c22_8},</if>
+			<if test="c22_9 != null">c22_9 = #{c22_9},</if>
+			<if test="c22_10 != null">c22_10 = #{c22_10},</if>
+			<if test="c22_11 != null">c22_11 = #{c22_11},</if>
+			<if test="c22_12 != null">c22_12 = #{c22_12},</if>
+			<if test="c21_1 != null">c21_1 = #{c21_1},</if>
+			<if test="c21_2 != null">c21_2 = #{c21_2},</if>
+			<if test="c21_3 != null">c21_3 = #{c21_3},</if>
+			<if test="c21_4 != null">c21_4 = #{c21_4},</if>
+			<if test="c21_5 != null">c21_5 = #{c21_5},</if>
+			<if test="c21_6 != null">c21_6 = #{c21_6},</if>
+			<if test="c21_7 != null">c21_7 = #{c21_7},</if>
+			<if test="c21_8 != null">c21_8 = #{c21_8},</if>
+			<if test="c21_9 != null">c21_9 = #{c21_9},</if>
+			<if test="c21_10 != null">c21_10 = #{c21_10},</if>
+			<if test="c21_11 != null">c21_11 = #{c21_11},</if>
+			<if test="c21_12 != null">c21_12 = #{c21_12},</if>
+			<if test="c20_1 != null">c20_1 = #{c20_1},</if>
+			<if test="c20_2 != null">c20_2 = #{c20_2},</if>
+			<if test="c20_3 != null">c20_3 = #{c20_3},</if>
+			<if test="c20_4 != null">c20_4 = #{c20_4},</if>
+			<if test="c20_5 != null">c20_5 = #{c20_5},</if>
+			<if test="c20_6 != null">c20_6 = #{c20_6},</if>
+			<if test="c20_7 != null">c20_7 = #{c20_7},</if>
+			<if test="c20_8 != null">c20_8 = #{c20_8},</if>
+			<if test="c20_9 != null">c20_9 = #{c20_9},</if>
+			<if test="c20_10 != null">c20_10 = #{c20_10},</if>
+			<if test="c20_11 != null">c20_11 = #{c20_11},</if>
+			<if test="c20_12 != null">c20_12 = #{c20_12},</if>
+			<if test="c19_1 != null">c19_1 = #{c19_1},</if>
+			<if test="c19_2 != null">c19_2 = #{c19_2},</if>
+			<if test="c19_3 != null">c19_3 = #{c19_3},</if>
+			<if test="c19_4 != null">c19_4 = #{c19_4},</if>
+			<if test="c19_5 != null">c19_5 = #{c19_5},</if>
+			<if test="c19_6 != null">c19_6 = #{c19_6},</if>
+			<if test="c19_7 != null">c19_7 = #{c19_7},</if>
+			<if test="c19_8 != null">c19_8 = #{c19_8},</if>
+			<if test="c19_9 != null">c19_9 = #{c19_9},</if>
+			<if test="c19_10 != null">c19_10 = #{c19_10},</if>
+			<if test="c19_11 != null">c19_11 = #{c19_11},</if>
+			<if test="c19_12 != null">c19_12 = #{c19_12},</if>
+			<if test="c18_1 != null">c18_1 = #{c18_1},</if>
+			<if test="c18_2 != null">c18_2 = #{c18_2},</if>
+			<if test="c18_3 != null">c18_3 = #{c18_3},</if>
+			<if test="c18_4 != null">c18_4 = #{c18_4},</if>
+			<if test="c18_5 != null">c18_5 = #{c18_5},</if>
+			<if test="c18_6 != null">c18_6 = #{c18_6},</if>
+			<if test="c18_7 != null">c18_7 = #{c18_7},</if>
+			<if test="c18_8 != null">c18_8 = #{c18_8},</if>
+			<if test="c18_9 != null">c18_9 = #{c18_9},</if>
+			<if test="c18_10 != null">c18_10 = #{c18_10},</if>
+			<if test="c18_11 != null">c18_11 = #{c18_11},</if>
+			<if test="c18_12 != null">c18_12 = #{c18_12},</if>
+			<if test="c17_1 != null">c17_1 = #{c17_1},</if>
+			<if test="c17_2 != null">c17_2 = #{c17_2},</if>
+			<if test="c17_3 != null">c17_3 = #{c17_3},</if>
+			<if test="c17_4 != null">c17_4 = #{c17_4},</if>
+			<if test="c17_5 != null">c17_5 = #{c17_5},</if>
+			<if test="c17_6 != null">c17_6 = #{c17_6},</if>
+			<if test="c17_7 != null">c17_7 = #{c17_7},</if>
+			<if test="c17_8 != null">c17_8 = #{c17_8},</if>
+			<if test="c17_9 != null">c17_9 = #{c17_9},</if>
+			<if test="c17_10 != null">c17_10 = #{c17_10},</if>
+			<if test="c17_11 != null">c17_11 = #{c17_11},</if>
+			<if test="c17_12 != null">c17_12 = #{c17_12},</if>
+			<if test="c16_1 != null">c16_1 = #{c16_1},</if>
+			<if test="c16_2 != null">c16_2 = #{c16_2},</if>
+			<if test="c16_3 != null">c16_3 = #{c16_3},</if>
+			<if test="c16_4 != null">c16_4 = #{c16_4},</if>
+			<if test="c16_5 != null">c16_5 = #{c16_5},</if>
+			<if test="c16_6 != null">c16_6 = #{c16_6},</if>
+			<if test="c16_7 != null">c16_7 = #{c16_7},</if>
+			<if test="c16_8 != null">c16_8 = #{c16_8},</if>
+			<if test="c16_9 != null">c16_9 = #{c16_9},</if>
+			<if test="c16_10 != null">c16_10 = #{c16_10},</if>
+			<if test="c16_11 != null">c16_11 = #{c16_11},</if>
+			<if test="c16_12 != null">c16_12 = #{c16_12},</if>
+			<if test="c15_1 != null">c15_1 = #{c15_1},</if>
+			<if test="c15_2 != null">c15_2 = #{c15_2},</if>
+			<if test="c15_3 != null">c15_3 = #{c15_3},</if>
+			<if test="c15_4 != null">c15_4 = #{c15_4},</if>
+			<if test="c15_5 != null">c15_5 = #{c15_5},</if>
+			<if test="c15_6 != null">c15_6 = #{c15_6},</if>
+			<if test="c15_7 != null">c15_7 = #{c15_7},</if>
+			<if test="c15_8 != null">c15_8 = #{c15_8},</if>
+			<if test="c15_9 != null">c15_9 = #{c15_9},</if>
+			<if test="c15_10 != null">c15_10 = #{c15_10},</if>
+			<if test="c15_11 != null">c15_11 = #{c15_11},</if>
+			<if test="c15_12 != null">c15_12 = #{c15_12},</if>
+			<if test="c14_1 != null">c14_1 = #{c14_1},</if>
+			<if test="c14_2 != null">c14_2 = #{c14_2},</if>
+			<if test="c14_3 != null">c14_3 = #{c14_3},</if>
+			<if test="c14_4 != null">c14_4 = #{c14_4},</if>
+			<if test="c14_5 != null">c14_5 = #{c14_5},</if>
+			<if test="c14_6 != null">c14_6 = #{c14_6},</if>
+			<if test="c14_7 != null">c14_7 = #{c14_7},</if>
+			<if test="c14_8 != null">c14_8 = #{c14_8},</if>
+			<if test="c14_9 != null">c14_9 = #{c14_9},</if>
+			<if test="c14_10 != null">c14_10 = #{c14_10},</if>
+			<if test="c14_11 != null">c14_11 = #{c14_11},</if>
+			<if test="c14_12 != null">c14_12 = #{c14_12},</if>
+			<if test="c13_1 != null">c13_1 = #{c13_1},</if>
+			<if test="c13_2 != null">c13_2 = #{c13_2},</if>
+			<if test="c13_3 != null">c13_3 = #{c13_3},</if>
+			<if test="c13_4 != null">c13_4 = #{c13_4},</if>
+			<if test="c13_5 != null">c13_5 = #{c13_5},</if>
+			<if test="c13_6 != null">c13_6 = #{c13_6},</if>
+			<if test="c13_7 != null">c13_7 = #{c13_7},</if>
+			<if test="c13_8 != null">c13_8 = #{c13_8},</if>
+			<if test="c13_9 != null">c13_9 = #{c13_9},</if>
+			<if test="c13_10 != null">c13_10 = #{c13_10},</if>
+			<if test="c13_11 != null">c13_11 = #{c13_11},</if>
+			<if test="c13_12 != null">c13_12 = #{c13_12},</if>
+			<if test="c12_1 != null">c12_1 = #{c12_1},</if>
+			<if test="c12_2 != null">c12_2 = #{c12_2},</if>
+			<if test="c12_3 != null">c12_3 = #{c12_3},</if>
+			<if test="c12_4 != null">c12_4 = #{c12_4},</if>
+			<if test="c12_5 != null">c12_5 = #{c12_5},</if>
+			<if test="c12_6 != null">c12_6 = #{c12_6},</if>
+			<if test="c12_7 != null">c12_7 = #{c12_7},</if>
+			<if test="c12_8 != null">c12_8 = #{c12_8},</if>
+			<if test="c12_9 != null">c12_9 = #{c12_9},</if>
+			<if test="c12_10 != null">c12_10 = #{c12_10},</if>
+			<if test="c12_11 != null">c12_11 = #{c12_11},</if>
+			<if test="c12_12 != null">c12_12 = #{c12_12},</if>
+			<if test="c11_1 != null">c11_1 = #{c11_1},</if>
+			<if test="c11_2 != null">c11_2 = #{c11_2},</if>
+			<if test="c11_3 != null">c11_3 = #{c11_3},</if>
+			<if test="c11_4 != null">c11_4 = #{c11_4},</if>
+			<if test="c11_5 != null">c11_5 = #{c11_5},</if>
+			<if test="c11_6 != null">c11_6 = #{c11_6},</if>
+			<if test="c11_7 != null">c11_7 = #{c11_7},</if>
+			<if test="c11_8 != null">c11_8 = #{c11_8},</if>
+			<if test="c11_9 != null">c11_9 = #{c11_9},</if>
+			<if test="c11_10 != null">c11_10 = #{c11_10},</if>
+			<if test="c11_11 != null">c11_11 = #{c11_11},</if>
+			<if test="c11_12 != null">c11_12 = #{c11_12},</if>
+			<if test="c10_1 != null">c10_1 = #{c10_1},</if>
+			<if test="c10_2 != null">c10_2 = #{c10_2},</if>
+			<if test="c10_3 != null">c10_3 = #{c10_3},</if>
+			<if test="c10_4 != null">c10_4 = #{c10_4},</if>
+			<if test="c10_5 != null">c10_5 = #{c10_5},</if>
+			<if test="c10_6 != null">c10_6 = #{c10_6},</if>
+			<if test="c10_7 != null">c10_7 = #{c10_7},</if>
+			<if test="c10_8 != null">c10_8 = #{c10_8},</if>
+			<if test="c10_9 != null">c10_9 = #{c10_9},</if>
+			<if test="c10_10 != null">c10_10 = #{c10_10},</if>
+			<if test="c10_11 != null">c10_11 = #{c10_11},</if>
+			<if test="c10_12 != null">c10_12 = #{c10_12},</if>
+			<if test="c9_1 != null">c9_1 = #{c9_1},</if>
+			<if test="c9_2 != null">c9_2 = #{c9_2},</if>
+			<if test="c9_3 != null">c9_3 = #{c9_3},</if>
+			<if test="c9_4 != null">c9_4 = #{c9_4},</if>
+			<if test="c9_5 != null">c9_5 = #{c9_5},</if>
+			<if test="c9_6 != null">c9_6 = #{c9_6},</if>
+			<if test="c9_7 != null">c9_7 = #{c9_7},</if>
+			<if test="c9_8 != null">c9_8 = #{c9_8},</if>
+			<if test="c9_9 != null">c9_9 = #{c9_9},</if>
+			<if test="c9_10 != null">c9_10 = #{c9_10},</if>
+			<if test="c9_11 != null">c9_11 = #{c9_11},</if>
+			<if test="c9_12 != null">c9_12 = #{c9_12},</if>
+			<if test="c8_1 != null">c8_1 = #{c8_1},</if>
+			<if test="c8_2 != null">c8_2 = #{c8_2},</if>
+			<if test="c8_3 != null">c8_3 = #{c8_3},</if>
+			<if test="c8_4 != null">c8_4 = #{c8_4},</if>
+			<if test="c8_5 != null">c8_5 = #{c8_5},</if>
+			<if test="c8_6 != null">c8_6 = #{c8_6},</if>
+			<if test="c8_7 != null">c8_7 = #{c8_7},</if>
+			<if test="c8_8 != null">c8_8 = #{c8_8},</if>
+			<if test="c8_9 != null">c8_9 = #{c8_9},</if>
+			<if test="c8_10 != null">c8_10 = #{c8_10},</if>
+			<if test="c8_11 != null">c8_11 = #{c8_11},</if>
+			<if test="c8_12 != null">c8_12 = #{c8_12},</if>
+			<if test="c7_1 != null">c7_1 = #{c7_1},</if>
+			<if test="c7_2 != null">c7_2 = #{c7_2},</if>
+			<if test="c7_3 != null">c7_3 = #{c7_3},</if>
+			<if test="c7_4 != null">c7_4 = #{c7_4},</if>
+			<if test="c7_5 != null">c7_5 = #{c7_5},</if>
+			<if test="c7_6 != null">c7_6 = #{c7_6},</if>
+			<if test="c7_7 != null">c7_7 = #{c7_7},</if>
+			<if test="c7_8 != null">c7_8 = #{c7_8},</if>
+			<if test="c7_9 != null">c7_9 = #{c7_9},</if>
+			<if test="c7_10 != null">c7_10 = #{c7_10},</if>
+			<if test="c7_11 != null">c7_11 = #{c7_11},</if>
+			<if test="c7_12 != null">c7_12 = #{c7_12},</if>
+			<if test="c6_1 != null">c6_1 = #{c6_1},</if>
+			<if test="c6_2 != null">c6_2 = #{c6_2},</if>
+			<if test="c6_3 != null">c6_3 = #{c6_3},</if>
+			<if test="c6_4 != null">c6_4 = #{c6_4},</if>
+			<if test="c6_5 != null">c6_5 = #{c6_5},</if>
+			<if test="c6_6 != null">c6_6 = #{c6_6},</if>
+			<if test="c6_7 != null">c6_7 = #{c6_7},</if>
+			<if test="c6_8 != null">c6_8 = #{c6_8},</if>
+			<if test="c6_9 != null">c6_9 = #{c6_9},</if>
+			<if test="c6_10 != null">c6_10 = #{c6_10},</if>
+			<if test="c6_11 != null">c6_11 = #{c6_11},</if>
+			<if test="c6_12 != null">c6_12 = #{c6_12},</if>
+			<if test="c5_1 != null">c5_1 = #{c5_1},</if>
+			<if test="c5_2 != null">c5_2 = #{c5_2},</if>
+			<if test="c5_3 != null">c5_3 = #{c5_3},</if>
+			<if test="c5_4 != null">c5_4 = #{c5_4},</if>
+			<if test="c5_5 != null">c5_5 = #{c5_5},</if>
+			<if test="c5_6 != null">c5_6 = #{c5_6},</if>
+			<if test="c5_7 != null">c5_7 = #{c5_7},</if>
+			<if test="c5_8 != null">c5_8 = #{c5_8},</if>
+			<if test="c5_9 != null">c5_9 = #{c5_9},</if>
+			<if test="c5_10 != null">c5_10 = #{c5_10},</if>
+			<if test="c5_11 != null">c5_11 = #{c5_11},</if>
+			<if test="c5_12 != null">c5_12 = #{c5_12},</if>
+			<if test="c4_1 != null">c4_1 = #{c4_1},</if>
+			<if test="c4_2 != null">c4_2 = #{c4_2},</if>
+			<if test="c4_3 != null">c4_3 = #{c4_3},</if>
+			<if test="c4_4 != null">c4_4 = #{c4_4},</if>
+			<if test="c4_5 != null">c4_5 = #{c4_5},</if>
+			<if test="c4_6 != null">c4_6 = #{c4_6},</if>
+			<if test="c4_7 != null">c4_7 = #{c4_7},</if>
+			<if test="c4_8 != null">c4_8 = #{c4_8},</if>
+			<if test="c4_9 != null">c4_9 = #{c4_9},</if>
+			<if test="c4_10 != null">c4_10 = #{c4_10},</if>
+			<if test="c4_11 != null">c4_11 = #{c4_11},</if>
+			<if test="c4_12 != null">c4_12 = #{c4_12},</if>
+			<if test="c3_1 != null">c3_1 = #{c3_1},</if>
+			<if test="c3_2 != null">c3_2 = #{c3_2},</if>
+			<if test="c3_3 != null">c3_3 = #{c3_3},</if>
+			<if test="c3_4 != null">c3_4 = #{c3_4},</if>
+			<if test="c3_5 != null">c3_5 = #{c3_5},</if>
+			<if test="c3_6 != null">c3_6 = #{c3_6},</if>
+			<if test="c3_7 != null">c3_7 = #{c3_7},</if>
+			<if test="c3_8 != null">c3_8 = #{c3_8},</if>
+			<if test="c3_9 != null">c3_9 = #{c3_9},</if>
+			<if test="c3_10 != null">c3_10 = #{c3_10},</if>
+			<if test="c3_11 != null">c3_11 = #{c3_11},</if>
+			<if test="c3_12 != null">c3_12 = #{c3_12},</if>
+			<if test="c2_1 != null">c2_1 = #{c2_1},</if>
+			<if test="c2_2 != null">c2_2 = #{c2_2},</if>
+			<if test="c2_3 != null">c2_3 = #{c2_3},</if>
+			<if test="c2_4 != null">c2_4 = #{c2_4},</if>
+			<if test="c2_5 != null">c2_5 = #{c2_5},</if>
+			<if test="c2_6 != null">c2_6 = #{c2_6},</if>
+			<if test="c2_7 != null">c2_7 = #{c2_7},</if>
+			<if test="c2_8 != null">c2_8 = #{c2_8},</if>
+			<if test="c2_9 != null">c2_9 = #{c2_9},</if>
+			<if test="c2_10 != null">c2_10 = #{c2_10},</if>
+			<if test="c2_11 != null">c2_11 = #{c2_11},</if>
+			<if test="c2_12 != null">c2_12 = #{c2_12},</if>
+			<if test="c1_1 != null">c1_1 = #{c1_1},</if>
+			<if test="c1_2 != null">c1_2 = #{c1_2},</if>
+			<if test="c1_3 != null">c1_3 = #{c1_3},</if>
+			<if test="c1_4 != null">c1_4 = #{c1_4},</if>
+			<if test="c1_5 != null">c1_5 = #{c1_5},</if>
+			<if test="c1_6 != null">c1_6 = #{c1_6},</if>
+			<if test="c1_7 != null">c1_7 = #{c1_7},</if>
+			<if test="c1_8 != null">c1_8 = #{c1_8},</if>
+			<if test="c1_9 != null">c1_9 = #{c1_9},</if>
+			<if test="c1_10 != null">c1_10 = #{c1_10},</if>
+			<if test="c1_11 != null">c1_11 = #{c1_11},</if>
+			<if test="c1_12 != null">c1_12 = #{c1_12},</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from ppsg_checkpoint
+		where id = #{id}
+	</delete>
+
+</mapper>

@@ -15,119 +15,64 @@ public class GeneralThree implements Serializable {
     private Long id;
 
     @Column
-    @Comment("武将名称")
+    @Comment("general主键")
+    private Long generalId;
+
+    @Column
+    @Comment("编码")
+    private String code;
+
+    @Column
+    @Comment("名称")
     private String name;
 
     @Column
-    @Comment("国家编码")
-    private Integer countryCode;
+    @Comment("整数武力")
+    private Integer force;
 
     @Column
-    @Comment("国家名称")
-    private String countryName;
+    @Comment("整数智力")
+    private Integer intellect;
 
     @Column
-    @Comment("星级编码")
-    private Integer starCode;
+    @Comment("整数兵力")
+    private Integer troops;
 
     @Column
-    @Comment("星级名称")
-    private String starName;
+    @Comment("整数战力")
+    private Integer combat;
 
     @Column
-    @Comment("等级")
-    private Integer level;
+    @Comment("精确武力")
+    private Double force0;
 
     @Column
-    @Comment("兵种编码")
-    private Integer armsCode;
+    @Comment("精确智力")
+    private Double intellect0;
 
     @Column
-    @Comment("兵种名称")
-    private String armsName;
+    @Comment("精确兵力")
+    private Double troops0;
 
     @Column
-    @Comment("武将类型编码")
-    private Integer typeCode;
-
-    @Column
-    @Comment("武将类型名称")
-    private String typeName;
-
-    @Column
-    @Comment("启用标识【0：未启用，1：启用】")
-    private Boolean enableFlag;
-
-    @Column
-    @Comment("删除标识【0：删除，1：未删除】")
-    private Boolean delFlag;
-
+    @Comment("精确战力")
+    private Double combat0;
 
     public GeneralThree() {
     }
 
-    public Integer getTypeCode() {
-        return typeCode;
-    }
-
-    public void setTypeCode(Integer typeCode) {
-        this.typeCode = typeCode;
-    }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    public Integer getArmsCode() {
-        return armsCode;
-    }
-
-    public void setArmsCode(Integer armsCode) {
-        this.armsCode = armsCode;
-    }
-
-    public String getArmsName() {
-        return armsName;
-    }
-
-    public void setArmsName(String armsName) {
-        this.armsName = armsName;
-    }
-
-    public Integer getLevel() {
-        return level;
-    }
-
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
-    public Integer getStarCode() {
-        return starCode;
-    }
-
-    public void setStarCode(Integer starCode) {
-        this.starCode = starCode;
-    }
-
-    public String getStarName() {
-        return starName;
-    }
-
-    public void setStarName(String starName) {
-        this.starName = starName;
-    }
-
-    public Boolean getEnableFlag() {
-        return enableFlag;
-    }
-
-    public void setEnableFlag(Boolean enableFlag) {
-        this.enableFlag = enableFlag;
+    public GeneralThree(Long generalId, String code, String name, Integer force, Integer intellect, Integer troops, Integer combat, Double force0, Double intellect0, Double troops0, Double combat0) {
+        this.generalId = generalId;
+        this.code = code;
+        this.name = name;
+        this.force = force;
+        this.intellect = intellect;
+        this.troops = troops;
+        this.combat = combat;
+        this.force0 = force0;
+        this.intellect0 = intellect0;
+        this.troops0 = troops0;
+        this.combat0 = combat0;
     }
 
     public Long getId() {
@@ -138,6 +83,22 @@ public class GeneralThree implements Serializable {
         this.id = id;
     }
 
+    public Long getGeneralId() {
+        return generalId;
+    }
+
+    public void setGeneralId(Long generalId) {
+        this.generalId = generalId;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public String getName() {
         return name;
     }
@@ -146,27 +107,67 @@ public class GeneralThree implements Serializable {
         this.name = name;
     }
 
-    public Integer getCountryCode() {
-        return countryCode;
+    public Integer getForce() {
+        return force;
     }
 
-    public void setCountryCode(Integer countryCode) {
-        this.countryCode = countryCode;
+    public void setForce(Integer force) {
+        this.force = force;
     }
 
-    public String getCountryName() {
-        return countryName;
+    public Integer getIntellect() {
+        return intellect;
     }
 
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
+    public void setIntellect(Integer intellect) {
+        this.intellect = intellect;
     }
 
-    public Boolean getDelFlag() {
-        return delFlag;
+    public Integer getTroops() {
+        return troops;
     }
 
-    public void setDelFlag(Boolean delFlag) {
-        this.delFlag = delFlag;
+    public void setTroops(Integer troops) {
+        this.troops = troops;
+    }
+
+    public Integer getCombat() {
+        return combat;
+    }
+
+    public void setCombat(Integer combat) {
+        this.combat = combat;
+    }
+
+    public Double getForce0() {
+        return force0;
+    }
+
+    public void setForce0(Double force0) {
+        this.force0 = force0;
+    }
+
+    public Double getIntellect0() {
+        return intellect0;
+    }
+
+    public void setIntellect0(Double intellect0) {
+        this.intellect0 = intellect0;
+    }
+
+    public Double getTroops0() {
+        return troops0;
+    }
+
+    public void setTroops0(Double troops0) {
+        this.troops0 = troops0;
+    }
+
+    public Double getCombat0() {
+        return combat0;
+    }
+
+    public void setCombat0(Double combat0) {
+        this.combat0 = combat0;
     }
 }

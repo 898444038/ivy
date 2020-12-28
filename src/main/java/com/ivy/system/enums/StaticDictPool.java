@@ -15,7 +15,7 @@ public class StaticDictPool {
     /**
      * 往 map 中添加代码项
      */
-    public static void putDictItem(IDictItem iCodeItem, String value, String label) {
+    public static void putDictItem(IDictItem iCodeItem, Integer value, String label) {
         dictItemMap.put(iCodeItem, DictItemBean.of(value, label));
     }
 

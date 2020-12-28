@@ -32,7 +32,7 @@ public enum GeneralsEnum {
         return this.groupName;
     }
 
-    public enum ThreeCircles implements GeneralsEnumInterface {
+    public enum ThreeCircles implements GeneralEnumInterface {
         Force(1,"武力"),
         Intellect(2,"智力"),
         Troops(3,"兵力");
@@ -51,7 +51,7 @@ public enum GeneralsEnum {
         }
     }
 
-    public enum GeneralsType implements GeneralsEnumInterface {
+    public enum GeneralsType implements GeneralEnumInterface {
         GeneralsType_1(1,"勇将型",3,1,2),
         GeneralsType_2(2,"将军型",2,1,3),
         GeneralsType_3(3,"智将型",2,2,2),
@@ -100,7 +100,7 @@ public enum GeneralsEnum {
         }
     }
 
-    public enum Type implements GeneralsEnumInterface {
+    public enum Type implements GeneralEnumInterface {
         Awaken(1,"觉醒"),
         Fall(2,"堕天"),
         disobey(3,"逆命");
@@ -119,7 +119,7 @@ public enum GeneralsEnum {
         }
     }
 
-    public enum Star implements GeneralsEnumInterface {
+    public enum Star implements GeneralEnumInterface {
         star1(1,"一星白卡","白卡"),
         star2(2,"二星黑卡","黑卡"),
         star3(3,"三星银卡","银卡"),
@@ -145,7 +145,7 @@ public enum GeneralsEnum {
         }
     }
 
-    public enum Country implements GeneralsEnumInterface {
+    public enum Country implements GeneralEnumInterface {
         wei(1,"魏"),
         shu(2,"蜀"),
         wu(3,"吴"),
@@ -165,7 +165,7 @@ public enum GeneralsEnum {
         }
     }
 
-    public enum Countrys implements GeneralsEnumInterface {
+    public enum Countrys implements GeneralEnumInterface {
         weiCountry(1,"魏国国家队"),
         shuCountry(2,"蜀国国家队"),
         wuCountry(3,"吴国国家队"),
@@ -191,7 +191,7 @@ public enum GeneralsEnum {
         }
     }
 
-    public enum Arms implements GeneralsEnumInterface {
+    public enum Arms implements GeneralEnumInterface {
         gun(1,"枪",0.6,0.4,0.8),
         arch(2,"弓",0.6,0.8,0.4),
         ride(3,"骑",0.8,0.4,0.6);
@@ -226,7 +226,7 @@ public enum GeneralsEnum {
     }
 
 
-    public enum WarDevice implements GeneralsEnumInterface {
+    public enum WarDevice implements GeneralEnumInterface {
         knife(1,"刀","刀",133,106,160,224,178,494,1.0,1.0,1.0,288,288,288,458,458,1220),
         sword(2,"剑","剑",133,133,133,227,224,445,1.0,1.0,1.0,288,288,288,458,458,1220),
         gun(3,"枪","枪",160,106,133,273,178,445,1.0,1.0,1.0,288,288,288,458,458,1220),
@@ -351,7 +351,7 @@ public enum GeneralsEnum {
         }
     }
 
-    public enum Gender implements GeneralsEnumInterface {
+    public enum Gender implements GeneralEnumInterface {
         boy(1,"男"),
         gril(2,"女");
         private Integer code;
@@ -369,7 +369,7 @@ public enum GeneralsEnum {
         }
     }
 
-    /*public enum BookType implements GeneralsEnumInterface {
+    /*public enum BookType implements GeneralEnumInterface {
         jiaoLi(1,"角力",5,1),
         qiShu(2,"骑术",),
         duanBing(3,"短兵",),
@@ -408,7 +408,7 @@ public enum GeneralsEnum {
         }
     }*/
 
-    public enum ArmsBook implements GeneralsEnumInterface {
+    public enum ArmsBook implements GeneralEnumInterface {
         WuFeng(1,"武锋","蓝色",160,0,0),
         SanYi(2,"三疑","红色",0,160,0),
         BingDao(3,"兵道","黄色",0,0,160),
@@ -454,7 +454,7 @@ public enum GeneralsEnum {
     }
 
 
-    public enum ArmsType implements GeneralsEnumInterface {
+    public enum ArmsType implements GeneralEnumInterface {
         DunQiangBing(1,"盾枪兵",0.07,0.03,0.10),
         ChangJiBing(2,"长戟兵",0.10,0.03,0.07),
         ZhongQiBing(3,"重骑兵",0.07,0.03,0.10),
@@ -497,7 +497,7 @@ public enum GeneralsEnum {
     }
 
 
-    public enum Destiny implements GeneralsEnumInterface {
+    public enum Destiny implements GeneralEnumInterface {
 
         not(0,"未开命格",0,0,0,0,0,0,0,0,0,0,0),
         disobey(1,"逆命",1220,1220,0,0,300,680,1220,1920,1920,100,10),
@@ -590,7 +590,7 @@ public enum GeneralsEnum {
 
 
     //战意
-    public enum Warpath implements GeneralsEnumInterface {
+    public enum Warpath implements GeneralEnumInterface {
 
         countryForce(1,"同国家上阵武将武力加成10%",0.1),
         countryIntellect(2,"同国家上阵武将智力加成10%",0.1),
@@ -624,7 +624,7 @@ public enum GeneralsEnum {
 
 
     // 兵符
-    public enum Symbols implements GeneralsEnumInterface {
+    public enum Symbols implements GeneralEnumInterface {
 
         number1(1,"1号位",360,0,0,0d,0d,0d,0d),
         number2(2,"2号位",0,0,0,0.211,0.211,0.318,0.106),
@@ -695,7 +695,7 @@ public enum GeneralsEnum {
         }
     }
 
-    public enum SymbolsMainAttr implements GeneralsEnumInterface {
+    public enum SymbolsMainAttr implements GeneralEnumInterface {
 
         force(1 , "武力增加360" , 360 , 0d),//1号位
         intellect(2 , "智力增加360" , 360 , 0d),//3号位
@@ -763,7 +763,7 @@ public enum GeneralsEnum {
     }
 
     // 兵符副属性
-    public enum SymbolsSecondAttr implements GeneralsEnumInterface {
+    public enum SymbolsSecondAttr implements GeneralEnumInterface {
 
         force(1,"武力增加64",64,0d),
         forceRate(2,"武力加成10.6%",0,0.106),
@@ -827,7 +827,7 @@ public enum GeneralsEnum {
     }
 
     // 兵符类型
-    public enum SymbolsType implements GeneralsEnumInterface {
+    public enum SymbolsType implements GeneralEnumInterface {
         cangLong(1,"苍龙","蜀国全属性加10%",0.1),
         mengHu(2,"猛虎","吴国全属性加10%",0.1),
         huoFeng(3,"火凤","魏国全属性加10%",0.1),
@@ -875,7 +875,7 @@ public enum GeneralsEnum {
         }
     }
 
-    public enum GeneralsCode implements GeneralsEnumInterface {
+    public enum GeneralsCode implements GeneralEnumInterface {
         wei_caocao(1001,"曹操"),
         wei_simayi(1002,"司马懿"),
         wei_zhangliao(1003,"张辽"),
@@ -982,7 +982,7 @@ public enum GeneralsEnum {
         }
     }
 
-    public enum Material implements GeneralsEnumInterface {
+    public enum Material implements GeneralEnumInterface {
         life(0,"命石", MaterialType.life_pt.getCode(), MaterialType.life_jl.getCode(), MaterialType.life_wx.getCode()),
         secret(1,"天机之钥", MaterialType.secret_pt.getCode(), MaterialType.secret_jl.getCode(), MaterialType.secret_wx.getCode()),
         heaven(2,"天相之圭", MaterialType.heaven_pt.getCode(), MaterialType.heaven_jl.getCode(), MaterialType.heaven_wx.getCode()),
@@ -1044,7 +1044,7 @@ public enum GeneralsEnum {
      * 精良天机之钥、精良天相之圭、精良太阴之精、精良太阳之焰、精良贪狼之爪、精良廉贞之锋、精良七杀之气、精良破军之血
      * 无暇天机之钥、无暇天相之圭、无暇太阴之精、无暇太阳之焰、无暇贪狼之爪、无暇廉贞之锋、无暇七杀之气、无暇破军之血
      */
-    public enum MaterialType implements GeneralsEnumInterface {
+    public enum MaterialType implements GeneralEnumInterface {
 
         life_pt(1,"普通命石",1210,1130),
         life_jl(2,"普通命石",570,840),
@@ -1113,7 +1113,7 @@ public enum GeneralsEnum {
         }
     }
 
-    public enum Skin implements GeneralsEnumInterface {
+    public enum Skin implements GeneralEnumInterface {
         skin_1(1,"沉弈忘雪","",30,30,80),
         skin_2(2,"繁花一梦","",30,30,80),
         skin_3(3,"月落千殇","",30,30,80),
@@ -1182,7 +1182,7 @@ public enum GeneralsEnum {
         }
     }
 
-    public enum BattleArrayWay implements GeneralsEnumInterface {
+    public enum BattleArrayWay implements GeneralEnumInterface {
         //hu_yi(1,"",3,1,6),
         //huo_niu(2,""),
         long_fei(3,"龙飞",2,1,9,390,195,1755),
@@ -1243,7 +1243,7 @@ public enum GeneralsEnum {
         }
     }
 
-    public enum Combat implements GeneralsEnumInterface {
+    public enum Combat implements GeneralEnumInterface {
         zs_1(1, "壮士1级",600),
         zs_2(2, "壮士2级",900),
         zs_3(3, "壮士3级",1350),
@@ -1340,7 +1340,7 @@ public enum GeneralsEnum {
         }
     }
 
-    /*public enum Material implements GeneralsEnumInterface {
+    /*public enum Material implements GeneralEnumInterface {
         n1(1,"霸业曹操", Destiny.disobey.getCode())
         ;
 

@@ -12,7 +12,7 @@ public interface IDictItem {
      * @param <T> 模板类型
      * @return 如果 enumClass为空, 返回 null, 否则返回枚举类中第一个匹配value的枚举对象
      */
-    static <T extends IDictItem> T getByValue(Class<T> enumClass, String value) {
+    static <T extends IDictItem> T getByValue(Class<T> enumClass, Integer value) {
         if (enumClass == null) {
             return null;
         }
@@ -56,13 +56,13 @@ public interface IDictItem {
      * @param <T> 模板类型
      * @return 如果 value为空
      */
-    static <T extends IDictItem> String getLabelByValue(Class<T> enumClass, String value) {
+    static <T extends IDictItem> String getLabelByValue(Class<T> enumClass, Integer value) {
         if (value == null) {
             return "";
         }
         IDictItem byValue = getByValue(enumClass, value);
         if (null == byValue) {
-            return value;
+            return null;
         }
         return byValue.label();
     }
@@ -75,21 +75,21 @@ public interface IDictItem {
      * @param <T> 模板类型
      * @return 如果 value为空
      */
-    static <T extends IDictItem> String getValueByLabel(Class<T> enumClass, String label) {
+    static <T extends IDictItem> Integer getValueByLabel(Class<T> enumClass, String label) {
         if (label == null) {
-            return "";
+            return null;
         }
         label = label.trim();
         IDictItem byValue = getByLabel(enumClass, label);
         if (null == byValue) {
-            return label;
+            return null;
         }
         return byValue.value();
     }
 
     String name();
 
-    default String value() {
+    default Integer value() {
         return getItemBean().getValue();
     }
 
@@ -101,7 +101,7 @@ public interface IDictItem {
         return StaticDictPool.getDictItem(this);
     }
 
-    default boolean isValue(String value) {
+    /*default boolean isValue(String value) {
         return StringUtils.isNotBlank(value) && value.endsWith(value());
-    }
+    }*/
 }

@@ -2,22 +2,22 @@ package com.ivy.system.enums;
 
 public class DictItemBean {
 
-    public static DictItemBean of(String value, String label) {
+    public static DictItemBean of(Integer value, String label) {
         final DictItemBean dictItemBean = new DictItemBean();
         dictItemBean.setValue(value);
         dictItemBean.setLabel(label);
         return dictItemBean;
     }
 
-    private String value;
+    private Integer value;
 
     private String label;
 
-    public String getValue() {
+    public Integer getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Integer value) {
         this.value = value;
     }
 

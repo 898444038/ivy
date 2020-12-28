@@ -21,6 +21,18 @@ public class General implements Serializable {
     private String name;
 
     @Column
+    @Comment("等级")
+    private Integer level;
+
+    @Column
+    @Comment("性别编码")
+    private Integer genderCode;
+
+    @Column
+    @Comment("性别名称")
+    private String genderName;
+
+    @Column
     @Comment("国家编码")
     private Integer countryCode;
 
@@ -35,10 +47,6 @@ public class General implements Serializable {
     @Column
     @Comment("星级名称")
     private String starName;
-
-    @Column
-    @Comment("等级")
-    private Integer level;
 
     @Column
     @Comment("兵种编码")
@@ -66,6 +74,22 @@ public class General implements Serializable {
 
 
     public General() {
+    }
+
+    public Integer getGenderCode() {
+        return genderCode;
+    }
+
+    public void setGenderCode(Integer genderCode) {
+        this.genderCode = genderCode;
+    }
+
+    public String getGenderName() {
+        return genderName;
+    }
+
+    public void setGenderName(String genderName) {
+        this.genderName = genderName;
     }
 
     public Integer getTypeCode() {

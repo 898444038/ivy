@@ -20,7 +20,7 @@ public class GeneralThree implements Serializable {
 
     @Column
     @Comment("编码")
-    private String code;
+    private Integer code;
 
     @Column
     @Comment("名称")
@@ -61,7 +61,22 @@ public class GeneralThree implements Serializable {
     public GeneralThree() {
     }
 
-    public GeneralThree(Long generalId, String code, String name, Integer force, Integer intellect, Integer troops, Integer combat, Double force0, Double intellect0, Double troops0, Double combat0) {
+    public GeneralThree(Long generalId, Integer code, String name) {
+        this.generalId = generalId;
+        this.code = code;
+        this.name = name;
+    }
+
+    public GeneralThree(Long generalId, Integer code, String name, Integer force, Integer intellect, Integer troops) {
+        this.generalId = generalId;
+        this.code = code;
+        this.name = name;
+        this.force = force;
+        this.intellect = intellect;
+        this.troops = troops;
+    }
+
+    public GeneralThree(Long generalId, Integer code, String name, Integer force, Integer intellect, Integer troops, Integer combat, Double force0, Double intellect0, Double troops0, Double combat0) {
         this.generalId = generalId;
         this.code = code;
         this.name = name;
@@ -91,11 +106,11 @@ public class GeneralThree implements Serializable {
         this.generalId = generalId;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

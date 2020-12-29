@@ -65,6 +65,22 @@ public class General implements Serializable {
     private String typeName;
 
     @Column
+    @Comment("分类编码")
+    private Integer categoryCode;
+
+    @Column
+    @Comment("分类名称")
+    private String categoryName;
+
+    @Column
+    @Comment("命格编码")
+    private Integer destinyCode;
+
+    @Column
+    @Comment("命格名称")
+    private String destinyName;
+
+    @Column
     @Comment("启用标识【0：未启用，1：启用】")
     private Boolean enableFlag;
 
@@ -74,6 +90,38 @@ public class General implements Serializable {
 
 
     public General() {
+    }
+
+    public Integer getDestinyCode() {
+        return destinyCode;
+    }
+
+    public void setDestinyCode(Integer destinyCode) {
+        this.destinyCode = destinyCode;
+    }
+
+    public String getDestinyName() {
+        return destinyName;
+    }
+
+    public void setDestinyName(String destinyName) {
+        this.destinyName = destinyName;
+    }
+
+    public Integer getCategoryCode() {
+        return categoryCode;
+    }
+
+    public void setCategoryCode(Integer categoryCode) {
+        this.categoryCode = categoryCode;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public Integer getGenderCode() {

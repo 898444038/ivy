@@ -111,6 +111,9 @@
     <orderEntry type="library" name="Maven: io.micrometer:micrometer-registry-prometheus:1.6.1" level="project" />
     <orderEntry type="library" name="Maven: io.prometheus:simpleclient_common:0.9.0" level="project" />
     <orderEntry type="library" name="Maven: io.prometheus:simpleclient:0.9.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.ben-manes.caffeine:caffeine:2.8.8" level="project" />
+    <orderEntry type="library" name="Maven: org.checkerframework:checker-qual:3.8.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.errorprone:error_prone_annotations:2.4.0" level="project" />
     <orderEntry type="library" name="Maven: com.auth0:java-jwt:3.4.0" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.15" level="project" />
   </component>

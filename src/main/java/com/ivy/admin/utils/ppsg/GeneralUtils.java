@@ -19,7 +19,11 @@ public class GeneralUtils {
      * @param general
      * @return
      */
-    public static List<GeneralThree> calculateThree(General general,List<GeneralThree> threeList) {
+    public static List<GeneralThree> calculateThree(General general, Integer force, Integer intellect, Integer troops, Integer forcex, Integer intellectx, Integer troopsx) {
+        List<GeneralThree> threeList = new ArrayList<>();
+
+        GeneralEnum.ThreeCirclesType type_1 = GeneralEnum.ThreeCirclesType.type_1;
+        GeneralEnum.ThreeCirclesType type_2 = GeneralEnum.ThreeCirclesType.type_2;
         GeneralEnum.ThreeCirclesType type_3 = GeneralEnum.ThreeCirclesType.type_3;
         GeneralEnum.ThreeCirclesType type_4 = GeneralEnum.ThreeCirclesType.type_4;
         GeneralEnum.ThreeCirclesType type_5 = GeneralEnum.ThreeCirclesType.type_5;
@@ -32,8 +36,10 @@ public class GeneralUtils {
         GeneralEnum.ThreeCirclesType type_12 = GeneralEnum.ThreeCirclesType.type_12;
         GeneralEnum.ThreeCirclesType type_13 = GeneralEnum.ThreeCirclesType.type_13;
         GeneralEnum.ThreeCirclesType type_14 = GeneralEnum.ThreeCirclesType.type_14;
-        //threeList.add(new GeneralThree());//基础三维
-        //threeList.add(new GeneralThree());//异化基础三维
+        GeneralEnum.ThreeCirclesType type_15 = GeneralEnum.ThreeCirclesType.type_15;
+
+        threeList.add(new GeneralThree(general.getId(),type_1.value(),type_1.label(),force,intellect,troops));//基础三维
+        threeList.add(new GeneralThree(general.getId(),type_2.value(),type_2.label(),forcex,intellectx,troopsx));//异化基础三维
         threeList.add(new GeneralThree(general.getId(),type_3.value(),type_3.label()));//满级基础三维
         threeList.add(new GeneralThree(general.getId(),type_4.value(),type_4.label()));//异化满级基础三维
         threeList.add(new GeneralThree(general.getId(),type_5.value(),type_5.label()));//科技三维
@@ -46,22 +52,8 @@ public class GeneralUtils {
         threeList.add(new GeneralThree(general.getId(),type_12.value(),type_12.label()));//命格三维
         threeList.add(new GeneralThree(general.getId(),type_13.value(),type_13.label()));//幻化三维
         threeList.add(new GeneralThree(general.getId(),type_14.value(),type_14.label()));//阵法三维
+        threeList.add(new GeneralThree(general.getId(),type_15.value(),type_15.label()));//战意三维
+        general.setThreeList(threeList);
         return threeList;
-    }
-
-    public static void calculateWarpathThree(General general, List<GeneralWarpath> warpathList) {
-        GeneralEnum.Warpath country_force = GeneralEnum.Warpath.country_force;
-        GeneralEnum.Warpath country_intellect = GeneralEnum.Warpath.country_intellect;
-        GeneralEnum.Warpath country_troops = GeneralEnum.Warpath.country_troops;
-        GeneralEnum.Warpath arms_force = GeneralEnum.Warpath.arms_force;
-        GeneralEnum.Warpath arms_intellect = GeneralEnum.Warpath.arms_intellect;
-        GeneralEnum.Warpath arms_troops = GeneralEnum.Warpath.arms_troops;
-        warpathList.add(new GeneralWarpath(general.getId(),general.getName(),country_force.value(),country_force.label()));
-        warpathList.add(new GeneralWarpath(general.getId(),general.getName(),country_intellect.value(),country_intellect.label()));
-        warpathList.add(new GeneralWarpath(general.getId(),general.getName(),country_troops.value(),country_troops.label()));
-        warpathList.add(new GeneralWarpath(general.getId(),general.getName(),arms_force.value(),arms_force.label()));
-        warpathList.add(new GeneralWarpath(general.getId(),general.getName(),arms_intellect.value(),arms_intellect.label()));
-        warpathList.add(new GeneralWarpath(general.getId(),general.getName(),arms_troops.value(),arms_troops.label()));
-
     }
 }

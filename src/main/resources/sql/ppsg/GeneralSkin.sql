@@ -1,0 +1,21 @@
+-- 建表语句
+CREATE TABLE `ppsg_general_skin` (
+`id` BIGINT(20)  NOT NULL AUTO_INCREMENT ,
+`name` VARCHAR(32)  DEFAULT NULL  COMMENT '幻化名称',
+`general_id` BIGINT(20)  DEFAULT NULL  COMMENT '武将主键',
+`general_name` VARCHAR(32)  DEFAULT NULL  COMMENT '武将名称',
+`force` INTEGER(11)  DEFAULT NULL  COMMENT '武力',
+`intellect` INTEGER(11)  DEFAULT NULL  COMMENT '智力',
+`troops` INTEGER(11)  DEFAULT NULL  COMMENT '兵力',
+PRIMARY KEY (`id`)
+)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- 新增字段
+ALTER TABLE `ppsg_general_skin` ADD COLUMN id BIGINT(20)  DEFAULT NULL ;
+ALTER TABLE `ppsg_general_skin` ADD COLUMN name VARCHAR(32)  DEFAULT NULL  COMMENT '幻化名称';
+ALTER TABLE `ppsg_general_skin` ADD COLUMN general_id BIGINT(20)  DEFAULT NULL  COMMENT '武将主键';
+ALTER TABLE `ppsg_general_skin` ADD COLUMN general_name VARCHAR(32)  DEFAULT NULL  COMMENT '武将名称';
+ALTER TABLE `ppsg_general_skin` ADD COLUMN force INTEGER(11)  DEFAULT NULL  COMMENT '武力';
+ALTER TABLE `ppsg_general_skin` ADD COLUMN intellect INTEGER(11)  DEFAULT NULL  COMMENT '智力';
+ALTER TABLE `ppsg_general_skin` ADD COLUMN troops INTEGER(11)  DEFAULT NULL  COMMENT '兵力';
+

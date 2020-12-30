@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ivy.admin.mapper.ppsg.GeneralArmsBookMapper">
+
+	<resultMap id="baseResultMap" type="com.ivy.admin.entity.ppsg.GeneralArmsBook">
+	    <result column="id" property="id"/>
+	    <result column="general_id" property="generalId"/>
+	    <result column="general_name" property="generalName"/>
+	    <result column="position_code1" property="positionCode1"/>
+	    <result column="position_name1" property="positionName1"/>
+	    <result column="position_code2" property="positionCode2"/>
+	    <result column="position_name2" property="positionName2"/>
+	    <result column="position_code3" property="positionCode3"/>
+	    <result column="position_name3" property="positionName3"/>
+	    <result column="position_code4" property="positionCode4"/>
+	    <result column="position_name4" property="positionName4"/>
+	    <result column="position_code5" property="positionCode5"/>
+	    <result column="position_name5" property="positionName5"/>
+	</resultMap>
+
+	<sql id="baseColumn">
+	    id,
+	    general_id,
+	    general_name,
+	    position_code1,
+	    position_name1,
+	    position_code2,
+	    position_name2,
+	    position_code3,
+	    position_name3,
+	    position_code4,
+	    position_name4,
+	    position_code5,
+	    position_name5
+	</sql>
+
+	<sql id="baseCondition">
+		<where>
+		    <if test="id != null"> and id = #{id}</if>
+		    <if test="generalId != null"> and general_id = #{generalId}</if>
+		    <if test="generalName != null"> and general_name = #{generalName}</if>
+		    <if test="positionCode1 != null"> and position_code1 = #{positionCode1}</if>
+		    <if test="positionName1 != null"> and position_name1 = #{positionName1}</if>
+		    <if test="positionCode2 != null"> and position_code2 = #{positionCode2}</if>
+		    <if test="positionName2 != null"> and position_name2 = #{positionName2}</if>
+		    <if test="positionCode3 != null"> and position_code3 = #{positionCode3}</if>
+		    <if test="positionName3 != null"> and position_name3 = #{positionName3}</if>
+		    <if test="positionCode4 != null"> and position_code4 = #{positionCode4}</if>
+		    <if test="positionName4 != null"> and position_name4 = #{positionName4}</if>
+		    <if test="positionCode5 != null"> and position_code5 = #{positionCode5}</if>
+		    <if test="positionName5 != null"> and position_name5 = #{positionName5}</if>
+		</where>
+	</sql>
+
+    <sql id="basePage">
+        <if test="pageStart != null and pageSize != null">
+            LIMIT #{pageStart},#{pageSize}
+        </if>
+    </sql>
+
+    <sql id="baseSort">
+        <if test="pageSort != null and pageSort != ''">
+            ORDER BY #{pageSort}
+        </if>
+    </sql>
+
+    <select id="selectCount" resultType="int" parameterType="com.ivy.admin.vo.ppsg.GeneralArmsBookVo">
+        SELECT count(1)
+        from ppsg_general_arms_book
+        <include refid="baseCondition"></include>
+    </select>
+
+    <select id="selectPage" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralArmsBookVo">
+        SELECT <include refid="baseColumn"></include>
+        from ppsg_general_arms_book
+        <include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+        <include refid="basePage"></include>
+    </select>
+
+	<select id="selectList" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralArmsBookVo">
+		SELECT <include refid="baseColumn"></include>
+		from ppsg_general_arms_book
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<select id="selectOne" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralArmsBookVo">
+		SELECT <include refid="baseColumn"></include>
+		from ppsg_general_arms_book
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<insert id="insert" parameterType="com.ivy.admin.entity.ppsg.GeneralArmsBook">
+		insert into ppsg_general_arms_book
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="generalId != null">general_id,</if>
+			<if test="generalName != null">general_name,</if>
+			<if test="positionCode1 != null">position_code1,</if>
+			<if test="positionName1 != null">position_name1,</if>
+			<if test="positionCode2 != null">position_code2,</if>
+			<if test="positionName2 != null">position_name2,</if>
+			<if test="positionCode3 != null">position_code3,</if>
+			<if test="positionName3 != null">position_name3,</if>
+			<if test="positionCode4 != null">position_code4,</if>
+			<if test="positionName4 != null">position_name4,</if>
+			<if test="positionCode5 != null">position_code5,</if>
+			<if test="positionName5 != null">position_name5,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+		    <if test="generalId != null">#{generalId},</if>
+		    <if test="generalName != null">#{generalName},</if>
+		    <if test="positionCode1 != null">#{positionCode1},</if>
+		    <if test="positionName1 != null">#{positionName1},</if>
+		    <if test="positionCode2 != null">#{positionCode2},</if>
+		    <if test="positionName2 != null">#{positionName2},</if>
+		    <if test="positionCode3 != null">#{positionCode3},</if>
+		    <if test="positionName3 != null">#{positionName3},</if>
+		    <if test="positionCode4 != null">#{positionCode4},</if>
+		    <if test="positionName4 != null">#{positionName4},</if>
+		    <if test="positionCode5 != null">#{positionCode5},</if>
+		    <if test="positionName5 != null">#{positionName5},</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.ivy.admin.entity.ppsg.GeneralArmsBook">
+		update ppsg_general_arms_book
+		<set>
+			<if test="generalId != null">general_id = #{generalId},</if>
+			<if test="generalName != null">general_name = #{generalName},</if>
+			<if test="positionCode1 != null">position_code1 = #{positionCode1},</if>
+			<if test="positionName1 != null">position_name1 = #{positionName1},</if>
+			<if test="positionCode2 != null">position_code2 = #{positionCode2},</if>
+			<if test="positionName2 != null">position_name2 = #{positionName2},</if>
+			<if test="positionCode3 != null">position_code3 = #{positionCode3},</if>
+			<if test="positionName3 != null">position_name3 = #{positionName3},</if>
+			<if test="positionCode4 != null">position_code4 = #{positionCode4},</if>
+			<if test="positionName4 != null">position_name4 = #{positionName4},</if>
+			<if test="positionCode5 != null">position_code5 = #{positionCode5},</if>
+			<if test="positionName5 != null">position_name5 = #{positionName5},</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from ppsg_general_arms_book
+		where id = #{id}
+	</delete>
+
+</mapper>

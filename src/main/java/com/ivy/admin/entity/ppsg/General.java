@@ -7,14 +7,23 @@ import com.ivy.tools.generate.template.annotation.database.PrimaryKey;
 import com.ivy.tools.generate.template.annotation.orm.GenerateDataSource;
 
 import java.io.Serializable;
+import java.util.List;
 
-//@GenerateDataSource(dataSource = "dataSource1")
-//@Generate(isEffective = true,isCover = false,desc = "武将",tablePrefix = "ppsg",parentPackage = "ppsg")
+@GenerateDataSource(dataSource = "dataSource1")
+@Generate(isEffective = true,isCover = false,desc = "武将",tablePrefix = "ppsg",parentPackage = "ppsg")
 public class General implements Serializable {
 
     @Column
     @PrimaryKey
     private Long id;
+
+    @Column
+    @Comment("父级ID")
+    private Long parentId;
+
+    @Column
+    @Comment("父级名称")
+    private String parentName;
 
     @Column
     @Comment("武将名称")
@@ -88,8 +97,100 @@ public class General implements Serializable {
     @Comment("删除标识【0：删除，1：未删除】")
     private Boolean delFlag;
 
+    @Comment("联协")
+    List<GeneralAssociation> associationList;
+
+    @Comment("战器")
+    List<GeneralWeapon> weaponList;
+
+    @Comment("主动技能")
+    List<GeneralSkillActive> skillActiveList;
+
+    @Comment("被动技能")
+    List<GeneralSkillPassive> skillPassiveList;
+
+    @Comment("兵书")
+    GeneralArmsBook armsBook;
+
+    @Comment("幻化")
+    GeneralSkin generalSkin;
+
+    @Comment("三维属性")
+    List<GeneralThree> threeList;
 
     public General() {
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public List<GeneralAssociation> getAssociationList() {
+        return associationList;
+    }
+
+    public void setAssociationList(List<GeneralAssociation> associationList) {
+        this.associationList = associationList;
+    }
+
+    public List<GeneralWeapon> getWeaponList() {
+        return weaponList;
+    }
+
+    public void setWeaponList(List<GeneralWeapon> weaponList) {
+        this.weaponList = weaponList;
+    }
+
+    public List<GeneralSkillActive> getSkillActiveList() {
+        return skillActiveList;
+    }
+
+    public void setSkillActiveList(List<GeneralSkillActive> skillActiveList) {
+        this.skillActiveList = skillActiveList;
+    }
+
+    public List<GeneralSkillPassive> getSkillPassiveList() {
+        return skillPassiveList;
+    }
+
+    public void setSkillPassiveList(List<GeneralSkillPassive> skillPassiveList) {
+        this.skillPassiveList = skillPassiveList;
+    }
+
+    public GeneralArmsBook getArmsBook() {
+        return armsBook;
+    }
+
+    public void setArmsBook(GeneralArmsBook armsBook) {
+        this.armsBook = armsBook;
+    }
+
+    public GeneralSkin getGeneralSkin() {
+        return generalSkin;
+    }
+
+    public void setGeneralSkin(GeneralSkin generalSkin) {
+        this.generalSkin = generalSkin;
+    }
+
+    public List<GeneralThree> getThreeList() {
+        return threeList;
+    }
+
+    public void setThreeList(List<GeneralThree> threeList) {
+        this.threeList = threeList;
     }
 
     public Integer getDestinyCode() {

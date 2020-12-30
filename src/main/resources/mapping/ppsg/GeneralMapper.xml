@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ivy.admin.mapper.ppsg.GeneralMapper">
+
+	<resultMap id="baseResultMap" type="com.ivy.admin.entity.ppsg.General">
+	    <result column="id" property="id"/>
+	    <result column="parent_id" property="parentId"/>
+	    <result column="parent_name" property="parentName"/>
+	    <result column="name" property="name"/>
+	    <result column="level" property="level"/>
+	    <result column="gender_code" property="genderCode"/>
+	    <result column="gender_name" property="genderName"/>
+	    <result column="country_code" property="countryCode"/>
+	    <result column="country_name" property="countryName"/>
+	    <result column="star_code" property="starCode"/>
+	    <result column="star_name" property="starName"/>
+	    <result column="arms_code" property="armsCode"/>
+	    <result column="arms_name" property="armsName"/>
+	    <result column="type_code" property="typeCode"/>
+	    <result column="type_name" property="typeName"/>
+	    <result column="category_code" property="categoryCode"/>
+	    <result column="category_name" property="categoryName"/>
+	    <result column="destiny_code" property="destinyCode"/>
+	    <result column="destiny_name" property="destinyName"/>
+	    <result column="enable_flag" property="enableFlag"/>
+	    <result column="del_flag" property="delFlag"/>
+	</resultMap>
+
+	<sql id="baseColumn">
+	    id,
+	    parent_id,
+	    parent_name,
+	    name,
+	    level,
+	    gender_code,
+	    gender_name,
+	    country_code,
+	    country_name,
+	    star_code,
+	    star_name,
+	    arms_code,
+	    arms_name,
+	    type_code,
+	    type_name,
+	    category_code,
+	    category_name,
+	    destiny_code,
+	    destiny_name,
+	    enable_flag,
+	    del_flag
+	</sql>
+
+	<sql id="baseCondition">
+		<where>
+		    <if test="id != null"> and id = #{id}</if>
+		    <if test="parentId != null"> and parent_id = #{parentId}</if>
+		    <if test="parentName != null"> and parent_name = #{parentName}</if>
+		    <if test="name != null"> and name = #{name}</if>
+		    <if test="level != null"> and level = #{level}</if>
+		    <if test="genderCode != null"> and gender_code = #{genderCode}</if>
+		    <if test="genderName != null"> and gender_name = #{genderName}</if>
+		    <if test="countryCode != null"> and country_code = #{countryCode}</if>
+		    <if test="countryName != null"> and country_name = #{countryName}</if>
+		    <if test="starCode != null"> and star_code = #{starCode}</if>
+		    <if test="starName != null"> and star_name = #{starName}</if>
+		    <if test="armsCode != null"> and arms_code = #{armsCode}</if>
+		    <if test="armsName != null"> and arms_name = #{armsName}</if>
+		    <if test="typeCode != null"> and type_code = #{typeCode}</if>
+		    <if test="typeName != null"> and type_name = #{typeName}</if>
+		    <if test="categoryCode != null"> and category_code = #{categoryCode}</if>
+		    <if test="categoryName != null"> and category_name = #{categoryName}</if>
+		    <if test="destinyCode != null"> and destiny_code = #{destinyCode}</if>
+		    <if test="destinyName != null"> and destiny_name = #{destinyName}</if>
+		    <if test="enableFlag != null"> and enable_flag = #{enableFlag}</if>
+		    <if test="delFlag != null"> and del_flag = #{delFlag}</if>
+		</where>
+	</sql>
+
+    <sql id="basePage">
+        <if test="pageStart != null and pageSize != null">
+            LIMIT #{pageStart},#{pageSize}
+        </if>
+    </sql>
+
+    <sql id="baseSort">
+        <if test="pageSort != null and pageSort != ''">
+            ORDER BY #{pageSort}
+        </if>
+    </sql>
+
+    <select id="selectCount" resultType="int" parameterType="com.ivy.admin.vo.ppsg.GeneralVo">
+        SELECT count(1)
+        from ppsg_general
+        <include refid="baseCondition"></include>
+    </select>
+
+    <select id="selectPage" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralVo">
+        SELECT <include refid="baseColumn"></include>
+        from ppsg_general
+        <include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+        <include refid="basePage"></include>
+    </select>
+
+	<select id="selectList" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralVo">
+		SELECT <include refid="baseColumn"></include>
+		from ppsg_general
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<select id="selectOne" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralVo">
+		SELECT <include refid="baseColumn"></include>
+		from ppsg_general
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<insert id="insert" parameterType="com.ivy.admin.entity.ppsg.General">
+		insert into ppsg_general
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="parentId != null">parent_id,</if>
+			<if test="parentName != null">parent_name,</if>
+			<if test="name != null">name,</if>
+			<if test="level != null">level,</if>
+			<if test="genderCode != null">gender_code,</if>
+			<if test="genderName != null">gender_name,</if>
+			<if test="countryCode != null">country_code,</if>
+			<if test="countryName != null">country_name,</if>
+			<if test="starCode != null">star_code,</if>
+			<if test="starName != null">star_name,</if>
+			<if test="armsCode != null">arms_code,</if>
+			<if test="armsName != null">arms_name,</if>
+			<if test="typeCode != null">type_code,</if>
+			<if test="typeName != null">type_name,</if>
+			<if test="categoryCode != null">category_code,</if>
+			<if test="categoryName != null">category_name,</if>
+			<if test="destinyCode != null">destiny_code,</if>
+			<if test="destinyName != null">destiny_name,</if>
+			<if test="enableFlag != null">enable_flag,</if>
+			<if test="delFlag != null">del_flag,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+		    <if test="parentId != null">#{parentId},</if>
+		    <if test="parentName != null">#{parentName},</if>
+		    <if test="name != null">#{name},</if>
+		    <if test="level != null">#{level},</if>
+		    <if test="genderCode != null">#{genderCode},</if>
+		    <if test="genderName != null">#{genderName},</if>
+		    <if test="countryCode != null">#{countryCode},</if>
+		    <if test="countryName != null">#{countryName},</if>
+		    <if test="starCode != null">#{starCode},</if>
+		    <if test="starName != null">#{starName},</if>
+		    <if test="armsCode != null">#{armsCode},</if>
+		    <if test="armsName != null">#{armsName},</if>
+		    <if test="typeCode != null">#{typeCode},</if>
+		    <if test="typeName != null">#{typeName},</if>
+		    <if test="categoryCode != null">#{categoryCode},</if>
+		    <if test="categoryName != null">#{categoryName},</if>
+		    <if test="destinyCode != null">#{destinyCode},</if>
+		    <if test="destinyName != null">#{destinyName},</if>
+		    <if test="enableFlag != null">#{enableFlag},</if>
+		    <if test="delFlag != null">#{delFlag},</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.ivy.admin.entity.ppsg.General">
+		update ppsg_general
+		<set>
+			<if test="parentId != null">parent_id = #{parentId},</if>
+			<if test="parentName != null">parent_name = #{parentName},</if>
+			<if test="name != null">name = #{name},</if>
+			<if test="level != null">level = #{level},</if>
+			<if test="genderCode != null">gender_code = #{genderCode},</if>
+			<if test="genderName != null">gender_name = #{genderName},</if>
+			<if test="countryCode != null">country_code = #{countryCode},</if>
+			<if test="countryName != null">country_name = #{countryName},</if>
+			<if test="starCode != null">star_code = #{starCode},</if>
+			<if test="starName != null">star_name = #{starName},</if>
+			<if test="armsCode != null">arms_code = #{armsCode},</if>
+			<if test="armsName != null">arms_name = #{armsName},</if>
+			<if test="typeCode != null">type_code = #{typeCode},</if>
+			<if test="typeName != null">type_name = #{typeName},</if>
+			<if test="categoryCode != null">category_code = #{categoryCode},</if>
+			<if test="categoryName != null">category_name = #{categoryName},</if>
+			<if test="destinyCode != null">destiny_code = #{destinyCode},</if>
+			<if test="destinyName != null">destiny_name = #{destinyName},</if>
+			<if test="enableFlag != null">enable_flag = #{enableFlag},</if>
+			<if test="delFlag != null">del_flag = #{delFlag},</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from ppsg_general
+		where id = #{id}
+	</delete>
+
+</mapper>

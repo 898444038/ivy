@@ -58,8 +58,23 @@ public interface GeneralEnum {
         type_12(12, "命格三维"),
         type_13(13, "幻化三维"),
         type_14(14, "阵法三维"),
+        type_15(15, "战意三维"),
         ;
         ThreeCirclesType(Integer value, String label) {
+            StaticDictPool.putDictItem(this, value, label);
+        }
+    }
+
+    enum PassiveType implements IDictItem {
+        type_1(1, "基础被动"),
+        type_2(2, "专属被动"),
+        type_3(3, "战器小被动"),
+        type_4(4, "战器大被动"),
+        type_5(5, "逆命被动"),
+        type_6(6, "逆命特性被动"),
+        type_7(7, "阵法被动"),
+        ;
+        PassiveType(Integer value, String label) {
             StaticDictPool.putDictItem(this, value, label);
         }
     }
@@ -415,6 +430,107 @@ public interface GeneralEnum {
         ;
 
         Embattle(Integer value, String label, Integer growForce, Integer growIntellect, Integer growTroops, Integer maxForce, Integer maxIntellect, Integer maxTroops) {
+            StaticDictPool.putDictItem(this, value, label);
+        }
+    }
+
+    /**
+     * 四星武将
+     */
+    enum General4 implements IDictItem {
+        wei_caocao(1001,"曹操"),
+        wei_simayi(1002,"司马懿"),
+        wei_zhangliao(1003,"张辽"),
+        wei_xiahoudun(1004,"夏侯惇"),
+        wei_dianwei(1005,"典韦"),
+        wei_caopi(1006,"曹丕"),
+        wei_guojia(1007,"郭嘉"),
+        wei_xunyu(1008,"荀彧"),
+        wei_xiahouyuan(1009,"夏侯渊"),
+        wei_zhanghe(1010,"张郃"),
+        wei_xiahoushi(1011,"夏侯氏"),
+        wei_wangyuanji(1012,"王元姬"),
+        wei_xuhuang(1013,"徐晃"),
+        wei_zhangchunhua(1014,"张春华"),
+        wei_beimihu(1015,"卑弥呼"),
+        wei_shaonianzhangliao(1016,"少年张辽"),
+        wei_caoren(1017,"曹仁"),
+        wei_bianfuren(1018,"卞夫人"),
+        wei_jiaxu(1019,"贾诩"),
+        wei_zhenji(1020,"甄姬"),
+        wei_xuchu(1021,"许褚"),
+
+        shu_guanyu(2001,"关羽"),
+        shu_zhugeliang(2002,"诸葛亮"),
+        shu_zhaoyun(2003,"赵云"),
+        shu_jiangwei(2004,"姜维"),
+        shu_machao(2005,"马超"),
+        shu_zhugeguo(2006,"诸葛果"),
+        shu_liubei(2007,"刘备"),
+        shu_weiyan(2008,"魏延"),
+        shu_sunshangxiang(2009,"孙尚香"),
+        shu_shaonianguanyu(2010,"少年关羽"),
+        shu_shaonianzhaoyun(2011,"少年赵云"),
+        shu_zhangfei(2012,"张飞"),
+        shu_pangtong(2013,"庞统"),
+        shu_huangzhong(2014,"黄忠"),
+        shu_liushan(2015,"刘禅"),
+        shu_huangwudie(2016,"黄舞蝶"),
+        shu_mayunlu(2017,"马云禄"),
+        shu_huangyueying(2018,"黄月英"),
+        shu_fazheng(2019,"法正"),
+        shu_zhangxingcai(2020,"张星彩"),
+        shu_guanping(2021,"关平"),
+
+        wu_lvmeng(3001,"吕蒙"),
+        wu_zhouyu(3002,"周瑜"),
+        wu_sunquan(3003,"孙权"),
+        wu_taishici(3004,"太史慈"),
+        wu_sunce(3005,"孙策"),
+        wu_luxun(3006,"陆逊"),
+        wu_sunjian(3007,"孙坚"),
+        wu_ganning(3008,"甘宁"),
+        wu_bulianshi(3009,"步练师"),
+        wu_zhoutai(3010,"周泰"),
+        wu_sunliang(3011,"孙亮"),
+        wu_shaonianzhouyu(3012,"少年周瑜"),
+        wu_sunxiaohu(3013,"孙小虎"),
+        wu_huanggai(3014,"黄盖"),
+        wu_sundahu(3015,"孙大虎"),
+        wu_lingtong(3016,"凌统"),
+        wu_lusu(3017,"鲁肃"),
+        wu_xiaoqiao(3018,"小乔"),
+        wu_wufuren(3019,"吴夫人"),
+        wu_daqiao(3020,"大乔"),
+        wu_zhuran(3021,"朱然"),
+
+        qun_lvji(4001,"吕姬"),
+        qun_tongyuan(4002,"童渊"),
+        qun_dongbai(4003,"董白"),
+        qun_yanliang(4004,"颜良"),
+        qun_hetaihou(4005,"何太后"),
+        qun_caiwenji(4006,"蔡文姬"),
+        qun_wenchou(4007,"文丑"),
+        qun_lvbu(4008,"吕布"),
+        qun_huatuo(4009,"华佗"),
+        qun_shaonianlvbu(4010,"少年吕布"),
+        qun_yuji(4011,"于吉"),
+        qun_dongzhuo(4012,"董卓"),
+        qun_tianfeng(4013,"田丰"),
+        qun_menghuo(4014,"孟获"),
+        qun_yuanshao(4015,"袁绍"),
+        qun_zhangjiao(4016,"张角"),
+        qun_gaoshun(4017,"高顺"),
+        qun_diaochan(4018,"貂蝉"),
+        qun_lvlingqi(4019,"吕玲绮"),
+        qun_zoushi(4020,"邹氏"),
+        qun_tianzihanxiandi(4021,"天子汉献帝"),
+        qun_zhurongfuren(4022,"祝融夫人"),
+        qun_gongsunzan(4023,"公孙瓒"),
+        qun_huaxiong(4024,"华雄"),
+        ;
+
+        General4(Integer value, String label) {
             StaticDictPool.putDictItem(this, value, label);
         }
     }

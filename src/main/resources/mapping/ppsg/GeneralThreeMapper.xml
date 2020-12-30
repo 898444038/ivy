@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ivy.admin.mapper.ppsg.GeneralThreeMapper">
+
+	<resultMap id="baseResultMap" type="com.ivy.admin.entity.ppsg.GeneralThree">
+	    <result column="id" property="id"/>
+	    <result column="general_id" property="generalId"/>
+	    <result column="code" property="code"/>
+	    <result column="name" property="name"/>
+	    <result column="force" property="force"/>
+	    <result column="intellect" property="intellect"/>
+	    <result column="troops" property="troops"/>
+	    <result column="combat" property="combat"/>
+	    <result column="force0" property="force0"/>
+	    <result column="intellect0" property="intellect0"/>
+	    <result column="troops0" property="troops0"/>
+	    <result column="combat0" property="combat0"/>
+	</resultMap>
+
+	<sql id="baseColumn">
+	    id,
+	    general_id,
+	    code,
+	    name,
+	    force,
+	    intellect,
+	    troops,
+	    combat,
+	    force0,
+	    intellect0,
+	    troops0,
+	    combat0
+	</sql>
+
+	<sql id="baseCondition">
+		<where>
+		    <if test="id != null"> and id = #{id}</if>
+		    <if test="generalId != null"> and general_id = #{generalId}</if>
+		    <if test="code != null"> and code = #{code}</if>
+		    <if test="name != null"> and name = #{name}</if>
+		    <if test="force != null"> and force = #{force}</if>
+		    <if test="intellect != null"> and intellect = #{intellect}</if>
+		    <if test="troops != null"> and troops = #{troops}</if>
+		    <if test="combat != null"> and combat = #{combat}</if>
+		    <if test="force0 != null"> and force0 = #{force0}</if>
+		    <if test="intellect0 != null"> and intellect0 = #{intellect0}</if>
+		    <if test="troops0 != null"> and troops0 = #{troops0}</if>
+		    <if test="combat0 != null"> and combat0 = #{combat0}</if>
+		</where>
+	</sql>
+
+    <sql id="basePage">
+        <if test="pageStart != null and pageSize != null">
+            LIMIT #{pageStart},#{pageSize}
+        </if>
+    </sql>
+
+    <sql id="baseSort">
+        <if test="pageSort != null and pageSort != ''">
+            ORDER BY #{pageSort}
+        </if>
+    </sql>
+
+    <select id="selectCount" resultType="int" parameterType="com.ivy.admin.vo.ppsg.GeneralThreeVo">
+        SELECT count(1)
+        from ppsg_general_three
+        <include refid="baseCondition"></include>
+    </select>
+
+    <select id="selectPage" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralThreeVo">
+        SELECT <include refid="baseColumn"></include>
+        from ppsg_general_three
+        <include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+        <include refid="basePage"></include>
+    </select>
+
+	<select id="selectList" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralThreeVo">
+		SELECT <include refid="baseColumn"></include>
+		from ppsg_general_three
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<select id="selectOne" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralThreeVo">
+		SELECT <include refid="baseColumn"></include>
+		from ppsg_general_three
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<insert id="insert" parameterType="com.ivy.admin.entity.ppsg.GeneralThree">
+		insert into ppsg_general_three
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="generalId != null">general_id,</if>
+			<if test="code != null">code,</if>
+			<if test="name != null">name,</if>
+			<if test="force != null">force,</if>
+			<if test="intellect != null">intellect,</if>
+			<if test="troops != null">troops,</if>
+			<if test="combat != null">combat,</if>
+			<if test="force0 != null">force0,</if>
+			<if test="intellect0 != null">intellect0,</if>
+			<if test="troops0 != null">troops0,</if>
+			<if test="combat0 != null">combat0,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+		    <if test="generalId != null">#{generalId},</if>
+		    <if test="code != null">#{code},</if>
+		    <if test="name != null">#{name},</if>
+		    <if test="force != null">#{force},</if>
+		    <if test="intellect != null">#{intellect},</if>
+		    <if test="troops != null">#{troops},</if>
+		    <if test="combat != null">#{combat},</if>
+		    <if test="force0 != null">#{force0},</if>
+		    <if test="intellect0 != null">#{intellect0},</if>
+		    <if test="troops0 != null">#{troops0},</if>
+		    <if test="combat0 != null">#{combat0},</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.ivy.admin.entity.ppsg.GeneralThree">
+		update ppsg_general_three
+		<set>
+			<if test="generalId != null">general_id = #{generalId},</if>
+			<if test="code != null">code = #{code},</if>
+			<if test="name != null">name = #{name},</if>
+			<if test="force != null">force = #{force},</if>
+			<if test="intellect != null">intellect = #{intellect},</if>
+			<if test="troops != null">troops = #{troops},</if>
+			<if test="combat != null">combat = #{combat},</if>
+			<if test="force0 != null">force0 = #{force0},</if>
+			<if test="intellect0 != null">intellect0 = #{intellect0},</if>
+			<if test="troops0 != null">troops0 = #{troops0},</if>
+			<if test="combat0 != null">combat0 = #{combat0},</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from ppsg_general_three
+		where id = #{id}
+	</delete>
+
+</mapper>

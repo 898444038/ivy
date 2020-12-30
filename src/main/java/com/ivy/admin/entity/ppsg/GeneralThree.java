@@ -1,13 +1,15 @@
 package com.ivy.admin.entity.ppsg;
 
+import com.ivy.tools.generate.template.annotation.Generate;
 import com.ivy.tools.generate.template.annotation.database.Column;
 import com.ivy.tools.generate.template.annotation.database.Comment;
 import com.ivy.tools.generate.template.annotation.database.PrimaryKey;
+import com.ivy.tools.generate.template.annotation.orm.GenerateDataSource;
 
 import java.io.Serializable;
 
-//@GenerateDataSource(dataSource = "dataSource1")
-//@Generate(isEffective = true,isCover = false,desc = "武将",tablePrefix = "ppsg",parentPackage = "ppsg")
+@GenerateDataSource(dataSource = "dataSource1")
+@Generate(isEffective = true,isCover = false,desc = "武将三维",tablePrefix = "ppsg",parentPackage = "ppsg")
 public class GeneralThree implements Serializable {
 
     @Column

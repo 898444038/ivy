@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ivy.admin.mapper.ppsg.GeneralSkillActiveMapper">
+
+	<resultMap id="baseResultMap" type="com.ivy.admin.entity.ppsg.GeneralSkillActive">
+	    <result column="id" property="id"/>
+	    <result column="general_id" property="generalId"/>
+	    <result column="general_name" property="generalName"/>
+	    <result column="name" property="name"/>
+	    <result column="morale" property="morale"/>
+	    <result column="effect" property="effect"/>
+	</resultMap>
+
+	<sql id="baseColumn">
+	    id,
+	    general_id,
+	    general_name,
+	    name,
+	    morale,
+	    effect
+	</sql>
+
+	<sql id="baseCondition">
+		<where>
+		    <if test="id != null"> and id = #{id}</if>
+		    <if test="generalId != null"> and general_id = #{generalId}</if>
+		    <if test="generalName != null"> and general_name = #{generalName}</if>
+		    <if test="name != null"> and name = #{name}</if>
+		    <if test="morale != null"> and morale = #{morale}</if>
+		    <if test="effect != null"> and effect = #{effect}</if>
+		</where>
+	</sql>
+
+    <sql id="basePage">
+        <if test="pageStart != null and pageSize != null">
+            LIMIT #{pageStart},#{pageSize}
+        </if>
+    </sql>
+
+    <sql id="baseSort">
+        <if test="pageSort != null and pageSort != ''">
+            ORDER BY #{pageSort}
+        </if>
+    </sql>
+
+    <select id="selectCount" resultType="int" parameterType="com.ivy.admin.vo.ppsg.GeneralSkillActiveVo">
+        SELECT count(1)
+        from ppsg_general_skill_active
+        <include refid="baseCondition"></include>
+    </select>
+
+    <select id="selectPage" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralSkillActiveVo">
+        SELECT <include refid="baseColumn"></include>
+        from ppsg_general_skill_active
+        <include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+        <include refid="basePage"></include>
+    </select>
+
+	<select id="selectList" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralSkillActiveVo">
+		SELECT <include refid="baseColumn"></include>
+		from ppsg_general_skill_active
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<select id="selectOne" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralSkillActiveVo">
+		SELECT <include refid="baseColumn"></include>
+		from ppsg_general_skill_active
+		<include refid="baseCondition"></include>
+        <include refid="baseSort"></include>
+	</select>
+
+	<insert id="insert" parameterType="com.ivy.admin.entity.ppsg.GeneralSkillActive">
+		insert into ppsg_general_skill_active
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="generalId != null">general_id,</if>
+			<if test="generalName != null">general_name,</if>
+			<if test="name != null">name,</if>
+			<if test="morale != null">morale,</if>
+			<if test="effect != null">effect,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+		    <if test="generalId != null">#{generalId},</if>
+		    <if test="generalName != null">#{generalName},</if>
+		    <if test="name != null">#{name},</if>
+		    <if test="morale != null">#{morale},</if>
+		    <if test="effect != null">#{effect},</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.ivy.admin.entity.ppsg.GeneralSkillActive">
+		update ppsg_general_skill_active
+		<set>
+			<if test="generalId != null">general_id = #{generalId},</if>
+			<if test="generalName != null">general_name = #{generalName},</if>
+			<if test="name != null">name = #{name},</if>
+			<if test="morale != null">morale = #{morale},</if>
+			<if test="effect != null">effect = #{effect},</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from ppsg_general_skill_active
+		where id = #{id}
+	</delete>
+
+</mapper>

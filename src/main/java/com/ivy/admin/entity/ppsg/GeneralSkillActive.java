@@ -27,10 +27,30 @@ public class GeneralSkillActive {
     private String name;
 
     @Column
+    @Comment("技能士气")
+    private Integer morale;
+
+    @Column
     @Comment("技能效果")
     private String effect;
 
     public GeneralSkillActive() {}
+
+    public GeneralSkillActive(Long generalId, String generalName, String name, Integer morale, String effect) {
+        this.generalId = generalId;
+        this.generalName = generalName;
+        this.name = name;
+        this.morale = morale;
+        this.effect = effect;
+    }
+
+    public Integer getMorale() {
+        return morale;
+    }
+
+    public void setMorale(Integer morale) {
+        this.morale = morale;
+    }
 
     public String getName() {
         return name;

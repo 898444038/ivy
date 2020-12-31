@@ -1,5 +1,7 @@
 package com.ivy.admin.enums.ppsg;
 
+import com.ivy.admin.utils.ppsg.MapKeys;
+import com.ivy.admin.utils.ppsg.MapUtils;
 import com.ivy.system.enums.IDictItem;
 import com.ivy.system.enums.StaticDictPool;
 
@@ -92,6 +94,17 @@ public interface GeneralEnum {
         }
     }
 
+    enum CardType implements IDictItem {
+        pu_tong(1, "普通卡"),
+        yi_hua(2, "异化卡"),
+        zhou_nian_qin(3, "周年庆卡"),
+        ding_zhi(4, "定制卡"),
+        ;
+        CardType(Integer value, String label) {
+            StaticDictPool.putDictItem(this, value, label);
+        }
+    }
+
     /**
      * 分类
      */
@@ -123,8 +136,8 @@ public interface GeneralEnum {
         type6(6,"统帅将军型",3,2,4),
         type7(7,"鬼才智将型",3,3,3),
         type8(8,"天命策士型",2,4,3);
-        GeneralsType(Integer value, String label, Integer force, Integer intellect, Integer troops) {
-            StaticDictPool.putDictItem(this, value, label);
+        GeneralsType(Integer value, String label, Integer growForce, Integer growIntellect, Integer growTroops) {
+            StaticDictPool.putDictItem(this, value, label, MapUtils.toMap(MapKeys.growForce, growForce, MapKeys.growIntellect, growIntellect,MapKeys.growTroops, growTroops));
         }
     }
 
@@ -180,7 +193,7 @@ public interface GeneralEnum {
         gong(2,"弓",0.6,0.8,0.4,"火矢兵",0.07,0.10,0.03,"连弩兵",0.10,0.07,0.03),
         qi(3,"骑",0.8,0.4,0.6,"重骑兵",0.07,0.03,0.10,"骠骑兵",0.10,0.03,0.07);
         Arms(Integer value, String label, Double forceRate, Double intellectRate, Double troopsRate, String arms1, Double armsForceRate1, Double armsIntellectRate1, Double armsTroopsRate1, String arms2, Double armsForceRate2, Double armsIntellectRate2, Double armsTroopsRate2) {
-            StaticDictPool.putDictItem(this, value, label);
+            StaticDictPool.putDictItem(this, value, label, MapUtils.toMap(MapKeys.forceRate,forceRate,MapKeys.intellectRate,intellectRate,MapKeys.troopsRate,troopsRate,"arms1",arms1,"armsForceRate1",armsForceRate1,"armsIntellectRate1",armsIntellectRate1,"armsTroopsRate1",armsTroopsRate1,"arms2",arms2,"armsForceRate2",armsForceRate2,"armsIntellectRate2",armsIntellectRate2,"armsTroopsRate2",armsTroopsRate2));
         }
     }
 
@@ -188,20 +201,14 @@ public interface GeneralEnum {
      * 战器
      */
     enum Weapon implements IDictItem {
-        knife(1,"刀","刀",133,106,160,224,178,494,1.0,1.0,1.0,288,288,288,458,458,1220),
-        sword(2,"剑","剑",133,133,133,227,224,445,1.0,1.0,1.0,288,288,288,458,458,1220),
-        gun(3,"枪","枪",160,106,133,273,178,445,1.0,1.0,1.0,288,288,288,458,458,1220),
-        arch(4,"弓","弓",133,133,133,224,227,445,1.0,1.0,1.0,288,288,288,458,458,1220),
-        fan(5,"扇","扇",133,160,106,224,273,399,1.0,1.0,1.0,288,288,288,458,458,1220),
-        //异化战器
-        knife2(6,"刀2","刀",133,106,160,224,178,494,1.0,1.0,1.0,288,288,288,458,458,1220),
-        sword2(7,"剑2","特殊剑",133,106,160,227,224,445,1.0,1.0,1.0,288,288,288,458,458,1220),
-        gun2(8,"枪2","特殊枪",133,133,133,273,178,445,1.0,1.0,1.0,288,288,288,458,458,1220),
-        arch2(9,"弓2","特殊弓",160,106,133,224,227,445,1.0,1.0,1.0,288,288,288,458,458,1220),
-        fan2(10,"扇2","特殊扇",133,133,133,224,273,399,1.0,1.0,1.0,288,288,288,458,458,1220),
+        dao(1,"刀",6,"刀",133,106,160,133,106,160,224,178,494,1.0,1.0,1.0,288,288,288,458,458,1220),
+        jian(2,"剑",7,"特殊剑",133,133,133,133,106,160,227,224,445,1.0,1.0,1.0,288,288,288,458,458,1220),
+        qiang(3,"枪",8,"特殊枪",160,106,133,133,133,133,273,178,445,1.0,1.0,1.0,288,288,288,458,458,1220),
+        gong(4,"弓",9,"特殊弓",133,133,133,160,106,133,224,227,445,1.0,1.0,1.0,288,288,288,458,458,1220),
+        shan(5,"扇",10,"特殊扇",133,160,106,133,133,133,224,273,399,1.0,1.0,1.0,288,288,288,458,458,1220),
         ;
-        Weapon(Integer value, String label, String desc, Integer force, Integer intellect, Integer troops, Integer strengthenForce, Integer strengthenIntellect, Integer strengthenTroops, Double quenchingForceRate, Double quenchingIntellectRate, Double quenchingTroopsRate, Integer exclusiveForce, Integer exclusiveIntellect, Integer exclusiveTroops, Integer passive1, Integer passive2, Integer passive3) {
-            StaticDictPool.putDictItem(this, value, label);
+        Weapon(Integer value, String label,Integer value2, String label2, Integer force, Integer intellect, Integer troops,Integer forcex, Integer intellectx, Integer troopsx, Integer strengthenForce, Integer strengthenIntellect, Integer strengthenTroops, Double quenchingForceRate, Double quenchingIntellectRate, Double quenchingTroopsRate, Integer exclusiveForce, Integer exclusiveIntellect, Integer exclusiveTroops, Integer passive1, Integer passive2, Integer passive3) {
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap(MapKeys.value2,value2,MapKeys.label2,label2,MapKeys.force,force,MapKeys.intellect,intellect,MapKeys.troops,troops,MapKeys.forcex,forcex,MapKeys.intellectx,intellectx,MapKeys.troopsx,troopsx,MapKeys.strengthenForce,strengthenForce,MapKeys.strengthenIntellect,strengthenIntellect,MapKeys.strengthenTroops,strengthenTroops,MapKeys.quenchingForceRate,quenchingForceRate,MapKeys.quenchingIntellectRate,quenchingIntellectRate,MapKeys.quenchingTroopsRate,quenchingTroopsRate,MapKeys.exclusiveForce,exclusiveForce,MapKeys.exclusiveIntellect,exclusiveIntellect,MapKeys.exclusiveTroops,exclusiveTroops,MapKeys.passive1,passive1,MapKeys.passive2,passive2,MapKeys.passive3,passive3));
         }
     }
 
@@ -220,7 +227,7 @@ public interface GeneralEnum {
         duan_bing(9,"短兵","金鼓","军略"),
         ;
         ArmsPosition(Integer value, String label, String position1, String position2) {
-            StaticDictPool.putDictItem(this, value, label);
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap("position1",position1,"position2",position2));
         }
     }
 
@@ -236,7 +243,7 @@ public interface GeneralEnum {
         wen_fa(6,"文伐","橙色",0,40,120),
         ;
         ArmsBook(Integer value, String label, String color, Integer force, Integer intellect, Integer troops) {
-            StaticDictPool.putDictItem(this, value, label);
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap("color",color,"force",force,"intellect",intellect,"troops",troops));
         }
     }
 
@@ -252,7 +259,7 @@ public interface GeneralEnum {
         arms_troops(6,"同兵种上阵武将兵力加成10%",0.1);
         ;
         Warpath(Integer value, String label, Double rate) {
-            StaticDictPool.putDictItem(this, value, label);
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap("rate",rate));
         }
     }
 
@@ -269,7 +276,7 @@ public interface GeneralEnum {
         ;
         //武力增加、智力增加、兵力增加、武力加成百分比、智力加成百分比、兵力加成百分比、全属性加成百分比
         SymbolsPosition(Integer value, String label, Integer force, Integer intellect, Integer troops, Double addForceRate, Double addIntellectRate, Double addTroopsRate, Double allRate) {
-            StaticDictPool.putDictItem(this, value, label);
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap("force",force,"intellect",intellect,"troops",troops,"addForceRate",addForceRate,"addIntellectRate",addIntellectRate,"addTroopsRate",addTroopsRate,"allRate",allRate));
         }
     }
 
@@ -299,7 +306,7 @@ public interface GeneralEnum {
         ;
         //
         SymbolsMainAttr(Integer value, String label,Integer val, Double rate) {
-            StaticDictPool.putDictItem(this, value, label);
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap("val",val,"rate",rate));
         }
     }
 
@@ -331,7 +338,7 @@ public interface GeneralEnum {
         ;
         //
         SymbolsSecondAttr(Integer value, String label,Integer val, Double rate) {
-            StaticDictPool.putDictItem(this, value, label);
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap("val",val,"rate",rate));
         }
     }
 
@@ -360,7 +367,7 @@ public interface GeneralEnum {
         ;
         //
         SymbolsType(Integer value, String label,String desc,Double rate) {
-            StaticDictPool.putDictItem(this, value, label);
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap("desc",desc,"rate",rate));
         }
     }
 
@@ -430,7 +437,7 @@ public interface GeneralEnum {
         ;
 
         Embattle(Integer value, String label, Integer growForce, Integer growIntellect, Integer growTroops, Integer maxForce, Integer maxIntellect, Integer maxTroops) {
-            StaticDictPool.putDictItem(this, value, label);
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap(MapKeys.growForce,growForce,MapKeys.growIntellect,growIntellect,MapKeys.growTroops,growTroops,"maxForce",maxForce,"maxIntellect",maxIntellect,"maxTroops",maxTroops));
         }
     }
 

@@ -1,6 +1,7 @@
 package com.ivy.admin.utils.ppsg;
 
 import com.ivy.admin.entity.ppsg.General;
+import com.ivy.admin.entity.ppsg.GeneralAnalog;
 import com.ivy.admin.entity.ppsg.GeneralArmsBook;
 import com.ivy.admin.entity.ppsg.GeneralAssociation;
 import com.ivy.admin.entity.ppsg.GeneralSkillActive;
@@ -20,6 +21,9 @@ public class GeneralTest {
     }
 
     public static void createGeneral() {
+        GeneralAnalog analog = new GeneralAnalog();
+        analog.setCurrLevel(120);
+
         GeneralEnum.Gender gender = GeneralEnum.Gender.man;
         GeneralEnum.Country country = GeneralEnum.Country.shu;
         GeneralEnum.Star star = GeneralEnum.Star.star5;
@@ -27,7 +31,7 @@ public class GeneralTest {
         GeneralEnum.GeneralsType type = GeneralEnum.GeneralsType.type8;
         GeneralEnum.Category category = GeneralEnum.Category.ni_ming;
         GeneralEnum.DestinyType2 destinyType = GeneralEnum.DestinyType2.ni_ming_1;
-        GeneralEnum.Weapon weapon = GeneralEnum.Weapon.arch;
+        GeneralEnum.Weapon weapon = GeneralEnum.Weapon.gong;
         GeneralEnum.ThreeCirclesType type_1 = GeneralEnum.ThreeCirclesType.type_1;
         GeneralEnum.ThreeCirclesType type_2 = GeneralEnum.ThreeCirclesType.type_2;
 
@@ -40,6 +44,12 @@ public class GeneralTest {
         GeneralEnum.General4 general_fazheng = GeneralEnum.General4.shu_fazheng;
         Long id = 50001L;
         String name = "陨星庞统";
+        Integer force = 460;
+        Integer intellect = 712;
+        Integer troops = 616;
+        Integer forcex = 0;
+        Integer intellectx = 0;
+        Integer troopsx = 0;
 
         General general = new General();
         general.setId(id);//编号
@@ -61,6 +71,15 @@ public class GeneralTest {
         general.setCategoryName(category.label());//进阶
         general.setDestinyCode(destinyType.value());//命格类型
         general.setDestinyName(destinyType.label());//命格类型
+
+        if (forcex != null && forcex != 0 && intellectx != null && intellectx != 0 && troopsx != null && troopsx != 0){
+            general.setCardCode(GeneralEnum.CardType.yi_hua.value());
+            general.setCardName(GeneralEnum.CardType.yi_hua.label());
+        }else{
+            general.setCardCode(GeneralEnum.CardType.pu_tong.value());
+            general.setCardName(GeneralEnum.CardType.pu_tong.label());
+        }
+
         //联协
         List<GeneralAssociation> associationList = new ArrayList<>();
         associationList.add(new GeneralAssociation("旷世奇才",general_zhugeliang.value().longValue(),general_zhugeliang.label(),0.25));
@@ -98,10 +117,7 @@ public class GeneralTest {
         GeneralSkin generalSkin = new GeneralSkin("星火燎原",id,name,30,30,80);
         general.setGeneralSkin(generalSkin);
         //三维属性：武智兵
-        List<GeneralThree> threeList = new ArrayList<>();
-        threeList.add(new GeneralThree(id,type_1.value(),type_1.label(),460,712,616));//基础三维
-        threeList.add(new GeneralThree(id,type_2.value(),type_2.label()));//异化基础三维
-        GeneralUtils.calculateThree(general,460,712,616,0,0,0);
+        GeneralUtils.calculateThree(general,analog,force,intellect,troops,forcex,intellectx,troopsx);
 
         general.setDelFlag(false);
         general.setEnableFlag(true);

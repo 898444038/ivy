@@ -2,7 +2,14 @@ package com.ivy.system.enums;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Map;
+
 public interface IDictItem {
+
+    static <T extends IDictItem> Map<String,Object> getParamsByValue(Class<T> enumClass, Integer value) {
+        Map<String,Object> params = getByValue(enumClass,value).params();
+        return params;
+    }
 
     /**
      * 通过value来获取enumClass中匹配的枚举对象
@@ -95,6 +102,10 @@ public interface IDictItem {
 
     default String label() {
         return getItemBean().getLabel();
+    }
+
+    default Map<String,Object> params(){
+        return getItemBean().getParams();
     }
 
     default DictItemBean getItemBean(){

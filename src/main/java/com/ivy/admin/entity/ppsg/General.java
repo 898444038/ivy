@@ -30,6 +30,13 @@ public class General implements Serializable {
     private String name;
 
     @Column
+    @Comment("卡片编码")
+    private Integer cardCode;
+    @Column
+    @Comment("卡片名称")
+    private String cardName;
+
+    @Column
     @Comment("等级")
     private Integer level;
 
@@ -98,27 +105,54 @@ public class General implements Serializable {
     private Boolean delFlag;
 
     @Comment("联协")
-    List<GeneralAssociation> associationList;
+    private List<GeneralAssociation> associationList;
 
     @Comment("战器")
-    List<GeneralWeapon> weaponList;
+    private List<GeneralWeapon> weaponList;
 
     @Comment("主动技能")
-    List<GeneralSkillActive> skillActiveList;
+    private List<GeneralSkillActive> skillActiveList;
 
     @Comment("被动技能")
-    List<GeneralSkillPassive> skillPassiveList;
+    private List<GeneralSkillPassive> skillPassiveList;
 
     @Comment("兵书")
-    GeneralArmsBook armsBook;
+    private GeneralArmsBook armsBook;
 
     @Comment("幻化")
-    GeneralSkin generalSkin;
+    private GeneralSkin generalSkin;
 
     @Comment("三维属性")
-    List<GeneralThree> threeList;
+    private List<GeneralThree> threeList;
+
+//    @Comment("基础三维|基础异化三维")
+//    private GeneralThree baseThree;
 
     public General() {
+    }
+
+//    public GeneralThree getBaseThree() {
+//        return baseThree;
+//    }
+//
+//    public void setBaseThree(GeneralThree baseThree) {
+//        this.baseThree = baseThree;
+//    }
+
+    public Integer getCardCode() {
+        return cardCode;
+    }
+
+    public void setCardCode(Integer cardCode) {
+        this.cardCode = cardCode;
+    }
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
     }
 
     public String getParentName() {

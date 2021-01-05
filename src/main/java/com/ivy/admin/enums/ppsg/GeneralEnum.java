@@ -5,6 +5,8 @@ import com.ivy.admin.utils.ppsg.MapUtils;
 import com.ivy.system.enums.IDictItem;
 import com.ivy.system.enums.StaticDictPool;
 
+import java.util.Map;
+
 public interface GeneralEnum {
 
     public static void main(String[] args) {
@@ -33,6 +35,20 @@ public interface GeneralEnum {
     }
 
     /**
+     * 随从
+     */
+    enum EntourageType implements IDictItem {
+        none(1, "上阵"),
+        force(2, "武随"),
+        intellect(3, "智随"),
+        troops(4, "兵随"),
+        maid(5, "侍女");
+        EntourageType(Integer value, String label) {
+            StaticDictPool.putDictItem(this, value, label);
+        }
+    }
+
+    /**
      * 三维
      */
     enum ThreeCircles implements IDictItem {
@@ -54,13 +70,19 @@ public interface GeneralEnum {
         type_6(6, "四圣石三维"),
         type_7(7, "战器三维"),
         type_8(8, "特殊战器三维"),
-        type_9(9, "兵书三维"),
-        type_10(10, "将魂三维"),
-        type_11(11, "战阵三维"),
-        type_12(12, "命格三维"),
-        type_13(13, "幻化三维"),
-        type_14(14, "阵法三维"),
-        type_15(15, "战意三维"),
+        type_9(9, "兵种1三维"),
+        type_10(10, "兵种2三维"),
+        type_11(11, "上阵兵书三维"),
+        type_12(12, "武随兵书三维"),
+        type_13(13, "智随兵书三维"),
+        type_14(14, "兵随兵书三维"),
+//        type_9(9, "兵书三维"),
+//        type_10(10, "将魂三维"),
+//        type_11(11, "战阵三维"),
+//        type_12(12, "命格三维"),
+//        type_13(13, "幻化三维"),
+//        type_14(14, "阵法三维"),
+//        type_15(15, "战意三维"),
         ;
         ThreeCirclesType(Integer value, String label) {
             StaticDictPool.putDictItem(this, value, label);
@@ -193,7 +215,7 @@ public interface GeneralEnum {
         gong(2,"弓",0.6,0.8,0.4,"火矢兵",0.07,0.10,0.03,"连弩兵",0.10,0.07,0.03),
         qi(3,"骑",0.8,0.4,0.6,"重骑兵",0.07,0.03,0.10,"骠骑兵",0.10,0.03,0.07);
         Arms(Integer value, String label, Double forceRate, Double intellectRate, Double troopsRate, String arms1, Double armsForceRate1, Double armsIntellectRate1, Double armsTroopsRate1, String arms2, Double armsForceRate2, Double armsIntellectRate2, Double armsTroopsRate2) {
-            StaticDictPool.putDictItem(this, value, label, MapUtils.toMap(MapKeys.forceRate,forceRate,MapKeys.intellectRate,intellectRate,MapKeys.troopsRate,troopsRate,"arms1",arms1,"armsForceRate1",armsForceRate1,"armsIntellectRate1",armsIntellectRate1,"armsTroopsRate1",armsTroopsRate1,"arms2",arms2,"armsForceRate2",armsForceRate2,"armsIntellectRate2",armsIntellectRate2,"armsTroopsRate2",armsTroopsRate2));
+            StaticDictPool.putDictItem(this, value, label, MapUtils.toMap(MapKeys.forceRate,forceRate,MapKeys.intellectRate,intellectRate,MapKeys.troopsRate,troopsRate,MapKeys.arms1,arms1,MapKeys.armsForceRate1,armsForceRate1,MapKeys.armsIntellectRate1,armsIntellectRate1,MapKeys.armsTroopsRate1,armsTroopsRate1,MapKeys.arms2,arms2,MapKeys.armsForceRate2,armsForceRate2,MapKeys.armsIntellectRate2,armsIntellectRate2,MapKeys.armsTroopsRate2,armsTroopsRate2));
         }
     }
 
@@ -227,7 +249,7 @@ public interface GeneralEnum {
         duan_bing(9,"短兵","金鼓","军略"),
         ;
         ArmsPosition(Integer value, String label, String position1, String position2) {
-            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap("position1",position1,"position2",position2));
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap(MapKeys.position1,position1,MapKeys.position2,position2));
         }
     }
 
@@ -243,7 +265,7 @@ public interface GeneralEnum {
         wen_fa(6,"文伐","橙色",0,40,120),
         ;
         ArmsBook(Integer value, String label, String color, Integer force, Integer intellect, Integer troops) {
-            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap("color",color,"force",force,"intellect",intellect,"troops",troops));
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap(MapKeys.color,color,MapKeys.force,force,MapKeys.intellect,intellect,MapKeys.troops,troops));
         }
     }
 
@@ -540,5 +562,12 @@ public interface GeneralEnum {
         General4(Integer value, String label) {
             StaticDictPool.putDictItem(this, value, label);
         }
+    }
+
+    /**
+     *
+     */
+    enum Destiny implements IDictItem {
+
     }
 }

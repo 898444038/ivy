@@ -31,9 +31,11 @@ public class GeneralTest {
         GeneralEnum.GeneralsType type = GeneralEnum.GeneralsType.type8;
         GeneralEnum.Category category = GeneralEnum.Category.ni_ming;
         GeneralEnum.DestinyType2 destinyType = GeneralEnum.DestinyType2.ni_ming_1;
-        GeneralEnum.Weapon weapon = GeneralEnum.Weapon.gong;
+        GeneralEnum.Weapon weapon1 = GeneralEnum.Weapon.gong;
+        GeneralEnum.Weapon weapon2 = GeneralEnum.Weapon.shan;
         GeneralEnum.ThreeCirclesType type_1 = GeneralEnum.ThreeCirclesType.type_1;
         GeneralEnum.ThreeCirclesType type_2 = GeneralEnum.ThreeCirclesType.type_2;
+        //GeneralEnum.EntourageType entourageType = GeneralEnum.EntourageType.none;
 
         GeneralEnum.General4 general4 = GeneralEnum.General4.shu_pangtong;
         GeneralEnum.General4 general_zhugeliang = GeneralEnum.General4.shu_zhugeliang;
@@ -91,7 +93,8 @@ public class GeneralTest {
         general.setAssociationList(associationList);
         //战器
         List<GeneralWeapon> weaponList = new ArrayList<>();
-        weaponList.add(new GeneralWeapon("惊凰弓",weapon.value(),weapon.label(),id,name));
+        weaponList.add(new GeneralWeapon("惊凰弓",weapon1.value(),weapon1.label(),id,name));
+        weaponList.add(new GeneralWeapon("惊凰扇",weapon2.value(),weapon2.label(),id,name));
         general.setWeaponList(weaponList);
         //将魂、四圣石、兵符
         //主动技能active

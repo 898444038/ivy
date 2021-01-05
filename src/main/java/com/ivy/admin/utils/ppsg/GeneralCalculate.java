@@ -2,6 +2,7 @@ package com.ivy.admin.utils.ppsg;
 
 import com.ivy.admin.entity.ppsg.General;
 import com.ivy.admin.entity.ppsg.GeneralAnalog;
+import com.ivy.admin.entity.ppsg.GeneralArmsBook;
 import com.ivy.admin.entity.ppsg.GeneralThree;
 import com.ivy.admin.entity.ppsg.GeneralWeapon;
 import com.ivy.admin.enums.ppsg.GeneralEnum;
@@ -153,16 +154,25 @@ public class GeneralCalculate {
      * @param analog
      * @return
      */
-    public static GeneralThree calculateWeapon(General general, GeneralAnalog analog) {
+    public static List<GeneralThree> calculateWeapon(General general, GeneralAnalog analog, GeneralEnum.ThreeCirclesType type) {
         List<GeneralWeapon> weaponList = general.getWeaponList();
         List<GeneralThree> threeList = new ArrayList<>();
         for (GeneralWeapon generalWeapon : weaponList){
             GeneralEnum.Weapon weapon = IDictItem.getByValue(GeneralEnum.Weapon.class, generalWeapon.getWeaponCode());
             Map<String,Object> params = weapon.params();
             //基础
-            int baseForce = MapUtils.get(MapKeys.force,params);
-            int baseIntellect = MapUtils.get(MapKeys.intellect,params);
-            int baseTroops = MapUtils.get(MapKeys.troops,params);
+            int baseForce = 0;
+            int baseIntellect = 0;
+            int baseTroops = 0;
+            if(GeneralEnum.ThreeCirclesType.type_7.value().equals(type.value())){
+                baseForce = MapUtils.get(MapKeys.force,params);
+                baseIntellect = MapUtils.get(MapKeys.intellect,params);
+                baseTroops = MapUtils.get(MapKeys.troops,params);
+            }else{
+                baseForce = MapUtils.get(MapKeys.forcex,params);
+                baseIntellect = MapUtils.get(MapKeys.intellectx,params);
+                baseTroops = MapUtils.get(MapKeys.troopsx,params);
+            }
             //强化
             int strengthenForce = MapUtils.get(MapKeys.strengthenForce,params);
             int strengthenIntellect = MapUtils.get(MapKeys.strengthenIntellect,params);
@@ -171,65 +181,211 @@ public class GeneralCalculate {
             double quenchingForceRate = MapUtils.get(MapKeys.quenchingForceRate,params);
             double quenchingIntellectRate = MapUtils.get(MapKeys.quenchingIntellectRate,params);
             double quenchingTroopsRate = MapUtils.get(MapKeys.quenchingTroopsRate,params);
+            //专属
+            int exclusiveForce = MapUtils.get(MapKeys.exclusiveForce,params);
+            int exclusiveIntellect = MapUtils.get(MapKeys.exclusiveIntellect,params);
+            int exclusiveTroops = MapUtils.get(MapKeys.exclusiveTroops,params);
 
             int force = baseForce + strengthenForce;
             int intellect = baseIntellect + strengthenIntellect;
             int troops = baseTroops + strengthenTroops;
 
-//            if(troops >= force && troops >= intellect){//troops
-//                Double d = troops * quenchingForceRate;
-//                troops += d.intValue()*2;
-//                quenchingName2 = quenchingName1 = "战器的兵力值提升"+(int)(warDevice.getQuenchingTroopsRate()*100)+"%";
-//            }else if(force >= intellect && force >= troops){//force
-//                Double d= force * warDevice.getQuenchingForceRate();
-//                deviceQuenching.setForce(d.intValue()*2);
-//                force += d.intValue()*2;
-//                quenchingName2 = quenchingName1 = "战器的武力值提升"+(int)(warDevice.getQuenchingForceRate()*100)+"%";
-//            }else{//intellect
-//                Double d= intellect * warDevice.getQuenchingIntellectRate();
-//                deviceQuenching.setIntellect(d.intValue()*2);
-//                quenchingName2 = quenchingName1 = "战器的智力值提升"+(int)(warDevice.getQuenchingIntellectRate()*100)+"%";
-//                intellect += d.intValue()*2;
-//            }
-//            //专属
-//            force += warDevice.getExclusiveForce();
-//            intellect += warDevice.getExclusiveIntellect();
-//            troops += warDevice.getExclusiveTroops();
+            if(troops >= force && troops >= intellect){//troops
+                Double d = troops * quenchingForceRate;
+                troops += d.intValue()*2;
+                String quenchingName1 = "战器的兵力值提升"+(int)(quenchingTroopsRate*100)+"%";
+            }else if(force >= intellect){//force
+                Double d = force * quenchingForceRate;
+                force += d.intValue()*2;
+                String quenchingName1 = "战器的武力值提升"+(int)(quenchingForceRate*100)+"%";
+            }else{//intellect
+                Double d= intellect * quenchingIntellectRate;
+                intellect += d.intValue()*2;
+                String quenchingName1 = "战器的智力值提升"+(int)(quenchingIntellectRate*100)+"%";
+            }
+            //专属
+            force += exclusiveForce;
+            intellect += exclusiveIntellect;
+            troops += exclusiveTroops;
 
-//            deviceExclusive = new ThreeDimensional(warDevice.getExclusiveForce(),warDevice.getExclusiveIntellect(),warDevice.getExclusiveTroops());
-
-            GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_7;
             GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
-//            int force = 1077;
-//            int intellect = 1077;
-//            int troops = 2291;
             three.setForce(force);
             three.setIntellect(intellect);
             three.setTroops(troops);
             three.setCombat((force+intellect+troops)*2);
-
             threeList.add(three);
         }
-
-        return threeList.get(0);
+        return threeList;
     }
 
     /**
-     * 异化战器三维
+     * 计算兵种
      * @param general
      * @param analog
      * @return
      */
-    public static GeneralThree calculateWeapon2(General general, GeneralAnalog analog) {
-        GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_8;
+    public static GeneralThree calculateArms(General general, GeneralAnalog analog, GeneralEnum.ThreeCirclesType type) {
+        GeneralThree maxThree = getBaseMaxThree(general);
+        GeneralEnum.ThreeCirclesType type9 = GeneralEnum.ThreeCirclesType.type_9;
+        GeneralEnum.ThreeCirclesType type10 = GeneralEnum.ThreeCirclesType.type_10;
+        GeneralEnum.Arms arms = IDictItem.getByValue(GeneralEnum.Arms.class, general.getArmsCode());
+        Map<String,Object> params = arms.params();
+
+        GeneralThree three = new GeneralThree();
+        three.setGeneralId(general.getId());
+        Double force = 0d;
+        Double intellect = 0d;
+        Double troops = 0d;
+        String armsName = null;
+        double armsForceRate = 0d;
+        double armsIntellectRate = 0d;
+        double armsTroopsRate = 0d;
+        if(type9.value().equals(type.value())){
+            armsName = MapUtils.get(MapKeys.arms1,params);
+            armsForceRate = MapUtils.get(MapKeys.armsForceRate1,params);
+            armsIntellectRate = MapUtils.get(MapKeys.armsIntellectRate1,params);
+            armsTroopsRate = MapUtils.get(MapKeys.armsTroopsRate1,params);
+
+            three.setCode(type9.value());
+            three.setName(type9.label());
+        }else if(type10.value().equals(type.value())) {
+            armsName = MapUtils.get(MapKeys.arms2, params);
+            armsForceRate = MapUtils.get(MapKeys.armsForceRate2, params);
+            armsIntellectRate = MapUtils.get(MapKeys.armsIntellectRate2, params);
+            armsTroopsRate = MapUtils.get(MapKeys.armsTroopsRate2, params);
+
+            three.setCode(type10.value());
+            three.setName(type10.label());
+        }
+
+        force = maxThree.getForce() * armsForceRate;
+        intellect = maxThree.getIntellect() * armsIntellectRate;
+        troops = maxThree.getTroops() * armsTroopsRate;
+
+        three.setRemark1(armsName);
+        three.setForce0(force);
+        three.setIntellect0(intellect);
+        three.setTroops0(troops);
+        three.setCombat0((force+intellect+troops)*2);
+        three.setForce(force.intValue());
+        three.setIntellect(intellect.intValue());
+        three.setTroops(troops.intValue());
+        three.setCombat((three.getForce()+three.getIntellect()+three.getTroops())*2);
+        return three;
+    }
+
+        /**
+         * 计算兵书
+         * @param general
+         * @param analog
+         * @return
+         */
+    public static GeneralThree calculateArmsBook(General general, GeneralAnalog analog, GeneralEnum.ThreeCirclesType type) {
+        //GeneralThree maxThree = getBaseMaxThree(general);
+        GeneralArmsBook generalArmsBook = general.getArmsBook();
+
+        GeneralEnum.ArmsPosition position1 = IDictItem.getByValue(GeneralEnum.ArmsPosition.class, generalArmsBook.getPositionCode1());
+        GeneralEnum.ArmsPosition position2 = IDictItem.getByValue(GeneralEnum.ArmsPosition.class, generalArmsBook.getPositionCode2());
+        GeneralEnum.ArmsPosition position3 = IDictItem.getByValue(GeneralEnum.ArmsPosition.class, generalArmsBook.getPositionCode3());
+        GeneralEnum.ArmsPosition position4 = IDictItem.getByValue(GeneralEnum.ArmsPosition.class, generalArmsBook.getPositionCode4());
+        GeneralEnum.ArmsPosition position5 = IDictItem.getByValue(GeneralEnum.ArmsPosition.class, generalArmsBook.getPositionCode5());
+
+        Map<String,Object> params1 = position1.params();
+        Map<String,Object> params2 = position2.params();
+        Map<String,Object> params3 = position3.params();
+        Map<String,Object> params4 = position4.params();
+        Map<String,Object> params5 = position5.params();
+
+        String position1_0 = MapUtils.get(MapKeys.position1, params1);
+        String position1_1 = MapUtils.get(MapKeys.position2, params1);
+        String position2_0 = MapUtils.get(MapKeys.position1, params2);
+        String position2_1 = MapUtils.get(MapKeys.position2, params2);
+        String position3_0 = MapUtils.get(MapKeys.position1, params3);
+        String position3_1 = MapUtils.get(MapKeys.position2, params3);
+        String position4_0 = MapUtils.get(MapKeys.position1, params4);
+        String position4_1 = MapUtils.get(MapKeys.position2, params4);
+        String position5_0 = MapUtils.get(MapKeys.position1, params5);
+        String position5_1 = MapUtils.get(MapKeys.position2, params5);
+
+        GeneralEnum.ArmsBook armsBook1_0 = IDictItem.getByLabel(GeneralEnum.ArmsBook.class,position1_0);
+        GeneralEnum.ArmsBook armsBook1_1 = IDictItem.getByLabel(GeneralEnum.ArmsBook.class,position1_1);
+        GeneralEnum.ArmsBook armsBook2_0 = IDictItem.getByLabel(GeneralEnum.ArmsBook.class,position2_0);
+        GeneralEnum.ArmsBook armsBook2_1 = IDictItem.getByLabel(GeneralEnum.ArmsBook.class,position2_1);
+        GeneralEnum.ArmsBook armsBook3_0 = IDictItem.getByLabel(GeneralEnum.ArmsBook.class,position3_0);
+        GeneralEnum.ArmsBook armsBook3_1 = IDictItem.getByLabel(GeneralEnum.ArmsBook.class,position3_1);
+        GeneralEnum.ArmsBook armsBook4_0 = IDictItem.getByLabel(GeneralEnum.ArmsBook.class,position4_0);
+        GeneralEnum.ArmsBook armsBook4_1 = IDictItem.getByLabel(GeneralEnum.ArmsBook.class,position4_1);
+        GeneralEnum.ArmsBook armsBook5_0 = IDictItem.getByLabel(GeneralEnum.ArmsBook.class,position5_0);
+        GeneralEnum.ArmsBook armsBook5_1 = IDictItem.getByLabel(GeneralEnum.ArmsBook.class,position5_1);
+
+        int armsBook1_0_f = MapUtils.get(MapKeys.force, armsBook1_0.params());
+        int armsBook1_0_i = MapUtils.get(MapKeys.intellect, armsBook1_0.params());
+        int armsBook1_0_t = MapUtils.get(MapKeys.troops, armsBook1_0.params());
+        int armsBook1_1_f = MapUtils.get(MapKeys.force, armsBook1_1.params());
+        int armsBook1_1_i = MapUtils.get(MapKeys.intellect, armsBook1_1.params());
+        int armsBook1_1_t = MapUtils.get(MapKeys.troops, armsBook1_1.params());
+
+        int armsBook2_0_f = MapUtils.get(MapKeys.force, armsBook2_0.params());
+        int armsBook2_0_i = MapUtils.get(MapKeys.intellect, armsBook2_0.params());
+        int armsBook2_0_t = MapUtils.get(MapKeys.troops, armsBook2_0.params());
+        int armsBook2_1_f = MapUtils.get(MapKeys.force, armsBook2_1.params());
+        int armsBook2_1_i = MapUtils.get(MapKeys.intellect, armsBook2_1.params());
+        int armsBook2_1_t = MapUtils.get(MapKeys.troops, armsBook2_1.params());
+
+        int armsBook3_0_f = MapUtils.get(MapKeys.force, armsBook3_0.params());
+        int armsBook3_0_i = MapUtils.get(MapKeys.intellect, armsBook3_0.params());
+        int armsBook3_0_t = MapUtils.get(MapKeys.troops, armsBook3_0.params());
+        int armsBook3_1_f = MapUtils.get(MapKeys.force, armsBook3_1.params());
+        int armsBook3_1_i = MapUtils.get(MapKeys.intellect, armsBook3_1.params());
+        int armsBook3_1_t = MapUtils.get(MapKeys.troops, armsBook3_1.params());
+
+        int armsBook4_0_f = MapUtils.get(MapKeys.force, armsBook4_0.params());
+        int armsBook4_0_i = MapUtils.get(MapKeys.intellect, armsBook4_0.params());
+        int armsBook4_0_t = MapUtils.get(MapKeys.troops, armsBook4_0.params());
+        int armsBook4_1_f = MapUtils.get(MapKeys.force, armsBook4_1.params());
+        int armsBook4_1_i = MapUtils.get(MapKeys.intellect, armsBook4_1.params());
+        int armsBook4_1_t = MapUtils.get(MapKeys.troops, armsBook4_1.params());
+
+        int armsBook5_0_f = MapUtils.get(MapKeys.force, armsBook5_0.params());
+        int armsBook5_0_i = MapUtils.get(MapKeys.intellect, armsBook5_0.params());
+        int armsBook5_0_t = MapUtils.get(MapKeys.troops, armsBook5_0.params());
+        int armsBook5_1_f = MapUtils.get(MapKeys.force, armsBook5_1.params());
+        int armsBook5_1_i = MapUtils.get(MapKeys.intellect, armsBook5_1.params());
+        int armsBook5_1_t = MapUtils.get(MapKeys.troops, armsBook5_1.params());
+
+        int force = 0;
+        int intellect = 0;
+        int troops = 0;
+        if(GeneralEnum.ThreeCirclesType.type_11.value().equals(type.value())){//上阵
+            force += armsBook1_0_f + armsBook2_0_f + armsBook3_0_f + armsBook4_0_f + armsBook5_0_f;
+            intellect += armsBook1_0_i + armsBook2_0_i + armsBook3_0_i + armsBook4_0_i + armsBook5_0_i;
+            troops += armsBook1_0_t + armsBook2_0_t + armsBook3_0_t + armsBook4_0_t + armsBook5_0_t;
+        }else if(GeneralEnum.ThreeCirclesType.type_12.value().equals(type.value())){//武随
+            if(armsBook1_0_f >= armsBook1_1_f){ force += armsBook1_0_f; intellect += armsBook1_0_i; troops += armsBook1_0_t; }else{ force += armsBook1_1_f; intellect += armsBook1_1_i; troops += armsBook1_1_t; }
+            if(armsBook2_0_f >= armsBook2_1_f){ force += armsBook2_0_f; intellect += armsBook2_0_i; troops += armsBook2_0_t; }else{ force += armsBook2_1_f; intellect += armsBook2_1_i; troops += armsBook2_1_t; }
+            if(armsBook3_0_f >= armsBook3_1_f){ force += armsBook3_0_f; intellect += armsBook3_0_i; troops += armsBook3_0_t; }else{ force += armsBook3_1_f; intellect += armsBook3_1_i; troops += armsBook3_1_t; }
+            if(armsBook4_0_f >= armsBook4_1_f){ force += armsBook4_0_f; intellect += armsBook4_0_i; troops += armsBook4_0_t; }else{ force += armsBook4_1_f; intellect += armsBook4_1_i; troops += armsBook4_1_t; }
+            if(armsBook5_0_f >= armsBook5_1_f){ force += armsBook5_0_f; intellect += armsBook5_0_i; troops += armsBook5_0_t; }else{ force += armsBook5_1_f; intellect += armsBook5_1_i; troops += armsBook5_1_t; }
+        }else if(GeneralEnum.ThreeCirclesType.type_13.value().equals(type.value())){//智随
+            if(armsBook1_0_i >= armsBook1_1_i){ force += armsBook1_0_f; intellect += armsBook1_0_i; troops += armsBook1_0_t; }else{ force += armsBook1_1_f; intellect += armsBook1_1_i; troops += armsBook1_1_t; }
+            if(armsBook2_0_i >= armsBook2_1_i){ force += armsBook2_0_f; intellect += armsBook2_0_i; troops += armsBook2_0_t; }else{ force += armsBook2_1_f; intellect += armsBook2_1_i; troops += armsBook2_1_t; }
+            if(armsBook3_0_i >= armsBook3_1_i){ force += armsBook3_0_f; intellect += armsBook3_0_i; troops += armsBook3_0_t; }else{ force += armsBook3_1_f; intellect += armsBook3_1_i; troops += armsBook3_1_t; }
+            if(armsBook4_0_i >= armsBook4_1_i){ force += armsBook4_0_f; intellect += armsBook4_0_i; troops += armsBook4_0_t; }else{ force += armsBook4_1_f; intellect += armsBook4_1_i; troops += armsBook4_1_t; }
+            if(armsBook5_0_i >= armsBook5_1_i){ force += armsBook5_0_f; intellect += armsBook5_0_i; troops += armsBook5_0_t; }else{ force += armsBook5_1_f; intellect += armsBook5_1_i; troops += armsBook5_1_t; }
+        }else if(GeneralEnum.ThreeCirclesType.type_14.value().equals(type.value())){//兵随
+            if(armsBook1_0_t >= armsBook1_1_t){ force += armsBook1_0_f; intellect += armsBook1_0_i; troops += armsBook1_0_t; }else{ force += armsBook1_1_f; intellect += armsBook1_1_i; troops += armsBook1_1_t; }
+            if(armsBook2_0_t >= armsBook2_1_t){ force += armsBook2_0_f; intellect += armsBook2_0_i; troops += armsBook2_0_t; }else{ force += armsBook2_1_f; intellect += armsBook2_1_i; troops += armsBook2_1_t; }
+            if(armsBook3_0_t >= armsBook3_1_t){ force += armsBook3_0_f; intellect += armsBook3_0_i; troops += armsBook3_0_t; }else{ force += armsBook3_1_f; intellect += armsBook3_1_i; troops += armsBook3_1_t; }
+            if(armsBook4_0_t >= armsBook4_1_t){ force += armsBook4_0_f; intellect += armsBook4_0_i; troops += armsBook4_0_t; }else{ force += armsBook4_1_f; intellect += armsBook4_1_i; troops += armsBook4_1_t; }
+            if(armsBook5_0_t >= armsBook5_1_t){ force += armsBook5_0_f; intellect += armsBook5_0_i; troops += armsBook5_0_t; }else{ force += armsBook5_1_f; intellect += armsBook5_1_i; troops += armsBook5_1_t; }
+        }
+
         GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
-        int force = 1077;
-        int intellect = 1077;
-        int troops = 2291;
         three.setForce(force);
         three.setIntellect(intellect);
         three.setTroops(troops);
         three.setCombat((force+intellect+troops)*2);
         return three;
     }
+
 }

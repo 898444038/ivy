@@ -5,7 +5,7 @@ public class GeneralAnalog {
     public static final int minLevel = 1;
     public static final int maxLevel = 120;
     private int currLevel;
-
+    private boolean isSpecial;//是否特殊战器
 
     public GeneralAnalog() {
     }

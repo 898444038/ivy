@@ -49,6 +49,14 @@ public class General implements Serializable {
     private String genderName;
 
     @Column
+    @Comment("随从编码")
+    private Integer entourageCode;
+
+    @Column
+    @Comment("随从名称")
+    private String entourageName;
+
+    @Column
     @Comment("国家编码")
     private Integer countryCode;
 
@@ -138,6 +146,22 @@ public class General implements Serializable {
 //    public void setBaseThree(GeneralThree baseThree) {
 //        this.baseThree = baseThree;
 //    }
+
+    public String getEntourageName() {
+        return entourageName;
+    }
+
+    public void setEntourageName(String entourageName) {
+        this.entourageName = entourageName;
+    }
+
+    public Integer getEntourageCode() {
+        return entourageCode;
+    }
+
+    public void setEntourageCode(Integer entourageCode) {
+        this.entourageCode = entourageCode;
+    }
 
     public Integer getCardCode() {
         return cardCode;

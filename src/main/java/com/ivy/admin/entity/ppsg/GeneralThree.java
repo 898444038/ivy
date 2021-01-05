@@ -60,6 +60,14 @@ public class GeneralThree implements Serializable {
     @Comment("精确战力")
     private Double combat0;
 
+    @Column
+    @Comment("备注1")
+    private String remark1;
+
+    @Column
+    @Comment("备注2")
+    private String remark2;
+
     public GeneralThree() {
     }
 
@@ -90,6 +98,22 @@ public class GeneralThree implements Serializable {
         this.intellect0 = intellect0;
         this.troops0 = troops0;
         this.combat0 = combat0;
+    }
+
+    public String getRemark1() {
+        return remark1;
+    }
+
+    public void setRemark1(String remark1) {
+        this.remark1 = remark1;
+    }
+
+    public String getRemark2() {
+        return remark2;
+    }
+
+    public void setRemark2(String remark2) {
+        this.remark2 = remark2;
     }
 
     public Long getId() {
@@ -186,5 +210,25 @@ public class GeneralThree implements Serializable {
 
     public void setCombat0(Double combat0) {
         this.combat0 = combat0;
+    }
+
+    @Override
+    public String toString() {
+        return "GeneralThree{" +
+                "id=" + id +
+                ", generalId=" + generalId +
+                ", code=" + code +
+                ", name='" + name + '\'' +
+                ", force=" + force +
+                ", intellect=" + intellect +
+                ", troops=" + troops +
+                ", combat=" + combat +
+                ", force0=" + force0 +
+                ", intellect0=" + intellect0 +
+                ", troops0=" + troops0 +
+                ", combat0=" + combat0 +
+                ", remark1='" + remark1 + '\'' +
+                ", remark2='" + remark2 + '\'' +
+                '}';
     }
 }

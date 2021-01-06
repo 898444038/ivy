@@ -23,6 +23,11 @@ public class MapKeys {
     public static final String growIntellect = "growIntellect";
     public static final String growTroops = "growTroops";
 
+    //最大值
+    public static final String maxForce = "maxForce";
+    public static final String maxIntellect = "maxIntellect";
+    public static final String maxTroops = "maxTroops";
+
     //加成率
     public static final String forceRate = "forceRate";
     public static final String intellectRate = "intellectRate";

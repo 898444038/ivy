@@ -18,7 +18,7 @@ public class GeneralUtils {
     }
 
     /**
-     * 计算基础三维
+     * 计算三维
      * @param general
      * @return
      */
@@ -36,9 +36,11 @@ public class GeneralUtils {
         GeneralThree three2 = new GeneralThree(general.getId(),type_2.value(),type_2.label(),forcex,intellectx,troopsx);
         general.getThreeList().add(three2);
         if (GeneralEnum.CardType.yi_hua.value().equals(general.getCardCode())){
-            threeList.add(GeneralCalculate.calculateLevel(general,analog));//异化满级基础三维
+            //异化满级基础三维
+            threeList.add(GeneralCalculate.calculateLevel(general,analog));
         }else{
-            threeList.add(GeneralCalculate.calculateLevel(general,analog));//满级基础三维
+            //满级基础三维
+            threeList.add(GeneralCalculate.calculateLevel(general,analog));
         }
 
         //科技三维
@@ -65,12 +67,28 @@ public class GeneralUtils {
         //兵随兵书三维
         threeList.add(GeneralCalculate.calculateArmsBook(general,analog,GeneralEnum.ThreeCirclesType.type_14));
 
-//        threeList.add(new GeneralThree(general.getId(),type_10.value(),type_10.label()));//将魂三维
-//        threeList.add(new GeneralThree(general.getId(),type_11.value(),type_11.label()));//战阵三维
-//        threeList.add(new GeneralThree(general.getId(),type_12.value(),type_12.label()));//命格三维
-//        threeList.add(new GeneralThree(general.getId(),type_13.value(),type_13.label()));//幻化三维
-//        threeList.add(new GeneralThree(general.getId(),type_14.value(),type_14.label()));//阵法三维
-//        threeList.add(new GeneralThree(general.getId(),type_15.value(),type_15.label()));//战意三维
+        //上阵将魂三维
+        threeList.add(GeneralCalculate.calculateWillSoul(general,analog,GeneralEnum.ThreeCirclesType.type_15));
+        //随从将魂三维
+        threeList.add(GeneralCalculate.calculateWillSoul(general,analog,GeneralEnum.ThreeCirclesType.type_16));
+
+        //战阵三维
+        threeList.add(GeneralCalculate.calculateBattleArray(general,analog));
+        //幻化三维
+        threeList.add(GeneralCalculate.calculateSkin(general,analog));
+        //阵法三维
+        threeList.add(GeneralCalculate.calculateEmbattle(general,analog));
+
+        //命格三维
+        threeList.add(GeneralCalculate.calculateDestiny(general,analog));
+        //随从三维
+        threeList.add(GeneralCalculate.calculateEntourage(general,analog,GeneralEnum.ThreeCirclesType.type_22));
+        threeList.add(GeneralCalculate.calculateEntourage(general,analog,GeneralEnum.ThreeCirclesType.type_23));
+        threeList.add(GeneralCalculate.calculateEntourage(general,analog,GeneralEnum.ThreeCirclesType.type_24));
+        //兵符三维
+        //战意三维
+        threeList.add(GeneralCalculate.calculateWarpath(general,analog));
+
         general.setThreeList(threeList);
         return threeList;
     }

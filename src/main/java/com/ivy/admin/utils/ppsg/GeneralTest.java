@@ -35,7 +35,7 @@ public class GeneralTest {
         GeneralEnum.Weapon weapon2 = GeneralEnum.Weapon.shan;
         GeneralEnum.ThreeCirclesType type_1 = GeneralEnum.ThreeCirclesType.type_1;
         GeneralEnum.ThreeCirclesType type_2 = GeneralEnum.ThreeCirclesType.type_2;
-        //GeneralEnum.EntourageType entourageType = GeneralEnum.EntourageType.none;
+        GeneralEnum.EntourageType entourageType = GeneralEnum.EntourageType.none;
 
         GeneralEnum.General4 general4 = GeneralEnum.General4.shu_pangtong;
         GeneralEnum.General4 general_zhugeliang = GeneralEnum.General4.shu_zhugeliang;

@@ -76,13 +76,16 @@ public interface GeneralEnum {
         type_12(12, "武随兵书三维"),
         type_13(13, "智随兵书三维"),
         type_14(14, "兵随兵书三维"),
-//        type_9(9, "兵书三维"),
-//        type_10(10, "将魂三维"),
-//        type_11(11, "战阵三维"),
-//        type_12(12, "命格三维"),
-//        type_13(13, "幻化三维"),
-//        type_14(14, "阵法三维"),
-//        type_15(15, "战意三维"),
+        type_15(15, "上阵将魂三维"),
+        type_16(16, "随从将魂三维"),
+        type_17(17, "战阵三维"),
+        type_18(18, "命格三维"),
+        type_19(19, "幻化三维"),
+        type_20(20, "阵法三维"),
+        type_21(21, "战意三维"),
+        type_22(22, "武随三维"),
+        type_23(23, "智随三维"),
+        type_24(24, "兵随三维"),
         ;
         ThreeCirclesType(Integer value, String label) {
             StaticDictPool.putDictItem(this, value, label);
@@ -459,7 +462,7 @@ public interface GeneralEnum {
         ;
 
         Embattle(Integer value, String label, Integer growForce, Integer growIntellect, Integer growTroops, Integer maxForce, Integer maxIntellect, Integer maxTroops) {
-            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap(MapKeys.growForce,growForce,MapKeys.growIntellect,growIntellect,MapKeys.growTroops,growTroops,"maxForce",maxForce,"maxIntellect",maxIntellect,"maxTroops",maxTroops));
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap(MapKeys.growForce,growForce,MapKeys.growIntellect,growIntellect,MapKeys.growTroops,growTroops,MapKeys.maxForce,maxForce,MapKeys.maxIntellect,maxIntellect,MapKeys.maxTroops,maxTroops));
         }
     }
 

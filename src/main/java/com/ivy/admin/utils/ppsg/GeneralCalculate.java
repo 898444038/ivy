@@ -3,6 +3,7 @@ package com.ivy.admin.utils.ppsg;
 import com.ivy.admin.entity.ppsg.General;
 import com.ivy.admin.entity.ppsg.GeneralAnalog;
 import com.ivy.admin.entity.ppsg.GeneralArmsBook;
+import com.ivy.admin.entity.ppsg.GeneralSkin;
 import com.ivy.admin.entity.ppsg.GeneralThree;
 import com.ivy.admin.entity.ppsg.GeneralWeapon;
 import com.ivy.admin.enums.ppsg.GeneralEnum;
@@ -388,4 +389,117 @@ public class GeneralCalculate {
         return three;
     }
 
+    public static GeneralThree calculateWillSoul(General general, GeneralAnalog analog, GeneralEnum.ThreeCirclesType type) {
+        GeneralEnum.GeneralsType generalsType = IDictItem.getByValue(GeneralEnum.GeneralsType.class, general.getTypeCode());
+        Map<String,Object> params = generalsType.params();
+        int growForce = MapUtils.get(MapKeys.growForce,params);
+        int growIntellect = MapUtils.get(MapKeys.growIntellect,params);
+        int growTroops = MapUtils.get(MapKeys.growTroops,params);
+
+        int force = growForce * 4 * 30;
+        int intellect = growIntellect * 4 * 30;
+        int troops = growTroops * 4 * 30;
+
+        troops += 200;
+
+        if(GeneralEnum.ThreeCirclesType.type_16.value().equals(type.value())){
+            force += 100;
+            intellect += 100;
+            troops += 100;
+        }
+
+        GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
+        three.setForce(force);
+        three.setIntellect(intellect);
+        three.setTroops(troops);
+        three.setCombat((force+intellect+troops)*2);
+        return three;
+    }
+
+    public static GeneralThree calculateBattleArray(General general, GeneralAnalog analog) {
+        GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_17;
+        GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
+        GeneralThree maxThree = getBaseMaxThree(general);
+
+        Double rate = 0.1;
+        Double force = maxThree.getForce() * rate;
+        Double intellect = maxThree.getIntellect() * rate;
+        Double troops = maxThree.getTroops() * rate;
+
+        three.setForce0(force);
+        three.setIntellect0(intellect);
+        three.setTroops0(troops);
+        three.setCombat0((force+intellect+troops)*2);
+        three.setForce(force.intValue());
+        three.setIntellect(intellect.intValue());
+        three.setTroops(troops.intValue());
+        three.setCombat((three.getForce()+three.getIntellect()+three.getTroops())*2);
+        return three;
+    }
+
+    public static GeneralThree calculateDestiny(General general, GeneralAnalog analog) {
+        return null;
+    }
+
+    public static GeneralThree calculateSkin(General general, GeneralAnalog analog) {
+        GeneralSkin generalSkin = general.getGeneralSkin();
+        int force = generalSkin.getForce();
+        int intellect = generalSkin.getIntellect();
+        int troops = generalSkin.getTroops();
+        GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_19;
+        GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
+        three.setForce(force);
+        three.setIntellect(intellect);
+        three.setTroops(troops);
+        three.setCombat((force+intellect+troops)*2);
+        return three;
+    }
+
+    public static GeneralThree calculateEmbattle(General general, GeneralAnalog analog) {
+        GeneralEnum.Embattle embattle = IDictItem.getByValue(GeneralEnum.Embattle.class, analog.getEmbattle().value());
+        Map<String,Object> params = embattle.params();
+        int force = MapUtils.get(MapKeys.maxForce,params);
+        int intellect = MapUtils.get(MapKeys.maxIntellect,params);
+        int troops = MapUtils.get(MapKeys.maxTroops,params);
+
+        GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_20;
+        GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
+        three.setForce(force);
+        three.setIntellect(intellect);
+        three.setTroops(troops);
+        three.setCombat((force+intellect+troops)*2);
+        return three;
+    }
+
+    public static GeneralThree calculateWarpath(General general, GeneralAnalog analog) {
+        GeneralThree maxThree = getBaseMaxThree(general);
+
+        Double rate = 0.1;
+        Double force = maxThree.getForce() * rate;
+        Double intellect = maxThree.getIntellect() * rate;
+        Double troops = maxThree.getTroops() * rate;
+
+        GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_21;
+        GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
+        three.setForce0(force);
+        three.setIntellect0(intellect);
+        three.setTroops0(troops);
+        three.setCombat0((force+intellect+troops)*2);
+        three.setForce(force.intValue());
+        three.setIntellect(intellect.intValue());
+        three.setTroops(troops.intValue());
+        three.setCombat((three.getForce()+three.getIntellect()+three.getTroops())*2);
+        return three;
+    }
+
+    public static GeneralThree calculateEntourage(General general, GeneralAnalog analog, GeneralEnum.ThreeCirclesType type) {
+        if(GeneralEnum.ThreeCirclesType.type_22.value().equals(type.value())){
+            getThree(general, GeneralEnum.ThreeCirclesType.type_1);
+        }else if(GeneralEnum.ThreeCirclesType.type_23.value().equals(type.value())){
+
+        }else if(GeneralEnum.ThreeCirclesType.type_24.value().equals(type.value())){
+
+        }
+        return null;
+    }
 }

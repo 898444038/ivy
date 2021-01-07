@@ -33,9 +33,9 @@ public class GeneralTest {
         GeneralEnum.DestinyType2 destinyType = GeneralEnum.DestinyType2.ni_ming_1;
         GeneralEnum.Weapon weapon1 = GeneralEnum.Weapon.gong;
         GeneralEnum.Weapon weapon2 = GeneralEnum.Weapon.shan;
-        GeneralEnum.ThreeCirclesType type_1 = GeneralEnum.ThreeCirclesType.type_1;
-        GeneralEnum.ThreeCirclesType type_2 = GeneralEnum.ThreeCirclesType.type_2;
-        GeneralEnum.EntourageType entourageType = GeneralEnum.EntourageType.none;
+//        GeneralEnum.ThreeCirclesType type_1 = GeneralEnum.ThreeCirclesType.type_1;
+//        GeneralEnum.ThreeCirclesType type_2 = GeneralEnum.ThreeCirclesType.type_2;
+//        GeneralEnum.EntourageType entourageType = GeneralEnum.EntourageType.none;
 
         GeneralEnum.General4 general4 = GeneralEnum.General4.shu_pangtong;
         GeneralEnum.General4 general_zhugeliang = GeneralEnum.General4.shu_zhugeliang;

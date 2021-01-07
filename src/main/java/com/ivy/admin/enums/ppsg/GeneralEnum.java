@@ -77,15 +77,18 @@ public interface GeneralEnum {
         type_13(13, "智随兵书三维"),
         type_14(14, "兵随兵书三维"),
         type_15(15, "上阵将魂三维"),
-        type_16(16, "随从将魂三维"),
+        //type_16(16, "随从将魂三维"),
         type_17(17, "战阵三维"),
         type_18(18, "命格三维"),
         type_19(19, "幻化三维"),
         type_20(20, "阵法三维"),
         type_21(21, "战意三维"),
-        type_22(22, "武随三维"),
-        type_23(23, "智随三维"),
-        type_24(24, "兵随三维"),
+        type_22(22, "武随联协三维"),
+        type_23(23, "武随非联协三维"),
+        type_24(24, "智随联协三维"),
+        type_25(25, "智随非联协三维"),
+        type_26(26, "兵随联协三维"),
+        type_27(27, "兵随非联协三维"),
         ;
         ThreeCirclesType(Integer value, String label) {
             StaticDictPool.putDictItem(this, value, label);

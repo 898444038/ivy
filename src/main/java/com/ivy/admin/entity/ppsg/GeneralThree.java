@@ -84,6 +84,7 @@ public class GeneralThree implements Serializable {
         this.force = force;
         this.intellect = intellect;
         this.troops = troops;
+        this.combat = force + intellect + troops;
     }
 
     public GeneralThree(Long generalId, Integer code, String name, Integer force, Integer intellect, Integer troops, Integer combat, Double force0, Double intellect0, Double troops0, Double combat0) {
@@ -214,9 +215,8 @@ public class GeneralThree implements Serializable {
 
     @Override
     public String toString() {
-        return "GeneralThree{" +
-                "id=" + id +
-                ", generalId=" + generalId +
+        return "{" +
+                " generalId=" + generalId +
                 ", code=" + code +
                 ", name='" + name + '\'' +
                 ", force=" + force +

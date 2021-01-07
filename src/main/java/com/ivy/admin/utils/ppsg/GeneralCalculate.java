@@ -57,6 +57,27 @@ public class GeneralCalculate {
         return null;
     }
 
+    public static GeneralThree setCombat(GeneralThree three, int force, int intellect, int troops){
+        int combat = (force + intellect + troops) * 2;
+        three.setForce(force);
+        three.setIntellect(intellect);
+        three.setTroops(troops);
+        three.setCombat(combat);
+        return three;
+    }
+
+    public static GeneralThree setCombat(GeneralThree three, Double force, Double intellect, Double troops){
+        three.setForce0(force);
+        three.setIntellect0(intellect);
+        three.setTroops0(troops);
+        three.setCombat0((force + intellect + troops ) * 2);
+        three.setForce(force.intValue());
+        three.setIntellect(intellect.intValue());
+        three.setTroops(troops.intValue());
+        three.setCombat((three.getForce()+three.getIntellect()+three.getTroops()) * 2);
+        return three;
+    }
+
     /**
      * 计算等级三维
      * @param general
@@ -79,7 +100,6 @@ public class GeneralCalculate {
         int force = baseForce + growForce * level;
         int intellect = baseIntellect + growIntellect * level;
         int troops = baseTroops + growTroops * level;
-        int combat = (force + intellect + troops) * 2;
 
         GeneralThree three = new GeneralThree();
         three.setGeneralId(general.getId());
@@ -90,10 +110,7 @@ public class GeneralCalculate {
             three.setCode(GeneralEnum.ThreeCirclesType.type_3.value());
             three.setName(GeneralEnum.ThreeCirclesType.type_3.label());
         }
-        three.setForce(force);
-        three.setIntellect(intellect);
-        three.setTroops(troops);
-        three.setCombat(combat);
+        setCombat(three,force,intellect,troops);
         return three;
     }
 
@@ -115,18 +132,11 @@ public class GeneralCalculate {
         Double force = maxThree.getForce() * forceRate;
         Double intellect = maxThree.getIntellect() * intellectRate;
         Double troops = maxThree.getTroops() * troopsRate;
-        Double combat = (force + intellect + troops ) * 2;
 
         GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_5;
         GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
-        three.setForce(force.intValue());
-        three.setIntellect(intellect.intValue());
-        three.setTroops(troops.intValue());
-        three.setCombat(combat.intValue());
-        three.setForce0(force);
-        three.setIntellect0(intellect);
-        three.setTroops0(troops);
-        three.setCombat0(combat);
+
+        setCombat(three,force,intellect,troops);
         return three;
     }
 
@@ -142,10 +152,7 @@ public class GeneralCalculate {
         int force = 1077;
         int intellect = 1077;
         int troops = 2291;
-        three.setForce(force);
-        three.setIntellect(intellect);
-        three.setTroops(troops);
-        three.setCombat((force+intellect+troops)*2);
+        setCombat(three,force,intellect,troops);
         return three;
     }
 
@@ -210,10 +217,7 @@ public class GeneralCalculate {
             troops += exclusiveTroops;
 
             GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
-            three.setForce(force);
-            three.setIntellect(intellect);
-            three.setTroops(troops);
-            three.setCombat((force+intellect+troops)*2);
+            setCombat(three,force,intellect,troops);
             threeList.add(three);
         }
         return threeList;
@@ -264,23 +268,16 @@ public class GeneralCalculate {
         troops = maxThree.getTroops() * armsTroopsRate;
 
         three.setRemark1(armsName);
-        three.setForce0(force);
-        three.setIntellect0(intellect);
-        three.setTroops0(troops);
-        three.setCombat0((force+intellect+troops)*2);
-        three.setForce(force.intValue());
-        three.setIntellect(intellect.intValue());
-        three.setTroops(troops.intValue());
-        three.setCombat((three.getForce()+three.getIntellect()+three.getTroops())*2);
+        setCombat(three,force,intellect,troops);
         return three;
     }
 
-        /**
-         * 计算兵书
-         * @param general
-         * @param analog
-         * @return
-         */
+    /**
+     * 计算兵书
+     * @param general
+     * @param analog
+     * @return
+     */
     public static GeneralThree calculateArmsBook(General general, GeneralAnalog analog, GeneralEnum.ThreeCirclesType type) {
         //GeneralThree maxThree = getBaseMaxThree(general);
         GeneralArmsBook generalArmsBook = general.getArmsBook();
@@ -382,10 +379,7 @@ public class GeneralCalculate {
         }
 
         GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
-        three.setForce(force);
-        three.setIntellect(intellect);
-        three.setTroops(troops);
-        three.setCombat((force+intellect+troops)*2);
+        setCombat(three,force,intellect,troops);
         return three;
     }
 
@@ -402,17 +396,8 @@ public class GeneralCalculate {
 
         troops += 200;
 
-        if(GeneralEnum.ThreeCirclesType.type_16.value().equals(type.value())){
-            force += 100;
-            intellect += 100;
-            troops += 100;
-        }
-
         GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
-        three.setForce(force);
-        three.setIntellect(intellect);
-        three.setTroops(troops);
-        three.setCombat((force+intellect+troops)*2);
+        setCombat(three,force,intellect,troops);
         return three;
     }
 
@@ -425,20 +410,18 @@ public class GeneralCalculate {
         Double force = maxThree.getForce() * rate;
         Double intellect = maxThree.getIntellect() * rate;
         Double troops = maxThree.getTroops() * rate;
-
-        three.setForce0(force);
-        three.setIntellect0(intellect);
-        three.setTroops0(troops);
-        three.setCombat0((force+intellect+troops)*2);
-        three.setForce(force.intValue());
-        three.setIntellect(intellect.intValue());
-        three.setTroops(troops.intValue());
-        three.setCombat((three.getForce()+three.getIntellect()+three.getTroops())*2);
+        setCombat(three,force,intellect,troops);
         return three;
     }
 
     public static GeneralThree calculateDestiny(General general, GeneralAnalog analog) {
-        return null;
+        int force = 330;
+        int intellect = 580;
+        int troops = 645;
+        GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_18;
+        GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
+        setCombat(three,force,intellect,troops);
+        return three;
     }
 
     public static GeneralThree calculateSkin(General general, GeneralAnalog analog) {
@@ -448,10 +431,7 @@ public class GeneralCalculate {
         int troops = generalSkin.getTroops();
         GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_19;
         GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
-        three.setForce(force);
-        three.setIntellect(intellect);
-        three.setTroops(troops);
-        three.setCombat((force+intellect+troops)*2);
+        setCombat(three,force,intellect,troops);
         return three;
     }
 
@@ -464,10 +444,7 @@ public class GeneralCalculate {
 
         GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_20;
         GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
-        three.setForce(force);
-        three.setIntellect(intellect);
-        three.setTroops(troops);
-        three.setCombat((force+intellect+troops)*2);
+        setCombat(three,force,intellect,troops);
         return three;
     }
 
@@ -481,25 +458,92 @@ public class GeneralCalculate {
 
         GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_21;
         GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
-        three.setForce0(force);
-        three.setIntellect0(intellect);
-        three.setTroops0(troops);
-        three.setCombat0((force+intellect+troops)*2);
-        three.setForce(force.intValue());
-        three.setIntellect(intellect.intValue());
-        three.setTroops(troops.intValue());
-        three.setCombat((three.getForce()+three.getIntellect()+three.getTroops())*2);
+        setCombat(three,force,intellect,troops);
         return three;
     }
 
-    public static GeneralThree calculateEntourage(General general, GeneralAnalog analog, GeneralEnum.ThreeCirclesType type) {
-        if(GeneralEnum.ThreeCirclesType.type_22.value().equals(type.value())){
-            getThree(general, GeneralEnum.ThreeCirclesType.type_1);
-        }else if(GeneralEnum.ThreeCirclesType.type_23.value().equals(type.value())){
+    public static List<GeneralThree> calculateEntourage(General general, GeneralAnalog analog, GeneralEnum.ThreeCirclesType type) {
+        int force = 0;
+        int intellect = 0;
+        int troops = 0;
 
-        }else if(GeneralEnum.ThreeCirclesType.type_24.value().equals(type.value())){
+        GeneralThree three0 = getBaseMaxThree(general);//满级三维
+        GeneralThree three5 = getThree(general, GeneralEnum.ThreeCirclesType.type_5);//科技
+        GeneralThree three6 = getThree(general, GeneralEnum.ThreeCirclesType.type_6);//四圣石
+        GeneralThree three16 = getThree(general, GeneralEnum.ThreeCirclesType.type_15);//将魂
+        GeneralThree three18 = getThree(general, GeneralEnum.ThreeCirclesType.type_18);//命格
+        GeneralThree three19 = getThree(general, GeneralEnum.ThreeCirclesType.type_19);//幻化
 
+        force += three0.getForce()+three5.getForce()+three6.getForce()+three16.getForce()+three18.getForce()+three19.getForce();
+        intellect += three0.getIntellect()+three5.getIntellect()+three6.getIntellect()+three16.getIntellect()+three18.getIntellect()+three19.getIntellect();
+        troops += three0.getTroops()+three5.getTroops()+three6.getTroops()+three16.getTroops()+three18.getTroops()+three19.getTroops();
+
+        GeneralThree three9 = getThree(general, GeneralEnum.ThreeCirclesType.type_9);//兵种1
+        GeneralThree three10 = getThree(general, GeneralEnum.ThreeCirclesType.type_10);//兵种2
+        GeneralThree three12 = getThree(general, GeneralEnum.ThreeCirclesType.type_12);//武随兵书
+        GeneralThree three13 = getThree(general, GeneralEnum.ThreeCirclesType.type_13);//智随兵书
+        GeneralThree three14 = getThree(general, GeneralEnum.ThreeCirclesType.type_14);//兵随兵书
+
+        GeneralEnum.ThreeCirclesType type2 = null;
+        if(GeneralEnum.ThreeCirclesType.type_22.value().equals(type.value())){//武随三维
+            type2 = GeneralEnum.ThreeCirclesType.type_23;
+            if(three9.getForce() >= three10.getForce()){
+                force += three9.getForce();
+                intellect += three9.getIntellect();
+                troops += three9.getTroops();
+            }else{
+                force += three10.getForce();
+                intellect += three10.getIntellect();
+                troops += three10.getTroops();
+            }
+            force += three12.getForce();
+            intellect += three12.getIntellect();
+            troops += three12.getTroops();
+        }else if(GeneralEnum.ThreeCirclesType.type_24.value().equals(type.value())){//智随三维
+            type2 = GeneralEnum.ThreeCirclesType.type_25;
+            if(three9.getIntellect() >= three10.getIntellect()){
+                force += three9.getForce();
+                intellect += three9.getIntellect();
+                troops += three9.getTroops();
+            }else{
+                force += three10.getForce();
+                intellect += three10.getIntellect();
+                troops += three10.getTroops();
+            }
+            force += three13.getForce();
+            intellect += three13.getIntellect();
+            troops += three13.getTroops();
+        }else if(GeneralEnum.ThreeCirclesType.type_26.value().equals(type.value())){//兵随三维
+            type2 = GeneralEnum.ThreeCirclesType.type_27;
+            if(three9.getTroops() >= three10.getTroops()){
+                force += three9.getForce();
+                intellect += three9.getIntellect();
+                troops += three9.getTroops();
+            }else{
+                force += three10.getForce();
+                intellect += three10.getIntellect();
+                troops += three10.getTroops();
+            }
+            force += three14.getForce();
+            intellect += three14.getIntellect();
+            troops += three14.getTroops();
         }
-        return null;
+
+        List<GeneralThree> threeList = new ArrayList<>();
+        GeneralThree three2 = new GeneralThree(general.getId(),type2.value(),type2.label());
+        force = force / 2 + 100;//满将魂+100属性
+        intellect = intellect / 2 + 100;
+        troops = troops / 2 + 100;
+        setCombat(three2,force,intellect,troops);
+
+        GeneralThree three1 = new GeneralThree(general.getId(),type.value(),type.label());
+        Double force0 = force * 1.25;
+        Double intellect0 = intellect * 1.25;
+        Double troops0 = troops * 1.25;
+        setCombat(three1,force0.intValue(),intellect0.intValue(),troops0.intValue());
+
+        threeList.add(three1);
+        threeList.add(three2);
+        return threeList;
     }
 }

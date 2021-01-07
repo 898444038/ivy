@@ -70,7 +70,7 @@ public class GeneralUtils {
         //上阵将魂三维
         threeList.add(GeneralCalculate.calculateWillSoul(general,analog,GeneralEnum.ThreeCirclesType.type_15));
         //随从将魂三维
-        threeList.add(GeneralCalculate.calculateWillSoul(general,analog,GeneralEnum.ThreeCirclesType.type_16));
+        //threeList.add(GeneralCalculate.calculateWillSoul(general,analog,GeneralEnum.ThreeCirclesType.type_16));
 
         //战阵三维
         threeList.add(GeneralCalculate.calculateBattleArray(general,analog));
@@ -82,12 +82,13 @@ public class GeneralUtils {
         //命格三维
         threeList.add(GeneralCalculate.calculateDestiny(general,analog));
         //随从三维
-        threeList.add(GeneralCalculate.calculateEntourage(general,analog,GeneralEnum.ThreeCirclesType.type_22));
-        threeList.add(GeneralCalculate.calculateEntourage(general,analog,GeneralEnum.ThreeCirclesType.type_23));
-        threeList.add(GeneralCalculate.calculateEntourage(general,analog,GeneralEnum.ThreeCirclesType.type_24));
-        //兵符三维
+        threeList.addAll(GeneralCalculate.calculateEntourage(general,analog,GeneralEnum.ThreeCirclesType.type_22));
+        threeList.addAll(GeneralCalculate.calculateEntourage(general,analog,GeneralEnum.ThreeCirclesType.type_24));
+        threeList.addAll(GeneralCalculate.calculateEntourage(general,analog,GeneralEnum.ThreeCirclesType.type_26));
+
         //战意三维
-        threeList.add(GeneralCalculate.calculateWarpath(general,analog));
+        //threeList.add(GeneralCalculate.calculateWarpath(general,analog));
+        //兵符三维
 
         general.setThreeList(threeList);
         return threeList;

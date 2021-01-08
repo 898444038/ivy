@@ -15,6 +15,8 @@
 	    <result column="intellect0" property="intellect0"/>
 	    <result column="troops0" property="troops0"/>
 	    <result column="combat0" property="combat0"/>
+	    <result column="remark1" property="remark1"/>
+	    <result column="remark2" property="remark2"/>
 	</resultMap>
 
 	<sql id="baseColumn">
@@ -29,7 +31,9 @@
 	    force0,
 	    intellect0,
 	    troops0,
-	    combat0
+	    combat0,
+	    remark1,
+	    remark2
 	</sql>
 
 	<sql id="baseCondition">
@@ -46,6 +50,8 @@
 		    <if test="intellect0 != null"> and intellect0 = #{intellect0}</if>
 		    <if test="troops0 != null"> and troops0 = #{troops0}</if>
 		    <if test="combat0 != null"> and combat0 = #{combat0}</if>
+		    <if test="remark1 != null"> and remark1 = #{remark1}</if>
+		    <if test="remark2 != null"> and remark2 = #{remark2}</if>
 		</where>
 	</sql>
 
@@ -103,6 +109,8 @@
 			<if test="intellect0 != null">intellect0,</if>
 			<if test="troops0 != null">troops0,</if>
 			<if test="combat0 != null">combat0,</if>
+			<if test="remark1 != null">remark1,</if>
+			<if test="remark2 != null">remark2,</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides="," >
 		    <if test="generalId != null">#{generalId},</if>
@@ -116,6 +124,8 @@
 		    <if test="intellect0 != null">#{intellect0},</if>
 		    <if test="troops0 != null">#{troops0},</if>
 		    <if test="combat0 != null">#{combat0},</if>
+		    <if test="remark1 != null">#{remark1},</if>
+		    <if test="remark2 != null">#{remark2},</if>
 		</trim>
 	</insert>
 
@@ -133,6 +143,8 @@
 			<if test="intellect0 != null">intellect0 = #{intellect0},</if>
 			<if test="troops0 != null">troops0 = #{troops0},</if>
 			<if test="combat0 != null">combat0 = #{combat0},</if>
+			<if test="remark1 != null">remark1 = #{remark1},</if>
+			<if test="remark2 != null">remark2 = #{remark2},</if>
 		</set>
 		where id = #{id}
 	</update>

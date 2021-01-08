@@ -4,9 +4,13 @@ CREATE TABLE `ppsg_general` (
 `parent_id` BIGINT(20)  DEFAULT NULL  COMMENT '父级ID',
 `parent_name` VARCHAR(32)  DEFAULT NULL  COMMENT '父级名称',
 `name` VARCHAR(32)  DEFAULT NULL  COMMENT '武将名称',
+`card_code` INTEGER(11)  DEFAULT NULL  COMMENT '卡片编码',
+`card_name` VARCHAR(32)  DEFAULT NULL  COMMENT '卡片名称',
 `level` INTEGER(11)  DEFAULT NULL  COMMENT '等级',
 `gender_code` INTEGER(11)  DEFAULT NULL  COMMENT '性别编码',
 `gender_name` VARCHAR(32)  DEFAULT NULL  COMMENT '性别名称',
+`entourage_code` INTEGER(11)  DEFAULT NULL  COMMENT '随从编码',
+`entourage_name` VARCHAR(32)  DEFAULT NULL  COMMENT '随从名称',
 `country_code` INTEGER(11)  DEFAULT NULL  COMMENT '国家编码',
 `country_name` VARCHAR(32)  DEFAULT NULL  COMMENT '国家名称',
 `star_code` INTEGER(11)  DEFAULT NULL  COMMENT '星级编码',
@@ -29,9 +33,13 @@ ALTER TABLE `ppsg_general` ADD COLUMN id BIGINT(20)  DEFAULT NULL ;
 ALTER TABLE `ppsg_general` ADD COLUMN parent_id BIGINT(20)  DEFAULT NULL  COMMENT '父级ID';
 ALTER TABLE `ppsg_general` ADD COLUMN parent_name VARCHAR(32)  DEFAULT NULL  COMMENT '父级名称';
 ALTER TABLE `ppsg_general` ADD COLUMN name VARCHAR(32)  DEFAULT NULL  COMMENT '武将名称';
+ALTER TABLE `ppsg_general` ADD COLUMN card_code INTEGER(11)  DEFAULT NULL  COMMENT '卡片编码';
+ALTER TABLE `ppsg_general` ADD COLUMN card_name VARCHAR(32)  DEFAULT NULL  COMMENT '卡片名称';
 ALTER TABLE `ppsg_general` ADD COLUMN level INTEGER(11)  DEFAULT NULL  COMMENT '等级';
 ALTER TABLE `ppsg_general` ADD COLUMN gender_code INTEGER(11)  DEFAULT NULL  COMMENT '性别编码';
 ALTER TABLE `ppsg_general` ADD COLUMN gender_name VARCHAR(32)  DEFAULT NULL  COMMENT '性别名称';
+ALTER TABLE `ppsg_general` ADD COLUMN entourage_code INTEGER(11)  DEFAULT NULL  COMMENT '随从编码';
+ALTER TABLE `ppsg_general` ADD COLUMN entourage_name VARCHAR(32)  DEFAULT NULL  COMMENT '随从名称';
 ALTER TABLE `ppsg_general` ADD COLUMN country_code INTEGER(11)  DEFAULT NULL  COMMENT '国家编码';
 ALTER TABLE `ppsg_general` ADD COLUMN country_name VARCHAR(32)  DEFAULT NULL  COMMENT '国家名称';
 ALTER TABLE `ppsg_general` ADD COLUMN star_code INTEGER(11)  DEFAULT NULL  COMMENT '星级编码';

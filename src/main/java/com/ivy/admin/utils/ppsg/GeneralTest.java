@@ -30,7 +30,8 @@ public class GeneralTest {
         GeneralEnum.Arms arms = GeneralEnum.Arms.qi;
         GeneralEnum.GeneralsType type = GeneralEnum.GeneralsType.type8;
         GeneralEnum.Category category = GeneralEnum.Category.ni_ming;
-        GeneralEnum.DestinyType2 destinyType = GeneralEnum.DestinyType2.ni_ming_1;
+        //GeneralEnum.DestinyType2 destinyType = GeneralEnum.DestinyType2.ni_ming_1;
+        GeneralEnum.DestinyType destinyType = GeneralEnum.DestinyType.ni_ming_3;
         GeneralEnum.Weapon weapon1 = GeneralEnum.Weapon.gong;
         GeneralEnum.Weapon weapon2 = GeneralEnum.Weapon.shan;
 //        GeneralEnum.ThreeCirclesType type_1 = GeneralEnum.ThreeCirclesType.type_1;

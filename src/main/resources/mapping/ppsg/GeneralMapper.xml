@@ -7,9 +7,13 @@
 	    <result column="parent_id" property="parentId"/>
 	    <result column="parent_name" property="parentName"/>
 	    <result column="name" property="name"/>
+	    <result column="card_code" property="cardCode"/>
+	    <result column="card_name" property="cardName"/>
 	    <result column="level" property="level"/>
 	    <result column="gender_code" property="genderCode"/>
 	    <result column="gender_name" property="genderName"/>
+	    <result column="entourage_code" property="entourageCode"/>
+	    <result column="entourage_name" property="entourageName"/>
 	    <result column="country_code" property="countryCode"/>
 	    <result column="country_name" property="countryName"/>
 	    <result column="star_code" property="starCode"/>
@@ -31,9 +35,13 @@
 	    parent_id,
 	    parent_name,
 	    name,
+	    card_code,
+	    card_name,
 	    level,
 	    gender_code,
 	    gender_name,
+	    entourage_code,
+	    entourage_name,
 	    country_code,
 	    country_name,
 	    star_code,
@@ -56,9 +64,13 @@
 		    <if test="parentId != null"> and parent_id = #{parentId}</if>
 		    <if test="parentName != null"> and parent_name = #{parentName}</if>
 		    <if test="name != null"> and name = #{name}</if>
+		    <if test="cardCode != null"> and card_code = #{cardCode}</if>
+		    <if test="cardName != null"> and card_name = #{cardName}</if>
 		    <if test="level != null"> and level = #{level}</if>
 		    <if test="genderCode != null"> and gender_code = #{genderCode}</if>
 		    <if test="genderName != null"> and gender_name = #{genderName}</if>
+		    <if test="entourageCode != null"> and entourage_code = #{entourageCode}</if>
+		    <if test="entourageName != null"> and entourage_name = #{entourageName}</if>
 		    <if test="countryCode != null"> and country_code = #{countryCode}</if>
 		    <if test="countryName != null"> and country_name = #{countryName}</if>
 		    <if test="starCode != null"> and star_code = #{starCode}</if>
@@ -122,9 +134,13 @@
 			<if test="parentId != null">parent_id,</if>
 			<if test="parentName != null">parent_name,</if>
 			<if test="name != null">name,</if>
+			<if test="cardCode != null">card_code,</if>
+			<if test="cardName != null">card_name,</if>
 			<if test="level != null">level,</if>
 			<if test="genderCode != null">gender_code,</if>
 			<if test="genderName != null">gender_name,</if>
+			<if test="entourageCode != null">entourage_code,</if>
+			<if test="entourageName != null">entourage_name,</if>
 			<if test="countryCode != null">country_code,</if>
 			<if test="countryName != null">country_name,</if>
 			<if test="starCode != null">star_code,</if>
@@ -144,9 +160,13 @@
 		    <if test="parentId != null">#{parentId},</if>
 		    <if test="parentName != null">#{parentName},</if>
 		    <if test="name != null">#{name},</if>
+		    <if test="cardCode != null">#{cardCode},</if>
+		    <if test="cardName != null">#{cardName},</if>
 		    <if test="level != null">#{level},</if>
 		    <if test="genderCode != null">#{genderCode},</if>
 		    <if test="genderName != null">#{genderName},</if>
+		    <if test="entourageCode != null">#{entourageCode},</if>
+		    <if test="entourageName != null">#{entourageName},</if>
 		    <if test="countryCode != null">#{countryCode},</if>
 		    <if test="countryName != null">#{countryName},</if>
 		    <if test="starCode != null">#{starCode},</if>
@@ -170,9 +190,13 @@
 			<if test="parentId != null">parent_id = #{parentId},</if>
 			<if test="parentName != null">parent_name = #{parentName},</if>
 			<if test="name != null">name = #{name},</if>
+			<if test="cardCode != null">card_code = #{cardCode},</if>
+			<if test="cardName != null">card_name = #{cardName},</if>
 			<if test="level != null">level = #{level},</if>
 			<if test="genderCode != null">gender_code = #{genderCode},</if>
 			<if test="genderName != null">gender_name = #{genderName},</if>
+			<if test="entourageCode != null">entourage_code = #{entourageCode},</if>
+			<if test="entourageName != null">entourage_name = #{entourageName},</if>
 			<if test="countryCode != null">country_code = #{countryCode},</if>
 			<if test="countryName != null">country_name = #{countryName},</if>
 			<if test="starCode != null">star_code = #{starCode},</if>

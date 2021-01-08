@@ -136,7 +136,7 @@ public interface GeneralEnum {
     /**
      * 分类
      */
-    enum DestinyType1 implements IDictItem {
+    /*enum DestinyType1 implements IDictItem {
         none(1, "无"),
         tu_po(2, "突破");
         DestinyType1(Integer value, String label) {
@@ -150,7 +150,7 @@ public interface GeneralEnum {
         DestinyType2(Integer value, String label) {
             StaticDictPool.putDictItem(this, value, label);
         }
-    }
+    }*/
 
     /**
      * 武将类型
@@ -571,9 +571,19 @@ public interface GeneralEnum {
     }
 
     /**
-     *
+     * 命格类型
      */
-    enum Destiny implements IDictItem {
+    enum DestinyType implements IDictItem {
+        tu_po(1,"突破",540,330,585),
+        ni_ming_1(2,"逆命1",580,330,645),
+        ni_ming_2(3,"逆命2",490,360,735),
+        ni_ming_3(4,"逆命3",330,580,645),
+        ni_ming_4(5,"逆命4",450,460,645),
+        two_ni_ming(6,"二段逆命",988,654,1947),
+        ;
 
+        DestinyType(Integer value, String label, Integer force, Integer intellect, Integer troops) {
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap(MapKeys.force,force,MapKeys.intellect,intellect,MapKeys.troops,troops));
+        }
     }
 }

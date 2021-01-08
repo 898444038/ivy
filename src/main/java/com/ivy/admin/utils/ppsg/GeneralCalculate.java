@@ -415,9 +415,11 @@ public class GeneralCalculate {
     }
 
     public static GeneralThree calculateDestiny(General general, GeneralAnalog analog) {
-        int force = 330;
-        int intellect = 580;
-        int troops = 645;
+        GeneralEnum.DestinyType destinyType = IDictItem.getByValue(GeneralEnum.DestinyType.class, general.getDestinyCode());
+        Map<String,Object> params = destinyType.params();
+        int force = MapUtils.get(MapKeys.force,params);
+        int intellect = MapUtils.get(MapKeys.intellect,params);
+        int troops = MapUtils.get(MapKeys.troops,params);
         GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_18;
         GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
         setCombat(three,force,intellect,troops);

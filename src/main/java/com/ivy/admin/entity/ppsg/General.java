@@ -139,14 +139,6 @@ public class General implements Serializable {
     public General() {
     }
 
-//    public GeneralThree getBaseThree() {
-//        return baseThree;
-//    }
-//
-//    public void setBaseThree(GeneralThree baseThree) {
-//        this.baseThree = baseThree;
-//    }
-
     public String getEntourageName() {
         return entourageName;
     }

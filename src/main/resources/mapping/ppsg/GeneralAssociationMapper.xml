@@ -5,6 +5,8 @@
 	<resultMap id="baseResultMap" type="com.ivy.admin.entity.ppsg.GeneralAssociation">
 	    <result column="id" property="id"/>
 	    <result column="name" property="name"/>
+		<result column="parent_id" property="parentId"/>
+		<result column="parent_name" property="parentName"/>
 	    <result column="general_id" property="generalId"/>
 	    <result column="general_name" property="generalName"/>
 	    <result column="rate" property="rate"/>
@@ -13,6 +15,8 @@
 	<sql id="baseColumn">
 	    id,
 	    name,
+	    parent_id,
+	    parent_name,
 	    general_id,
 	    general_name,
 	    rate
@@ -22,6 +26,8 @@
 		<where>
 		    <if test="id != null"> and id = #{id}</if>
 		    <if test="name != null"> and name = #{name}</if>
+			<if test="parentId != null"> and parent_id = #{parentId}</if>
+			<if test="parentName != null"> and parent_name = #{parentName}</if>
 		    <if test="generalId != null"> and general_id = #{generalId}</if>
 		    <if test="generalName != null"> and general_name = #{generalName}</if>
 		    <if test="rate != null"> and rate = #{rate}</if>
@@ -72,12 +78,16 @@
 		insert into ppsg_general_association
 		<trim prefix="(" suffix=")" suffixOverrides="," >
 			<if test="name != null">name,</if>
+			<if test="parentId != null">parent_id,</if>
+			<if test="parentName != null">parent_name,</if>
 			<if test="generalId != null">general_id,</if>
 			<if test="generalName != null">general_name,</if>
 			<if test="rate != null">rate,</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides="," >
 		    <if test="name != null">#{name},</if>
+			<if test="parentId != null">#{parentId},</if>
+			<if test="parentName != null">#{parentName},</if>
 		    <if test="generalId != null">#{generalId},</if>
 		    <if test="generalName != null">#{generalName},</if>
 		    <if test="rate != null">#{rate},</if>
@@ -88,6 +98,8 @@
 		update ppsg_general_association
 		<set>
 			<if test="name != null">name = #{name},</if>
+			<if test="parentId != null">parent_id = #{parentId},</if>
+			<if test="parentName != null">parent_name = #{parentName},</if>
 			<if test="generalId != null">general_id = #{generalId},</if>
 			<if test="generalName != null">general_name = #{generalName},</if>
 			<if test="rate != null">rate = #{rate},</if>
@@ -100,4 +112,8 @@
 		where id = #{id}
 	</delete>
 
+	<delete id="deleteByGeneralId" parameterType="java.lang.Long">
+		delete from ppsg_general_association
+		where general_id = #{id}
+	</delete>
 </mapper>

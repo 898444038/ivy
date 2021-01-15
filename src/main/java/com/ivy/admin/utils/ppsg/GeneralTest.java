@@ -85,12 +85,12 @@ public class GeneralTest {
 
         //联协
         List<GeneralAssociation> associationList = new ArrayList<>();
-        associationList.add(new GeneralAssociation("旷世奇才",general_zhugeliang.value().longValue(),general_zhugeliang.label(),0.25));
-        associationList.add(new GeneralAssociation("的卢误主",general_liubei.value().longValue(),general_liubei.label(),0.25));
-        associationList.add(new GeneralAssociation("荐而不用",general_lusu.value().longValue(),general_lusu.label(),0.25));
-        associationList.add(new GeneralAssociation("蜕羽成华",general_huangyueying.value().longValue(),general_huangyueying.label(),0.25));
-        associationList.add(new GeneralAssociation("心服口服",general_zhangfei.value().longValue(),general_zhangfei.label(),0.25));
-        associationList.add(new GeneralAssociation("意气相投",general_fazheng.value().longValue(),general_fazheng.label(),0.25));
+//        associationList.add(new GeneralAssociation("旷世奇才",general_zhugeliang.value().longValue(),general_zhugeliang.label(),0.25));
+//        associationList.add(new GeneralAssociation("的卢误主",general_liubei.value().longValue(),general_liubei.label(),0.25));
+//        associationList.add(new GeneralAssociation("荐而不用",general_lusu.value().longValue(),general_lusu.label(),0.25));
+//        associationList.add(new GeneralAssociation("蜕羽成华",general_huangyueying.value().longValue(),general_huangyueying.label(),0.25));
+//        associationList.add(new GeneralAssociation("心服口服",general_zhangfei.value().longValue(),general_zhangfei.label(),0.25));
+//        associationList.add(new GeneralAssociation("意气相投",general_fazheng.value().longValue(),general_fazheng.label(),0.25));
         general.setAssociationList(associationList);
         //战器
         List<GeneralWeapon> weaponList = new ArrayList<>();

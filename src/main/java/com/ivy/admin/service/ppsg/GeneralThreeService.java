@@ -52,4 +52,5 @@ public interface GeneralThreeService {
 	 */
     int delete(Long id);
 
+    int deleteByGeneralId(Long id);
 }

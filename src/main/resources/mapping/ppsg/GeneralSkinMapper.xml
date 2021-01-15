@@ -17,7 +17,7 @@
 	    name,
 	    general_id,
 	    general_name,
-	    force,
+	    `force`,
 	    intellect,
 	    troops
 	</sql>
@@ -28,7 +28,7 @@
 		    <if test="name != null"> and name = #{name}</if>
 		    <if test="generalId != null"> and general_id = #{generalId}</if>
 		    <if test="generalName != null"> and general_name = #{generalName}</if>
-		    <if test="force != null"> and force = #{force}</if>
+		    <if test="force != null"> and `force` = #{force}</if>
 		    <if test="intellect != null"> and intellect = #{intellect}</if>
 		    <if test="troops != null"> and troops = #{troops}</if>
 		</where>
@@ -80,7 +80,7 @@
 			<if test="name != null">name,</if>
 			<if test="generalId != null">general_id,</if>
 			<if test="generalName != null">general_name,</if>
-			<if test="force != null">force,</if>
+			<if test="force != null">`force`,</if>
 			<if test="intellect != null">intellect,</if>
 			<if test="troops != null">troops,</if>
 		</trim>
@@ -100,7 +100,7 @@
 			<if test="name != null">name = #{name},</if>
 			<if test="generalId != null">general_id = #{generalId},</if>
 			<if test="generalName != null">general_name = #{generalName},</if>
-			<if test="force != null">force = #{force},</if>
+			<if test="force != null">`force` = #{force},</if>
 			<if test="intellect != null">intellect = #{intellect},</if>
 			<if test="troops != null">troops = #{troops},</if>
 		</set>
@@ -112,4 +112,8 @@
 		where id = #{id}
 	</delete>
 
+	<delete id="deleteByGeneralId" parameterType="java.lang.Long">
+		delete from ppsg_general_skin
+		where general_id = #{id}
+	</delete>
 </mapper>

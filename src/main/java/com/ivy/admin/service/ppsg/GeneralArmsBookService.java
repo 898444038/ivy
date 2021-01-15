@@ -52,4 +52,5 @@ public interface GeneralArmsBookService {
 	 */
     int delete(Long id);
 
+    int deleteByGeneralId(Long id);
 }

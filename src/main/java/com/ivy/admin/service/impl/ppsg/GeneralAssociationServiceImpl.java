@@ -83,4 +83,9 @@ public class GeneralAssociationServiceImpl implements GeneralAssociationService 
     public int delete(Long id) {
         return generalAssociationMapper.delete(id);
     }
+
+    @Override
+    public int deleteByGeneralId(Long id) {
+        return generalAssociationMapper.deleteByGeneralId(id);
+    }
 }

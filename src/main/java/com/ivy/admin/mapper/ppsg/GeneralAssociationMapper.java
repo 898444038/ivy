@@ -61,4 +61,6 @@ public interface GeneralAssociationMapper {
     @TargetDataSource("dataSource1")
     int delete(Long id);
 
+	@TargetDataSource("dataSource1")
+    int deleteByGeneralId(Long id);
 }

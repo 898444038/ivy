@@ -83,4 +83,9 @@ public class GeneralWeaponServiceImpl implements GeneralWeaponService {
     public int delete(Long id) {
         return generalWeaponMapper.delete(id);
     }
+
+    @Override
+    public int deleteByGeneralId(Long id) {
+        return generalWeaponMapper.deleteByGeneralId(id);
+    }
 }

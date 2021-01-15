@@ -83,4 +83,9 @@ public class GeneralThreeServiceImpl implements GeneralThreeService {
     public int delete(Long id) {
         return generalThreeMapper.delete(id);
     }
+
+    @Override
+    public int deleteByGeneralId(Long id) {
+        return generalThreeMapper.deleteByGeneralId(id);
+    }
 }

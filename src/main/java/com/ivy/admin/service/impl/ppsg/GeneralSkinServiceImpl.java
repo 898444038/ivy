@@ -83,4 +83,9 @@ public class GeneralSkinServiceImpl implements GeneralSkinService {
     public int delete(Long id) {
         return generalSkinMapper.delete(id);
     }
+
+    @Override
+    public int deleteByGeneralId(Long id) {
+        return generalSkinMapper.deleteByGeneralId(id);
+    }
 }

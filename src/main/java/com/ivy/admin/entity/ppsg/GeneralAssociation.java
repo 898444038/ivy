@@ -19,6 +19,14 @@ public class GeneralAssociation {
     private String name;
 
     @Column
+    @Comment("武将4主键")
+    private Long parentId;
+
+    @Column
+    @Comment("武将4名称")
+    private String parentName;
+
+    @Column
     @Comment("武将主键")
     private Long generalId;
 
@@ -32,11 +40,26 @@ public class GeneralAssociation {
 
     public GeneralAssociation() {}
 
-    public GeneralAssociation(String name, Long generalId, String generalName, Double rate) {
+    public GeneralAssociation(String name, Long parentId, String parentName, Double rate) {
         this.name = name;
-        this.generalId = generalId;
-        this.generalName = generalName;
+        this.parentId = parentId;
+        this.parentName = parentName;
         this.rate = rate;
+    }
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 
     public Long getId() {

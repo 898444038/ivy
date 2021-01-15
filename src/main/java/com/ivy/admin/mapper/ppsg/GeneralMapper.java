@@ -5,6 +5,8 @@ import com.ivy.admin.entity.ppsg.General;
 
 import org.apache.ibatis.annotations.Mapper;
 import com.ivy.system.config.datasource.TargetDataSource;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -61,4 +63,6 @@ public interface GeneralMapper {
     @TargetDataSource("dataSource1")
     int delete(Long id);
 
+	@TargetDataSource("dataSource1")
+	GeneralVo selectByName(@Param("name") String name);
 }

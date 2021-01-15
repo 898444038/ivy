@@ -4,12 +4,9 @@ import com.ivy.admin.entity.ppsg.General;
 import com.ivy.admin.entity.ppsg.GeneralAnalog;
 import com.ivy.admin.entity.ppsg.GeneralThree;
 import com.ivy.admin.enums.ppsg.GeneralEnum;
-import com.ivy.system.enums.IDictItem;
-import com.sun.javafx.collections.MappingChange;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class GeneralUtils {
 
@@ -32,10 +29,10 @@ public class GeneralUtils {
         general.getThreeList().add(three1);
 
         //异化基础三维
-        GeneralEnum.ThreeCirclesType type_2 = GeneralEnum.ThreeCirclesType.type_2;
-        GeneralThree three2 = new GeneralThree(general.getId(),type_2.value(),type_2.label(),forcex,intellectx,troopsx);
-        general.getThreeList().add(three2);
         if (GeneralEnum.CardType.yi_hua.value().equals(general.getCardCode())){
+            GeneralEnum.ThreeCirclesType type_2 = GeneralEnum.ThreeCirclesType.type_2;
+            GeneralThree three2 = new GeneralThree(general.getId(),type_2.value(),type_2.label(),forcex,intellectx,troopsx);
+            general.getThreeList().add(three2);
             //异化满级基础三维
             threeList.add(GeneralCalculate.calculateLevel(general,analog));
         }else{

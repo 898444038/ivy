@@ -52,4 +52,5 @@ public interface GeneralService {
 	 */
     int delete(Long id);
 
+	GeneralVo selectByName(String name);
 }

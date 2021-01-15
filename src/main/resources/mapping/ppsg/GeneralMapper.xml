@@ -30,6 +30,34 @@
 	    <result column="del_flag" property="delFlag"/>
 	</resultMap>
 
+	<resultMap id="baseVoResultMap" type="com.ivy.admin.vo.ppsg.GeneralVo">
+		<result column="id" property="id"/>
+		<result column="parent_id" property="parentId"/>
+		<result column="parent_name" property="parentName"/>
+		<result column="name" property="name"/>
+		<result column="card_code" property="cardCode"/>
+		<result column="card_name" property="cardName"/>
+		<result column="level" property="level"/>
+		<result column="gender_code" property="genderCode"/>
+		<result column="gender_name" property="genderName"/>
+		<result column="entourage_code" property="entourageCode"/>
+		<result column="entourage_name" property="entourageName"/>
+		<result column="country_code" property="countryCode"/>
+		<result column="country_name" property="countryName"/>
+		<result column="star_code" property="starCode"/>
+		<result column="star_name" property="starName"/>
+		<result column="arms_code" property="armsCode"/>
+		<result column="arms_name" property="armsName"/>
+		<result column="type_code" property="typeCode"/>
+		<result column="type_name" property="typeName"/>
+		<result column="category_code" property="categoryCode"/>
+		<result column="category_name" property="categoryName"/>
+		<result column="destiny_code" property="destinyCode"/>
+		<result column="destiny_name" property="destinyName"/>
+		<result column="enable_flag" property="enableFlag"/>
+		<result column="del_flag" property="delFlag"/>
+	</resultMap>
+
 	<sql id="baseColumn">
 	    id,
 	    parent_id,
@@ -121,6 +149,12 @@
         <include refid="baseSort"></include>
 	</select>
 
+	<select id="selectByName" resultMap="baseVoResultMap">
+		SELECT <include refid="baseColumn"></include>
+		from ppsg_general
+		where name = #{name}
+	</select>
+
 	<select id="selectOne" resultMap="baseResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralVo">
 		SELECT <include refid="baseColumn"></include>
 		from ppsg_general
@@ -128,7 +162,7 @@
         <include refid="baseSort"></include>
 	</select>
 
-	<insert id="insert" parameterType="com.ivy.admin.entity.ppsg.General">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ivy.admin.entity.ppsg.General">
 		insert into ppsg_general
 		<trim prefix="(" suffix=")" suffixOverrides="," >
 			<if test="parentId != null">parent_id,</if>

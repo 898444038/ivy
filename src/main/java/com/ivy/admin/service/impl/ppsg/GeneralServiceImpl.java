@@ -83,4 +83,9 @@ public class GeneralServiceImpl implements GeneralService {
     public int delete(Long id) {
         return generalMapper.delete(id);
     }
+
+    @Override
+    public GeneralVo selectByName(String name) {
+        return generalMapper.selectByName(name);
+    }
 }

@@ -31,7 +31,7 @@ public class General implements Serializable {
 
     @Column
     @Comment("卡片编码")
-    private Integer cardCode;
+    private Integer cardCode;//异化、非异化
     @Column
     @Comment("卡片名称")
     private String cardName;

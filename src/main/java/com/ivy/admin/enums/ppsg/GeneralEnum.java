@@ -5,6 +5,9 @@ import com.ivy.admin.utils.ppsg.MapUtils;
 import com.ivy.system.enums.IDictItem;
 import com.ivy.system.enums.StaticDictPool;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public interface GeneralEnum {
@@ -574,16 +577,100 @@ public interface GeneralEnum {
      * 命格类型
      */
     enum DestinyType implements IDictItem {
-        tu_po(1,"突破",540,330,585),
-        ni_ming_1(2,"逆命1",580,330,645),
-        ni_ming_2(3,"逆命2",490,360,735),
-        ni_ming_3(4,"逆命3",330,580,645),
-        ni_ming_4(5,"逆命4",450,460,645),
-        two_ni_ming(6,"二段逆命",988,654,1947),
+        tu_po(1,"突破 (540/330/585)",540,330,585),
+        ni_ming_1(2,"逆命1 (580/330/645)",580,330,645),
+        ni_ming_2(3,"逆命2 (490/360/735)",490,360,735),
+        ni_ming_3(4,"逆命3 (330/580/645)",330,580,645),
+        ni_ming_4(5,"逆命4 (450/460/645)",450,460,645),
+        two_ni_ming_1(6,"二段逆命1 (988/654/1947)",988,654,1947),
+        two_ni_ming_2(7,"二段逆命2 (714/932/1947)",714,932,1947),
         ;
 
         DestinyType(Integer value, String label, Integer force, Integer intellect, Integer troops) {
             StaticDictPool.putDictItem(this, value, label,MapUtils.toMap(MapKeys.force,force,MapKeys.intellect,intellect,MapKeys.troops,troops));
         }
+    }
+
+    public static Map<String,List<Map<String,Object>>> getDic(String name){
+        Map<String,List<Map<String,Object>>> data = new HashMap<>();
+        String[] dicArr = name.split(",");
+        Map<String,Object> map = null;
+        List<Map<String,Object>> mapList = null;
+        for(String dic : dicArr){
+            mapList = new ArrayList<>();
+            if("General4".equals(dic)){
+                for (GeneralEnum.General4 item : GeneralEnum.General4.values()){
+                    map = new HashMap<>();
+                    map.put("label",item.label());
+                    map.put("value",item.value());
+                    mapList.add(map);
+                }
+            }else if("Gender".equals(dic)){
+                for (GeneralEnum.Gender item : GeneralEnum.Gender.values()){
+                    map = new HashMap<>();
+                    map.put("label",item.label());
+                    map.put("value",item.value());
+                    mapList.add(map);
+                }
+            }else if("Country".equals(dic)){
+                for (GeneralEnum.Country item : GeneralEnum.Country.values()){
+                    map = new HashMap<>();
+                    map.put("label",item.label());
+                    map.put("value",item.value());
+                    mapList.add(map);
+                }
+            }else if("Star".equals(dic)){
+                for (GeneralEnum.Star item : GeneralEnum.Star.values()){
+                    map = new HashMap<>();
+                    map.put("label",item.label());
+                    map.put("value",item.value());
+                    mapList.add(map);
+                }
+            }else if("Arms".equals(dic)){
+                for (GeneralEnum.Arms item : GeneralEnum.Arms.values()){
+                    map = new HashMap<>();
+                    map.put("label",item.label());
+                    map.put("value",item.value());
+                    mapList.add(map);
+                }
+            }else if("GeneralsType".equals(dic)){
+                for (GeneralEnum.GeneralsType item : GeneralEnum.GeneralsType.values()){
+                    map = new HashMap<>();
+                    map.put("label",item.label());
+                    map.put("value",item.value());
+                    mapList.add(map);
+                }
+            }else if("Category".equals(dic)){
+                for (GeneralEnum.Category item : GeneralEnum.Category.values()){
+                    map = new HashMap<>();
+                    map.put("label",item.label());
+                    map.put("value",item.value());
+                    mapList.add(map);
+                }
+            }else if("DestinyType".equals(dic)){
+                for (GeneralEnum.DestinyType item : GeneralEnum.DestinyType.values()){
+                    map = new HashMap<>();
+                    map.put("label",item.label());
+                    map.put("value",item.value());
+                    mapList.add(map);
+                }
+            }else if("Weapon".equals(dic)){
+                for (GeneralEnum.Weapon item : GeneralEnum.Weapon.values()){
+                    map = new HashMap<>();
+                    map.put("label",item.label());
+                    map.put("value",item.value());
+                    mapList.add(map);
+                }
+            }else if("ArmsPosition".equals(dic)){
+                for (GeneralEnum.ArmsPosition item : GeneralEnum.ArmsPosition.values()){
+                    map = new HashMap<>();
+                    map.put("label",item.label());
+                    map.put("value",item.value());
+                    mapList.add(map);
+                }
+            }
+            data.put(dic,mapList);
+        }
+        return data;
     }
 }

@@ -52,4 +52,5 @@ public interface GeneralSkinService {
 	 */
     int delete(Long id);
 
+    int deleteByGeneralId(Long id);
 }

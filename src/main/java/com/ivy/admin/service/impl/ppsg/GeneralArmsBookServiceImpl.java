@@ -83,4 +83,9 @@ public class GeneralArmsBookServiceImpl implements GeneralArmsBookService {
     public int delete(Long id) {
         return generalArmsBookMapper.delete(id);
     }
+
+    @Override
+    public int deleteByGeneralId(Long id) {
+        return generalArmsBookMapper.deleteByGeneralId(id);
+    }
 }

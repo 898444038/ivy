@@ -52,4 +52,5 @@ public interface GeneralAssociationService {
 	 */
     int delete(Long id);
 
+    int deleteByGeneralId(Long id);
 }

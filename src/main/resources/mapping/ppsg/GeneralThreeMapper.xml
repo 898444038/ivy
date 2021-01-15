@@ -24,7 +24,7 @@
 	    general_id,
 	    code,
 	    name,
-	    force,
+	    `force`,
 	    intellect,
 	    troops,
 	    combat,
@@ -42,7 +42,7 @@
 		    <if test="generalId != null"> and general_id = #{generalId}</if>
 		    <if test="code != null"> and code = #{code}</if>
 		    <if test="name != null"> and name = #{name}</if>
-		    <if test="force != null"> and force = #{force}</if>
+		    <if test="force != null"> and `force` = #{force}</if>
 		    <if test="intellect != null"> and intellect = #{intellect}</if>
 		    <if test="troops != null"> and troops = #{troops}</if>
 		    <if test="combat != null"> and combat = #{combat}</if>
@@ -101,7 +101,7 @@
 			<if test="generalId != null">general_id,</if>
 			<if test="code != null">code,</if>
 			<if test="name != null">name,</if>
-			<if test="force != null">force,</if>
+			<if test="force != null">`force`,</if>
 			<if test="intellect != null">intellect,</if>
 			<if test="troops != null">troops,</if>
 			<if test="combat != null">combat,</if>
@@ -135,7 +135,7 @@
 			<if test="generalId != null">general_id = #{generalId},</if>
 			<if test="code != null">code = #{code},</if>
 			<if test="name != null">name = #{name},</if>
-			<if test="force != null">force = #{force},</if>
+			<if test="force != null">`force` = #{force},</if>
 			<if test="intellect != null">intellect = #{intellect},</if>
 			<if test="troops != null">troops = #{troops},</if>
 			<if test="combat != null">combat = #{combat},</if>
@@ -154,4 +154,8 @@
 		where id = #{id}
 	</delete>
 
+	<delete id="deleteByGeneralId" parameterType="java.lang.Long">
+		delete from ppsg_general_three
+		where general_id = #{id}
+	</delete>
 </mapper>

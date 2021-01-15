@@ -52,4 +52,5 @@ public interface GeneralWeaponService {
 	 */
     int delete(Long id);
 
+    int deleteByGeneralId(Long id);
 }

@@ -148,4 +148,8 @@
 		where id = #{id}
 	</delete>
 
+	<delete id="deleteByGeneralId" parameterType="java.lang.Long">
+		delete from ppsg_general_arms_book
+		where general_id = #{id}
+	</delete>
 </mapper>

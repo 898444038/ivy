@@ -4,6 +4,7 @@ import com.ivy.admin.enums.ppsg.GeneralEnum;
 
 public class GeneralAnalog {
 
+    private String ids;//指定上阵武将
     public static final int minLevel = 1;
     public static final int maxLevel = 120;
     private int currLevel;
@@ -11,6 +12,14 @@ public class GeneralAnalog {
     private GeneralEnum.Embattle embattle = GeneralEnum.Embattle.long_fei;
 
     public GeneralAnalog() {
+    }
+
+    public String getIds() {
+        return ids;
+    }
+
+    public void setIds(String ids) {
+        this.ids = ids;
     }
 
     public static int getMinLevel() {

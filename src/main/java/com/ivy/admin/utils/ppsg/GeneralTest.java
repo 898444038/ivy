@@ -121,7 +121,7 @@ public class GeneralTest {
         GeneralSkin generalSkin = new GeneralSkin("星火燎原",id,name,30,30,80);
         general.setGeneralSkin(generalSkin);
         //三维属性：武智兵
-        GeneralUtils.calculateThree(general,analog,force,intellect,troops,forcex,intellectx,troopsx);
+        GeneralUtils.calculateThree(general,analog);
 
         general.setDelFlag(false);
         general.setEnableFlag(true);

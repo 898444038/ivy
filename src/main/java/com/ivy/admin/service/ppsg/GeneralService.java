@@ -23,6 +23,7 @@ public interface GeneralService {
 	 * @date: 2020-12-30
 	 */
     List<General> selectList(GeneralVo generalVo);
+    List<General> selectDetailList(GeneralVo generalVo);
 
 	/**
 	 * 查询详情
@@ -53,4 +54,6 @@ public interface GeneralService {
     int delete(Long id);
 
 	GeneralVo selectByName(String name);
+
+
 }

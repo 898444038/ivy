@@ -30,6 +30,30 @@ public class General implements Serializable {
     private String name;
 
     @Column
+    @Comment("武力")
+    private Integer force;
+
+    @Column
+    @Comment("智力")
+    private Integer intellect;
+
+    @Column
+    @Comment("兵力")
+    private Integer troops;
+
+    @Column
+    @Comment("异化武力")
+    private Integer forcex;
+
+    @Column
+    @Comment("异化智力")
+    private Integer intellectx;
+
+    @Column
+    @Comment("异化兵力")
+    private Integer troopsx;
+
+    @Column
     @Comment("卡片编码")
     private Integer cardCode;//异化、非异化
     @Column
@@ -137,6 +161,54 @@ public class General implements Serializable {
 //    private GeneralThree baseThree;
 
     public General() {
+    }
+
+    public Integer getForce() {
+        return force;
+    }
+
+    public void setForce(Integer force) {
+        this.force = force;
+    }
+
+    public Integer getIntellect() {
+        return intellect;
+    }
+
+    public void setIntellect(Integer intellect) {
+        this.intellect = intellect;
+    }
+
+    public Integer getTroops() {
+        return troops;
+    }
+
+    public void setTroops(Integer troops) {
+        this.troops = troops;
+    }
+
+    public Integer getForcex() {
+        return forcex;
+    }
+
+    public void setForcex(Integer forcex) {
+        this.forcex = forcex;
+    }
+
+    public Integer getIntellectx() {
+        return intellectx;
+    }
+
+    public void setIntellectx(Integer intellectx) {
+        this.intellectx = intellectx;
+    }
+
+    public Integer getTroopsx() {
+        return troopsx;
+    }
+
+    public void setTroopsx(Integer troopsx) {
+        this.troopsx = troopsx;
     }
 
     public String getEntourageName() {

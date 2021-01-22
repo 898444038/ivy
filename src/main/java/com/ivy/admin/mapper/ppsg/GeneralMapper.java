@@ -30,6 +30,8 @@ public interface GeneralMapper {
 	 */
     @TargetDataSource("dataSource1")
     List<General> selectList(GeneralVo generalVo);
+    /*@TargetDataSource("dataSource1")
+    List<General> selectDetailList(GeneralVo generalVo);*/
 
 	/**
 	 * 查询详情

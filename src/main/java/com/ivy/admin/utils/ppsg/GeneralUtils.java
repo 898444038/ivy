@@ -19,7 +19,14 @@ public class GeneralUtils {
      * @param general
      * @return
      */
-    public static List<GeneralThree> calculateThree(General general, GeneralAnalog analog, Integer force, Integer intellect, Integer troops, Integer forcex, Integer intellectx, Integer troopsx) {
+    public static List<GeneralThree> calculateThree(General general, GeneralAnalog analog) {
+        Integer force = general.getForce();
+        Integer intellect = general.getIntellect();
+        Integer troops = general.getTroops();
+        Integer forcex = general.getForcex();
+        Integer intellectx = general.getIntellectx();
+        Integer troopsx = general.getTroopsx();
+
         List<GeneralThree> threeList = new ArrayList<>();
         general.setThreeList(threeList);
 

@@ -96,7 +96,8 @@ public class GeneralCalculate {
         int baseIntellect = baseThree.getIntellect();
         int baseTroops = baseThree.getTroops();
 
-        int level = analog.getCurrLevel() > GeneralAnalog.maxLevel ? GeneralAnalog.maxLevel : analog.getCurrLevel() - GeneralAnalog.minLevel;
+        //int level = analog.getCurrLevel() > GeneralAnalog.maxLevel ? GeneralAnalog.maxLevel : analog.getCurrLevel() - GeneralAnalog.minLevel;
+        int level = GeneralAnalog.maxLevel - GeneralAnalog.minLevel;
         int force = baseForce + growForce * level;
         int intellect = baseIntellect + growIntellect * level;
         int troops = baseTroops + growTroops * level;

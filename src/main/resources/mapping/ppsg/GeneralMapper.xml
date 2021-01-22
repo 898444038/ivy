@@ -7,6 +7,12 @@
 	    <result column="parent_id" property="parentId"/>
 	    <result column="parent_name" property="parentName"/>
 	    <result column="name" property="name"/>
+		<result column="force" property="force"/>
+		<result column="intellect" property="intellect"/>
+		<result column="troops" property="troops"/>
+		<result column="forcex" property="forcex"/>
+		<result column="intellectx" property="intellectx"/>
+		<result column="troopsx" property="troopsx"/>
 	    <result column="card_code" property="cardCode"/>
 	    <result column="card_name" property="cardName"/>
 	    <result column="level" property="level"/>
@@ -35,6 +41,12 @@
 		<result column="parent_id" property="parentId"/>
 		<result column="parent_name" property="parentName"/>
 		<result column="name" property="name"/>
+		<result column="force" property="force"/>
+		<result column="intellect" property="intellect"/>
+		<result column="troops" property="troops"/>
+		<result column="forcex" property="forcex"/>
+		<result column="intellectx" property="intellectx"/>
+		<result column="troopsx" property="troopsx"/>
 		<result column="card_code" property="cardCode"/>
 		<result column="card_name" property="cardName"/>
 		<result column="level" property="level"/>
@@ -63,6 +75,12 @@
 	    parent_id,
 	    parent_name,
 	    name,
+	    `force`,
+	    intellect,
+	    troops,
+	    forcex,
+	    intellectx,
+	    troopsx,
 	    card_code,
 	    card_name,
 	    level,
@@ -92,6 +110,12 @@
 		    <if test="parentId != null"> and parent_id = #{parentId}</if>
 		    <if test="parentName != null"> and parent_name = #{parentName}</if>
 		    <if test="name != null"> and name = #{name}</if>
+			<if test="force != null"> and `force` = #{force}</if>
+			<if test="intellect != null"> and intellect = #{intellect}</if>
+			<if test="troops != null"> and troops = #{troops}</if>
+			<if test="forcex != null"> and forcex = #{forcex}</if>
+			<if test="intellectx != null"> and intellectx = #{intellectx}</if>
+			<if test="troopsx != null"> and troopsx = #{troopsx}</if>
 		    <if test="cardCode != null"> and card_code = #{cardCode}</if>
 		    <if test="cardName != null"> and card_name = #{cardName}</if>
 		    <if test="level != null"> and level = #{level}</if>
@@ -149,6 +173,13 @@
         <include refid="baseSort"></include>
 	</select>
 
+	<!--<select id="selectDetailList" resultMap="detailResultMap" parameterType="com.ivy.admin.vo.ppsg.GeneralVo">
+		SELECT <include refid="detailColumn"></include>
+		from ppsg_general
+		<include refid="detailCondition"></include>
+		<include refid="detailSort"></include>
+	</select>-->
+
 	<select id="selectByName" resultMap="baseVoResultMap">
 		SELECT <include refid="baseColumn"></include>
 		from ppsg_general
@@ -168,6 +199,12 @@
 			<if test="parentId != null">parent_id,</if>
 			<if test="parentName != null">parent_name,</if>
 			<if test="name != null">name,</if>
+			<if test="force != null">`force`,</if>
+			<if test="intellect != null">intellect,</if>
+			<if test="troops != null">troops,</if>
+			<if test="forcex != null">forcex,</if>
+			<if test="intellectx != null">intellectx,</if>
+			<if test="troopsx != null">troopsx,</if>
 			<if test="cardCode != null">card_code,</if>
 			<if test="cardName != null">card_name,</if>
 			<if test="level != null">level,</if>
@@ -194,6 +231,12 @@
 		    <if test="parentId != null">#{parentId},</if>
 		    <if test="parentName != null">#{parentName},</if>
 		    <if test="name != null">#{name},</if>
+			<if test="force != null">#{force},</if>
+			<if test="intellect != null">#{intellect},</if>
+			<if test="troops != null">#{troops},</if>
+			<if test="forcex != null">#{forcex},</if>
+			<if test="intellectx != null">#{intellectx},</if>
+			<if test="troopsx != null">#{troopsx},</if>
 		    <if test="cardCode != null">#{cardCode},</if>
 		    <if test="cardName != null">#{cardName},</if>
 		    <if test="level != null">#{level},</if>
@@ -224,6 +267,12 @@
 			<if test="parentId != null">parent_id = #{parentId},</if>
 			<if test="parentName != null">parent_name = #{parentName},</if>
 			<if test="name != null">name = #{name},</if>
+			<if test="force != null">`force` = #{force},</if>
+			<if test="intellect != null">intellect = #{intellect},</if>
+			<if test="troops != null">troops = #{troops},</if>
+			<if test="forcex != null">forcex = #{forcex},</if>
+			<if test="intellectx != null">intellectx = #{intellectx},</if>
+			<if test="troopsx != null">troopsx = #{troopsx},</if>
 			<if test="cardCode != null">card_code = #{cardCode},</if>
 			<if test="cardName != null">card_name = #{cardName},</if>
 			<if test="level != null">level = #{level},</if>

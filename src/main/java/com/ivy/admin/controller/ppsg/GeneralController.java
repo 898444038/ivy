@@ -1,5 +1,6 @@
 package com.ivy.admin.controller.ppsg;
 
+import com.github.benmanes.caffeine.cache.Cache;
 import com.ivy.admin.entity.ppsg.GeneralAnalog;
 import com.ivy.admin.entity.ppsg.GeneralArmsBook;
 import com.ivy.admin.entity.ppsg.GeneralAssociation;
@@ -21,6 +22,7 @@ import com.ivy.admin.entity.ppsg.General;
 
 import com.ivy.admin.utils.Pagination;
 import com.ivy.admin.utils.ResultMsg;
+import com.ivy.system.config.CacheKeys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.ivy.admin.aspect.log.Log;
@@ -37,7 +39,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/ppsg/general")
 public class GeneralController {
-
+    @Autowired
+    private Cache<String, Object> cache;
     @Autowired
     private GeneralService generalService;
     @Autowired
@@ -145,7 +148,7 @@ public class GeneralController {
             general.setGeneralSkin(generalSkin);
             generalSkinService.insert(generalSkin);
             //三维属性：武智兵
-            List<GeneralThree> threeList = GeneralUtils.calculateThree(general,analog,force,intellect,troops,forcex,intellectx,troopsx);
+            List<GeneralThree> threeList = GeneralUtils.calculateThree(general,analog);
             for(GeneralThree three : threeList){
                 generalThreeService.insert(three);
             }
@@ -154,6 +157,37 @@ public class GeneralController {
         }
         //System.out.println(general);
         return ResultMsg.success();
+    }
+
+    /**
+     *
+     */
+    @Log("ppsg.General")
+    @PostMapping("/updateAllThree")
+    public ResultMsg updateAllThree(){
+        try {
+            //全部
+            List<General> generalList = (List<General>) cache.get(CacheKeys.GENERALS_DETAIL_LIST, key -> getAllValue(key));
+            GeneralAnalog analog = new GeneralAnalog();
+            for (General general : generalList){
+                int e = generalThreeService.deleteByGeneralId(general.getId());
+                //三维属性：武智兵
+                List<GeneralThree> threeList = GeneralUtils.calculateThree(general,analog);
+                for(GeneralThree three : threeList){
+                    generalThreeService.insert(three);
+                }
+            }
+            return ResultMsg.success();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return ResultMsg.failed();
+    }
+
+    public Object getAllValue(String key){
+        GeneralVo generalVo = new GeneralVo();
+        generalVo.setDelFlag(false);
+        return generalService.selectDetailList(generalVo);
     }
 
     @Log("ppsg.General")

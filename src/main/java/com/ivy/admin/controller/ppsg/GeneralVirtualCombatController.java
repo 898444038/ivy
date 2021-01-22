@@ -4,12 +4,14 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.ivy.admin.aspect.log.Log;
 import com.ivy.admin.entity.ppsg.General;
 import com.ivy.admin.entity.ppsg.GeneralAnalog;
+import com.ivy.admin.entity.ppsg.GeneralResult;
 import com.ivy.admin.enums.ppsg.GeneralEnum;
 import com.ivy.admin.service.ppsg.GeneralArmsBookService;
 import com.ivy.admin.service.ppsg.GeneralAssociationService;
 import com.ivy.admin.service.ppsg.GeneralService;
 import com.ivy.admin.service.ppsg.GeneralSkinService;
 import com.ivy.admin.service.ppsg.GeneralThreeService;
+import com.ivy.admin.service.ppsg.GeneralVirtualCombatService;
 import com.ivy.admin.service.ppsg.GeneralWeaponService;
 import com.ivy.admin.utils.ResultMsg;
 import com.ivy.admin.vo.ppsg.GeneralVo;
@@ -50,6 +52,8 @@ public class GeneralVirtualCombatController {
     private GeneralSkinService generalSkinService;
     @Autowired
     private GeneralThreeService generalThreeService;
+    @Autowired
+    private GeneralVirtualCombatService generalVirtualCombatService;
 
     @Log("ppsg.General")
     @PostMapping("/list")
@@ -95,24 +99,9 @@ public class GeneralVirtualCombatController {
     public ResultMsg querys(){
         GeneralAnalog analog = new GeneralAnalog();
         analog.setIds("2,3,4,5,6");
-        String[] ids = analog.getIds().split(",");
-
-        List<General> allList = (List<General>) cache.get(CacheKeys.GENERALS_ALL_LIST,key -> getAllValue(key));
-        List<General> generalList = new ArrayList<>();
-        for (General general : allList){
-            for (String id : ids){
-                if(general.getId().toString().equals(id)){
-                    generalList.add(general);
-                }
-            }
-        }
-
-        return ResultMsg.success();
+        List<GeneralResult> resultList = generalVirtualCombatService.calculate(analog);
+        return ResultMsg.success(resultList);
     }
 
-    public Object getAllValue(String key){
-        GeneralVo generalVo = new GeneralVo();
-        generalVo.setDelFlag(false);
-        return generalService.selectList(generalVo);
-    }
+
 }

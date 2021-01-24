@@ -1,14 +1,8 @@
 package com.ivy.admin.service.impl.ppsg;
 
 import com.github.benmanes.caffeine.cache.Cache;
-import com.ivy.admin.entity.ppsg.General;
-import com.ivy.admin.entity.ppsg.GeneralAnalog;
-import com.ivy.admin.entity.ppsg.GeneralArmsBook;
-import com.ivy.admin.entity.ppsg.GeneralAssociation;
-import com.ivy.admin.entity.ppsg.GeneralResult;
-import com.ivy.admin.entity.ppsg.GeneralSkin;
-import com.ivy.admin.entity.ppsg.GeneralThree;
-import com.ivy.admin.entity.ppsg.GeneralWeapon;
+import com.ivy.admin.entity.ppsg.*;
+import com.ivy.admin.enums.ppsg.GeneralEnum;
 import com.ivy.admin.mapper.ppsg.GeneralArmsBookMapper;
 import com.ivy.admin.mapper.ppsg.GeneralAssociationMapper;
 import com.ivy.admin.mapper.ppsg.GeneralMapper;
@@ -88,15 +82,78 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
             return null;
         }
         GeneralResult result = new GeneralResult();
-        //兵符、战意
+        List<GeneralResultItem> itemList = new ArrayList<>();
+        // 兵符、战意
         // 总战力 = 武将1战力 + 武将2战力 + 武将3战力 + 武将4战力 + 武将5战力 + 工坊战力（10152）
         // 武将战力 =（总武力+总智力+总兵力）*2+ 命格被动战力 + 战器被动战力 + 阵法被动
         for (General general : generalList){
-            GeneralThree three = GeneralCalculate.getBaseMaxThree(general);//满级三维
-            System.out.println(general.getName()+" "+three.getName()+" "+three.getForce()+" "+three.getIntellect()+" "+three.getTroops());
-            System.out.println("------------------------------");
+            GeneralResultItem item = new GeneralResultItem();
+            item.setGeneralName(general.getName());
+            //满级三维
+            GeneralThree three = GeneralCalculate.getBaseMaxThree(general);
+            item.setF(three.getForce());
+            item.setI(three.getIntellect());
+            item.setT(three.getTroops());
+            print(general,three);
+            //科技三维
+            GeneralThree three5 = GeneralCalculate.getThree(general, GeneralEnum.ThreeCirclesType.type_5);
+            item.setF5(three5.getForce());
+            item.setI5(three5.getIntellect());
+            item.setT5(three5.getTroops());
+            print(general,three5);
+            //随从三维
+            //四圣石三维
+            GeneralThree three6 = GeneralCalculate.getThree(general, GeneralEnum.ThreeCirclesType.type_6);
+            item.setF6(three6.getForce());
+            item.setI6(three6.getIntellect());
+            item.setT6(three6.getTroops());
+            print(general,three6);
+            //战器三维
+            //兵种三维
+            //将魂三维
+            GeneralThree three15 = GeneralCalculate.getThree(general, GeneralEnum.ThreeCirclesType.type_15);
+            item.setF15(three15.getForce());
+            item.setI15(three15.getIntellect());
+            item.setT15(three15.getTroops());
+            print(general,three15);
+            //兵符三维
+            //战阵三维
+            GeneralThree three17 = GeneralCalculate.getThree(general, GeneralEnum.ThreeCirclesType.type_17);
+            item.setF17(three17.getForce());
+            item.setI17(three17.getIntellect());
+            item.setT17(three17.getTroops());
+            print(general,three17);
+            //战意三维
+            //命格三维
+            GeneralThree three18 = GeneralCalculate.getThree(general, GeneralEnum.ThreeCirclesType.type_18);
+            item.setF18(three18.getForce());
+            item.setI18(three18.getIntellect());
+            item.setT18(three18.getTroops());
+            print(general,three18);
+            //幻化三维
+            GeneralThree three19 = GeneralCalculate.getThree(general, GeneralEnum.ThreeCirclesType.type_19);
+            item.setF19(three19.getForce());
+            item.setI19(three19.getIntellect());
+            item.setT19(three19.getTroops());
+            print(general,three19);
+            //阵法三维
+            GeneralThree three20 = GeneralCalculate.getThree(general, GeneralEnum.ThreeCirclesType.type_20);
+            item.setF20(three20.getForce());
+            item.setI20(three20.getIntellect());
+            item.setT20(three20.getTroops());
+            print(general,three20);
+
+            itemList.add(item);
+            System.out.println("-----------------------");
         }
+
+        result.setTotalCombat(null);
+        result.setItemList(itemList);
         return result;
+    }
+
+    public static void print(General general,GeneralThree three){
+        System.out.println(general.getName()+" "+three.getName()+" "+three.getForce()+" "+three.getIntellect()+" "+three.getTroops());
     }
 
     public Object getAllValue(String key){

@@ -87,7 +87,10 @@ public class GeneralVirtualCombatController {
     @Log("ppsg.General")
     @PostMapping("/query")
     public ResultMsg query(@RequestBody GeneralAnalog analog){
-        return ResultMsg.success();
+        //GeneralAnalog analog = new GeneralAnalog();
+        analog.setIds("2,3,4,5,6");
+        List<GeneralResult> resultList = generalVirtualCombatService.calculate(analog);
+        return ResultMsg.success(resultList);
     }
 
     /**

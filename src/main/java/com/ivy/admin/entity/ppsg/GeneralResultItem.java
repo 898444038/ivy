@@ -25,6 +25,16 @@ public class GeneralResultItem {
     private Integer t6;//四圣石兵力
     private Integer c6;//四圣石战力
 
+    private Integer f7;//战器武力
+    private Integer i7;//战器智力
+    private Integer t7;//战器兵力
+    private Integer c7;//战器战力
+
+    private Integer f9;//兵种兵书武力
+    private Integer i9;//兵种兵书智力
+    private Integer t9;//兵种兵书兵力
+    private Integer c9;//兵种兵书战力
+
     private Integer f15;//将魂武力
     private Integer i15;//将魂智力
     private Integer t15;//将魂兵力
@@ -59,6 +69,38 @@ public class GeneralResultItem {
 
     public void setGeneralName(String generalName) {
         this.generalName = generalName;
+    }
+
+    public Integer getF9() {
+        return f9;
+    }
+
+    public void setF9(Integer f9) {
+        this.f9 = f9;
+    }
+
+    public Integer getI9() {
+        return i9;
+    }
+
+    public void setI9(Integer i9) {
+        this.i9 = i9;
+    }
+
+    public Integer getT9() {
+        return t9;
+    }
+
+    public void setT9(Integer t9) {
+        this.t9 = t9;
+    }
+
+    public Integer getC9() {
+        return c9;
+    }
+
+    public void setC9(Integer c9) {
+        this.c9 = c9;
     }
 
     public Integer getF() {
@@ -347,5 +389,37 @@ public class GeneralResultItem {
 
     public void setC20(Integer c20) {
         this.c20 = c20;
+    }
+
+    public Integer getF7() {
+        return f7;
+    }
+
+    public void setF7(Integer f7) {
+        this.f7 = f7;
+    }
+
+    public Integer getI7() {
+        return i7;
+    }
+
+    public void setI7(Integer i7) {
+        this.i7 = i7;
+    }
+
+    public Integer getT7() {
+        return t7;
+    }
+
+    public void setT7(Integer t7) {
+        this.t7 = t7;
+    }
+
+    public Integer getC7() {
+        return c7;
+    }
+
+    public void setC7(Integer c7) {
+        this.c7 = c7;
     }
 }

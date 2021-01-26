@@ -577,7 +577,7 @@ public interface GeneralEnum {
      * 命格类型
      */
     enum DestinyType implements IDictItem {
-        none(1,"无",0,0,0),
+        none(0,"无",0,0,0),
         tu_po(1,"突破 (540/330/585)",540,330,585),
         ni_ming_1(2,"逆命1 (580/330/645)",580,330,645),
         ni_ming_2(3,"逆命2 (490/360/735)",490,360,735),

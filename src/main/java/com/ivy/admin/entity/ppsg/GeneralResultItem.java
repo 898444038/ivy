@@ -60,6 +60,11 @@ public class GeneralResultItem {
     private Integer t20;//阵法兵力
     private Integer c20;//阵法战力
 
+    private Integer f22;//随从武力
+    private Integer i22;//随从智力
+    private Integer t22;//随从兵力
+    private Integer c22;//随从战力
+
     public GeneralResultItem() {
     }
 
@@ -69,6 +74,38 @@ public class GeneralResultItem {
 
     public void setGeneralName(String generalName) {
         this.generalName = generalName;
+    }
+
+    public Integer getF22() {
+        return f22;
+    }
+
+    public void setF22(Integer f22) {
+        this.f22 = f22;
+    }
+
+    public Integer getI22() {
+        return i22;
+    }
+
+    public void setI22(Integer i22) {
+        this.i22 = i22;
+    }
+
+    public Integer getT22() {
+        return t22;
+    }
+
+    public void setT22(Integer t22) {
+        this.t22 = t22;
+    }
+
+    public Integer getC22() {
+        return c22;
+    }
+
+    public void setC22(Integer c22) {
+        this.c22 = c22;
     }
 
     public Integer getF9() {

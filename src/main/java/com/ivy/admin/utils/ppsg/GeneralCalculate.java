@@ -429,9 +429,14 @@ public class GeneralCalculate {
 
     public static GeneralThree calculateSkin(General general, GeneralAnalog analog) {
         GeneralSkin generalSkin = general.getGeneralSkin();
-        int force = generalSkin.getForce();
-        int intellect = generalSkin.getIntellect();
-        int troops = generalSkin.getTroops();
+        int force = 0;
+        int intellect = 0;
+        int troops = 0;
+        if(generalSkin != null){
+            force = generalSkin.getForce();
+            intellect = generalSkin.getIntellect();
+            troops = generalSkin.getTroops();
+        }
         GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_19;
         GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
         setCombat(three,force,intellect,troops);

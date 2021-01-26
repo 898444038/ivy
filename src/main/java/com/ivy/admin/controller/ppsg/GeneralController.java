@@ -23,6 +23,7 @@ import com.ivy.admin.entity.ppsg.General;
 import com.ivy.admin.utils.Pagination;
 import com.ivy.admin.utils.ResultMsg;
 import com.ivy.system.config.CacheKeys;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.ivy.admin.aspect.log.Log;
@@ -140,13 +141,16 @@ public class GeneralController {
             general.setArmsBook(armsBook);
             generalArmsBookService.insert(armsBook);
             //幻化
-            generalSkin.setGeneralId(id);
-            generalSkin.setGeneralName(name);
-            generalSkin.setForce(30);
-            generalSkin.setIntellect(30);
-            generalSkin.setTroops(80);
-            general.setGeneralSkin(generalSkin);
-            generalSkinService.insert(generalSkin);
+            if(StringUtils.isNotBlank(generalSkin.getName())){
+                generalSkin.setGeneralId(id);
+                generalSkin.setGeneralName(name);
+                generalSkin.setForce(30);
+                generalSkin.setIntellect(30);
+                generalSkin.setTroops(80);
+                general.setGeneralSkin(generalSkin);
+                generalSkinService.insert(generalSkin);
+            }
+
             //三维属性：武智兵
             List<GeneralThree> threeList = GeneralUtils.calculateThree(general,analog);
             for(GeneralThree three : threeList){

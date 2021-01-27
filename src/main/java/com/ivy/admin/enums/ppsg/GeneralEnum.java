@@ -92,6 +92,8 @@ public interface GeneralEnum {
         type_25(25, "智随非联协三维"),
         type_26(26, "兵随联协三维"),
         type_27(27, "兵随非联协三维"),
+        type_28(28, "兵符三维"),
+        type_29(29, "兵符类型三维"),
         ;
         ThreeCirclesType(Integer value, String label) {
             StaticDictPool.putDictItem(this, value, label);
@@ -335,10 +337,15 @@ public interface GeneralEnum {
         allRate2(14 , "全属性加成11.6%" , 0 , 0.116),//4号位
         allRate3(15 , "全属性加成12.6%" , 0 , 0.126),//6号位
         ;
-        //
+        private Integer val;
+        private Double rate;
         SymbolsMainAttr(Integer value, String label,Integer val, Double rate) {
             StaticDictPool.putDictItem(this, value, label,MapUtils.toMap("val",val,"rate",rate));
+            this.val = val;
+            this.rate = rate;
         }
+        public Integer getVal() { return val; }
+        public Double getRate() { return rate; }
     }
 
 
@@ -367,10 +374,15 @@ public interface GeneralEnum {
         qunAll(13,"群雄全属性52",52,0d),
         qunAllRate(14,"群雄全属性加成7.5%",0,0.075),
         ;
-        //
+        private Integer val;
+        private Double rate;
         SymbolsSecondAttr(Integer value, String label,Integer val, Double rate) {
             StaticDictPool.putDictItem(this, value, label,MapUtils.toMap("val",val,"rate",rate));
+            this.val = val;
+            this.rate = rate;
         }
+        public Integer getVal() { return val; }
+        public Double getRate() { return rate; }
     }
 
     /**
@@ -382,7 +394,7 @@ public interface GeneralEnum {
         huo_feng(3,"火凤","魏国全属性加10%",0.1),
         tian_lang(4,"天狼","群雄全属性加10%",0.1),
 
-        xian_gui(5,"玄龟","枪兵全属性加10%",0.1),
+        xuan_gui(5,"玄龟","枪兵全属性加10%",0.1),
         xiang_ying(6,"翔鹰","弓兵全属性加10%",0.1),
         qi_lin(7,"麒麟","骑兵全属性加10%",0.1),
         qing_luan(8,"青鸾","女性全属性加10%",0.1),
@@ -396,9 +408,14 @@ public interface GeneralEnum {
         zhēng(14,"狰","枪兵全属性加12%",0.12),
         gǔ_diāo(15,"蛊雕","弓兵全属性加12%",0.12),
         ;
+        private Double rate;
         //
         SymbolsType(Integer value, String label,String desc,Double rate) {
             StaticDictPool.putDictItem(this, value, label,MapUtils.toMap("desc",desc,"rate",rate));
+            this.rate = rate;
+        }
+        public Double getRate() {
+            return rate;
         }
     }
 

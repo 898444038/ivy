@@ -86,15 +86,588 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
         //计算战意
         calculateWarpath(result,generalList);
         //计算兵符
+        calculateSymbolsType(result);
+        calculateSymbolsMain(result);
+        calculateSymbolsSecond(result);
 
+        addWarpathSymbols(result);
+
+        //吕布战器、吕姬有问题
         if(result != null){
             resultList.add(result);
         }
         return resultList;
     }
 
+    private void addWarpathSymbols(GeneralResult result) {
+        List<GeneralResultItem> itemList = result.getItemList();
+        for (GeneralResultItem item : itemList){
+            int f = ((Double)(item.getF29() + item.getF30() + item.getF31())).intValue();
+            int i = ((Double)(item.getI29() + item.getI30() + item.getI31())).intValue();
+            int t = ((Double)(item.getT29() + item.getT30() + item.getT31())).intValue();
+            item.setF28(f);
+            item.setI28(i);
+            item.setT28(t);
+            item.setC28((f+i+t)*2);
+
+            item.setForce(item.getForce() + item.getF21() + f);
+            item.setIntellect(item.getIntellect() + item.getI21() + i);
+            item.setTroops(item.getTroops() + item.getT21() + t);
+            item.setCombat((item.getForce()+item.getIntellect()+item.getTroops())*2);
+        }
+    }
+
+    private void calculateSymbolsSecond(GeneralResult result) {
+        List<GeneralResultItem> itemList = result.getItemList();
+        List<Map<String,Object>> mapList = new ArrayList<>();
+        for (GeneralEnum.SymbolsSecondAttr second : GeneralEnum.SymbolsSecondAttr.values()){
+            Map<String,Object> map = new HashMap<>();
+            int value = second.value();
+            int val = second.getVal();
+            double rate = second.getRate();
+            double f = 0; double i = 0; double t = 0;
+            if(value == 1){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    f0 += val * 6;
+                    f += f0;
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }else if(value == 3){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    i0 += val * 6;
+                    i += i0;
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }else if(value == 5){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    t0 += val * 6;
+                    t += t0;
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }else if(value == 7){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    if(GeneralEnum.Country.wu.label().equals(item.getCountryName())){
+                        f0 += val * 6; i0 += val * 6; t0 += val * 6;
+                        f += f0; i += i0; t += t0;
+                    }
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }else if(value == 9){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    if(GeneralEnum.Country.shu.label().equals(item.getCountryName())){
+                        f0 += val * 6; i0 += val * 6; t0 += val * 6;
+                        f += f0; i += i0; t += t0;
+                    }
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }else if(value == 11){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    if(GeneralEnum.Country.wei.label().equals(item.getCountryName())){
+                        f0 += val * 6; i0 += val * 6; t0 += val * 6;
+                        f += f0; i += i0; t += t0;
+                    }
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }else if(value == 13){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    if(GeneralEnum.Country.qun.label().equals(item.getCountryName())){
+                        f0 += val * 6; i0 += val * 6; t0 += val * 6;
+                        f += f0; i += i0; t += t0;
+                    }
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }
+
+            if(value == 2){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    f0 += item.getF() * rate * 6;
+                    f += f0;
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }else if(value == 4){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    i0 += item.getI() * rate * 6;
+                    i += i0;
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }else if(value == 6){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    t0 += item.getT() * rate * 6;
+                    t += t0;
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }else if(value == 8){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    if(GeneralEnum.Country.wu.label().equals(item.getCountryName())){
+                        f0 += item.getF() * rate * 6;
+                        i0 += item.getI() * rate * 6;
+                        t0 += item.getT() * rate * 6;
+                        f += f0; i += i0; t += t0;
+                    }
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }else if(value == 10){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    if(GeneralEnum.Country.shu.label().equals(item.getCountryName())){
+                        f0 += item.getF() * rate * 6;
+                        i0 += item.getI() * rate * 6;
+                        t0 += item.getT() * rate * 6;
+                        f += f0; i += i0; t += t0;
+                    }
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }else if(value == 12){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    if(GeneralEnum.Country.wei.label().equals(item.getCountryName())){
+                        f0 += item.getF() * rate * 6;
+                        i0 += item.getI() * rate * 6;
+                        t0 += item.getT() * rate * 6;
+                        f += f0; i += i0; t += t0;
+                    }
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }else if(value == 14){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    if(GeneralEnum.Country.qun.label().equals(item.getCountryName())){
+                        f0 += item.getF() * rate * 6;
+                        i0 += item.getI() * rate * 6;
+                        t0 += item.getT() * rate * 6;
+                        f += f0; i += i0; t += t0;
+                    }
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+            }
+            map.put("second",second);
+            map.put("f",f);
+            map.put("i",i);
+            map.put("t",t);
+            map.put("value",f+i+t);
+            mapList.add(map);
+        }
+        Collections.sort(mapList, new MapComparatorDoubleDesc());
+        for (GeneralResultItem item : itemList){
+            String name = item.getGeneralName();
+            double f = 0;
+            double i = 0;
+            double t = 0;
+            Map<String,Object> map1 = mapList.get(0);
+            f += (double) map1.get(name+"_f");
+            i += (double) map1.get(name+"_i");
+            t += (double) map1.get(name+"_t");
+            Map<String,Object> map2 = mapList.get(1);
+            f += (double) map2.get(name+"_f");
+            i += (double) map2.get(name+"_i");
+            t += (double) map2.get(name+"_t");
+            Map<String,Object> map3 = mapList.get(2);
+            f += (double) map3.get(name+"_f");
+            i += (double) map3.get(name+"_i");
+            t += (double) map3.get(name+"_t");
+            Map<String,Object> map4 = mapList.get(3);
+            f += (double) map4.get(name+"_f");
+            i += (double) map4.get(name+"_i");
+            t += (double) map4.get(name+"_t");
+            item.setF31(f);
+            item.setI31(i);
+            item.setT31(t);
+            item.setC31((f+i+t)*2);
+        }
+    }
+
+    private void calculateSymbolsMain(GeneralResult result) {
+        List<GeneralResultItem> itemList = result.getItemList();
+        int f1 = 0; int i1 = 0; int t1 = 0;
+        int f3 = 0; int i3 = 0; int t3 = 0;
+        int f5 = 0; int i5 = 0; int t5 = 0;
+        List<Map<String,Object>> mapList2 = new ArrayList<>();
+        List<Map<String,Object>> mapList4 = new ArrayList<>();
+        List<Map<String,Object>> mapList6 = new ArrayList<>();
+        for (GeneralEnum.SymbolsMainAttr main : GeneralEnum.SymbolsMainAttr.values()){
+            int val = main.value();
+            double rate = main.getRate();
+            Map<String,Object> map = new HashMap<>();
+            double f = 0; double i = 0; double t = 0;
+            if(val == 1){
+                f1 = GeneralEnum.SymbolsMainAttr.force.getVal();
+            }else if(val == 2){
+                i3 = GeneralEnum.SymbolsMainAttr.intellect.getVal();
+            }else if(val == 3){
+                t5 = GeneralEnum.SymbolsMainAttr.troops.getVal();
+            }else if(val == 4 || val == 7 || val == 10 || val == 13){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    if(val == 4 || val == 13){ f0 += item.getF() * rate; f += f0; }
+                    if(val == 7 || val == 13){ i0 += item.getI() * rate; i += i0; }
+                    if(val == 10|| val == 13){ t0 += item.getT() * rate; t += t0; }
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+                map.put("main",main);
+                map.put("f",f);
+                map.put("i",i);
+                map.put("t",t);
+                map.put("value",f+i+t);
+                mapList2.add(map);
+            }else if(val == 5 || val == 8 || val == 11 || val == 14){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    if(val == 5 || val == 14){ f0 += item.getF() * rate; f += f0; }
+                    if(val == 8 || val == 14){ i0 += item.getI() * rate; i += i0; }
+                    if(val == 11|| val == 14){ t0 += item.getT() * rate; t += t0; }
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+                map.put("main",main);
+                map.put("f",f);
+                map.put("i",i);
+                map.put("t",t);
+                map.put("value",f+i+t);
+                mapList4.add(map);
+            }else if(val == 6 || val == 9 || val == 12 || val == 15){
+                for (GeneralResultItem item : itemList){
+                    double f0 = 0; double i0 = 0; double t0 = 0;
+                    if(val == 6 || val == 15){ f0 += item.getF() * rate;f += f0; }
+                    if(val == 9 || val == 15){ i0 += item.getI() * rate;i += i0; }
+                    if(val == 12|| val == 15){ t0 += item.getT() * rate;t += t0; }
+                    map.put(item.getGeneralName()+"_f",f0);
+                    map.put(item.getGeneralName()+"_i",i0);
+                    map.put(item.getGeneralName()+"_t",t0);
+                }
+                map.put("main",main);
+                map.put("f",f);
+                map.put("i",i);
+                map.put("t",t);
+                map.put("value",f+i+t);
+                mapList6.add(map);
+            }
+
+        }
+        Collections.sort(mapList2, new MapComparatorDoubleDesc());
+        Collections.sort(mapList4, new MapComparatorDoubleDesc());
+        Collections.sort(mapList6, new MapComparatorDoubleDesc());
+        for (GeneralResultItem item : itemList){
+            double f = 0;
+            double i = 0;
+            double t = 0;
+            f += f1; i += i1; t += t1;
+            f += f3; i += i3; t += t3;
+            f += f5; i += i5; t += t5;
+            Map<String,Object> map2 = mapList2.get(0);
+            f += (double) map2.get(item.getGeneralName()+"_f");
+            i += (double) map2.get(item.getGeneralName()+"_i");
+            t += (double) map2.get(item.getGeneralName()+"_t");
+            Map<String,Object> map4 = mapList4.get(0);
+            f += (double) map4.get(item.getGeneralName()+"_f");
+            i += (double) map4.get(item.getGeneralName()+"_i");
+            t += (double) map4.get(item.getGeneralName()+"_t");
+            Map<String,Object> map6 = mapList6.get(0);
+            f += (double) map6.get(item.getGeneralName()+"_f");
+            i += (double) map6.get(item.getGeneralName()+"_i");
+            t += (double) map6.get(item.getGeneralName()+"_t");
+            item.setF30(f);
+            item.setI30(i);
+            item.setT30(t);
+            item.setC30((f+i+t)*2);
+        }
+    }
+
+    /**
+     * 计算兵符类型
+     * @param result
+     */
+    private void calculateSymbolsType(GeneralResult result) {
+        List<GeneralResultItem> itemList = result.getItemList();
+        List<Map<String,Object>> dataList = new ArrayList<>();
+        //Map<GeneralEnum.SymbolsType,Integer> map = new HashMap<>();
+
+        GeneralEnum.SymbolsType cang_long = GeneralEnum.SymbolsType.cang_long;
+        GeneralEnum.SymbolsType meng_hu = GeneralEnum.SymbolsType.meng_hu;
+        GeneralEnum.SymbolsType huo_feng = GeneralEnum.SymbolsType.huo_feng;
+        GeneralEnum.SymbolsType tian_lang = GeneralEnum.SymbolsType.tian_lang;
+        GeneralEnum.SymbolsType xuan_gui = GeneralEnum.SymbolsType.xuan_gui;
+        GeneralEnum.SymbolsType xiang_ying = GeneralEnum.SymbolsType.xiang_ying;
+        GeneralEnum.SymbolsType qi_lin = GeneralEnum.SymbolsType.qi_lin;
+        GeneralEnum.SymbolsType qing_luan = GeneralEnum.SymbolsType.qing_luan;
+        GeneralEnum.SymbolsType bai_ze = GeneralEnum.SymbolsType.bai_ze;
+        GeneralEnum.SymbolsType hun_dun = GeneralEnum.SymbolsType.hun_dun;
+        GeneralEnum.SymbolsType qiong_qi = GeneralEnum.SymbolsType.qiong_qi;
+        GeneralEnum.SymbolsType ya_zi = GeneralEnum.SymbolsType.ya_zi;
+        GeneralEnum.SymbolsType pí_xiū = GeneralEnum.SymbolsType.pí_xiū;
+        GeneralEnum.SymbolsType zhēng = GeneralEnum.SymbolsType.zhēng;
+        GeneralEnum.SymbolsType gǔ_diāo = GeneralEnum.SymbolsType.gǔ_diāo;
+        GeneralEnum.Country shu = GeneralEnum.Country.shu;
+        GeneralEnum.Country wu = GeneralEnum.Country.wu;
+        GeneralEnum.Country wei = GeneralEnum.Country.wei;
+        GeneralEnum.Country qun = GeneralEnum.Country.qun;
+        GeneralEnum.Arms qiang = GeneralEnum.Arms.qiang;
+        GeneralEnum.Arms qi = GeneralEnum.Arms.qi;
+        GeneralEnum.Arms gong = GeneralEnum.Arms.gong;
+        GeneralEnum.Gender woman = GeneralEnum.Gender.woman;
+
+        for (GeneralEnum.SymbolsType symbolsType : GeneralEnum.SymbolsType.values()){
+            double rate = symbolsType.getRate();
+            int code = symbolsType.value();
+            Map<String,Object> map = new HashMap<>();
+            double f = 0; double i = 0; double t = 0;
+            if(code == cang_long.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    if(shu.label().equals(item.getCountryName())){
+                        f1 = item.getF() * rate;
+                        i1 = item.getI() * rate;
+                        t1 = item.getT() * rate;
+                        f += f1; i += i1; t += t1;
+                    }
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == meng_hu.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    if(wu.label().equals(item.getCountryName())){
+                        f1 = item.getF() * rate;
+                        i1 = item.getI() * rate;
+                        t1 = item.getT() * rate;
+                        f += f1; i += i1; t += t1;
+                    }
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == huo_feng.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    if(wei.label().equals(item.getCountryName())){
+                        f1 = item.getF() * rate;
+                        i1 = item.getI() * rate;
+                        t1 = item.getT() * rate;
+                        f += f1; i += i1; t += t1;
+                    }
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == tian_lang.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    if(qun.label().equals(item.getCountryName())){
+                        f1 = item.getF() * rate;
+                        i1 = item.getI() * rate;
+                        t1 = item.getT() * rate;
+                        f += f1; i += i1; t += t1;
+                    }
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == xuan_gui.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    if(qiang.label().equals(item.getArmsName())){
+                        f1 = item.getF() * rate;
+                        i1 = item.getI() * rate;
+                        t1 = item.getT() * rate;
+                        f += f1; i += i1; t += t1;
+                    }
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == xiang_ying.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    if(gong.label().equals(item.getArmsName())){
+                        f1 = item.getF() * rate;
+                        i1 = item.getI() * rate;
+                        t1 = item.getT() * rate;
+                        f += f1; i += i1; t += t1;
+                    }
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == qi_lin.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    if(qi.label().equals(item.getArmsName())){
+                        f1 = item.getF() * rate;
+                        i1 = item.getI() * rate;
+                        t1 = item.getT() * rate;
+                        f += f1; i += i1; t += t1;
+                    }
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == qing_luan.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    if(woman.label().equals(item.getGenderName())){
+                        f1 = item.getF() * rate;
+                        i1 = item.getI() * rate;
+                        t1 = item.getT() * rate;
+                        f += f1; i += i1; t += t1;
+                    }
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == bai_ze.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    i1 = item.getI() * rate;
+                    i += i1;
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == hun_dun.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    f1 = item.getF() * rate;
+                    i1 = item.getI() * rate;
+                    t1 = item.getT() * rate;
+                    f += f1; i += i1; t += t1;
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == qiong_qi.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    f1 = item.getF() * rate;
+                    f += f1;
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == ya_zi.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    t1 = item.getT() * rate;
+                    t += t1;
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == pí_xiū.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    if(qi.label().equals(item.getArmsName())){
+                        f1 = item.getF() * rate;
+                        i1 = item.getI() * rate;
+                        t1 = item.getT() * rate;
+                        f += f1; i += i1; t += t1;
+                    }
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == zhēng.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    if(qiang.label().equals(item.getArmsName())){
+                        f1 = item.getF() * rate;
+                        i1 = item.getI() * rate;
+                        t1 = item.getT() * rate;
+                        f += f1; i += i1; t += t1;
+                    }
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }else if(code == gǔ_diāo.value()){
+                for (GeneralResultItem item : itemList){
+                    double f1 = 0; double i1 = 0; double t1 = 0;
+                    if(gong.label().equals(item.getArmsName())){
+                        f1 = item.getF() * rate;
+                        i1 = item.getI() * rate;
+                        t1 = item.getT() * rate;
+                        f += f1; i += i1; t += t1;
+                    }
+                    map.put(item.getGeneralName()+"_f",f1);
+                    map.put(item.getGeneralName()+"_i",i1);
+                    map.put(item.getGeneralName()+"_t",t1);
+                }
+            }
+            map.put("type",symbolsType);
+            map.put("f",f);
+            map.put("i",i);
+            map.put("t",t);
+            map.put("value",f+i+t);
+            dataList.add(map);
+        }
+        Collections.sort(dataList, new MapComparatorDoubleDesc());
+        List<Map<String,Object>> subList = dataList.subList(0,3);
+
+        for (GeneralResultItem resultItem : itemList){
+            double f = 0;
+            double i = 0;
+            double t = 0;
+            for (Map<String,Object> item : subList){
+                f += (double)item.get(resultItem.getGeneralName()+"_f");
+                i += (double)item.get(resultItem.getGeneralName()+"_i");
+                t += (double)item.get(resultItem.getGeneralName()+"_t");
+            }
+            resultItem.setF29(f);
+            resultItem.setI29(i);
+            resultItem.setT29(t);
+            resultItem.setC29((f+i+t)*2);
+        }
+        dataList = null;
+    }
+
+    /**
+     * 计算战意
+     * @param result
+     * @param generalList
+     */
     private void calculateWarpath(GeneralResult result, List<General> generalList) {
-        Map<General,GeneralEnum.Warpath> map = new HashMap<>();
+        Map<General,Integer> map = new HashMap<>();
         for (General general : generalList){
             GeneralThree three21 = GeneralCalculate.getThree(general, GeneralEnum.ThreeCirclesType.type_17);
             int f_c = three21.getForce();
@@ -126,26 +699,47 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
             data.put("f_a",f_a);
             data.put("i_a",i_a);
             data.put("t_a",t_a);
-            data = MapUtils.sortByValue(data);
-            Iterator<Map.Entry<String, Integer>> iterator = data.entrySet().iterator();
-            Map.Entry<String, Integer> tail = null;
-            while (iterator.hasNext()) {
-                tail = iterator.next();
-            }
+            data = MapUtils.sortByValueDesc(data);
+            Map.Entry<String, Integer> tail = data.entrySet().iterator().next();
             if(tail.getKey().equals("f_c")){
-                map.put(general,GeneralEnum.Warpath.country_force);
+                map.put(general,GeneralEnum.Warpath.country_force.value());
             }else if(tail.getKey().equals("i_c")){
-                map.put(general,GeneralEnum.Warpath.country_intellect);
+                map.put(general,GeneralEnum.Warpath.country_intellect.value());
             }else if(tail.getKey().equals("t_c")){
-                map.put(general,GeneralEnum.Warpath.country_troops);
+                map.put(general,GeneralEnum.Warpath.country_troops.value());
             }else if(tail.getKey().equals("f_a")){
-                map.put(general,GeneralEnum.Warpath.arms_force);
+                map.put(general,GeneralEnum.Warpath.arms_force.value());
             }else if(tail.getKey().equals("i_a")){
-                map.put(general,GeneralEnum.Warpath.arms_intellect);
+                map.put(general,GeneralEnum.Warpath.arms_intellect.value());
             }else if(tail.getKey().equals("t_a")){
-                map.put(general,GeneralEnum.Warpath.arms_troops);
+                map.put(general,GeneralEnum.Warpath.arms_troops.value());
             }
-            System.out.println();
+        }
+        List<GeneralResultItem> itemList = result.getItemList();
+        for (GeneralResultItem item : itemList){
+            Double f = 0d;
+            Double i = 0d;
+            Double t = 0d;
+            double rate = 0.1;
+            for (Map.Entry<General,Integer> entry : map.entrySet()){
+                if(entry.getValue().equals(GeneralEnum.Warpath.country_force.value()) && item.getCountryName().equals(entry.getKey().getCountryName())){
+                    f += item.getF() * rate;
+                }else if(entry.getValue().equals(GeneralEnum.Warpath.country_intellect.value()) && item.getCountryName().equals(entry.getKey().getCountryName())){
+                    i += item.getI() * rate;
+                }else if(entry.getValue().equals(GeneralEnum.Warpath.country_troops.value()) && item.getCountryName().equals(entry.getKey().getCountryName())){
+                    t += item.getT() * rate;
+                }else if(entry.getValue().equals(GeneralEnum.Warpath.arms_force.value()) && item.getArmsName().equals(entry.getKey().getArmsName())){
+                    f += item.getF() * rate;
+                }else if(entry.getValue().equals(GeneralEnum.Warpath.arms_intellect.value()) && item.getArmsName().equals(entry.getKey().getArmsName())){
+                    i += item.getI() * rate;
+                }else if(entry.getValue().equals(GeneralEnum.Warpath.arms_troops.value()) && item.getArmsName().equals(entry.getKey().getArmsName())){
+                    t += item.getT() * rate;
+                }
+            }
+            item.setF21(f.intValue());
+            item.setI21(i.intValue());
+            item.setT21(t.intValue());
+            item.setC21((item.getF21()+item.getI21()+item.getT21())*2);
         }
     }
 
@@ -380,6 +974,19 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
 
     }
 
+    static class MapComparatorDoubleDesc implements Comparator<Map<String, Object>> {
+        @Override
+        public int compare(Map<String, Object> m1, Map<String, Object> m2) {
+            Double v1 = Double.valueOf(m1.get("value").toString());
+            Double v2 = Double.valueOf(m2.get("value").toString());
+            if (v2 != null) {
+                return v2.compareTo(v1);
+            }
+            return 0;
+        }
+
+    }
+
     /**
      * listmap升序
      */
@@ -408,6 +1015,9 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
         for (General general : generalList){
             GeneralResultItem item = new GeneralResultItem();
             item.setGeneralName(general.getName());
+            item.setCountryName(general.getCountryName());
+            item.setArmsName(general.getArmsName());
+            item.setGenderName(general.getGenderName());
             int force = 0;
             int intellect = 0;
             int troops = 0;

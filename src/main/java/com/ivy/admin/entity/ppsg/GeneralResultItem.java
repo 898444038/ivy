@@ -4,6 +4,9 @@ package com.ivy.admin.entity.ppsg;
 public class GeneralResultItem {
 
     private String generalName;
+    private String countryName;
+    private String armsName;
+    private String genderName;
 
     private Integer force;//总武力
     private Integer intellect;//总智力
@@ -60,12 +63,222 @@ public class GeneralResultItem {
     private Integer t20;//阵法兵力
     private Integer c20;//阵法战力
 
+    private Integer f21;//战意武力
+    private Integer i21;//战意智力
+    private Integer t21;//战意兵力
+    private Integer c21;//战意战力
+
     private Integer f22;//随从武力
     private Integer i22;//随从智力
     private Integer t22;//随从兵力
     private Integer c22;//随从战力
 
+    private Integer f28;//兵符武力
+    private Integer i28;//兵符智力
+    private Integer t28;//兵符兵力
+    private Integer c28;//兵符战力
+
+    private Double f29;//兵符类型武力
+    private Double i29;//兵符类型智力
+    private Double t29;//兵符类型兵力
+    private Double c29;//兵符类型战力
+
+    private Double f30;//兵符主属性武力
+    private Double i30;//兵符主属性智力
+    private Double t30;//兵符主属性兵力
+    private Double c30;//兵符主属性战力
+
+    private Double f31;//兵符副属性武力
+    private Double i31;//兵符副属性智力
+    private Double t31;//兵符副属性兵力
+    private Double c31;//兵符副属性战力
+
     public GeneralResultItem() {
+    }
+
+    public Double getF29() {
+        return f29;
+    }
+
+    public void setF29(Double f29) {
+        this.f29 = f29;
+    }
+
+    public Double getI29() {
+        return i29;
+    }
+
+    public void setI29(Double i29) {
+        this.i29 = i29;
+    }
+
+    public Double getT29() {
+        return t29;
+    }
+
+    public void setT29(Double t29) {
+        this.t29 = t29;
+    }
+
+    public Double getC29() {
+        return c29;
+    }
+
+    public void setC29(Double c29) {
+        this.c29 = c29;
+    }
+
+    public Double getF30() {
+        return f30;
+    }
+
+    public void setF30(Double f30) {
+        this.f30 = f30;
+    }
+
+    public Double getI30() {
+        return i30;
+    }
+
+    public void setI30(Double i30) {
+        this.i30 = i30;
+    }
+
+    public Double getT30() {
+        return t30;
+    }
+
+    public void setT30(Double t30) {
+        this.t30 = t30;
+    }
+
+    public Double getC30() {
+        return c30;
+    }
+
+    public void setC30(Double c30) {
+        this.c30 = c30;
+    }
+
+    public Double getF31() {
+        return f31;
+    }
+
+    public void setF31(Double f31) {
+        this.f31 = f31;
+    }
+
+    public Double getI31() {
+        return i31;
+    }
+
+    public void setI31(Double i31) {
+        this.i31 = i31;
+    }
+
+    public Double getT31() {
+        return t31;
+    }
+
+    public void setT31(Double t31) {
+        this.t31 = t31;
+    }
+
+    public Double getC31() {
+        return c31;
+    }
+
+    public void setC31(Double c31) {
+        this.c31 = c31;
+    }
+
+    public Integer getF28() {
+        return f28;
+    }
+
+    public void setF28(Integer f28) {
+        this.f28 = f28;
+    }
+
+    public Integer getI28() {
+        return i28;
+    }
+
+    public void setI28(Integer i28) {
+        this.i28 = i28;
+    }
+
+    public Integer getT28() {
+        return t28;
+    }
+
+    public void setT28(Integer t28) {
+        this.t28 = t28;
+    }
+
+    public Integer getC28() {
+        return c28;
+    }
+
+    public void setC28(Integer c28) {
+        this.c28 = c28;
+    }
+
+
+    public String getGenderName() {
+        return genderName;
+    }
+
+    public void setGenderName(String genderName) {
+        this.genderName = genderName;
+    }
+
+    public Integer getF21() {
+        return f21;
+    }
+
+    public void setF21(Integer f21) {
+        this.f21 = f21;
+    }
+
+    public Integer getI21() {
+        return i21;
+    }
+
+    public void setI21(Integer i21) {
+        this.i21 = i21;
+    }
+
+    public Integer getT21() {
+        return t21;
+    }
+
+    public void setT21(Integer t21) {
+        this.t21 = t21;
+    }
+
+    public Integer getC21() {
+        return c21;
+    }
+
+    public void setC21(Integer c21) {
+        this.c21 = c21;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
+    public String getArmsName() {
+        return armsName;
+    }
+
+    public void setArmsName(String armsName) {
+        this.armsName = armsName;
     }
 
     public String getGeneralName() {

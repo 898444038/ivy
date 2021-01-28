@@ -12,12 +12,39 @@ import com.ivy.admin.entity.ppsg.GeneralWeapon;
 import com.ivy.admin.enums.ppsg.GeneralEnum;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class GeneralTest {
 
     public static void main(String[] args) {
-        createGeneral();
+        List<GeneralThree> threeList = new ArrayList<>();
+        GeneralThree three1 = new GeneralThree();
+        three1.setCode(2);
+        three1.setCombat(1000);
+        GeneralThree three3 = new GeneralThree();
+        three3.setCode(2);
+        three3.setCombat(2000);
+        GeneralThree three2 = new GeneralThree();
+        three2.setCode(1);
+        three2.setCombat(1000);
+
+        threeList.add(three1);
+        threeList.add(three2);
+        threeList.add(three3);
+
+        Collections.sort(threeList,new Comparator<GeneralThree>(){
+            public int compare(GeneralThree arg0, GeneralThree arg1){
+                int i = arg1.getCombat().compareTo(arg0.getCombat());
+                if(i == 0){
+                    return arg0.getCode().compareTo(arg1.getCode());
+                }
+                return i;
+            }
+        });
+        System.out.println();
+        //createGeneral();
     }
 
     public static void createGeneral() {

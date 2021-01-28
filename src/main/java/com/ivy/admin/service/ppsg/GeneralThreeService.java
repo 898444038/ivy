@@ -53,4 +53,6 @@ public interface GeneralThreeService {
     int delete(Long id);
 
     int deleteByGeneralId(Long id);
+
+	int insertList(List<GeneralThree> threeList);
 }

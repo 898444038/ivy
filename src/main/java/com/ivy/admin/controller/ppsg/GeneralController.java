@@ -153,9 +153,10 @@ public class GeneralController {
 
             //三维属性：武智兵
             List<GeneralThree> threeList = GeneralUtils.calculateThree(general,analog);
-            for(GeneralThree three : threeList){
+            generalThreeService.insertList(threeList);
+            /*for(GeneralThree three : threeList){
                 generalThreeService.insert(three);
-            }
+            }*/
         }else{
 
         }
@@ -177,9 +178,10 @@ public class GeneralController {
                 int e = generalThreeService.deleteByGeneralId(general.getId());
                 //三维属性：武智兵
                 List<GeneralThree> threeList = GeneralUtils.calculateThree(general,analog);
-                for(GeneralThree three : threeList){
+                generalThreeService.insertList(threeList);
+                /*for(GeneralThree three : threeList){
                     generalThreeService.insert(three);
-                }
+                }*/
             }
             return ResultMsg.success();
         }catch (Exception e){

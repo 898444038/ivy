@@ -4,6 +4,7 @@ package com.ivy.admin.entity.ppsg;
 public class GeneralResultItem {
 
     private String generalName;
+    private String generalNamex;
     private String countryName;
     private String armsName;
     private String genderName;
@@ -93,7 +94,43 @@ public class GeneralResultItem {
     private Double t31;//兵符副属性兵力
     private Double c31;//兵符副属性战力
 
+    private String forceEntourage;//
+    private String intellectEntourage;//
+    private String troopsEntourage;//
+
     public GeneralResultItem() {
+    }
+
+    public String getForceEntourage() {
+        return forceEntourage;
+    }
+
+    public void setForceEntourage(String forceEntourage) {
+        this.forceEntourage = forceEntourage;
+    }
+
+    public String getIntellectEntourage() {
+        return intellectEntourage;
+    }
+
+    public void setIntellectEntourage(String intellectEntourage) {
+        this.intellectEntourage = intellectEntourage;
+    }
+
+    public String getTroopsEntourage() {
+        return troopsEntourage;
+    }
+
+    public void setTroopsEntourage(String troopsEntourage) {
+        this.troopsEntourage = troopsEntourage;
+    }
+
+    public String getGeneralNamex() {
+        return generalNamex;
+    }
+
+    public void setGeneralNamex(String generalNamex) {
+        this.generalNamex = generalNamex;
     }
 
     public Double getF29() {

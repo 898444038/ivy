@@ -11,7 +11,9 @@ import com.ivy.admin.mapper.ppsg.GeneralThreeMapper;
 import com.ivy.admin.mapper.ppsg.GeneralWeaponMapper;
 import com.ivy.admin.service.ppsg.GeneralService;
 import com.ivy.admin.service.ppsg.GeneralVirtualCombatService;
+import com.ivy.admin.utils.ListUtils;
 import com.ivy.admin.utils.Pagination;
+import com.ivy.admin.utils.ppsg.CombineAndArrangement;
 import com.ivy.admin.utils.ppsg.GeneralCalculate;
 import com.ivy.admin.utils.ppsg.MapUtils;
 import com.ivy.admin.vo.ppsg.GeneralArmsBookVo;
@@ -22,12 +24,14 @@ import com.ivy.admin.vo.ppsg.GeneralVo;
 import com.ivy.admin.vo.ppsg.GeneralWeaponVo;
 import com.ivy.system.config.CacheKeys;
 import jdk.internal.org.objectweb.asm.Handle;
+import org.apache.commons.lang.StringUtils;
 import org.checkerframework.checker.units.qual.K;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -66,21 +70,54 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
 
     @Override
     public List<GeneralResult> calculate(GeneralAnalog analog) {
+        List<GeneralResult> resultList = new ArrayList<>();
         //全部
         List<General> allList = (List<General>) cache.get(CacheKeys.GENERALS_DETAIL_LIST, key -> getAllValue(key));
+        if(allList == null){
+            return resultList;
+        }
+        if(analog.getType() == 1){//全包含
+            String[] ids = analog.getIds().split(",");
+            List<String> list = Arrays.asList(ids);
+            ListUtils listUtils = new ListUtils();
+            List<List<Long>> groupList = listUtils.getList(list,5);
 
-        //上阵
-        String[] ids = analog.getIds().split(",");
-        List<General> generalList = new ArrayList<>();
-        for (General general : allList){
-            for (String id : ids){
-                if(general.getId().toString().equals(id)){
-                    generalList.add(general);
+            for (List<Long> group : groupList){
+                List<General> generalList = new ArrayList<>();
+                Set<Long> set = new HashSet<>();
+
+                for (Long id : group){
+                    for (General general : allList) {
+                        if (general.getId().equals(id)) {
+                            set.add(general.getParentId());
+                            generalList.add(general);
+                            break;
+                        }
+                    }
+                }
+                if(set.size() != 5){
+                    continue;
+                }
+                GeneralResult result = calculateGroup(generalList,allList);
+
+                if(result != null){
+                    resultList.add(result);
                 }
             }
+            System.out.println("排列组合数量："+groupList.size());
+            System.out.println("上阵组合数量："+resultList.size());
+        }else if(analog.getType() == 2){//部分包含
+
+        }else{//全部武将
+
         }
-        //计算结果
-        List<GeneralResult> resultList = new ArrayList<>();
+        return resultList;
+    }
+
+    /**
+     * 排列组合
+     */
+    private GeneralResult calculateGroup(List<General> generalList,List<General> allList) {
         //计算三维
         GeneralResult result = calculateResult(generalList,allList);
         //计算战意
@@ -91,16 +128,14 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
         calculateSymbolsSecond(result);
 
         addWarpathSymbols(result);
-
-        //吕布战器、吕姬有问题
-        if(result != null){
-            resultList.add(result);
-        }
-        return resultList;
+        result.setRank(1);
+        return result;
     }
 
     private void addWarpathSymbols(GeneralResult result) {
+        result.setTotalCombat(0);
         List<GeneralResultItem> itemList = result.getItemList();
+        List<String> titleList = new ArrayList<>();
         for (GeneralResultItem item : itemList){
             int f = ((Double)(item.getF29() + item.getF30() + item.getF31())).intValue();
             int i = ((Double)(item.getI29() + item.getI30() + item.getI31())).intValue();
@@ -114,7 +149,11 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
             item.setIntellect(item.getIntellect() + item.getI21() + i);
             item.setTroops(item.getTroops() + item.getT21() + t);
             item.setCombat((item.getForce()+item.getIntellect()+item.getTroops())*2);
+
+            titleList.add(item.getGeneralName());
+            result.setTotalCombat(result.getTotalCombat() + item.getCombat());
         }
+        result.setTitle(StringUtils.join(titleList,"、"));
     }
 
     private void calculateSymbolsSecond(GeneralResult result) {
@@ -763,6 +802,12 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
                     continue;
                 }
             }
+            String namex = null;
+            if(all.getCardCode().equals(GeneralEnum.CardType.yi_hua.value())){
+                namex = all.getName()+"_限";
+            }else{
+                namex = all.getName();
+            }
             //联协
             if(flag){
                 GeneralThree three22 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_22);
@@ -770,21 +815,30 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
                 GeneralThree three26 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_26);
 
                 Map<String,Object> data_f = new HashMap<>();
-                data_f.put("name",all.getName());
+                data_f.put("name",namex);
                 data_f.put("value",three22.getForce());
                 data_f.put("pid",all.getParentId());
+                data_f.put("bz",three22.getRemark1());
+                data_f.put("bs",three22.getRemark2());
+                data_f.put("hh",three22.getRemark3());
                 general_f.add(data_f);
 
                 Map<String,Object> data_i = new HashMap<>();
-                data_i.put("name",all.getName());
+                data_i.put("name",namex);
                 data_i.put("value",three24.getIntellect());
                 data_i.put("pid",all.getParentId());
+                data_i.put("bz",three24.getRemark1());
+                data_i.put("bs",three24.getRemark2());
+                data_i.put("hh",three24.getRemark3());
                 general_i.add(data_i);
 
                 Map<String,Object> data_t = new HashMap<>();
-                data_t.put("name",all.getName());
+                data_t.put("name",namex);
                 data_t.put("value",three26.getTroops());
                 data_t.put("pid",all.getParentId());
+                data_t.put("bz",three26.getRemark1());
+                data_t.put("bs",three26.getRemark2());
+                data_t.put("hh",three26.getRemark3());
                 general_t.add(data_t);
             }else{
                 GeneralThree three23 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_23);
@@ -792,21 +846,30 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
                 GeneralThree three27 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_27);
 
                 Map<String,Object> data_f = new HashMap<>();
-                data_f.put("name",all.getName());
+                data_f.put("name",namex);
                 data_f.put("value",three23.getForce());
                 data_f.put("pid",all.getParentId());
+                data_f.put("bz",three23.getRemark1());
+                data_f.put("bs",three23.getRemark2());
+                data_f.put("hh",three23.getRemark3());
                 general_f.add(data_f);
 
                 Map<String,Object> data_i = new HashMap<>();
-                data_i.put("name",all.getName());
+                data_i.put("name",namex);
                 data_i.put("value",three25.getIntellect());
                 data_i.put("pid",all.getParentId());
+                data_i.put("bz",three25.getRemark1());
+                data_i.put("bs",three25.getRemark2());
+                data_i.put("hh",three25.getRemark3());
                 general_i.add(data_i);
 
                 Map<String,Object> data_t = new HashMap<>();
-                data_t.put("name",all.getName());
+                data_t.put("name",namex);
                 data_t.put("value",three27.getTroops());
                 data_t.put("pid",all.getParentId());
+                data_t.put("bz",three27.getRemark1());
+                data_t.put("bs",three27.getRemark2());
+                data_t.put("hh",three27.getRemark3());
                 general_t.add(data_t);
             }
 
@@ -828,6 +891,9 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
         set.add(top_i.get("name").toString());
         set.add(top_t.get("name").toString());
 
+        String remark1 = null;
+        String remark2 = null;
+        String remark3 = null;
         if(set.size() == 3){
             System.out.println(general.getName());
             System.out.println("武随："+top_f.get("name").toString()+"("+top_f.get("value").toString()+")");
@@ -836,6 +902,9 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
             force = Integer.valueOf(top_f.get("value").toString());
             intellect = Integer.valueOf(top_i.get("value").toString());
             troops = Integer.valueOf(top_t.get("value").toString());
+            remark1 = top_f.get("name") + "(" + top_f.get("bz") + ")(" + top_f.get("bs") + ")" + (top_f.get("hh") == null ? "" : "(" + top_f.get("hh").toString() + ")");
+            remark2 = top_i.get("name") + "(" + top_i.get("bz") + ")(" + top_i.get("bs") + ")" + (top_i.get("hh") == null ? "" : "(" + top_i.get("hh").toString() + ")");
+            remark3 = top_t.get("name") + "(" + top_t.get("bz") + ")(" + top_t.get("bs") + ")" + (top_t.get("hh") == null ? "" : "(" + top_t.get("hh").toString() + ")");
         }else if(set.size() == 2){
             System.out.println(general.getName());
             if(top_f.get("name").toString().equals(top_i.get("name").toString())){
@@ -849,8 +918,14 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
                         Map<String,Object> item = new HashMap<>();
                         item.put("name_f",f.get("name"));
                         item.put("value_f",f.get("value"));
+                        item.put("bz_f",f.get("bz"));
+                        item.put("bs_f",f.get("bs"));
+                        item.put("hh_f",f.get("hh"));
                         item.put("name_i",i.get("name"));
                         item.put("value_i",i.get("value"));
+                        item.put("bz_i",i.get("bz"));
+                        item.put("bs_i",i.get("bs"));
+                        item.put("hh_i",i.get("hh"));
                         item.put("value",Integer.valueOf(f.get("value").toString())+Integer.valueOf(i.get("value").toString()));
                         data.add(item);
                     }
@@ -863,6 +938,9 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
                 force = Integer.valueOf(map.get("value_f").toString());
                 intellect = Integer.valueOf(map.get("value_i").toString());
                 troops = Integer.valueOf(top_t.get("value").toString());
+                remark1 = map.get("name_f") + "(" + map.get("bz_f") + ")(" + map.get("bs_f") + ")" + (map.get("hh_f") == null ? "" : "(" + map.get("hh_f").toString() + ")");
+                remark2 = map.get("name_i") + "(" + map.get("bz_i") + ")(" + map.get("bs_i") + ")" + (map.get("hh_i") == null ? "" : "(" + map.get("hh_i").toString() + ")");
+                remark3 = top_t.get("name") + "(" + top_t.get("bz") + ")(" + top_t.get("bs") + ")" + (top_t.get("hh") == null ? "" : "(" + top_t.get("hh").toString() + ")");
                 data = null;
             }else if(top_i.get("name").toString().equals(top_t.get("name").toString())){
                 System.out.println("智随、兵随相同");
@@ -875,8 +953,14 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
                         Map<String,Object> item = new HashMap<>();
                         item.put("name_i",i.get("name"));
                         item.put("value_i",i.get("value"));
+                        item.put("bz_i",i.get("bz"));
+                        item.put("bs_i",i.get("bs"));
+                        item.put("hh_i",i.get("hh"));
                         item.put("name_t",t.get("name"));
                         item.put("value_t",t.get("value"));
+                        item.put("bz_t",t.get("bz"));
+                        item.put("bs_t",t.get("bs"));
+                        item.put("hh_t",t.get("hh"));
                         item.put("value",Integer.valueOf(i.get("value").toString())+Integer.valueOf(t.get("value").toString()));
                         data.add(item);
                     }
@@ -889,6 +973,9 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
                 force = Integer.valueOf(top_f.get("value").toString());
                 intellect = Integer.valueOf(map.get("value_i").toString());
                 troops = Integer.valueOf(map.get("value_t").toString());
+                remark1 = top_f.get("name") + "(" + top_f.get("bz") + ")(" + top_f.get("bs") + ")" + (top_f.get("hh") == null ? "" : "(" + top_f.get("hh").toString() + ")");
+                remark2 = map.get("name_i") + "(" + map.get("bz_i") + ")(" + map.get("bs_i") + ")" + (map.get("hh_i") == null ? "" : "(" + map.get("hh_i").toString() + ")");
+                remark3 = map.get("name_t") + "(" + map.get("bz_t") + ")(" + map.get("bs_t") + ")" + (map.get("hh_t") == null ? "" : "(" + map.get("hh_t").toString() + ")");
                 data = null;
             }else if(top_f.get("name").toString().equals(top_t.get("name").toString())){
                 System.out.println("武随、兵随相同");
@@ -901,8 +988,14 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
                         Map<String,Object> item = new HashMap<>();
                         item.put("name_f",f.get("name"));
                         item.put("value_f",f.get("value"));
+                        item.put("bz_f",f.get("bz"));
+                        item.put("bs_f",f.get("bs"));
+                        item.put("hh_f",f.get("hh"));
                         item.put("name_t",t.get("name"));
                         item.put("value_t",t.get("value"));
+                        item.put("bz_t",t.get("bz"));
+                        item.put("bs_t",t.get("bs"));
+                        item.put("hh_t",t.get("hh"));
                         item.put("value",Integer.valueOf(f.get("value").toString())+Integer.valueOf(t.get("value").toString()));
                         data.add(item);
                     }
@@ -915,6 +1008,9 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
                 force = Integer.valueOf(map.get("value_f").toString());
                 intellect = Integer.valueOf(top_i.get("value").toString());
                 troops = Integer.valueOf(map.get("value_t").toString());
+                remark1 = map.get("name_f") + "(" + map.get("bz_f") + ")(" + map.get("bs_f") + ")" + (map.get("hh_f") == null ? "" : "(" + map.get("hh_f").toString() + ")");
+                remark2 = top_i.get("name") + "(" + top_i.get("bz") + ")(" + top_i.get("bs") + ")" + (top_i.get("hh") == null ? "" : "(" + top_i.get("hh").toString() + ")");
+                remark3 = map.get("name_t") + "(" + map.get("bz_t") + ")(" + map.get("bs_t") + ")" + (map.get("hh_t") == null ? "" : "(" + map.get("hh_t").toString() + ")");
                 data = null;
             }
         }else if(set.size() == 1){
@@ -932,10 +1028,19 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
                         Map<String,Object> item = new HashMap<>();
                         item.put("name_f",f.get("name"));
                         item.put("value_f",f.get("value"));
+                        item.put("bz_f",f.get("bz"));
+                        item.put("bs_f",f.get("bs"));
+                        item.put("hh_f",f.get("hh"));
                         item.put("name_i",i.get("name"));
                         item.put("value_i",i.get("value"));
+                        item.put("bz_i",i.get("bz"));
+                        item.put("bs_i",i.get("bs"));
+                        item.put("hh_i",i.get("hh"));
                         item.put("name_t",t.get("name"));
                         item.put("value_t",t.get("value"));
+                        item.put("bz_t",t.get("bz"));
+                        item.put("bs_t",t.get("bs"));
+                        item.put("hh_t",t.get("hh"));
                         item.put("value",Integer.valueOf(f.get("value").toString())+Integer.valueOf(i.get("value").toString())+Integer.valueOf(t.get("value").toString()));
                         data.add(item);
                     }
@@ -949,12 +1054,18 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
             force = Integer.valueOf(map.get("value_f").toString());
             intellect = Integer.valueOf(map.get("value_i").toString());
             troops = Integer.valueOf(map.get("value_t").toString());
+            remark1 = map.get("name_f") + "(" + map.get("bz_f") + ")(" + map.get("bs_f") + ")" + (map.get("hh_f") == null ? "" : "(" + map.get("hh_f").toString() + ")");
+            remark2 = map.get("name_i") + "(" + map.get("bz_i") + ")(" + map.get("bs_i") + ")" + (map.get("hh_i") == null ? "" : "(" + map.get("hh_i").toString() + ")");
+            remark3 = map.get("name_t") + "(" + map.get("bz_t") + ")(" + map.get("bs_t") + ")" + (map.get("hh_t") == null ? "" : "(" + map.get("hh_t").toString() + ")");
             data = null;
         }
         three.setForce(force);
         three.setIntellect(intellect);
         three.setTroops(troops);
         three.setCombat((force+intellect+troops)*2);
+        three.setRemark1(remark1);
+        three.setRemark2(remark2);
+        three.setRemark3(remark3);
         return three;
     }
 
@@ -1015,6 +1126,12 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
         for (General general : generalList){
             GeneralResultItem item = new GeneralResultItem();
             item.setGeneralName(general.getName());
+            if(general.getCardCode().equals(GeneralEnum.CardType.yi_hua.value())){
+                item.setGeneralNamex(general.getName()+"_限");
+            }else{
+                item.setGeneralNamex(general.getName());
+            }
+
             item.setCountryName(general.getCountryName());
             item.setArmsName(general.getArmsName());
             item.setGenderName(general.getGenderName());
@@ -1070,6 +1187,9 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
             troops += t22;
             combat += c22;
             print(general,three22);
+            item.setForceEntourage(three22.getRemark1());
+            item.setIntellectEntourage(three22.getRemark2());
+            item.setTroopsEntourage(three22.getRemark3());
 
             //四圣石三维
             GeneralThree three6 = GeneralCalculate.getThree(general, GeneralEnum.ThreeCirclesType.type_6);
@@ -1088,37 +1208,35 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
             print(general,three6);
 
             //战器三维
-            GeneralThree three7 = GeneralCalculate.getThree(general, GeneralEnum.ThreeCirclesType.type_7);
-            GeneralThree three8 = GeneralCalculate.getThree(general, GeneralEnum.ThreeCirclesType.type_8);
-            if(three8.getCombat() > three7.getCombat()){
-                int f8 = three8.getForce();
-                int i8 = three8.getIntellect();
-                int t8 = three8.getTroops();
-                int c8 = (f8+i8+t8)*2;
-                item.setF7(f8);
-                item.setI7(i8);
-                item.setT7(t8);
-                item.setC7(c8);
-                force += f8;
-                intellect += i8;
-                troops += t8;
-                combat += c8;
-                print(general,three8);
-            }else{
-                int f7 = three7.getForce();
-                int i7 = three7.getIntellect();
-                int t7 = three7.getTroops();
-                int c7 = (f7+i7+t7)*2;
-                item.setF7(f7);
-                item.setI7(i7);
-                item.setT7(t7);
-                item.setC7(c7);
-                force += f7;
-                intellect += i7;
-                troops += t7;
-                combat += c7;
-                print(general,three7);
-            }
+            List<GeneralThree> three7 = GeneralCalculate.getThreeList(general, GeneralEnum.ThreeCirclesType.type_7);
+            List<GeneralThree> three8 = GeneralCalculate.getThreeList(general, GeneralEnum.ThreeCirclesType.type_8);
+
+            List<GeneralThree> list = new ArrayList<>();
+            list.addAll(three7);
+            list.addAll(three8);
+            Collections.sort(list,new Comparator<GeneralThree>(){
+                public int compare(GeneralThree arg0, GeneralThree arg1){
+                    int i = arg1.getCombat().compareTo(arg0.getCombat());
+                    if(i == 0){
+                        return arg0.getCode().compareTo(arg1.getCode());
+                    }
+                    return i;
+                }
+            });
+            GeneralThree three7_8 = list.get(0);
+            int f7_8 = three7_8.getForce();
+            int i7_8 = three7_8.getIntellect();
+            int t7_8 = three7_8.getTroops();
+            int c7_8 = (f7_8+i7_8+t7_8)*2;
+            item.setF7(f7_8);
+            item.setI7(i7_8);
+            item.setT7(t7_8);
+            item.setC7(c7_8);
+            force += f7_8;
+            intellect += i7_8;
+            troops += t7_8;
+            combat += c7_8;
+            print(general,three7_8);
 
             //兵书三维
             GeneralThree three11 = GeneralCalculate.getThree(general, GeneralEnum.ThreeCirclesType.type_11);

@@ -1,11 +1,43 @@
 package com.ivy.admin.utils;
 
+import org.apache.commons.collections.CollectionUtils;
+
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ListUtils {
+    private List<List<Long>> longList = null;
+    public List<List<Long>> getList(List<String> data, int size) {
+        longList = new ArrayList<>();
+        combinations(new ArrayList<>(),data, size);
+        System.out.println(longList.size());
+        return longList;
+    }
+    public void combinations(List<String> selector,List<String> data,int n) {
+        if(n == 0) {
+            List<Long> result = new ArrayList<>();
+            for (String s : selector){
+                result.add(Long.valueOf(s));
+            }
+            longList.add(result);
+            return;
+        }
+        if(data.isEmpty()) {
+            return;
+        }
+        //选择第一个元素,将元素放入集合
+        selector.add(data.get(0));
+        combinations(selector,data.subList(1, data.size()),n - 1); //从第二个元素开始选择，再选择两个
+        //不选择第一个元素
+        selector.remove(selector.size() -1 );
+        combinations(selector,data.subList(1, data.size()), n); //从第二个元素开始选择，选择两个
+    }
+
 
     public static void main(String[] args) {
         List list = new ArrayList();
@@ -37,6 +69,28 @@ public class ListUtils {
             );
             System.out.println();
         });*/
+    }
+
+    /**
+     * 将size为M的集合以每eachPieceSize为单位分隔成N组
+     *
+     * @param data          数据
+     * @param eachPieceSize 每组的数量
+     * @param <T>           泛型
+     * @return N个分组
+     */
+    public static <T> List<List<T>> splitToPieces(Collection<T> data, int eachPieceSize) {
+        if (CollectionUtils.isEmpty(data)) {
+            return new ArrayList<>(0);
+        }
+        if (eachPieceSize <= 0) {
+            throw new IllegalArgumentException("参数错误");
+        }
+        List<List<T>> result = new ArrayList<>();
+        for (int index = 0; index < data.size(); index += eachPieceSize) {
+            result.add(data.stream().skip(index).limit(eachPieceSize).collect(Collectors.toList()));
+        }
+        return result;
     }
 
     /**

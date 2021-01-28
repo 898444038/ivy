@@ -8,6 +8,7 @@ import com.ivy.admin.entity.ppsg.GeneralThree;
 import com.ivy.admin.entity.ppsg.GeneralWeapon;
 import com.ivy.admin.enums.ppsg.GeneralEnum;
 import com.ivy.system.enums.IDictItem;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,17 @@ public class GeneralCalculate {
             }
         }
         return null;
+    }
+
+    public static List<GeneralThree> getThreeList(General general,GeneralEnum.ThreeCirclesType type){
+        List<GeneralThree> list = new ArrayList<>();
+        List<GeneralThree> threeList = general.getThreeList();
+        for (GeneralThree three : threeList){
+            if(three.getCode().equals(type.value())){
+                list.add(three);
+            }
+        }
+        return list;
     }
 
     public static GeneralThree setCombat(GeneralThree three, int force, int intellect, int troops){
@@ -355,31 +367,38 @@ public class GeneralCalculate {
         int force = 0;
         int intellect = 0;
         int troops = 0;
+        List<String> bookList = new ArrayList<>();
         if(GeneralEnum.ThreeCirclesType.type_11.value().equals(type.value())){//上阵
             force += armsBook1_0_f + armsBook2_0_f + armsBook3_0_f + armsBook4_0_f + armsBook5_0_f;
             intellect += armsBook1_0_i + armsBook2_0_i + armsBook3_0_i + armsBook4_0_i + armsBook5_0_i;
             troops += armsBook1_0_t + armsBook2_0_t + armsBook3_0_t + armsBook4_0_t + armsBook5_0_t;
+            bookList.add(armsBook1_0.label());
+            bookList.add(armsBook2_0.label());
+            bookList.add(armsBook3_0.label());
+            bookList.add(armsBook4_0.label());
+            bookList.add(armsBook5_0.label());
         }else if(GeneralEnum.ThreeCirclesType.type_12.value().equals(type.value())){//武随
-            if(armsBook1_0_f >= armsBook1_1_f){ force += armsBook1_0_f; intellect += armsBook1_0_i; troops += armsBook1_0_t; }else{ force += armsBook1_1_f; intellect += armsBook1_1_i; troops += armsBook1_1_t; }
-            if(armsBook2_0_f >= armsBook2_1_f){ force += armsBook2_0_f; intellect += armsBook2_0_i; troops += armsBook2_0_t; }else{ force += armsBook2_1_f; intellect += armsBook2_1_i; troops += armsBook2_1_t; }
-            if(armsBook3_0_f >= armsBook3_1_f){ force += armsBook3_0_f; intellect += armsBook3_0_i; troops += armsBook3_0_t; }else{ force += armsBook3_1_f; intellect += armsBook3_1_i; troops += armsBook3_1_t; }
-            if(armsBook4_0_f >= armsBook4_1_f){ force += armsBook4_0_f; intellect += armsBook4_0_i; troops += armsBook4_0_t; }else{ force += armsBook4_1_f; intellect += armsBook4_1_i; troops += armsBook4_1_t; }
-            if(armsBook5_0_f >= armsBook5_1_f){ force += armsBook5_0_f; intellect += armsBook5_0_i; troops += armsBook5_0_t; }else{ force += armsBook5_1_f; intellect += armsBook5_1_i; troops += armsBook5_1_t; }
+            if(armsBook1_0_f >= armsBook1_1_f){ force += armsBook1_0_f; intellect += armsBook1_0_i; troops += armsBook1_0_t;bookList.add(armsBook1_0.label()); }else{ force += armsBook1_1_f; intellect += armsBook1_1_i; troops += armsBook1_1_t;bookList.add(armsBook1_1.label()); }
+            if(armsBook2_0_f >= armsBook2_1_f){ force += armsBook2_0_f; intellect += armsBook2_0_i; troops += armsBook2_0_t;bookList.add(armsBook2_0.label()); }else{ force += armsBook2_1_f; intellect += armsBook2_1_i; troops += armsBook2_1_t;bookList.add(armsBook2_1.label()); }
+            if(armsBook3_0_f >= armsBook3_1_f){ force += armsBook3_0_f; intellect += armsBook3_0_i; troops += armsBook3_0_t;bookList.add(armsBook3_0.label()); }else{ force += armsBook3_1_f; intellect += armsBook3_1_i; troops += armsBook3_1_t;bookList.add(armsBook3_1.label()); }
+            if(armsBook4_0_f >= armsBook4_1_f){ force += armsBook4_0_f; intellect += armsBook4_0_i; troops += armsBook4_0_t;bookList.add(armsBook4_0.label()); }else{ force += armsBook4_1_f; intellect += armsBook4_1_i; troops += armsBook4_1_t;bookList.add(armsBook4_1.label()); }
+            if(armsBook5_0_f >= armsBook5_1_f){ force += armsBook5_0_f; intellect += armsBook5_0_i; troops += armsBook5_0_t;bookList.add(armsBook5_0.label()); }else{ force += armsBook5_1_f; intellect += armsBook5_1_i; troops += armsBook5_1_t;bookList.add(armsBook5_1.label()); }
         }else if(GeneralEnum.ThreeCirclesType.type_13.value().equals(type.value())){//智随
-            if(armsBook1_0_i >= armsBook1_1_i){ force += armsBook1_0_f; intellect += armsBook1_0_i; troops += armsBook1_0_t; }else{ force += armsBook1_1_f; intellect += armsBook1_1_i; troops += armsBook1_1_t; }
-            if(armsBook2_0_i >= armsBook2_1_i){ force += armsBook2_0_f; intellect += armsBook2_0_i; troops += armsBook2_0_t; }else{ force += armsBook2_1_f; intellect += armsBook2_1_i; troops += armsBook2_1_t; }
-            if(armsBook3_0_i >= armsBook3_1_i){ force += armsBook3_0_f; intellect += armsBook3_0_i; troops += armsBook3_0_t; }else{ force += armsBook3_1_f; intellect += armsBook3_1_i; troops += armsBook3_1_t; }
-            if(armsBook4_0_i >= armsBook4_1_i){ force += armsBook4_0_f; intellect += armsBook4_0_i; troops += armsBook4_0_t; }else{ force += armsBook4_1_f; intellect += armsBook4_1_i; troops += armsBook4_1_t; }
-            if(armsBook5_0_i >= armsBook5_1_i){ force += armsBook5_0_f; intellect += armsBook5_0_i; troops += armsBook5_0_t; }else{ force += armsBook5_1_f; intellect += armsBook5_1_i; troops += armsBook5_1_t; }
+            if(armsBook1_0_i >= armsBook1_1_i){ force += armsBook1_0_f; intellect += armsBook1_0_i; troops += armsBook1_0_t;bookList.add(armsBook1_0.label()); }else{ force += armsBook1_1_f; intellect += armsBook1_1_i; troops += armsBook1_1_t;bookList.add(armsBook1_1.label()); }
+            if(armsBook2_0_i >= armsBook2_1_i){ force += armsBook2_0_f; intellect += armsBook2_0_i; troops += armsBook2_0_t;bookList.add(armsBook2_0.label()); }else{ force += armsBook2_1_f; intellect += armsBook2_1_i; troops += armsBook2_1_t;bookList.add(armsBook2_1.label()); }
+            if(armsBook3_0_i >= armsBook3_1_i){ force += armsBook3_0_f; intellect += armsBook3_0_i; troops += armsBook3_0_t;bookList.add(armsBook3_0.label()); }else{ force += armsBook3_1_f; intellect += armsBook3_1_i; troops += armsBook3_1_t;bookList.add(armsBook3_1.label()); }
+            if(armsBook4_0_i >= armsBook4_1_i){ force += armsBook4_0_f; intellect += armsBook4_0_i; troops += armsBook4_0_t;bookList.add(armsBook4_0.label()); }else{ force += armsBook4_1_f; intellect += armsBook4_1_i; troops += armsBook4_1_t;bookList.add(armsBook4_1.label()); }
+            if(armsBook5_0_i >= armsBook5_1_i){ force += armsBook5_0_f; intellect += armsBook5_0_i; troops += armsBook5_0_t;bookList.add(armsBook5_0.label()); }else{ force += armsBook5_1_f; intellect += armsBook5_1_i; troops += armsBook5_1_t;bookList.add(armsBook5_1.label()); }
         }else if(GeneralEnum.ThreeCirclesType.type_14.value().equals(type.value())){//兵随
-            if(armsBook1_0_t >= armsBook1_1_t){ force += armsBook1_0_f; intellect += armsBook1_0_i; troops += armsBook1_0_t; }else{ force += armsBook1_1_f; intellect += armsBook1_1_i; troops += armsBook1_1_t; }
-            if(armsBook2_0_t >= armsBook2_1_t){ force += armsBook2_0_f; intellect += armsBook2_0_i; troops += armsBook2_0_t; }else{ force += armsBook2_1_f; intellect += armsBook2_1_i; troops += armsBook2_1_t; }
-            if(armsBook3_0_t >= armsBook3_1_t){ force += armsBook3_0_f; intellect += armsBook3_0_i; troops += armsBook3_0_t; }else{ force += armsBook3_1_f; intellect += armsBook3_1_i; troops += armsBook3_1_t; }
-            if(armsBook4_0_t >= armsBook4_1_t){ force += armsBook4_0_f; intellect += armsBook4_0_i; troops += armsBook4_0_t; }else{ force += armsBook4_1_f; intellect += armsBook4_1_i; troops += armsBook4_1_t; }
-            if(armsBook5_0_t >= armsBook5_1_t){ force += armsBook5_0_f; intellect += armsBook5_0_i; troops += armsBook5_0_t; }else{ force += armsBook5_1_f; intellect += armsBook5_1_i; troops += armsBook5_1_t; }
+            if(armsBook1_0_t >= armsBook1_1_t){ force += armsBook1_0_f; intellect += armsBook1_0_i; troops += armsBook1_0_t;bookList.add(armsBook1_0.label()); }else{ force += armsBook1_1_f; intellect += armsBook1_1_i; troops += armsBook1_1_t;bookList.add(armsBook1_1.label()); }
+            if(armsBook2_0_t >= armsBook2_1_t){ force += armsBook2_0_f; intellect += armsBook2_0_i; troops += armsBook2_0_t;bookList.add(armsBook2_0.label()); }else{ force += armsBook2_1_f; intellect += armsBook2_1_i; troops += armsBook2_1_t;bookList.add(armsBook2_1.label()); }
+            if(armsBook3_0_t >= armsBook3_1_t){ force += armsBook3_0_f; intellect += armsBook3_0_i; troops += armsBook3_0_t;bookList.add(armsBook3_0.label()); }else{ force += armsBook3_1_f; intellect += armsBook3_1_i; troops += armsBook3_1_t;bookList.add(armsBook3_1.label()); }
+            if(armsBook4_0_t >= armsBook4_1_t){ force += armsBook4_0_f; intellect += armsBook4_0_i; troops += armsBook4_0_t;bookList.add(armsBook4_0.label()); }else{ force += armsBook4_1_f; intellect += armsBook4_1_i; troops += armsBook4_1_t;bookList.add(armsBook4_1.label()); }
+            if(armsBook5_0_t >= armsBook5_1_t){ force += armsBook5_0_f; intellect += armsBook5_0_i; troops += armsBook5_0_t;bookList.add(armsBook5_0.label()); }else{ force += armsBook5_1_f; intellect += armsBook5_1_i; troops += armsBook5_1_t;bookList.add(armsBook5_1.label()); }
         }
 
         GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
+        three.setRemark1(StringUtils.join(bookList,"/"));
         setCombat(three,force,intellect,troops);
         return three;
     }
@@ -432,13 +451,16 @@ public class GeneralCalculate {
         int force = 0;
         int intellect = 0;
         int troops = 0;
+        String skinName = null;
         if(generalSkin != null){
             force = generalSkin.getForce();
             intellect = generalSkin.getIntellect();
             troops = generalSkin.getTroops();
+            skinName = generalSkin.getName();
         }
         GeneralEnum.ThreeCirclesType type = GeneralEnum.ThreeCirclesType.type_19;
         GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
+        three.setRemark1(skinName);
         setCombat(three,force,intellect,troops);
         return three;
     }
@@ -474,6 +496,9 @@ public class GeneralCalculate {
         int force = 0;
         int intellect = 0;
         int troops = 0;
+        String bz = null;//兵种
+        String bs = null;//兵书
+        String hh = null;//幻化
 
         GeneralThree three0 = getBaseMaxThree(general);//满级三维
         GeneralThree three5 = getThree(general, GeneralEnum.ThreeCirclesType.type_5);//科技
@@ -481,6 +506,10 @@ public class GeneralCalculate {
         GeneralThree three16 = getThree(general, GeneralEnum.ThreeCirclesType.type_15);//将魂
         GeneralThree three18 = getThree(general, GeneralEnum.ThreeCirclesType.type_18);//命格
         GeneralThree three19 = getThree(general, GeneralEnum.ThreeCirclesType.type_19);//幻化
+
+        if(three19 != null){
+            hh = three19.getRemark1();
+        }
 
         force += three0.getForce()+three5.getForce()+three6.getForce()+three16.getForce()+three18.getForce()+three19.getForce();
         intellect += three0.getIntellect()+three5.getIntellect()+three6.getIntellect()+three16.getIntellect()+three18.getIntellect()+three19.getIntellect();
@@ -499,55 +528,72 @@ public class GeneralCalculate {
                 force += three9.getForce();
                 intellect += three9.getIntellect();
                 troops += three9.getTroops();
+                bz = three9.getRemark1();
             }else{
                 force += three10.getForce();
                 intellect += three10.getIntellect();
                 troops += three10.getTroops();
+                bz = three10.getRemark1();
             }
             force += three12.getForce();
             intellect += three12.getIntellect();
             troops += three12.getTroops();
+            bs = three12.getRemark1();
         }else if(GeneralEnum.ThreeCirclesType.type_24.value().equals(type.value())){//智随三维
             type2 = GeneralEnum.ThreeCirclesType.type_25;
             if(three9.getIntellect() >= three10.getIntellect()){
                 force += three9.getForce();
                 intellect += three9.getIntellect();
                 troops += three9.getTroops();
+                bz = three9.getRemark1();
             }else{
                 force += three10.getForce();
                 intellect += three10.getIntellect();
                 troops += three10.getTroops();
+                bz = three10.getRemark1();
             }
             force += three13.getForce();
             intellect += three13.getIntellect();
             troops += three13.getTroops();
+            bs = three13.getRemark1();
         }else if(GeneralEnum.ThreeCirclesType.type_26.value().equals(type.value())){//兵随三维
             type2 = GeneralEnum.ThreeCirclesType.type_27;
             if(three9.getTroops() >= three10.getTroops()){
                 force += three9.getForce();
                 intellect += three9.getIntellect();
                 troops += three9.getTroops();
+                bz = three9.getRemark1();
             }else{
                 force += three10.getForce();
                 intellect += three10.getIntellect();
                 troops += three10.getTroops();
+                bz = three10.getRemark1();
             }
             force += three14.getForce();
             intellect += three14.getIntellect();
             troops += three14.getTroops();
+            bs = three14.getRemark1();
         }
 
+        //非联协
         List<GeneralThree> threeList = new ArrayList<>();
         GeneralThree three2 = new GeneralThree(general.getId(),type2.value(),type2.label());
         force = force / 2 + 100;//满将魂+100属性
         intellect = intellect / 2 + 100;
         troops = troops / 2 + 100;
+        three2.setRemark1(bz);
+        three2.setRemark2(bs);
+        three2.setRemark3(hh);
         setCombat(three2,force,intellect,troops);
 
+        //联协
         GeneralThree three1 = new GeneralThree(general.getId(),type.value(),type.label());
         Double force0 = force * 1.25;
         Double intellect0 = intellect * 1.25;
         Double troops0 = troops * 1.25;
+        three1.setRemark1(bz);
+        three1.setRemark2(bs);
+        three1.setRemark3(hh);
         setCombat(three1,force0.intValue(),intellect0.intValue(),troops0.intValue());
 
         threeList.add(three1);

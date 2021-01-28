@@ -17,6 +17,7 @@
 	    <result column="combat0" property="combat0"/>
 	    <result column="remark1" property="remark1"/>
 	    <result column="remark2" property="remark2"/>
+	    <result column="remark3" property="remark3"/>
 	</resultMap>
 
 	<sql id="baseColumn">
@@ -33,7 +34,8 @@
 	    troops0,
 	    combat0,
 	    remark1,
-	    remark2
+	    remark2,
+	    remark3
 	</sql>
 
 	<sql id="baseCondition">
@@ -52,6 +54,7 @@
 		    <if test="combat0 != null"> and combat0 = #{combat0}</if>
 		    <if test="remark1 != null"> and remark1 = #{remark1}</if>
 		    <if test="remark2 != null"> and remark2 = #{remark2}</if>
+		    <if test="remark3 != null"> and remark3 = #{remark3}</if>
 		</where>
 	</sql>
 
@@ -111,6 +114,7 @@
 			<if test="combat0 != null">combat0,</if>
 			<if test="remark1 != null">remark1,</if>
 			<if test="remark2 != null">remark2,</if>
+			<if test="remark3 != null">remark3,</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides="," >
 		    <if test="generalId != null">#{generalId},</if>
@@ -126,7 +130,46 @@
 		    <if test="combat0 != null">#{combat0},</if>
 		    <if test="remark1 != null">#{remark1},</if>
 		    <if test="remark2 != null">#{remark2},</if>
+		    <if test="remark3 != null">#{remark3},</if>
 		</trim>
+	</insert>
+
+	<insert id="insertList" parameterType="java.util.List">
+		insert into ppsg_general_three
+		(
+			general_id,
+			code,
+			name,
+			`force`,
+			intellect,
+			troops,
+			combat,
+			force0,
+			intellect0,
+			troops0,
+			combat0,
+			remark1,
+			remark2,
+			remark3
+		) values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+				#{item.generalId},
+				#{item.code},
+				#{item.name},
+				#{item.force},
+				#{item.intellect},
+				#{item.troops},
+				#{item.combat},
+				#{item.force0},
+				#{item.intellect0},
+				#{item.troops0},
+				#{item.combat0},
+				#{item.remark1},
+				#{item.remark2},
+				#{item.remark3}
+			)
+		</foreach>
 	</insert>
 
 	<update id="update" parameterType="com.ivy.admin.entity.ppsg.GeneralThree">
@@ -145,6 +188,7 @@
 			<if test="combat0 != null">combat0 = #{combat0},</if>
 			<if test="remark1 != null">remark1 = #{remark1},</if>
 			<if test="remark2 != null">remark2 = #{remark2},</if>
+			<if test="remark3 != null">remark3 = #{remark3},</if>
 		</set>
 		where id = #{id}
 	</update>

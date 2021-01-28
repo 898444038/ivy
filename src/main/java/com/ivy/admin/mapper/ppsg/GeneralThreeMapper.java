@@ -63,4 +63,7 @@ public interface GeneralThreeMapper {
 
 	@TargetDataSource("dataSource1")
     int deleteByGeneralId(Long id);
+
+	@TargetDataSource("dataSource1")
+    int insertList(List<GeneralThree> list);
 }

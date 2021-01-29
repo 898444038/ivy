@@ -3,11 +3,13 @@ package com.ivy.admin.entity.ppsg;
 
 public class GeneralResultItem {
 
-    private String generalName;
-    private String generalNamex;
-    private String countryName;
-    private String armsName;
-    private String genderName;
+    private String generalName;//普通
+    private String generalNamex;//异化
+    private String countryName;//国家
+    private String armsName;//兵种
+    private String genderName;//性别
+    private String warpathName;//战意
+    private Integer destinyCode;//命格
 
     private Integer force;//总武力
     private Integer intellect;//总智力
@@ -94,11 +96,110 @@ public class GeneralResultItem {
     private Double t31;//兵符副属性兵力
     private Double c31;//兵符副属性战力
 
-    private String forceEntourage;//
-    private String intellectEntourage;//
-    private String troopsEntourage;//
+    private String forceEntourage;//武随描述
+    private String intellectEntourage;//智随描述
+    private String troopsEntourage;//兵随描述
+
+    private String weaponName;//战器名称
+    private String weaponQuenchingName;//战器淬炼效果
+    private String weaponBaseThree;//战器基础三维
+    private String weaponStrengthenThree;//战器强化三维
+    private String weaponQuenchingThree;//战器淬炼三维
+    private String weaponExclusiveThree;//战器专属三维
+
+    private String passiveCombat1;//战器被动战力
+    private String passiveCombat2;//命格被动战力
+    private String passiveCombat3;//阵法被动战力
 
     public GeneralResultItem() {
+    }
+
+    public String getPassiveCombat1() {
+        return passiveCombat1;
+    }
+
+    public void setPassiveCombat1(String passiveCombat1) {
+        this.passiveCombat1 = passiveCombat1;
+    }
+
+    public String getPassiveCombat2() {
+        return passiveCombat2;
+    }
+
+    public void setPassiveCombat2(String passiveCombat2) {
+        this.passiveCombat2 = passiveCombat2;
+    }
+
+    public String getPassiveCombat3() {
+        return passiveCombat3;
+    }
+
+    public void setPassiveCombat3(String passiveCombat3) {
+        this.passiveCombat3 = passiveCombat3;
+    }
+
+    public Integer getDestinyCode() {
+        return destinyCode;
+    }
+
+    public void setDestinyCode(Integer destinyCode) {
+        this.destinyCode = destinyCode;
+    }
+
+    public String getWeaponName() {
+        return weaponName;
+    }
+
+    public void setWeaponName(String weaponName) {
+        this.weaponName = weaponName;
+    }
+
+    public String getWeaponQuenchingName() {
+        return weaponQuenchingName;
+    }
+
+    public void setWeaponQuenchingName(String weaponQuenchingName) {
+        this.weaponQuenchingName = weaponQuenchingName;
+    }
+
+    public String getWeaponBaseThree() {
+        return weaponBaseThree;
+    }
+
+    public void setWeaponBaseThree(String weaponBaseThree) {
+        this.weaponBaseThree = weaponBaseThree;
+    }
+
+    public String getWeaponStrengthenThree() {
+        return weaponStrengthenThree;
+    }
+
+    public void setWeaponStrengthenThree(String weaponStrengthenThree) {
+        this.weaponStrengthenThree = weaponStrengthenThree;
+    }
+
+    public String getWeaponQuenchingThree() {
+        return weaponQuenchingThree;
+    }
+
+    public void setWeaponQuenchingThree(String weaponQuenchingThree) {
+        this.weaponQuenchingThree = weaponQuenchingThree;
+    }
+
+    public String getWeaponExclusiveThree() {
+        return weaponExclusiveThree;
+    }
+
+    public void setWeaponExclusiveThree(String weaponExclusiveThree) {
+        this.weaponExclusiveThree = weaponExclusiveThree;
+    }
+
+    public String getWarpathName() {
+        return warpathName;
+    }
+
+    public void setWarpathName(String warpathName) {
+        this.warpathName = warpathName;
     }
 
     public String getForceEntourage() {

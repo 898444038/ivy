@@ -9,8 +9,27 @@ public class GeneralResult {
     private Integer totalCombat;//总战力
     private String title;//总战力
     private List<GeneralResultItem> itemList;//上阵武将
+    private List<GeneralSymbol> symbolList;//兵符
+
+    private Integer workshopCombat;//工坊战力
 
     public GeneralResult() {
+    }
+
+    public Integer getWorkshopCombat() {
+        return workshopCombat;
+    }
+
+    public void setWorkshopCombat(Integer workshopCombat) {
+        this.workshopCombat = workshopCombat;
+    }
+
+    public List<GeneralSymbol> getSymbolList() {
+        return symbolList;
+    }
+
+    public void setSymbolList(List<GeneralSymbol> symbolList) {
+        this.symbolList = symbolList;
     }
 
     public String getTitle() {

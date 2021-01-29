@@ -87,10 +87,12 @@ public class GeneralVirtualCombatController {
     @Log("ppsg.General")
     @PostMapping("/query")
     public ResultMsg query(@RequestBody GeneralAnalog analog){
-        analog.setType(1);
-        //analog.setIds("2,3,4,5,6");
         List<GeneralResult> resultList = generalVirtualCombatService.calculate(analog);
-        return ResultMsg.success(resultList);
+        //List<GeneralResult> resultList = (List<GeneralResult>) cache.get(CacheKeys.GENERALS_RESULT_LIST,key -> generalVirtualCombatService.calculate(analog));
+        if(resultList.size() > analog.getSize() ){
+            resultList = resultList.subList(0,analog.getSize());
+        }
+        return ResultMsg.success("查询成功",resultList);
     }
 
     /**

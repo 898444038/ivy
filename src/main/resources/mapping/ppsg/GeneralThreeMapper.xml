@@ -18,6 +18,9 @@
 	    <result column="remark1" property="remark1"/>
 	    <result column="remark2" property="remark2"/>
 	    <result column="remark3" property="remark3"/>
+	    <result column="remark4" property="remark4"/>
+	    <result column="remark5" property="remark5"/>
+	    <result column="remark6" property="remark6"/>
 	</resultMap>
 
 	<sql id="baseColumn">
@@ -35,7 +38,10 @@
 	    combat0,
 	    remark1,
 	    remark2,
-	    remark3
+	    remark3,
+	    remark4,
+	    remark5,
+	    remark6
 	</sql>
 
 	<sql id="baseCondition">
@@ -55,6 +61,9 @@
 		    <if test="remark1 != null"> and remark1 = #{remark1}</if>
 		    <if test="remark2 != null"> and remark2 = #{remark2}</if>
 		    <if test="remark3 != null"> and remark3 = #{remark3}</if>
+		    <if test="remark4 != null"> and remark4 = #{remark4}</if>
+		    <if test="remark5 != null"> and remark5 = #{remark5}</if>
+		    <if test="remark6 != null"> and remark6 = #{remark6}</if>
 		</where>
 	</sql>
 
@@ -115,6 +124,9 @@
 			<if test="remark1 != null">remark1,</if>
 			<if test="remark2 != null">remark2,</if>
 			<if test="remark3 != null">remark3,</if>
+			<if test="remark4 != null">remark4,</if>
+			<if test="remark5 != null">remark5,</if>
+			<if test="remark6 != null">remark6,</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides="," >
 		    <if test="generalId != null">#{generalId},</if>
@@ -131,6 +143,9 @@
 		    <if test="remark1 != null">#{remark1},</if>
 		    <if test="remark2 != null">#{remark2},</if>
 		    <if test="remark3 != null">#{remark3},</if>
+		    <if test="remark4 != null">#{remark4},</if>
+		    <if test="remark5 != null">#{remark5},</if>
+		    <if test="remark6 != null">#{remark6},</if>
 		</trim>
 	</insert>
 
@@ -150,7 +165,10 @@
 			combat0,
 			remark1,
 			remark2,
-			remark3
+			remark3,
+			remark4,
+			remark5,
+			remark6
 		) values
 		<foreach collection="list" item="item" index="index" separator=",">
 			(
@@ -167,7 +185,10 @@
 				#{item.combat0},
 				#{item.remark1},
 				#{item.remark2},
-				#{item.remark3}
+				#{item.remark3},
+				#{item.remark4},
+				#{item.remark5},
+				#{item.remark6}
 			)
 		</foreach>
 	</insert>
@@ -189,6 +210,9 @@
 			<if test="remark1 != null">remark1 = #{remark1},</if>
 			<if test="remark2 != null">remark2 = #{remark2},</if>
 			<if test="remark3 != null">remark3 = #{remark3},</if>
+			<if test="remark4 != null">remark4 = #{remark4},</if>
+			<if test="remark5 != null">remark5 = #{remark5},</if>
+			<if test="remark6 != null">remark6 = #{remark6},</if>
 		</set>
 		where id = #{id}
 	</update>

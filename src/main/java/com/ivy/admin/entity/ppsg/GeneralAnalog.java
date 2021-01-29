@@ -6,6 +6,7 @@ public class GeneralAnalog {
 
     private String ids;//指定上阵武将
     private int type;//0:全部武将 2:部分包含 1:全包含
+    private Integer size;//返回条数10-100
     public static final int minLevel = 1;
     public static final int maxLevel = 120;
     private int currLevel;
@@ -13,6 +14,14 @@ public class GeneralAnalog {
     private GeneralEnum.Embattle embattle = GeneralEnum.Embattle.long_fei;
 
     public GeneralAnalog() {
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
     }
 
     public int getType() {

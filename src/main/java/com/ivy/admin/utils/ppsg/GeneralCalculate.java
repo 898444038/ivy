@@ -211,18 +211,26 @@ public class GeneralCalculate {
             int intellect = baseIntellect + strengthenIntellect;
             int troops = baseTroops + strengthenTroops;
 
+            int quenchingForce = 0;
+            int quenchingIntellect = 0;
+            int quenchingTroops = 0;
+
+            String quenchingName = null;
             if(troops >= force && troops >= intellect){//troops
-                Double d = troops * quenchingForceRate;
-                troops += d.intValue()*2;
-                String quenchingName1 = "战器的兵力值提升"+(int)(quenchingTroopsRate*100)+"%";
+                Double d = troops * quenchingTroopsRate;
+                quenchingTroops = d.intValue()*2;
+                troops += quenchingTroops;
+                quenchingName = "战器的兵力值提升"+(int)(quenchingTroopsRate*100)+"%";
             }else if(force >= intellect){//force
                 Double d = force * quenchingForceRate;
-                force += d.intValue()*2;
-                String quenchingName1 = "战器的武力值提升"+(int)(quenchingForceRate*100)+"%";
+                quenchingForce = d.intValue()*2;
+                force += quenchingForce;
+                quenchingName = "战器的武力值提升"+(int)(quenchingForceRate*100)+"%";
             }else{//intellect
                 Double d= intellect * quenchingIntellectRate;
-                intellect += d.intValue()*2;
-                String quenchingName1 = "战器的智力值提升"+(int)(quenchingIntellectRate*100)+"%";
+                quenchingIntellect = d.intValue()*2;
+                intellect += quenchingIntellect;
+                quenchingName = "战器的智力值提升"+(int)(quenchingIntellectRate*100)+"%";
             }
             //专属
             force += exclusiveForce;
@@ -231,6 +239,12 @@ public class GeneralCalculate {
 
             GeneralThree three = new GeneralThree(general.getId(),type.value(),type.label());
             setCombat(three,force,intellect,troops);
+            three.setRemark1(generalWeapon.getName()+"("+generalWeapon.getWeaponName()+")");
+            three.setRemark2(quenchingName);
+            three.setRemark3(baseForce+"/"+baseIntellect+"/"+baseTroops);
+            three.setRemark4(strengthenForce+"/"+strengthenIntellect+"/"+strengthenTroops);
+            three.setRemark5(quenchingForce+"/"+quenchingIntellect+"/"+quenchingTroops);
+            three.setRemark6(exclusiveForce+"/"+exclusiveIntellect+"/"+exclusiveTroops);
             threeList.add(three);
         }
         return threeList;

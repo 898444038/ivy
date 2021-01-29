@@ -3,12 +3,13 @@ package com.ivy.admin.utils;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class CacheUtil {
     /*缓存map*/
-    private static Map<String,Object> cacheMap = new HashMap<String, Object>();
+    private static Map<String,Object> cacheMap = new ConcurrentHashMap<>();
     /*缓存有效期map*/
-    private static Map<String,Long> expireMap = new HashMap<String, Long>();
+    private static Map<String,Long> expireMap = new ConcurrentHashMap<>();
 
     /**
      * 通过key获取值

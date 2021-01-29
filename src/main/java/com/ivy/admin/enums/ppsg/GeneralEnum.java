@@ -240,8 +240,23 @@ public interface GeneralEnum {
         gong(4,"弓",9,"特殊弓",133,133,133,160,106,133,224,227,445,1.0,1.0,1.0,288,288,288,458,458,1220),
         shan(5,"扇",10,"特殊扇",133,160,106,133,133,133,224,273,399,1.0,1.0,1.0,288,288,288,458,458,1220),
         ;
+        private Integer passive1;
+        private Integer passive2;
+        private Integer passive3;
         Weapon(Integer value, String label,Integer value2, String label2, Integer force, Integer intellect, Integer troops,Integer forcex, Integer intellectx, Integer troopsx, Integer strengthenForce, Integer strengthenIntellect, Integer strengthenTroops, Double quenchingForceRate, Double quenchingIntellectRate, Double quenchingTroopsRate, Integer exclusiveForce, Integer exclusiveIntellect, Integer exclusiveTroops, Integer passive1, Integer passive2, Integer passive3) {
             StaticDictPool.putDictItem(this, value, label,MapUtils.toMap(MapKeys.value2,value2,MapKeys.label2,label2,MapKeys.force,force,MapKeys.intellect,intellect,MapKeys.troops,troops,MapKeys.forcex,forcex,MapKeys.intellectx,intellectx,MapKeys.troopsx,troopsx,MapKeys.strengthenForce,strengthenForce,MapKeys.strengthenIntellect,strengthenIntellect,MapKeys.strengthenTroops,strengthenTroops,MapKeys.quenchingForceRate,quenchingForceRate,MapKeys.quenchingIntellectRate,quenchingIntellectRate,MapKeys.quenchingTroopsRate,quenchingTroopsRate,MapKeys.exclusiveForce,exclusiveForce,MapKeys.exclusiveIntellect,exclusiveIntellect,MapKeys.exclusiveTroops,exclusiveTroops,MapKeys.passive1,passive1,MapKeys.passive2,passive2,MapKeys.passive3,passive3));
+            this.passive1 = passive1;
+            this.passive2 = passive2;
+            this.passive3 = passive3;
+        }
+        public Integer getPassive1() {
+            return passive1;
+        }
+        public Integer getPassive2() {
+            return passive2;
+        }
+        public Integer getPassive3() {
+            return passive3;
         }
     }
 
@@ -476,16 +491,20 @@ public interface GeneralEnum {
      * 阵法
      */
     enum Embattle implements IDictItem {
-        long_fei(1,"龙飞",2,1,9,390,195,1755),
+        long_fei(1,"龙飞",2,1,9,390,195,1755,1920),
         //hu_yi(2,"",3,1,6),
         //niao_xiang(3,""),
         //she_pan(4,""),
         //huo_niu(5,""),
         //he_yi(6,""),
         ;
-
-        Embattle(Integer value, String label, Integer growForce, Integer growIntellect, Integer growTroops, Integer maxForce, Integer maxIntellect, Integer maxTroops) {
+        private Integer combat;
+        Embattle(Integer value, String label, Integer growForce, Integer growIntellect, Integer growTroops, Integer maxForce, Integer maxIntellect, Integer maxTroops,Integer combat) {
             StaticDictPool.putDictItem(this, value, label,MapUtils.toMap(MapKeys.growForce,growForce,MapKeys.growIntellect,growIntellect,MapKeys.growTroops,growTroops,MapKeys.maxForce,maxForce,MapKeys.maxIntellect,maxIntellect,MapKeys.maxTroops,maxTroops));
+            this.combat = combat;
+        }
+        public Integer getCombat() {
+            return combat;
         }
     }
 
@@ -594,18 +613,22 @@ public interface GeneralEnum {
      * 命格类型
      */
     enum DestinyType implements IDictItem {
-        none(0,"无",0,0,0),
-        tu_po(1,"突破 (540/330/585)",540,330,585),
-        ni_ming_1(2,"逆命1 (580/330/645)",580,330,645),
-        ni_ming_2(3,"逆命2 (490/360/735)",490,360,735),
-        ni_ming_3(4,"逆命3 (330/580/645)",330,580,645),
-        ni_ming_4(5,"逆命4 (450/460/645)",450,460,645),
-        two_ni_ming_1(6,"二段逆命1 (988/654/1947)",988,654,1947),
-        two_ni_ming_2(7,"二段逆命2 (714/932/1947)",714,932,1947),
+        none(0,"无",0,0,0,0,0,0,0,0),
+        tu_po(1,"突破 (540/330/585)",540,330,585,680,0,0,0,0),
+        ni_ming_1(2,"逆命1 (580/330/645)",580,330,645,1920,1220,1220,0,0),
+        ni_ming_2(3,"逆命2 (490/360/735)",490,360,735,1920,1220,1220,0,0),
+        ni_ming_3(4,"逆命3 (330/580/645)",330,580,645,1920,1220,1220,0,0),
+        ni_ming_4(5,"逆命4 (450/460/645)",450,460,645,1920,1220,1220,0,0),
+        two_ni_ming_1(6,"二段逆命1 (988/654/1947)",988,654,1947,2380,1220,1220,1220,1220),
+        two_ni_ming_2(7,"二段逆命2 (714/932/1947)",714,932,1947,2380,1220,1220,1220,1220),
         ;
-
-        DestinyType(Integer value, String label, Integer force, Integer intellect, Integer troops) {
-            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap(MapKeys.force,force,MapKeys.intellect,intellect,MapKeys.troops,troops));
+        private Integer p1;//主被动
+        private Integer p2;//1段支被动1
+        private Integer p3;//1段支被动2
+        private Integer p4;//2段支被动3
+        private Integer p5;//2段支被动4
+        DestinyType(Integer value, String label, Integer force, Integer intellect, Integer troops,Integer p1,Integer p2,Integer p3,Integer p4,Integer p5) {
+            StaticDictPool.putDictItem(this, value, label,MapUtils.toMap(MapKeys.force,force,MapKeys.intellect,intellect,MapKeys.troops,troops,"p1",p1,"p2",p2,"p3",p3,"p4",p4,"p5",p5));
         }
     }
 

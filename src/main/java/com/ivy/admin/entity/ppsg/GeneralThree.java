@@ -72,6 +72,18 @@ public class GeneralThree implements Serializable {
     @Comment("备注3")
     private String remark3;
 
+    @Column
+    @Comment("备注4")
+    private String remark4;
+
+    @Column
+    @Comment("备注5")
+    private String remark5;
+
+    @Column
+    @Comment("备注6")
+    private String remark6;
+
     public GeneralThree() {
     }
 
@@ -103,6 +115,30 @@ public class GeneralThree implements Serializable {
         this.intellect0 = intellect0;
         this.troops0 = troops0;
         this.combat0 = combat0;
+    }
+
+    public String getRemark6() {
+        return remark6;
+    }
+
+    public void setRemark6(String remark6) {
+        this.remark6 = remark6;
+    }
+
+    public String getRemark4() {
+        return remark4;
+    }
+
+    public void setRemark4(String remark4) {
+        this.remark4 = remark4;
+    }
+
+    public String getRemark5() {
+        return remark5;
+    }
+
+    public void setRemark5(String remark5) {
+        this.remark5 = remark5;
     }
 
     public String getRemark3() {

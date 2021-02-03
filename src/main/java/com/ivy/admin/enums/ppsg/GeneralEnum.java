@@ -479,7 +479,13 @@ public interface GeneralEnum {
 
         po_jun_pt(901,"普通破军之血"),
         po_jun_jl(902,"精良破军之血"),
-        po_jun_wx(903,"无暇破军之血");
+        po_jun_wx(903,"无暇破军之血"),
+
+        ju_men(1001,"巨门之隐"),
+        wu_qu(1002,"武曲之厉"),
+        tian_tong(1003,"天同之净"),
+        tian_liang(1004,"天梁之义"),
+        ;
 
         DestinyMaterial(Integer value, String label) {
             StaticDictPool.putDictItem(this, value, label);
@@ -619,8 +625,12 @@ public interface GeneralEnum {
         ni_ming_2(3,"逆命2 (490/360/735)",490,360,735,1920,1220,1220,0,0),
         ni_ming_3(4,"逆命3 (330/580/645)",330,580,645,1920,1220,1220,0,0),
         ni_ming_4(5,"逆命4 (450/460/645)",450,460,645,1920,1220,1220,0,0),
+        //(580/330/645)(408/324/1302)
         two_ni_ming_1(6,"二段逆命1 (988/654/1947)",988,654,1947,2380,1220,1220,1220,1220),
-        two_ni_ming_2(7,"二段逆命2 (714/932/1947)",714,932,1947,2380,1220,1220,1220,1220),
+        //
+        //two_ni_ming_2(7,"二段逆命2 (714/932/1947)",714,932,1947,2380,1220,1220,1220,1220),
+        two_ni_ming_3(8,"二段逆命3 (714/932/1947)",714,932,1947,2380,1220,1220,1220,1220),
+        //two_ni_ming_4(7,"二段逆命4 (714/932/1947)",714,932,1947,2380,1220,1220,1220,1220),
         ;
         private Integer p1;//主被动
         private Integer p2;//1段支被动1
@@ -630,6 +640,18 @@ public interface GeneralEnum {
         DestinyType(Integer value, String label, Integer force, Integer intellect, Integer troops,Integer p1,Integer p2,Integer p3,Integer p4,Integer p5) {
             StaticDictPool.putDictItem(this, value, label,MapUtils.toMap(MapKeys.force,force,MapKeys.intellect,intellect,MapKeys.troops,troops,"p1",p1,"p2",p2,"p3",p3,"p4",p4,"p5",p5));
         }
+    }
+
+    public static Integer getDicByLabel(String name,String label){
+        Map<String,List<Map<String,Object>>> listMap = getDic(name);
+        List<Map<String,Object>> mapList = listMap.get(name);
+        for(Map<String,Object> map : mapList){
+            Object val = map.get("label");
+            if(val.toString().equals(label)){
+                return (Integer) map.get("value");
+            }
+        }
+        return null;
     }
 
     public static Map<String,List<Map<String,Object>>> getDic(String name){

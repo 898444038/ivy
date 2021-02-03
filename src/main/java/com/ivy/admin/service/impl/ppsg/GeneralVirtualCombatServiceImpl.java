@@ -3,32 +3,16 @@ package com.ivy.admin.service.impl.ppsg;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.ivy.admin.entity.ppsg.*;
 import com.ivy.admin.enums.ppsg.GeneralEnum;
-import com.ivy.admin.mapper.ppsg.GeneralArmsBookMapper;
-import com.ivy.admin.mapper.ppsg.GeneralAssociationMapper;
-import com.ivy.admin.mapper.ppsg.GeneralMapper;
-import com.ivy.admin.mapper.ppsg.GeneralSkinMapper;
-import com.ivy.admin.mapper.ppsg.GeneralThreeMapper;
-import com.ivy.admin.mapper.ppsg.GeneralWeaponMapper;
 import com.ivy.admin.service.ppsg.GeneralService;
 import com.ivy.admin.service.ppsg.GeneralVirtualCombatService;
 import com.ivy.admin.utils.CacheUtil;
 import com.ivy.admin.utils.ListUtils;
-import com.ivy.admin.utils.Pagination;
-import com.ivy.admin.utils.ppsg.CombineAndArrangement;
 import com.ivy.admin.utils.ppsg.GeneralCalculate;
-import com.ivy.admin.utils.ppsg.MapKeys;
 import com.ivy.admin.utils.ppsg.MapUtils;
-import com.ivy.admin.vo.ppsg.GeneralArmsBookVo;
-import com.ivy.admin.vo.ppsg.GeneralAssociationVo;
-import com.ivy.admin.vo.ppsg.GeneralSkinVo;
-import com.ivy.admin.vo.ppsg.GeneralThreeVo;
 import com.ivy.admin.vo.ppsg.GeneralVo;
-import com.ivy.admin.vo.ppsg.GeneralWeaponVo;
 import com.ivy.system.config.CacheKeys;
 import com.ivy.system.enums.IDictItem;
-import jdk.internal.org.objectweb.asm.Handle;
 import org.apache.commons.lang.StringUtils;
-import org.checkerframework.checker.units.qual.K;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,12 +24,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 
 /**
  * 武将
@@ -186,6 +168,7 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
     }
 
     private void calculateCombat(GeneralResult result) {
+
         result.setTotalCombat(0);
         List<GeneralResultItem> itemList = result.getItemList();
         List<String> titleList = new ArrayList<>();

@@ -19,8 +19,8 @@ public class CaffeineUtils {
             .expireAfterAccess(5,TimeUnit.MINUTES)//表示自从最后一次访问（写入或者读取）后多久就会过期
             //.expireAfter()//自定义过期策略
             .refreshAfterWrite(1, TimeUnit.MINUTES)// 失效时间
-            .weakKeys()// 弱引用key
-            .weakValues()// 弱引用value
+            //.weakKeys()// 弱引用key
+            //.weakValues()// 弱引用value
             // 剔除监听
             .removalListener((RemovalListener<String, String>) (key, value, cause) -> System.out.println("key:" + key + ", value:" + value + ", 删除原因:" + cause.toString()))
             // 异步加载机制

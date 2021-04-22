@@ -8,6 +8,7 @@ import com.ivy.admin.service.ppsg.GeneralVirtualCombatService;
 import com.ivy.admin.utils.CacheUtil;
 import com.ivy.admin.utils.ListUtils;
 import com.ivy.admin.utils.ppsg.GeneralCalculate;
+import com.ivy.admin.utils.ppsg.MainService;
 import com.ivy.admin.utils.ppsg.MapUtils;
 import com.ivy.admin.vo.ppsg.GeneralVo;
 import com.ivy.system.config.CacheKeys;
@@ -42,11 +43,16 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
     @Resource
     private GeneralService generalService;
 
+    private List<General> allList;
+
     @Override
     public List<GeneralResult> calculate(GeneralAnalog analog) {
         List<GeneralResult> resultList = new ArrayList<>();
         //全部
-        List<General> allList = (List<General>) cache.get(CacheKeys.GENERALS_DETAIL_LIST, key -> getAllValue(key));
+        if(allList == null){
+            allList = MainService.getExcelData();
+        }
+        //List<General> allList = (List<General>) cache.get(CacheKeys.GENERALS_DETAIL_LIST, key -> getAllValue(key));
         if(allList == null){
             return resultList;
         }
@@ -93,7 +99,10 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
             for (Long id : group){
                 for (General general : allList) {
                     if (general.getId().equals(id)) {
-                        set.add(general.getParentId());
+                        String[] parentIds = general.getParentIds().split(",");
+                        for (String parentId : parentIds){
+                            set.add(Long.valueOf(parentId));
+                        }
                         generalList.add(general);
                         names += id+"_";
                         break;
@@ -921,88 +930,100 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
         int force = 0;
         int intellect = 0;
         int troops = 0;
+        String[] codes0 = general.getParentIds().split(",");
         for (General all : allList){
-            if(all.getParentId().equals(general.getParentId())){
-                continue;
-            }
-            boolean flag = false;//是否联协
-            for (GeneralAssociation association : associationList){
-                if(association.getParentId().equals(all.getParentId())){
-                    flag = true;
-                    continue;
+            String[] codes1 = all.getParentIds().split(",");
+            boolean continueFlag = false;
+            aa: for (String code0 : codes0){
+                for (String code1 : codes1){
+                    if(code0.equals(code1)){
+                        continueFlag = true;
+                        break aa;
+                    }
                 }
             }
-            String namex = null;
-            if(all.getCardCode().equals(GeneralEnum.CardType.yi_hua.value())){
-                namex = all.getName()+"_限";
-            }else{
-                namex = all.getName();
+            if(!continueFlag){
+                boolean flag = false;//是否联协
+                aa:for (GeneralAssociation association : associationList){
+                    String[] parentIds = all.getParentIds().split(",");
+                    bb:for (String parentId : parentIds){
+                        if(association.getParentId().equals(parentId)){
+                            flag = true;
+                            continue aa;
+                        }
+                    }
+                }
+                String namex = null;
+                if(all.getCardCode().equals(GeneralEnum.CardType.yi_hua.value())){
+                    namex = all.getName()+"_限";
+                }else{
+                    namex = all.getName();
+                }
+                //联协
+                if(flag){
+                    GeneralThree three22 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_22);
+                    GeneralThree three24 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_24);
+                    GeneralThree three26 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_26);
+
+                    Map<String,Object> data_f = new HashMap<>();
+                    data_f.put("name",namex);
+                    data_f.put("value",three22.getForce());
+                    data_f.put("pid",all.getParentIds());
+                    data_f.put("bz",three22.getRemark1());
+                    data_f.put("bs",three22.getRemark2());
+                    data_f.put("hh",three22.getRemark3());
+                    general_f.add(data_f);
+
+                    Map<String,Object> data_i = new HashMap<>();
+                    data_i.put("name",namex);
+                    data_i.put("value",three24.getIntellect());
+                    data_i.put("pid",all.getParentIds());
+                    data_i.put("bz",three24.getRemark1());
+                    data_i.put("bs",three24.getRemark2());
+                    data_i.put("hh",three24.getRemark3());
+                    general_i.add(data_i);
+
+                    Map<String,Object> data_t = new HashMap<>();
+                    data_t.put("name",namex);
+                    data_t.put("value",three26.getTroops());
+                    data_t.put("pid",all.getParentIds());
+                    data_t.put("bz",three26.getRemark1());
+                    data_t.put("bs",three26.getRemark2());
+                    data_t.put("hh",three26.getRemark3());
+                    general_t.add(data_t);
+                }else{
+                    GeneralThree three23 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_23);
+                    GeneralThree three25 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_25);
+                    GeneralThree three27 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_27);
+
+                    Map<String,Object> data_f = new HashMap<>();
+                    data_f.put("name",namex);
+                    data_f.put("value",three23.getForce());
+                    data_f.put("pid",all.getParentIds());
+                    data_f.put("bz",three23.getRemark1());
+                    data_f.put("bs",three23.getRemark2());
+                    data_f.put("hh",three23.getRemark3());
+                    general_f.add(data_f);
+
+                    Map<String,Object> data_i = new HashMap<>();
+                    data_i.put("name",namex);
+                    data_i.put("value",three25.getIntellect());
+                    data_i.put("pid",all.getParentIds());
+                    data_i.put("bz",three25.getRemark1());
+                    data_i.put("bs",three25.getRemark2());
+                    data_i.put("hh",three25.getRemark3());
+                    general_i.add(data_i);
+
+                    Map<String,Object> data_t = new HashMap<>();
+                    data_t.put("name",namex);
+                    data_t.put("value",three27.getTroops());
+                    data_t.put("pid",all.getParentIds());
+                    data_t.put("bz",three27.getRemark1());
+                    data_t.put("bs",three27.getRemark2());
+                    data_t.put("hh",three27.getRemark3());
+                    general_t.add(data_t);
+                }
             }
-            //联协
-            if(flag){
-                GeneralThree three22 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_22);
-                GeneralThree three24 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_24);
-                GeneralThree three26 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_26);
-
-                Map<String,Object> data_f = new HashMap<>();
-                data_f.put("name",namex);
-                data_f.put("value",three22.getForce());
-                data_f.put("pid",all.getParentId());
-                data_f.put("bz",three22.getRemark1());
-                data_f.put("bs",three22.getRemark2());
-                data_f.put("hh",three22.getRemark3());
-                general_f.add(data_f);
-
-                Map<String,Object> data_i = new HashMap<>();
-                data_i.put("name",namex);
-                data_i.put("value",three24.getIntellect());
-                data_i.put("pid",all.getParentId());
-                data_i.put("bz",three24.getRemark1());
-                data_i.put("bs",three24.getRemark2());
-                data_i.put("hh",three24.getRemark3());
-                general_i.add(data_i);
-
-                Map<String,Object> data_t = new HashMap<>();
-                data_t.put("name",namex);
-                data_t.put("value",three26.getTroops());
-                data_t.put("pid",all.getParentId());
-                data_t.put("bz",three26.getRemark1());
-                data_t.put("bs",three26.getRemark2());
-                data_t.put("hh",three26.getRemark3());
-                general_t.add(data_t);
-            }else{
-                GeneralThree three23 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_23);
-                GeneralThree three25 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_25);
-                GeneralThree three27 = GeneralCalculate.getThree(all, GeneralEnum.ThreeCirclesType.type_27);
-
-                Map<String,Object> data_f = new HashMap<>();
-                data_f.put("name",namex);
-                data_f.put("value",three23.getForce());
-                data_f.put("pid",all.getParentId());
-                data_f.put("bz",three23.getRemark1());
-                data_f.put("bs",three23.getRemark2());
-                data_f.put("hh",three23.getRemark3());
-                general_f.add(data_f);
-
-                Map<String,Object> data_i = new HashMap<>();
-                data_i.put("name",namex);
-                data_i.put("value",three25.getIntellect());
-                data_i.put("pid",all.getParentId());
-                data_i.put("bz",three25.getRemark1());
-                data_i.put("bs",three25.getRemark2());
-                data_i.put("hh",three25.getRemark3());
-                general_i.add(data_i);
-
-                Map<String,Object> data_t = new HashMap<>();
-                data_t.put("name",namex);
-                data_t.put("value",three27.getTroops());
-                data_t.put("pid",all.getParentId());
-                data_t.put("bz",three27.getRemark1());
-                data_t.put("bs",three27.getRemark2());
-                data_t.put("hh",three27.getRemark3());
-                general_t.add(data_t);
-            }
-
         }
         Collections.sort(general_f, new MapComparatorDesc());
         Collections.sort(general_i, new MapComparatorDesc());
@@ -1042,22 +1063,35 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
                 List<Map<String,Object>> data = new ArrayList<>();
                 for(Map<String,Object> f : general_f){
                     for(Map<String,Object> i : general_i){
-                        if(f.get("pid").equals(i.get("pid"))){
+                        /*if(f.get("pid").equals(i.get("pid"))){
                             continue;
+                        }*/
+                        String[] codes_0 = f.get("pid").toString().split(",");
+                        String[] codes_1 = i.get("pid").toString().split(",");
+                        boolean continueFlag = false;
+                        aa: for (String code0 : codes_0){
+                            for (String code1 : codes_1){
+                                if(code0.equals(code1)){
+                                    continueFlag = true;
+                                    break aa;
+                                }
+                            }
                         }
-                        Map<String,Object> item = new HashMap<>();
-                        item.put("name_f",f.get("name"));
-                        item.put("value_f",f.get("value"));
-                        item.put("bz_f",f.get("bz"));
-                        item.put("bs_f",f.get("bs"));
-                        item.put("hh_f",f.get("hh"));
-                        item.put("name_i",i.get("name"));
-                        item.put("value_i",i.get("value"));
-                        item.put("bz_i",i.get("bz"));
-                        item.put("bs_i",i.get("bs"));
-                        item.put("hh_i",i.get("hh"));
-                        item.put("value",Integer.valueOf(f.get("value").toString())+Integer.valueOf(i.get("value").toString()));
-                        data.add(item);
+                        if(!continueFlag){
+                            Map<String,Object> item = new HashMap<>();
+                            item.put("name_f",f.get("name"));
+                            item.put("value_f",f.get("value"));
+                            item.put("bz_f",f.get("bz"));
+                            item.put("bs_f",f.get("bs"));
+                            item.put("hh_f",f.get("hh"));
+                            item.put("name_i",i.get("name"));
+                            item.put("value_i",i.get("value"));
+                            item.put("bz_i",i.get("bz"));
+                            item.put("bs_i",i.get("bs"));
+                            item.put("hh_i",i.get("hh"));
+                            item.put("value",Integer.valueOf(f.get("value").toString())+Integer.valueOf(i.get("value").toString()));
+                            data.add(item);
+                        }
                     }
                 }
                 Collections.sort(data, new MapComparatorDesc());
@@ -1077,22 +1111,35 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
                 List<Map<String,Object>> data = new ArrayList<>();
                 for(Map<String,Object> i : general_i){
                     for(Map<String,Object> t : general_t){
-                        if(i.get("pid").equals(t.get("pid"))){
+                        /*if(i.get("pid").equals(t.get("pid"))){
                             continue;
+                        }*/
+                        String[] codes_0 = t.get("pid").toString().split(",");
+                        String[] codes_1 = i.get("pid").toString().split(",");
+                        boolean continueFlag = false;
+                        aa: for (String code0 : codes_0){
+                            for (String code1 : codes_1){
+                                if(code0.equals(code1)){
+                                    continueFlag = true;
+                                    break aa;
+                                }
+                            }
                         }
-                        Map<String,Object> item = new HashMap<>();
-                        item.put("name_i",i.get("name"));
-                        item.put("value_i",i.get("value"));
-                        item.put("bz_i",i.get("bz"));
-                        item.put("bs_i",i.get("bs"));
-                        item.put("hh_i",i.get("hh"));
-                        item.put("name_t",t.get("name"));
-                        item.put("value_t",t.get("value"));
-                        item.put("bz_t",t.get("bz"));
-                        item.put("bs_t",t.get("bs"));
-                        item.put("hh_t",t.get("hh"));
-                        item.put("value",Integer.valueOf(i.get("value").toString())+Integer.valueOf(t.get("value").toString()));
-                        data.add(item);
+                        if(!continueFlag) {
+                            Map<String, Object> item = new HashMap<>();
+                            item.put("name_i", i.get("name"));
+                            item.put("value_i", i.get("value"));
+                            item.put("bz_i", i.get("bz"));
+                            item.put("bs_i", i.get("bs"));
+                            item.put("hh_i", i.get("hh"));
+                            item.put("name_t", t.get("name"));
+                            item.put("value_t", t.get("value"));
+                            item.put("bz_t", t.get("bz"));
+                            item.put("bs_t", t.get("bs"));
+                            item.put("hh_t", t.get("hh"));
+                            item.put("value", Integer.valueOf(i.get("value").toString()) + Integer.valueOf(t.get("value").toString()));
+                            data.add(item);
+                        }
                     }
                 }
                 Collections.sort(data, new MapComparatorDesc());
@@ -1112,22 +1159,35 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
                 List<Map<String,Object>> data = new ArrayList<>();
                 for(Map<String,Object> f : general_f){
                     for(Map<String,Object> t : general_t){
-                        if(f.get("pid").equals(t.get("pid"))){
+                        /*if(f.get("pid").equals(t.get("pid"))){
                             continue;
+                        }*/
+                        String[] codes_0 = t.get("pid").toString().split(",");
+                        String[] codes_1 = f.get("pid").toString().split(",");
+                        boolean continueFlag = false;
+                        aa: for (String code0 : codes_0){
+                            for (String code1 : codes_1){
+                                if(code0.equals(code1)){
+                                    continueFlag = true;
+                                    break aa;
+                                }
+                            }
                         }
-                        Map<String,Object> item = new HashMap<>();
-                        item.put("name_f",f.get("name"));
-                        item.put("value_f",f.get("value"));
-                        item.put("bz_f",f.get("bz"));
-                        item.put("bs_f",f.get("bs"));
-                        item.put("hh_f",f.get("hh"));
-                        item.put("name_t",t.get("name"));
-                        item.put("value_t",t.get("value"));
-                        item.put("bz_t",t.get("bz"));
-                        item.put("bs_t",t.get("bs"));
-                        item.put("hh_t",t.get("hh"));
-                        item.put("value",Integer.valueOf(f.get("value").toString())+Integer.valueOf(t.get("value").toString()));
-                        data.add(item);
+                        if(!continueFlag) {
+                            Map<String, Object> item = new HashMap<>();
+                            item.put("name_f", f.get("name"));
+                            item.put("value_f", f.get("value"));
+                            item.put("bz_f", f.get("bz"));
+                            item.put("bs_f", f.get("bs"));
+                            item.put("hh_f", f.get("hh"));
+                            item.put("name_t", t.get("name"));
+                            item.put("value_t", t.get("value"));
+                            item.put("bz_t", t.get("bz"));
+                            item.put("bs_t", t.get("bs"));
+                            item.put("hh_t", t.get("hh"));
+                            item.put("value", Integer.valueOf(f.get("value").toString()) + Integer.valueOf(t.get("value").toString()));
+                            data.add(item);
+                        }
                     }
                 }
                 Collections.sort(data, new MapComparatorDesc());
@@ -1148,31 +1208,57 @@ public class GeneralVirtualCombatServiceImpl implements GeneralVirtualCombatServ
             List<Map<String,Object>> data = new ArrayList<>();
             for(Map<String,Object> f : general_f){
                 for(Map<String,Object> i : general_i){
-                    if(f.get("pid").equals(i.get("pid"))){
+                    /*if(f.get("pid").equals(i.get("pid"))){
                         continue;
-                    }
-                    for(Map<String,Object> t : general_t){
-                        if(t.get("pid").equals(i.get("pid"))){
-                            continue;
+                    }*/
+                    String[] codes_0 = i.get("pid").toString().split(",");
+                    String[] codes_1 = f.get("pid").toString().split(",");
+                    boolean continueFlag = false;
+                    aa: for (String code0 : codes_0){
+                        for (String code1 : codes_1){
+                            if(code0.equals(code1)){
+                                continueFlag = true;
+                                break aa;
+                            }
                         }
-                        Map<String,Object> item = new HashMap<>();
-                        item.put("name_f",f.get("name"));
-                        item.put("value_f",f.get("value"));
-                        item.put("bz_f",f.get("bz"));
-                        item.put("bs_f",f.get("bs"));
-                        item.put("hh_f",f.get("hh"));
-                        item.put("name_i",i.get("name"));
-                        item.put("value_i",i.get("value"));
-                        item.put("bz_i",i.get("bz"));
-                        item.put("bs_i",i.get("bs"));
-                        item.put("hh_i",i.get("hh"));
-                        item.put("name_t",t.get("name"));
-                        item.put("value_t",t.get("value"));
-                        item.put("bz_t",t.get("bz"));
-                        item.put("bs_t",t.get("bs"));
-                        item.put("hh_t",t.get("hh"));
-                        item.put("value",Integer.valueOf(f.get("value").toString())+Integer.valueOf(i.get("value").toString())+Integer.valueOf(t.get("value").toString()));
-                        data.add(item);
+                    }
+                    if(!continueFlag) {
+                        for (Map<String, Object> t : general_t) {
+                            /*if (t.get("pid").equals(i.get("pid"))) {
+                                continue;
+                            }*/
+                            String[] codes_00 = i.get("pid").toString().split(",");
+                            String[] codes_11 = t.get("pid").toString().split(",");
+                            boolean continueFlag2 = false;
+                            bb: for (String code0 : codes_00){
+                                for (String code1 : codes_11){
+                                    if(code0.equals(code1)){
+                                        continueFlag2 = true;
+                                        break bb;
+                                    }
+                                }
+                            }
+                            if(!continueFlag2) {
+                                Map<String, Object> item = new HashMap<>();
+                                item.put("name_f", f.get("name"));
+                                item.put("value_f", f.get("value"));
+                                item.put("bz_f", f.get("bz"));
+                                item.put("bs_f", f.get("bs"));
+                                item.put("hh_f", f.get("hh"));
+                                item.put("name_i", i.get("name"));
+                                item.put("value_i", i.get("value"));
+                                item.put("bz_i", i.get("bz"));
+                                item.put("bs_i", i.get("bs"));
+                                item.put("hh_i", i.get("hh"));
+                                item.put("name_t", t.get("name"));
+                                item.put("value_t", t.get("value"));
+                                item.put("bz_t", t.get("bz"));
+                                item.put("bs_t", t.get("bs"));
+                                item.put("hh_t", t.get("hh"));
+                                item.put("value", Integer.valueOf(f.get("value").toString()) + Integer.valueOf(i.get("value").toString()) + Integer.valueOf(t.get("value").toString()));
+                                data.add(item);
+                            }
+                        }
                     }
                 }
             }

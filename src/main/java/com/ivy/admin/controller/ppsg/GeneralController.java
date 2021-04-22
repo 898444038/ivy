@@ -18,6 +18,7 @@ import com.ivy.admin.service.ppsg.GeneralThreeService;
 import com.ivy.admin.service.ppsg.GeneralWeaponService;
 import com.ivy.admin.utils.ReadWriteExcel;
 import com.ivy.admin.utils.ppsg.GeneralUtils;
+import com.ivy.admin.utils.ppsg.MainService;
 import com.ivy.admin.vo.ppsg.GeneralVo;
 import com.ivy.admin.entity.ppsg.General;
 
@@ -69,6 +70,9 @@ public class GeneralController {
     @Log("ppsg.General")
     @PostMapping("/save")
     public ResultMsg save(@RequestBody GeneralVo general){
+        if(true){
+            return ResultMsg.failed();
+        }
         //联协
         List<GeneralAssociation> associationList = general.getAssociationList();
         List<GeneralWeapon> weaponList = general.getWeaponList();
@@ -172,132 +176,7 @@ public class GeneralController {
     @Log("ppsg.General")
     @RequestMapping("/initGeneral")
     public ResultMsg initGeneral(){
-        String path = "/excel/data_temp.xlsx";
-        System.out.println("开始读取EXCEL："+path);
-        long t1 = System.currentTimeMillis();
-        ReadWriteExcel readWriteExcel = new ReadWriteExcel();
-        readWriteExcel.setRow(1);
-        List<List<String>> dataList = readWriteExcel.readRelativeExcel(path);
-        List<Map<String, String>> lists = readWriteExcel.transformMap(dataList);
-        long t2 = System.currentTimeMillis();
-        System.out.println("获取数据耗时："+(t2-t1)+"ms");
-        System.out.println("获取初始数据："+lists.size()+"条");
-
-        List<GeneralVo> generalList = new ArrayList<>();
-        GeneralVo general = null;
-        for(Map<String, String> data : lists){
-            if("false".equalsIgnoreCase(data.get("usable"))){
-                continue;
-            }
-            general = new GeneralVo();
-            general.setName(data.get("name"));
-            general.setLevel(1);
-
-            String parentName = data.get("generalsCode");
-            long parentId = GeneralEnum.getDicByLabel("General4",parentName);
-            general.setParentId(parentId);
-            general.setParentName(parentName);
-
-            String genderName = data.get("gender");
-            int genderCode = GeneralEnum.getDicByLabel("Gender",genderName);
-            general.setGenderCode(genderCode);
-            general.setGenderName(genderName);
-
-            general.setForce(Integer.valueOf(data.get("force")));
-            general.setIntellect(Integer.valueOf(data.get("intellect")));
-            general.setTroops(Integer.valueOf(data.get("troops")));
-
-            general.setForcex(Integer.valueOf(data.get("force_x")));
-            general.setIntellectx(Integer.valueOf(data.get("intellect_x")));
-            general.setTroopsx(Integer.valueOf(data.get("troops_x")));
-
-            String countryName = data.get("country");
-            int countryCode = GeneralEnum.getDicByLabel("Country",countryName);
-            general.setCountryCode(countryCode);
-            general.setCountryName(countryName);
-
-            general.setStarCode(GeneralEnum.Star.star5.value());
-            general.setStarName(GeneralEnum.Star.star5.label());
-
-            String armsName = data.get("arms");
-            int armsCode = GeneralEnum.getDicByLabel("Arms",armsName);
-            general.setArmsCode(armsCode);
-            general.setArmsName(armsName);
-
-            String typeName = data.get("generalsType");
-            int typeCode = GeneralEnum.getDicByLabel("GeneralsType",typeName);
-            general.setTypeCode(typeCode);
-            general.setTypeName(typeName);
-
-            String categoryName = data.get("category");
-            int categoryCode = GeneralEnum.getDicByLabel("Category",categoryName);
-            general.setTypeCode(categoryCode);
-            general.setTypeName(categoryName);
-
-            String destinyName = data.get("destiny");
-            int destinyCode = GeneralEnum.getDicByLabel("DestinyType",destinyName);
-            general.setDestinyCode(destinyCode);
-            general.setDestinyName(destinyName);
-
-            String[] entourages = data.get("entourage").split(",");
-            List<GeneralAssociation> associationList = new ArrayList<>();
-            GeneralAssociation association = null;
-            for (String entourageName : entourages){
-                association = new GeneralAssociation();
-                long id = GeneralEnum.getDicByLabel("General4",entourageName);
-                association.setParentId(id);
-                association.setParentName(entourageName);
-                association.setRate(0.25);
-                associationList.add(association);
-            }
-
-            String war1 = data.get("war1");
-            String warName1 = data.get("warName1");
-            String war2 = data.get("war2");
-            String warName2 = data.get("warName2");
-            int id1 = GeneralEnum.getDicByLabel("Weapon",war1);
-            int id2 = GeneralEnum.getDicByLabel("Weapon",war2);
-            List<GeneralWeapon> weaponList = new ArrayList<>();
-            GeneralWeapon weapon1 = new GeneralWeapon();
-            weapon1.setWeaponCode(id1);
-            weapon1.setWeaponName(war1);
-            weapon1.setName(warName1);
-            GeneralWeapon weapon2 = new GeneralWeapon();
-            weapon2.setWeaponCode(id2);
-            weapon2.setWeaponName(war2);
-            weapon2.setName(warName2);
-            weaponList.add(weapon1);
-            weaponList.add(weapon2);
-
-            GeneralArmsBook armsBook = new GeneralArmsBook();
-            String position1 = data.get("book1");
-            String position2 = data.get("book2");
-            String position3 = data.get("book3");
-            String position4 = data.get("book4");
-            String position5 = data.get("book5");
-            int code1 = GeneralEnum.getDicByLabel("ArmsPosition",position1);
-            int code2 = GeneralEnum.getDicByLabel("ArmsPosition",position2);
-            int code3 = GeneralEnum.getDicByLabel("ArmsPosition",position3);
-            int code4 = GeneralEnum.getDicByLabel("ArmsPosition",position4);
-            int code5 = GeneralEnum.getDicByLabel("ArmsPosition",position5);
-            armsBook.setPositionCode1(code1);
-            armsBook.setPositionCode2(code2);
-            armsBook.setPositionCode3(code3);
-            armsBook.setPositionCode4(code4);
-            armsBook.setPositionCode5(code5);
-            armsBook.setPositionName1(position1);
-            armsBook.setPositionName2(position2);
-            armsBook.setPositionName3(position3);
-            armsBook.setPositionName4(position4);
-            armsBook.setPositionName5(position5);
-            general.setArmsBook(armsBook);
-            GeneralSkin skin = new GeneralSkin();
-            skin.setName(data.get("skin"));
-            general.setGeneralSkin(skin);
-
-            generalList.add(general);
-        }
-        return ResultMsg.success();
+        return ResultMsg.success(MainService.getExcelData());
     }
 
     /**

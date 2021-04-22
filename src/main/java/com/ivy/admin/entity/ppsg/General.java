@@ -19,11 +19,11 @@ public class General implements Serializable {
 
     @Column
     @Comment("父级ID")
-    private Long parentId;
+    private String parentIds;
 
     @Column
     @Comment("父级名称")
-    private String parentName;
+    private String parentNames;
 
     @Column
     @Comment("武将名称")
@@ -105,6 +105,10 @@ public class General implements Serializable {
     private String armsName;
 
     @Column
+    @Comment("是否共鸣")
+    private Boolean resonance;
+
+    @Column
     @Comment("武将类型编码")
     private Integer typeCode;
 
@@ -161,6 +165,14 @@ public class General implements Serializable {
 //    private GeneralThree baseThree;
 
     public General() {
+    }
+
+    public Boolean getResonance() {
+        return resonance;
+    }
+
+    public void setResonance(Boolean resonance) {
+        this.resonance = resonance;
     }
 
     public Integer getForce() {
@@ -243,20 +255,20 @@ public class General implements Serializable {
         this.cardName = cardName;
     }
 
-    public String getParentName() {
-        return parentName;
+    public String getParentIds() {
+        return parentIds;
     }
 
-    public void setParentName(String parentName) {
-        this.parentName = parentName;
+    public void setParentIds(String parentIds) {
+        this.parentIds = parentIds;
     }
 
-    public Long getParentId() {
-        return parentId;
+    public String getParentNames() {
+        return parentNames;
     }
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
+    public void setParentNames(String parentNames) {
+        this.parentNames = parentNames;
     }
 
     public List<GeneralAssociation> getAssociationList() {

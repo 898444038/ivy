@@ -42,7 +42,7 @@ public class GeneralVirtualCombatController {
     private Cache<String, Object> cache;
     @Autowired
     private GeneralService generalService;
-    @Autowired
+    /*@Autowired
     private GeneralAssociationService generalAssociationService;
     @Autowired
     private GeneralWeaponService generalWeaponService;
@@ -51,7 +51,7 @@ public class GeneralVirtualCombatController {
     @Autowired
     private GeneralSkinService generalSkinService;
     @Autowired
-    private GeneralThreeService generalThreeService;
+    private GeneralThreeService generalThreeService;*/
     @Autowired
     private GeneralVirtualCombatService generalVirtualCombatService;
 
@@ -87,6 +87,7 @@ public class GeneralVirtualCombatController {
     @Log("ppsg.General")
     @PostMapping("/query")
     public ResultMsg query(@RequestBody GeneralAnalog analog){
+        analog.setIds("10001,10002,10003,10004");
         List<GeneralResult> resultList = generalVirtualCombatService.calculate(analog);
         //List<GeneralResult> resultList = (List<GeneralResult>) cache.get(CacheKeys.GENERALS_RESULT_LIST,key -> generalVirtualCombatService.calculate(analog));
         if(resultList.size() > analog.getSize() ){
@@ -99,7 +100,7 @@ public class GeneralVirtualCombatController {
      * localhost:8088/ivy/ppsg/general/virtualCombat/querys
      * @return
      */
-    @Log("ppsg.General")
+    /*@Log("ppsg.General")
     @GetMapping("/querys")
     public ResultMsg querys(){
         GeneralAnalog analog = new GeneralAnalog();
@@ -107,7 +108,7 @@ public class GeneralVirtualCombatController {
         analog.setIds("2,3,4,5,6");
         List<GeneralResult> resultList = generalVirtualCombatService.calculate(analog);
         return ResultMsg.success(resultList);
-    }
+    }*/
 
 
 }

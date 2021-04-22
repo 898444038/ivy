@@ -15,8 +15,8 @@ public class CacheConfig{
     public Cache<String,Object> caffeineCache(){
         return Caffeine.newBuilder()
                 .expireAfterWrite(60, TimeUnit.MINUTES)
-                .weakKeys()// 弱引用key
-                .weakValues()// 弱引用value
+                //.weakKeys()// 弱引用key
+                //.weakValues()// 弱引用value
                 .removalListener((RemovalListener<String, Object>) (key, value, cause) -> System.out.println("key:" + key + ", value:" + value + ", 删除原因:" + cause.toString()))
                 .initialCapacity(100).maximumSize(10000).build();
     }

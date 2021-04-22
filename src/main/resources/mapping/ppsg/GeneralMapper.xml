@@ -4,8 +4,8 @@
 
 	<resultMap id="baseResultMap" type="com.ivy.admin.entity.ppsg.General">
 	    <result column="id" property="id"/>
-	    <result column="parent_id" property="parentId"/>
-	    <result column="parent_name" property="parentName"/>
+	    <result column="parent_ids" property="parentIds"/>
+	    <result column="parent_names" property="parentNames"/>
 	    <result column="name" property="name"/>
 		<result column="force" property="force"/>
 		<result column="intellect" property="intellect"/>
@@ -38,8 +38,8 @@
 
 	<resultMap id="baseVoResultMap" type="com.ivy.admin.vo.ppsg.GeneralVo">
 		<result column="id" property="id"/>
-		<result column="parent_id" property="parentId"/>
-		<result column="parent_name" property="parentName"/>
+		<result column="parent_ids" property="parentIds"/>
+		<result column="parent_names" property="parentNames"/>
 		<result column="name" property="name"/>
 		<result column="force" property="force"/>
 		<result column="intellect" property="intellect"/>
@@ -72,8 +72,8 @@
 
 	<sql id="baseColumn">
 	    id,
-	    parent_id,
-	    parent_name,
+	    parent_ids,
+	    parent_names,
 	    name,
 	    `force`,
 	    intellect,
@@ -107,8 +107,8 @@
 	<sql id="baseCondition">
 		<where>
 		    <if test="id != null"> and id = #{id}</if>
-		    <if test="parentId != null"> and parent_id = #{parentId}</if>
-		    <if test="parentName != null"> and parent_name = #{parentName}</if>
+		    <if test="parentIds != null"> and parent_ids = #{parentIds}</if>
+		    <if test="parentNames != null"> and parent_names = #{parentNames}</if>
 		    <if test="name != null"> and name = #{name}</if>
 			<if test="force != null"> and `force` = #{force}</if>
 			<if test="intellect != null"> and intellect = #{intellect}</if>
@@ -196,8 +196,8 @@
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ivy.admin.entity.ppsg.General">
 		insert into ppsg_general
 		<trim prefix="(" suffix=")" suffixOverrides="," >
-			<if test="parentId != null">parent_id,</if>
-			<if test="parentName != null">parent_name,</if>
+			<if test="parentIds != null">parent_ids,</if>
+			<if test="parentNames != null">parent_names,</if>
 			<if test="name != null">name,</if>
 			<if test="force != null">`force`,</if>
 			<if test="intellect != null">intellect,</if>
@@ -228,8 +228,8 @@
 			<if test="delFlag != null">del_flag,</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides="," >
-		    <if test="parentId != null">#{parentId},</if>
-		    <if test="parentName != null">#{parentName},</if>
+		    <if test="parentIds != null">#{parentIds},</if>
+		    <if test="parentNames != null">#{parentNames},</if>
 		    <if test="name != null">#{name},</if>
 			<if test="force != null">#{force},</if>
 			<if test="intellect != null">#{intellect},</if>
@@ -264,8 +264,8 @@
 	<update id="update" parameterType="com.ivy.admin.entity.ppsg.General">
 		update ppsg_general
 		<set>
-			<if test="parentId != null">parent_id = #{parentId},</if>
-			<if test="parentName != null">parent_name = #{parentName},</if>
+			<if test="parentIds != null">parent_ids = #{parentIds},</if>
+			<if test="parentNames != null">parent_names = #{parentNames},</if>
 			<if test="name != null">name = #{name},</if>
 			<if test="force != null">`force` = #{force},</if>
 			<if test="intellect != null">intellect = #{intellect},</if>

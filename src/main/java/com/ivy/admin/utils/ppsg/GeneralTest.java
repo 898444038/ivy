@@ -85,8 +85,8 @@ public class GeneralTest {
         general.setId(id);//编号
         general.setName(name);//名称
         general.setLevel(1);//等级
-        general.setParentId(general4.value().longValue());
-        general.setParentName(general4.label());
+        //general.setParentId(general4.value().longValue());
+        //general.setParentName(general4.label());
         general.setGenderCode(gender.value());//性别
         general.setGenderName(gender.label());//性别
         general.setCountryCode(country.value());//国家

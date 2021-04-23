@@ -87,7 +87,7 @@ public class GeneralVirtualCombatController {
     @Log("ppsg.General")
     @PostMapping("/query")
     public ResultMsg query(@RequestBody GeneralAnalog analog){
-        analog.setIds("10001,10002,10003,10004");
+        analog.setIds("10001,10002,10003,10004,10005");
         List<GeneralResult> resultList = generalVirtualCombatService.calculate(analog);
         //List<GeneralResult> resultList = (List<GeneralResult>) cache.get(CacheKeys.GENERALS_RESULT_LIST,key -> generalVirtualCombatService.calculate(analog));
         if(resultList.size() > analog.getSize() ){

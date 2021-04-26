@@ -27,13 +27,13 @@ public class SystemTimer implements Timer {
     private ExecutorService bossThreadPool;
 
     public SystemTimer() {
-        this.timeWheel = new TimeWheel(0,1, 60000, System.currentTimeMillis(), delayQueue);
+        this.timeWheel = new TimeWheel(0,1000, 60, System.currentTimeMillis(), delayQueue);
         this.workerThreadPool = Executors.newFixedThreadPool(100);
         this.bossThreadPool = Executors.newFixedThreadPool(1);
         //20ms推动一次时间轮运转
         this.bossThreadPool.submit(() -> {
             for (; ; ) {
-                this.advanceClock(20);
+                this.advanceClock(50);
             }
         });
     }

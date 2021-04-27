@@ -33,7 +33,7 @@ public class SystemTimer implements Timer {
         //20ms推动一次时间轮运转
         this.bossThreadPool.submit(() -> {
             for (; ; ) {
-                this.advanceClock(50);
+                this.advanceClock(60);
             }
         });
     }

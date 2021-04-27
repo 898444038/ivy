@@ -1,4 +1,4 @@
-package com.ivy.admin.utils;
+package com.ivy.system.timewheel;
 
 //时间片轮转算法
 public class ListQueue {
@@ -60,10 +60,10 @@ public class ListQueue {
         int i = 0;
         ListQueue lq = new ListQueue();
         // 插入数据
-        lq.insertToQueue("A", 3, 12);
-        lq.insertToQueue("B", 5, 31);
-        lq.insertToQueue("C", 2, 21);
-        lq.insertToQueue("D", 4, 10);
+        lq.insertToQueue("A", 2, 0);
+        lq.insertToQueue("B", 2, 0);
+        lq.insertToQueue("C", 2, 0);
+        lq.insertToQueue("D", 2, 0);
         System.out.println("时间片轮转算法:");
         for (Link visitLink = head; visitLink != null; visitLink = visitLink.next) {
             System.out.print("t=" + i + " " + visitLink.name + "执行");
